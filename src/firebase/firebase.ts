@@ -9,15 +9,11 @@ const firebaseConfig = {
   storageBucket: 'fitness-app-b0ec5.appspot.com',
   messagingSenderId: '902700817508',
   appId: '1:902700817508:web:987c04a20f412bce355371',
-  measurementId: 'G-JET62TQVNS',
+  measurementId: 'G-JET62TQVNS'
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-export {
-  app,
-  db,
-  auth,
-};
+export { app, db, auth };

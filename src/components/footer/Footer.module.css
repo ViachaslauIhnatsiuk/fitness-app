@@ -1,0 +1,29 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.githubs {
+  display: flex;
+  flex-direction: column;
+}
+
+.github {
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.year {
+  font-size: 16px;
+  color: #fff;
+  cursor: default;
+}
+
+.logo {
+  width: 60px;
+}

@@ -1,25 +1,25 @@
 import React, { FC } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import s from './App.module.css';
-import { Header } from './header/Header';
 import { Home } from '../pages/home/Home';
 import { Workout } from '../pages/workout/Workout';
 import { Food } from '../pages/food/Food';
 import { Profile } from '../pages/profile/Profile';
-import { Navbar } from './navbar/Navbar';
-import { Footer } from './footer/Footer';
+import Layout from './layout/Layout';
+import NotFound from '../pages/notFound/NotFound';
 
 const App: FC = () => {
   return (
     <div className={s.app}>
-      <Header />
-      <div className={s.main}>
-        <Home />
-        <Workout />
-        <Food />
-        <Profile />
-      </div>
-      <Navbar />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="workout" element={<Workout />} />
+          <Route path="food" element={<Food />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </div>
   );
 };

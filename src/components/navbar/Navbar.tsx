@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import { HomeButton } from '../UI/homeButton/HomeButton';
 import { WorkoutButton } from '../UI/workoutButton/WorkoutButton';
 import { FoodButton } from '../UI/foodButton/FoodButton';
@@ -8,10 +9,18 @@ import s from './Navbar.module.css';
 const Navbar: FC = () => {
   return (
     <div className={s.wrapper}>
-      <HomeButton />
-      <WorkoutButton />
-      <FoodButton />
-      <ProfileButton />
+      <NavLink to="/">
+        <HomeButton />
+      </NavLink>
+      <NavLink to="workout">
+        <WorkoutButton />
+      </NavLink>
+      <NavLink to="food">
+        <FoodButton />
+      </NavLink>
+      <NavLink to="profile">
+        <ProfileButton />
+      </NavLink>
     </div>
   );
 };

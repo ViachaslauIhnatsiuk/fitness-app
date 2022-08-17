@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
+import { IoIosFitness } from 'react-icons/io';
 import s from './WorkoutButton.module.css';
-import { ReactComponent as Workout } from '../../../assets/navigation/workout.svg';
 
 const WorkoutButton: FC = () => {
   return (
     <div className={s.wrapper}>
-      <Workout className={s.icon} />
+      <h3 className={s.icon}>
+        <IoIosFitness />
+      </h3>
       <div className={s.title}>Workout</div>
     </div>
   );

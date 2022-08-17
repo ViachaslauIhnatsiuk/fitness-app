@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
-import { ReactComponent as Home } from '../../../assets/navigation/home.svg';
+import { AiFillHome } from 'react-icons/ai';
 import s from './HomeButton.module.css';
 
 const HomeButton: FC = () => {
   return (
     <div className={s.wrapper}>
-      <Home className={s.icon} />
+      <h3 className={s.icon}>
+        <AiFillHome />
+      </h3>
       <div className={s.title}>Home</div>
     </div>
   );

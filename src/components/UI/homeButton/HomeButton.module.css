@@ -6,13 +6,12 @@
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
-  fill: #7755ff;
+  font-size: 1.8rem;
+  color: #828283;
   cursor: pointer;
 }
 
 .title {
   font-size: 14px;
-  color: #7755ff;
+  color: #828283;
 }

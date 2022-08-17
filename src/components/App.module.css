@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  background-color: #181a20;
+  width: 425px;
+  min-height: 100vh;
+  padding: 20px;
+  row-gap: 30px;
+}
+
+.main {
+  flex-grow: 1;
+}

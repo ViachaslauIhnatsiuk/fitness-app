@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: #7755ff;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 14px;
+  color: #7755ff;
+}

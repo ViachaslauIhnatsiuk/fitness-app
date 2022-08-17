@@ -6,9 +6,8 @@
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
-  fill: #828283;
+  font-size: 1.8rem;
+  color: #828283;
   cursor: pointer;
 }
 

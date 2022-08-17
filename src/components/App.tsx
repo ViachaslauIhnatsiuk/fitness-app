@@ -5,8 +5,8 @@ import { Home } from '../pages/home/Home';
 import { Workout } from '../pages/workout/Workout';
 import { Food } from '../pages/food/Food';
 import { Profile } from '../pages/profile/Profile';
-import Layout from './layout/Layout';
-import NotFound from '../pages/notFound/NotFound';
+import { Layout } from './layout/Layout';
+import { NotFound } from '../pages/notFound/NotFound';
 
 const App: FC = () => {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Layout.module.css';
 import { Footer } from '../footer/Footer';
 import { Header } from '../header/Header';
-import Main from '../main/Main';
+import { Main } from '../main/Main';
 import { Navbar } from '../navbar/Navbar';
 
 const Layout = () => {
@@ -16,4 +16,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export { Layout };

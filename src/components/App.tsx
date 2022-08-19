@@ -10,6 +10,7 @@ import { NotFound } from '../pages/notFound/NotFound';
 import { Trainings } from './trainings/Trainings';
 import { VideoTrainings } from './videoTrainings/VideoTrainings';
 import { Exercises } from './trainings/exercises/Exercises';
+import { TrainingActive } from './trainings/trainingActive/TrainingActive';
 
 const App: FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: FC = () => {
             <Route path="videos" element={<VideoTrainings />} />
             <Route path="trainings" element={<Trainings />} />
             <Route path="trainings/:trainingId" element={<Exercises />} />
+            <Route path="trainings/:trainingId/active" element={<TrainingActive />} />
           </Route>
           <Route path="food" element={<Food />} />
           <Route path="profile" element={<Profile />} />

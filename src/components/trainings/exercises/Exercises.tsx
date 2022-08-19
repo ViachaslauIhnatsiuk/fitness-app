@@ -11,7 +11,7 @@ const Exercises: FC = () => {
   const { pathname } = useLocation();
   const [exercisesArr, setExercises] = useState<IExercise[]>([]);
   const { trainingId } = useParams();
-  const redirectPath = `${pathname}start`;
+  const redirectPath = `${pathname}active`;
 
   useEffect(() => {
     const isCurrentExercises = (id: number) => {

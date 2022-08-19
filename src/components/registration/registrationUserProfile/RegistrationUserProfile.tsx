@@ -2,10 +2,15 @@ import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useReg } from '../../../hooks/useReg';
 import { IUserProfile } from './models';
-import { nameRegister, emailRegister, passwordRegister, matchPasswordReport } from './constants';
-import s from './registrationUserProfile.module.css';
+import {
+  nameRegister,
+  emailRegister,
+  passwordRegister,
+  matchPasswordReport
+} from '../../../constants/formValidation';
+import s from './RegistrationUserProfile.module.css';
 
-const registrationUserProfile: FC = () => {
+const RegistrationUserProfile: FC = () => {
   const { registrationError, handleRegistration } = useReg();
   const {
     register,
@@ -64,6 +69,7 @@ const registrationUserProfile: FC = () => {
         </div>
         <input
           className={s.button}
+          style={{ backgroundColor: !isValid ? '#35383f' : '#7755ff' }}
           disabled={!isValid}
           type="submit"
           value="Start"
@@ -74,4 +80,4 @@ const registrationUserProfile: FC = () => {
   );
 };
 
-export { registrationUserProfile };
+export { RegistrationUserProfile };

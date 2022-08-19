@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "training title 1",
+    "level": "begginer",
+    "img": "/images/training.jpg",
+    "exercises": [
+      {
+        "title": "exercise title ",
+        "description": "exercise description 1",
+        "time": 5,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "exercise title 2",
+        "description": "exercise description 2",
+        "time": 20,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "exercise title 3",
+        "description": "exercise description 3",
+        "time": 20,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "exercise title 4",
+        "description": "exercise description 4",
+        "time": 35,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "exercise title 5",
+        "description": "exercise description 5",
+        "time": 25,
+        "img": "/images/exercise.jpg"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "training title 2",
+    "level": "advanced",
+    "img": "/images/training.jpg",
+    "exercises": [
+      {
+        "title": "exercise title 1",
+        "description": "exercise description 1",
+        "time": 2,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "exercise title 2",
+        "description": "exercise description 2",
+        "time": 5,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "exercise title 3",
+
+        "description": "exercise description 3",
+        "time": 10,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "exercise title 4",
+
+        "description": "exercise description 4",
+        "time": 15,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "exercise title 5",
+        "description": "exercise description 5",
+        "time": 5,
+        "img": "/images/exercise.jpg"
+      }
+    ]
+  }
+]

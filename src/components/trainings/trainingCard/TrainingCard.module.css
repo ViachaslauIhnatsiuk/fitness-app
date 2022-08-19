@@ -1,0 +1,9 @@
+.training {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #fff;
+  padding: 0.4rem 1.2rem;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}

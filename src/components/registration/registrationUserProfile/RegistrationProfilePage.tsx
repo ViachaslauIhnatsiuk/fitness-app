@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useReg } from '../../hooks/useReg';
-import { IRegistrationData } from './models';
+import { useReg } from '../../../hooks/useReg';
+import { IUserProfile } from './models';
 import { nameRegister, emailRegister, passwordRegister, matchPasswordReport } from './constants';
-import s from './RegistrationProfilePage.module.css';
+import s from './registrationUserProfile.module.css';
 
-const RegistrationProfilePage: FC = () => {
+const registrationUserProfile: FC = () => {
   const { registrationError, handleRegistration } = useReg();
   const {
     register,
@@ -14,7 +14,7 @@ const RegistrationProfilePage: FC = () => {
     watch,
     getValues,
     formState: { errors, isValid }
-  } = useForm<IRegistrationData>({ mode: 'onBlur' });
+  } = useForm<IUserProfile>({ mode: 'onBlur' });
 
   return (
     <div className={s.wrapper}>
@@ -74,4 +74,4 @@ const RegistrationProfilePage: FC = () => {
   );
 };
 
-export { RegistrationProfilePage };
+export { registrationUserProfile };

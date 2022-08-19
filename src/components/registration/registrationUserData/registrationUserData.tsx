@@ -2,10 +2,10 @@ import React, { FC, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
 import { IUserData, IOption } from './models';
 import { selectOptions, initialUserData, registrationSelects } from './constants';
-import { handleValue } from '../../helpers/select';
-import './RegistrationDataPage.css';
+import { handleValue } from '../../../helpers/select';
+import './registrationUserData.css';
 
-const RegistrationDataPage: FC = () => {
+const registrationUserData: FC = () => {
   const [userData, setUserData] = useState<IUserData>(initialUserData);
 
   const handleChange = (selectedOption: SingleValue<string | IOption>) => {
@@ -42,4 +42,4 @@ const RegistrationDataPage: FC = () => {
   );
 };
 
-export { RegistrationDataPage };
+export { registrationUserData };

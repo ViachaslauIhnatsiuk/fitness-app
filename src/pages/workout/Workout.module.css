@@ -1,4 +1,9 @@
 .wrapper {
-  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+  font-size: 1.6rem;
   color: #fff;
 }

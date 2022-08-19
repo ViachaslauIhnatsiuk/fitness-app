@@ -4,7 +4,12 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
+  signOut
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -20,15 +25,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
 
 export {
   app,
   db,
   auth,
+  googleProvider,
+  facebookProvider,
+  twitterProvider,
   setDoc,
   getDoc,
   doc,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  signInWithPopup,
+  signOut
 };

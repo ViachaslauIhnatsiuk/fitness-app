@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { db, auth, getDoc, doc, signInWithEmailAndPassword } from '../firebase/firebase';
 
 const useAuth = () => {
-  const [loginError, setLoginError] = useState(false);
+  const [loginError, setLoginError] = useState<boolean>(false);
 
   const handleLogin = async (email: string, password: string): Promise<void> => {
     try {

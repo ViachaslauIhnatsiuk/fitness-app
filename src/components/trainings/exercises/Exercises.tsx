@@ -31,14 +31,14 @@ const Exercises: FC = () => {
     <div className={s.wrapper}>
       <div className={s.header}>
         <Button path={Path.trainings} icon={<IoChevronBackCircleOutline />} />
-        <h3>Exercises id: {trainingId}</h3>
+        <h2>Workout Activity</h2>
       </div>
       <div className={s.exercises}>
         {exercisesArr.map((exercise) => {
           return <ExerciseCard key={uuidv4()} exercise={exercise} />;
         })}
       </div>
-      <Button path={redirectPath} text="start" isStyled />
+      <Button path={redirectPath} text="START" isStyled customStyles={s.button} />
     </div>
   );
 };

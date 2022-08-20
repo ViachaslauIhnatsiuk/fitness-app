@@ -3,11 +3,11 @@ import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useParams } from 'react-router-dom';
 import { useTimer } from '../../../hooks/useTimer';
 import { Button } from '../../UI/button/Button';
-import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { PREPARATION_TIME, REST_TIME } from '../constants';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
 import { IExercise, ITraining, Path } from '../models';
 import { ResultTraining } from '../resultTraining/ResultTraining';
+import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
 
 const TrainingActive = () => {
@@ -175,14 +175,7 @@ const TrainingActive = () => {
         <ResultTraining />
       ) : (
         <div>
-          {isInitialTimerRunning && (
-            <div>
-              <h1>Get Ready!</h1>
-              <CircleTimer duration={PREPARATION_TIME} colors={['#7C00FF', '#7C00FF']} />
-              <Button text="Start Over" onClick={onSkipHandler} isStyled />
-            </div>
-          )}
-
+          {isInitialTimerRunning && <TrainingPreparation onSkipHandler={onSkipHandler} />}
           {!isInitialTimerRunning && (
             <div>
               {isRestTimerRunning ? (

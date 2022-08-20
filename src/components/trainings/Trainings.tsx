@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { IoChevronBackCircleOutline } from 'react-icons/io5';
+import { IoChevronBackCircleOutline, IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from '../UI/button/Button';
 import { ITraining, Path } from './models';
@@ -19,7 +19,17 @@ const Trainings: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <Button path={Path.videoTrainings} icon={<IoChevronBackCircleOutline />} />
+      <div className={s.header}>
+        <Button path={Path.videoTrainings} icon={<IoChevronBackCircleOutline />} />
+        <button type="button" className={s.search}>
+          <IoSearch />
+        </button>
+      </div>
+      <div className={s.filters}>
+        <Button text="Begginer" isStyled customStyles={s.button} />
+        <Button text="Intermediate" isStyled customStyles={s.button} />
+        <Button text="Advanced" isStyled customStyles={s.button} />
+      </div>
       <div className={s.trainings}>
         {trainings.map((training) => {
           return <TrainingCard key={uuidv4()} training={training} />;

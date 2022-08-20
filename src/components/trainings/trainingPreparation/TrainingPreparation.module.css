@@ -1,0 +1,37 @@
+.preparation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.preparation__timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(107, 3, 253);
+  width: 315px;
+  height: 50px;
+  border-radius: 99px;
+  padding: 0.2rem 1rem;
+  column-gap: 0.6rem;
+  color: rgb(222, 222, 222);
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  background-color: rgb(114, 13, 255);
+  color: rgb(255, 255, 255);
+  transition: all 0.5s;
+}

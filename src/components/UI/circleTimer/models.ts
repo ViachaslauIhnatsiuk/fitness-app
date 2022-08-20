@@ -5,6 +5,9 @@ type CircleTimerProps = {
   isPlaying?: boolean;
   onClick?: () => void;
   btnTitle?: string;
+  size?: number;
+  fontSize?: number;
+  strokeWidth?: number;
 };
 
 export type { CircleTimerProps };

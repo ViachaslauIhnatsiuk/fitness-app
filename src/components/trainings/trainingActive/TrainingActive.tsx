@@ -3,10 +3,11 @@ import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useParams } from 'react-router-dom';
 import { useTimer } from '../../../hooks/useTimer';
 import { Button } from '../../UI/button/Button';
-import { PREPARATION_TIME, REST_TIME } from '../constants';
+import s from './TrainingActive.module.css';
+import { EXERCISE_INITIAL_TIME, PREPARATION_TIME, REST_TIME } from '../constants';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
 import { IExercise, ITraining, Path } from '../models';
-import { ResultTraining } from '../resultTraining/ResultTraining';
+import { TrainingResult } from '../resultTraining/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
 
@@ -17,6 +18,7 @@ const TrainingActive = () => {
   const [currentExercise, setCurrentExercise] = useState<IExercise>();
   const [currentPosition, setCurrentPosition] = useState<number>(0);
   const [isNextButtonClicked, setNextButtonClicked] = useState<boolean>(false);
+  const [isPrevButtonClicked, setPrevButtonClicked] = useState<boolean>(false);
   const [isTrainingFinished, setTrainingIsFinished] = useState<boolean>(false);
   const [isLastExercise, setIsLastExercise] = useState<boolean>(false);
 
@@ -53,73 +55,77 @@ const TrainingActive = () => {
   // timers
   const {
     isRunning: isExerciseRunning,
-    seconds: secondsOfExerciseTimer,
+    counter: counterOfExerciseTimer,
     start: startExerciseTimer,
     stop: stopExerciseTimer,
     pause: pauseExerciseTimer,
-    setSeconds: setExerciseSeconds
-  } = useTimer(0);
+    setCounter: setExerciseCounter
+  } = useTimer(EXERCISE_INITIAL_TIME);
 
   const {
     isRunning: isRestTimerRunning,
-    seconds: secondsOfRestTimer,
+    counter: counterOfRestTimer,
     start: startRestTimer,
     stop: stopRestTimer,
-    setSeconds: setRestSeconds
+    setCounter: setRestCounter
   } = useTimer(REST_TIME);
 
   const {
-    isRunning: isInitialTimerRunning,
-    seconds: secondsOfInitialTimer,
-    start: startInitialTimer,
-    stop: stopInitialTimer,
-    setSeconds: setPreparationSeconds
+    isRunning: isPreparationTimerRunning,
+    counter: counterOfPreparationTimer,
+    start: startPreparationTimer,
+    stop: stopPreparationTimer,
+    setCounter: setPreparationCounter
   } = useTimer(PREPARATION_TIME);
 
   const startExercise = useCallback(() => {
     stopExerciseTimer();
-    setExerciseSeconds(currentExercise?.time as number);
+    setExerciseCounter(currentExercise?.time as number);
     startExerciseTimer();
-  }, [currentExercise?.time, setExerciseSeconds, startExerciseTimer, stopExerciseTimer]);
+  }, [currentExercise?.time, setExerciseCounter, startExerciseTimer, stopExerciseTimer]);
 
   useEffect(
     function startTimerBeforeTraining() {
-      startInitialTimer();
+      startPreparationTimer();
     },
-    [startInitialTimer, stopInitialTimer]
+    [startPreparationTimer, stopPreparationTimer]
   );
 
   useEffect(
-    function startTrainingAterInitialTimer() {
-      if (secondsOfInitialTimer < 1) {
+    function startTrainingAterPreparationTimer() {
+      if (counterOfPreparationTimer < 1) {
         startExercise();
       }
     },
-    [isInitialTimerRunning, secondsOfInitialTimer, startExercise]
+    [isPreparationTimerRunning, counterOfPreparationTimer, startExercise]
   );
 
   useEffect(
     function updateExerciseTimer() {
-      setExerciseSeconds(currentExercise?.time as number);
+      setExerciseCounter(currentExercise?.time as number);
     },
-    [currentExercise, setExerciseSeconds]
+    [currentExercise, setExerciseCounter]
   );
 
   const changeNumberOfExercise = useCallback(() => {
     if (training) {
       const { exercises } = training;
       const amountExercise = exercises.length - 1;
-      const nextPosition = currentPosition + 1;
+      let nextPosition = currentPosition + 1;
+      if (isPrevButtonClicked) {
+        nextPosition = currentPosition > 2 ? currentPosition - 2 : currentPosition;
+        setPrevButtonClicked(false);
+      }
 
       if (nextPosition > amountExercise) {
         setIsLastExercise(true);
         setTrainingIsFinished(true);
       } else {
         setCurrentPosition(nextPosition);
-        setExerciseSeconds(0);
+        setExerciseCounter(0);
       }
     }
-  }, [currentPosition, setExerciseSeconds, training]);
+  }, [currentPosition, isPrevButtonClicked, setExerciseCounter, training]);
 
   // handlers
   const onNextHandler = useCallback(() => {
@@ -131,18 +137,19 @@ const TrainingActive = () => {
 
   const onPrevHandler = () => {
     const nextPosition = currentPosition > 0 ? currentPosition - 1 : currentPosition;
-    setCurrentPosition(nextPosition - 1);
-    setExerciseSeconds(0);
+    setCurrentPosition(nextPosition);
+    setPrevButtonClicked(true);
+    setExerciseCounter(0);
   };
 
   const onSkipHandler = () => {
-    setPreparationSeconds(0);
-    setRestSeconds(0);
+    setPreparationCounter(0);
+    setRestCounter(0);
   };
 
   // when EXERCISE TIMER is over
   useEffect(() => {
-    if (isExerciseRunning && secondsOfExerciseTimer <= 0) {
+    if (isExerciseRunning && counterOfExerciseTimer <= 0) {
       if (!isNextButtonClicked) {
         changeNumberOfExercise();
       }
@@ -153,33 +160,34 @@ const TrainingActive = () => {
     isExerciseRunning,
     isLastExercise,
     isNextButtonClicked,
-    secondsOfExerciseTimer,
+    counterOfExerciseTimer,
     startRestTimer
   ]);
 
   // when REST TIMER is over
   useEffect(() => {
-    if (!isExerciseRunning && secondsOfRestTimer <= 0) {
+    if (!isExerciseRunning && counterOfRestTimer <= 0) {
       startExercise();
       stopRestTimer();
       setNextButtonClicked(false);
     }
-  }, [isExerciseRunning, onNextHandler, secondsOfRestTimer, startExercise, stopRestTimer]);
+  }, [isExerciseRunning, onNextHandler, counterOfRestTimer, startExercise, stopRestTimer]);
 
   return (
-    <div>
-      <div>
-        <Button path={redirectPath} icon={<IoChevronBackCircleOutline />} />
-      </div>
+    <div className={s.wrapper}>
+      <Button path={redirectPath} icon={<IoChevronBackCircleOutline />} />
       {isTrainingFinished ? (
-        <ResultTraining />
+        <TrainingResult />
       ) : (
-        <div>
-          {isInitialTimerRunning && <TrainingPreparation onSkipHandler={onSkipHandler} />}
-          {!isInitialTimerRunning && (
-            <div>
+        <div className={s.active}>
+          {isPreparationTimerRunning && <TrainingPreparation onSkipHandler={onSkipHandler} />}
+          {!isPreparationTimerRunning && (
+            <div className={s.exercises}>
               {isRestTimerRunning ? (
-                <TrainingRest onSkipHandler={onSkipHandler} />
+                <TrainingRest
+                  onSkipHandler={onSkipHandler}
+                  nextExercise={currentExercise as IExercise}
+                />
               ) : (
                 <div>
                   {currentExercise && (

@@ -3,8 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import s from './Button.module.css';
 import { ButtonProps } from './models';
 
-const Button: FC<ButtonProps> = ({ path, icon, text, onClick, isStyled }) => {
+const Button: FC<ButtonProps> = ({
+  path,
+  icon,
+  iconPosition = 'left',
+  text,
+  onClick,
+  isStyled,
+  customStyles
+}) => {
   const navigate = useNavigate();
+  const buttonStyles = customStyles || s.button;
 
   const redirectHandler = () => {
     if (path) navigate(path);
@@ -12,14 +21,15 @@ const Button: FC<ButtonProps> = ({ path, icon, text, onClick, isStyled }) => {
 
   return (
     <button
-      className={isStyled ? s.button : s.button_redirect}
+      className={isStyled ? buttonStyles : s.button_redirect}
       type="button"
       onClick={onClick || redirectHandler}
       role="link"
       tabIndex={0}
       onKeyPress={onClick || redirectHandler}
     >
-      {icon} {text}
+      {iconPosition === 'left' && icon} {text}
+      {iconPosition === 'right' && icon}
     </button>
   );
 };

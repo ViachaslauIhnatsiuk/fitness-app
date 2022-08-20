@@ -2,15 +2,14 @@ import React, { FC } from 'react';
 import s from './ExerciseCard.module.css';
 import { ExerciseProps } from './models';
 
-const ExerciseCard: FC<ExerciseProps> = ({ exercise: { description, img, time, title } }) => {
+const ExerciseCard: FC<ExerciseProps> = ({ exercise: { img, time, title } }) => {
   return (
-    <div className={s.exercise}>
+    <div className={s.wrapper}>
       <img className={s.image} src={img} alt="exercise" />
-      <ul>
-        <li>title: {title}</li>
-        <li>description: {description}</li>
-        <li>time: {time}</li>
-      </ul>
+      <div className={s.description}>
+        <h2>{title}</h2>
+        <p className={s.info}>{time} seconds</p>
+      </div>
     </div>
   );
 };

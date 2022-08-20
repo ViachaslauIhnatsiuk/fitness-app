@@ -1,78 +1,80 @@
 [
   {
     "id": 1,
-    "title": "training title 1",
-    "level": "begginer",
+    "title": "Full Body Training Exercise",
+    "level": "Begginer",
     "img": "/images/training.jpg",
     "exercises": [
       {
-        "title": "exercise title ",
+        "title": "Warrior",
         "description": "exercise description 1",
-        "time": 5,
+        "time": 20,
         "img": "/images/exercise.jpg"
       },
       {
-        "title": "exercise title 2",
+        "title": "Side Plank",
         "description": "exercise description 2",
-        "time": 20,
+        "time": 15,
         "img": "/images/exercise.jpg"
       },
       {
-        "title": "exercise title 3",
+        "title": "Triangle Pose",
+
         "description": "exercise description 3",
+        "time": 15,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "One Leg",
+
+        "description": "exercise description 4",
         "time": 20,
         "img": "/images/exercise.jpg"
       },
       {
-        "title": "exercise title 4",
-        "description": "exercise description 4",
-        "time": 35,
-        "img": "/images/exercise.jpg"
-      },
-      {
-        "title": "exercise title 5",
+        "title": "Stark Pose",
         "description": "exercise description 5",
-        "time": 25,
+        "time": 30,
         "img": "/images/exercise.jpg"
       }
     ]
   },
   {
     "id": 2,
-    "title": "training title 2",
-    "level": "advanced",
+    "title": "Squat Movement Exercise",
+    "level": "Advanced",
     "img": "/images/training.jpg",
     "exercises": [
       {
-        "title": "exercise title 1",
+        "title": "Warrior",
         "description": "exercise description 1",
-        "time": 2,
+        "time": 20,
         "img": "/images/exercise.jpg"
       },
       {
-        "title": "exercise title 2",
+        "title": "Side Plank",
         "description": "exercise description 2",
-        "time": 5,
-        "img": "/images/exercise.jpg"
-      },
-      {
-        "title": "exercise title 3",
-
-        "description": "exercise description 3",
-        "time": 10,
-        "img": "/images/exercise.jpg"
-      },
-      {
-        "title": "exercise title 4",
-
-        "description": "exercise description 4",
         "time": 15,
         "img": "/images/exercise.jpg"
       },
       {
-        "title": "exercise title 5",
+        "title": "Triangle Pose",
+
+        "description": "exercise description 3",
+        "time": 15,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "One Leg",
+
+        "description": "exercise description 4",
+        "time": 20,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "Stark Pose",
         "description": "exercise description 5",
-        "time": 5,
+        "time": 30,
         "img": "/images/exercise.jpg"
       }
     ]

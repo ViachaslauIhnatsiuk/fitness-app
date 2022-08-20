@@ -1,0 +1,73 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 1rem;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.image {
+  width: 50%;
+}
+
+.title {
+  color: rgb(110, 0, 219);
+}
+
+.description {
+  color: rgb(229, 229, 229);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.button_home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 315px;
+  height: 50px;
+  border-radius: 99px;
+  padding: 0.2rem 1rem;
+  column-gap: 0.6rem;
+  background-color: rgb(50, 50, 50);
+  color: rgba(226, 226, 226);
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.button_home:hover {
+  background-color: rgb(66, 66, 66);
+  color: rgb(255, 255, 255);
+  transition: background-color 0.3s;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(107, 3, 253);
+  width: 315px;
+  height: 50px;
+  border-radius: 99px;
+  padding: 0.2rem 1rem;
+  column-gap: 0.6rem;
+  color: rgb(222, 222, 222);
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  background-color: rgb(114, 13, 255);
+  color: rgb(255, 255, 255);
+  transition: all 0.5s;
+}

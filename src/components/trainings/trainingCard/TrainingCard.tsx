@@ -25,10 +25,8 @@ const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title, img
       tabIndex={0}
       style={styles}
     >
-      <h4>
-        {title} #{id}
-      </h4>
-      <p>level: {level}</p>
+      <h2>{title}</h2>
+      <p>{level}</p>
     </div>
   );
 };

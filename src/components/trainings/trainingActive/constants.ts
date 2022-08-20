@@ -1,0 +1,4 @@
+const PREPARATION_TIME = 5;
+const REST_TIME = 15;
+
+export { PREPARATION_TIME, REST_TIME };

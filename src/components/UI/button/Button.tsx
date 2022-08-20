@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import s from './RedirectButton.module.css';
+import s from './Button.module.css';
 import { ButtonProps } from './models';
 
 const Button: FC<ButtonProps> = ({ path, icon, text, onClick, isStyled }) => {

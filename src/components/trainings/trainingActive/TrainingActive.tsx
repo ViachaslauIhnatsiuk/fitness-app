@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useParams } from 'react-router-dom';
-import useTimer from '../../../hooks/useTimer';
+import { useTimer } from '../../../hooks/useTimer';
 import { Button } from '../../UI/button/Button';
+import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
 import { IExercise, ITraining, Path } from '../models';
 import { ResultTraining } from '../resultTraining/ResultTraining';
+import { PREPARATION_TIME, REST_TIME } from './constants';
 
 const TrainingActive = () => {
   const params = useParams();
@@ -53,6 +55,7 @@ const TrainingActive = () => {
     seconds: secondsOfExerciseTimer,
     start: startExerciseTimer,
     stop: stopExerciseTimer,
+    pause: pauseExerciseTimer,
     setSeconds: setExerciseSeconds
   } = useTimer(0);
 
@@ -62,14 +65,15 @@ const TrainingActive = () => {
     start: startRestTimer,
     stop: stopRestTimer,
     setSeconds: setRestSeconds
-  } = useTimer(10);
+  } = useTimer(REST_TIME);
 
   const {
     isRunning: isInitialTimerRunning,
     seconds: secondsOfInitialTimer,
     start: startInitialTimer,
-    stop: stopInitialTimer
-  } = useTimer(5);
+    stop: stopInitialTimer,
+    setSeconds: setPreparationSeconds
+  } = useTimer(PREPARATION_TIME);
 
   const startExercise = useCallback(() => {
     stopExerciseTimer();
@@ -131,12 +135,13 @@ const TrainingActive = () => {
   };
 
   const onSkipHandler = () => {
+    setPreparationSeconds(0);
     setRestSeconds(0);
   };
 
   // when EXERCISE TIMER is over
   useEffect(() => {
-    if (isExerciseRunning && secondsOfExerciseTimer === 0) {
+    if (isExerciseRunning && secondsOfExerciseTimer <= 0) {
       if (!isNextButtonClicked) {
         changeNumberOfExercise();
       }
@@ -153,7 +158,7 @@ const TrainingActive = () => {
 
   // when REST TIMER is over
   useEffect(() => {
-    if (!isExerciseRunning && secondsOfRestTimer === 0) {
+    if (!isExerciseRunning && secondsOfRestTimer <= 0) {
       startExercise();
       stopRestTimer();
       setNextButtonClicked(false);
@@ -171,27 +176,30 @@ const TrainingActive = () => {
         <div>
           {isInitialTimerRunning && (
             <div>
-              PREPARE: {secondsOfInitialTimer}
-              <br />
+              <h1>Get Ready!</h1>
+              <CircleTimer duration={PREPARATION_TIME} colors={['#7C00FF', '#7C00FF']} />
+              <Button text="Start Over" onClick={onSkipHandler} isStyled />
             </div>
           )}
 
           {!isInitialTimerRunning && (
             <div>
-              <p>{training?.title}</p>
-              <p>{training?.level}</p>
-
               {isRestTimerRunning ? (
                 <div>
-                  REST TIMER: {secondsOfRestTimer}
-                  <Button text="skip" onClick={onSkipHandler} isStyled />
+                  <h1>Take a Rest!</h1>
+                  <CircleTimer duration={REST_TIME} colors={['#7C00FF', '#7C00FF']} />
+                  <Button text="Skip Rest" onClick={onSkipHandler} isStyled />
                 </div>
               ) : (
                 <div>
-                  {currentExercise && <ExerciseActive exercise={currentExercise} />}
-                  <p>timer: {secondsOfExerciseTimer}</p>
-                  <Button text="prev" onClick={onPrevHandler} isStyled />
-                  <Button text="next" onClick={onNextHandler} isStyled />
+                  {currentExercise && (
+                    <ExerciseActive
+                      exercise={currentExercise}
+                      onClickTimerHandler={pauseExerciseTimer}
+                      onNextHandler={onNextHandler}
+                      onPrevHandler={onPrevHandler}
+                    />
+                  )}
                 </div>
               )}
             </div>

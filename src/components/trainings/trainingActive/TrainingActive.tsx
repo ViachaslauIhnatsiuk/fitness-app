@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom';
 import { useTimer } from '../../../hooks/useTimer';
 import { Button } from '../../UI/button/Button';
 import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
+import { PREPARATION_TIME, REST_TIME } from '../constants';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
 import { IExercise, ITraining, Path } from '../models';
 import { ResultTraining } from '../resultTraining/ResultTraining';
-import { PREPARATION_TIME, REST_TIME } from './constants';
+import { TrainingRest } from '../trainingRest/TrainingRest';
 
 const TrainingActive = () => {
   const params = useParams();
@@ -185,11 +186,7 @@ const TrainingActive = () => {
           {!isInitialTimerRunning && (
             <div>
               {isRestTimerRunning ? (
-                <div>
-                  <h1>Take a Rest!</h1>
-                  <CircleTimer duration={REST_TIME} colors={['#7C00FF', '#7C00FF']} />
-                  <Button text="Skip Rest" onClick={onSkipHandler} isStyled />
-                </div>
+                <TrainingRest onSkipHandler={onSkipHandler} />
               ) : (
                 <div>
                   {currentExercise && (

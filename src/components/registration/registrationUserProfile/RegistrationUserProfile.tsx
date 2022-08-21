@@ -1,11 +1,16 @@
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useReg } from '../../hooks/useReg';
-import { IRegistrationData } from './models';
-import { nameRegister, emailRegister, passwordRegister, matchPasswordReport } from './constants';
-import s from './RegistrationProfilePage.module.css';
+import { useReg } from '../../../hooks/useReg';
+import { IUserProfile } from './models';
+import {
+  nameRegister,
+  emailRegister,
+  passwordRegister,
+  matchPasswordReport
+} from '../../../constants/formValidation';
+import s from './RegistrationUserProfile.module.css';
 
-const RegistrationProfilePage: FC = () => {
+const RegistrationUserProfile: FC = () => {
   const { registrationError, handleRegistration } = useReg();
   const {
     register,
@@ -14,7 +19,7 @@ const RegistrationProfilePage: FC = () => {
     watch,
     getValues,
     formState: { errors, isValid }
-  } = useForm<IRegistrationData>({ mode: 'onBlur' });
+  } = useForm<IUserProfile>({ mode: 'onBlur' });
 
   return (
     <div className={s.wrapper}>
@@ -64,6 +69,7 @@ const RegistrationProfilePage: FC = () => {
         </div>
         <input
           className={s.button}
+          style={{ backgroundColor: !isValid ? '#35383f' : '#7755ff' }}
           disabled={!isValid}
           type="submit"
           value="Start"
@@ -74,4 +80,4 @@ const RegistrationProfilePage: FC = () => {
   );
 };
 
-export { RegistrationProfilePage };
+export { RegistrationUserProfile };

@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { setDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase/firebase';
+import { db, auth, setDoc, doc, createUserWithEmailAndPassword } from '../firebase/firebase';
 
 const useReg = () => {
   const [registrationError, setRegistrationError] = useState<boolean>(false);
@@ -11,7 +9,6 @@ const useReg = () => {
     email: string,
     password: string
   ): Promise<void> => {
-    const auth = getAuth();
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       setDoc(doc(db, 'users', user.uid), {

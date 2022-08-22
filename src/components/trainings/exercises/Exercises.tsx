@@ -3,9 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useLocation, useParams } from 'react-router-dom';
 import s from './Exercises.module.css';
-import { IExercise, ITraining, Path } from '../models';
+import { IExercise, ITraining } from '../models';
 import { Button } from '../../UI/button/Button';
 import { ExerciseCard } from '../exerciseCard/ExerciseCard';
+import { Path } from '../../../models/Workout';
 
 const Exercises: FC = () => {
   const { pathname } = useLocation();

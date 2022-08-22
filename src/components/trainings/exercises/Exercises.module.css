@@ -29,20 +29,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(107, 3, 253);
+  background-color: #6b03fd;
   width: 315px;
   height: 50px;
   border-radius: 99px;
   padding: 0.2rem 1rem;
   column-gap: 0.6rem;
-  color: rgb(222, 222, 222);
+  color: #dedede;
   font-size: 1rem;
   cursor: pointer;
   outline: none;
 }
 
 .button:hover {
-  background-color: rgb(114, 13, 255);
-  color: rgb(255, 255, 255);
+  background-color: #720dff;
+  color: #ffffff;
   transition: all 0.5s;
 }

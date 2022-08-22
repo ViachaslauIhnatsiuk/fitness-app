@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './TrainingResult.module.css';
 import { Button } from '../../UI/button/Button';
-import { Path } from '../models';
+import { Path } from '../../../models/Workout';
 
-const TrainingResult = () => {
+const TrainingResult: FC = () => {
   return (
     <div className={s.wrapper}>
       <img className={s.image} src="/images/result.png" alt="result" />

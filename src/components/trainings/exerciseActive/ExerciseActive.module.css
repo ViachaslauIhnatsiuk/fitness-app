@@ -38,15 +38,15 @@
   border-radius: 99px;
   padding: 0.2rem 1rem;
   column-gap: 0.6rem;
-  background-color: rgb(50, 50, 50);
-  color: rgba(226, 226, 226);
+  background-color: #323232;
+  color: #e2e2e2;
   font-size: 1rem;
   cursor: pointer;
   outline: none;
 }
 
 .button:hover {
-  background-color: rgb(66, 66, 66);
-  color: rgb(255, 255, 255);
+  background-color: #424242;
+  color: #ffffff;
   transition: background-color 0.3s;
 }

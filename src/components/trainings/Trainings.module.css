@@ -41,13 +41,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: rgb(107, 3, 253) 1px solid;
+  border: #6b03fd 1px solid;
   width: fit-content;
   height: 30px;
   border-radius: 99px;
   padding: 0.2rem 1rem;
   column-gap: 0.6rem;
-  color: rgb(107, 3, 253);
+  color: #6b03fd;
   font-size: 1rem;
   cursor: pointer;
   outline: none;
@@ -55,7 +55,7 @@
 }
 
 .button:hover {
-  background-color: rgb(107, 3, 253);
+  background-color: #6b03fd;
   color: #fff;
   transition: all 0.3s;
 }

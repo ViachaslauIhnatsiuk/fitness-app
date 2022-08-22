@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { IoChevronBackCircleOutline, IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
+import { Path } from '../../models/Workout';
 import { Button } from '../UI/button/Button';
-import { ITraining, Path } from './models';
+import { ITraining } from './models';
 import { TrainingCard } from './trainingCard/TrainingCard';
 import s from './Trainings.module.css';
 

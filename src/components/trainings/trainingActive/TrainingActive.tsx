@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useParams } from 'react-router-dom';
 import { useTimer } from '../../../hooks/useTimer';
@@ -6,12 +6,13 @@ import { Button } from '../../UI/button/Button';
 import s from './TrainingActive.module.css';
 import { EXERCISE_INITIAL_TIME, PREPARATION_TIME, REST_TIME } from '../constants';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
-import { IExercise, ITraining, Path } from '../models';
+import { IExercise, ITraining } from '../models';
 import { TrainingResult } from '../resultTraining/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
+import { Path } from '../../../models/Workout';
 
-const TrainingActive = () => {
+const TrainingActive: FC = () => {
   const params = useParams();
 
   const [training, setTraining] = useState<ITraining>();
@@ -84,6 +85,26 @@ const TrainingActive = () => {
     startExerciseTimer();
   }, [currentExercise?.time, setExerciseCounter, startExerciseTimer, stopExerciseTimer]);
 
+  const changeNumberOfExercise = useCallback(() => {
+    if (training) {
+      const { exercises } = training;
+      const amountExercise = exercises.length - 1;
+      let nextPosition = currentPosition + 1;
+      if (isPrevButtonClicked) {
+        nextPosition = currentPosition > 2 ? currentPosition - 2 : currentPosition;
+        setPrevButtonClicked(false);
+      }
+
+      if (nextPosition > amountExercise) {
+        setIsLastExercise(true);
+        setTrainingIsFinished(true);
+      } else {
+        setCurrentPosition(nextPosition);
+        setExerciseCounter(0);
+      }
+    }
+  }, [currentPosition, isPrevButtonClicked, setExerciseCounter, training]);
+
   useEffect(
     function startTimerBeforeTraining() {
       startPreparationTimer();
@@ -107,26 +128,6 @@ const TrainingActive = () => {
     [currentExercise, setExerciseCounter]
   );
 
-  const changeNumberOfExercise = useCallback(() => {
-    if (training) {
-      const { exercises } = training;
-      const amountExercise = exercises.length - 1;
-      let nextPosition = currentPosition + 1;
-      if (isPrevButtonClicked) {
-        nextPosition = currentPosition > 2 ? currentPosition - 2 : currentPosition;
-        setPrevButtonClicked(false);
-      }
-
-      if (nextPosition > amountExercise) {
-        setIsLastExercise(true);
-        setTrainingIsFinished(true);
-      } else {
-        setCurrentPosition(nextPosition);
-        setExerciseCounter(0);
-      }
-    }
-  }, [currentPosition, isPrevButtonClicked, setExerciseCounter, training]);
-
   // handlers
   const onNextHandler = useCallback(() => {
     if (training) {
@@ -147,7 +148,7 @@ const TrainingActive = () => {
     setRestCounter(0);
   };
 
-  // when EXERCISE TIMER is over
+  // when Timers is over
   useEffect(() => {
     if (isExerciseRunning && counterOfExerciseTimer <= 0) {
       if (!isNextButtonClicked) {
@@ -164,7 +165,6 @@ const TrainingActive = () => {
     startRestTimer
   ]);
 
-  // when REST TIMER is over
   useEffect(() => {
     if (!isExerciseRunning && counterOfRestTimer <= 0) {
       startExercise();

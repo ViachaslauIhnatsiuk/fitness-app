@@ -2,13 +2,14 @@ import React from 'react';
 import { FiVideo } from 'react-icons/fi';
 import { MdOutlineSportsBar } from 'react-icons/md';
 import { useLocation } from 'react-router-dom';
+import { Path } from '../../../models/Workout';
 import { CustomLink } from '../../UI/customLink/CustomLink';
-import s from './NavbarWorkout.module.css';
+import s from './WorkoutNavbar.module.css';
 
-const NavbarWorkout = () => {
+const WorkoutNavbar = () => {
   const { pathname } = useLocation();
 
-  if (pathname !== '/workout/videos') return null;
+  if (pathname !== Path.videoTrainings) return null;
 
   return (
     <div className={s.navbar}>
@@ -18,4 +19,4 @@ const NavbarWorkout = () => {
   );
 };
 
-export { NavbarWorkout };
+export { WorkoutNavbar };

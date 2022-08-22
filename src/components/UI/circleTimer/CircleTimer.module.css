@@ -16,15 +16,23 @@
   border-radius: 99px;
   padding: 0.2rem 1rem;
   column-gap: 0.6rem;
-  background-color: rgb(120, 0, 226);
-  color: rgb(242, 242, 242);
+  background-color: #7800e2;
+  color: #f2f2f2;
   font-size: 1rem;
   cursor: pointer;
   outline: none;
+  color: #e21111;
 }
 
 .button:hover {
-  background-color: rgb(136, 1, 255);
-  color: rgb(255, 255, 255);
+  background-color: #8801ff;
+  color: #ffffff;
   transition: background-color 0.3s;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

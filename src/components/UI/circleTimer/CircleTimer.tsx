@@ -25,7 +25,7 @@ const CircleTimer = ({
       <CountdownCircleTimer
         isPlaying={isPlaying}
         duration={duration}
-        colors={colors}
+        colors={colors || ['#7C00FF', '#7C00FF']}
         colorsTime={[0, 0]}
         onComplete={() => ({ shouldRepeat: false, delay: 1 })}
         size={size}

@@ -13,11 +13,4 @@ interface IExercise {
   img: string;
 }
 
-enum Path {
-  home = '/',
-  trainings = '/workout/trainings',
-  videoTrainings = '/workout/videos'
-}
-
-export { Path };
 export type { ITraining, IExercise };

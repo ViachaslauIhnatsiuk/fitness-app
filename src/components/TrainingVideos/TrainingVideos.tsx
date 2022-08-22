@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { IVideo } from './models';
 
-const VideoTrainings: FC = () => {
+const TrainingVideos: FC = () => {
   const [videos, setVideos] = useState<IVideo[]>([]);
 
   useEffect(() => {
@@ -32,4 +32,4 @@ const VideoTrainings: FC = () => {
   );
 };
 
-export { VideoTrainings };
+export { TrainingVideos };

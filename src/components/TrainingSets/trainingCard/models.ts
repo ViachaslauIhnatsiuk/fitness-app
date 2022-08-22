@@ -1,7 +1,7 @@
-import { ITraining } from '../models';
+import { IWorkout } from '../models';
 
 type TrainingCardProps = {
-  training: ITraining;
+  training: IWorkout;
 };
 
 export type { TrainingCardProps };

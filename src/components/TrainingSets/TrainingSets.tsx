@@ -3,18 +3,18 @@ import { IoChevronBackCircleOutline, IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
 import { Path } from '../../models/Workout';
 import { Button } from '../UI/button/Button';
-import { ITraining } from './models';
+import { IWorkout } from './models';
 import { TrainingCard } from './trainingCard/TrainingCard';
-import s from './Trainings.module.css';
+import s from './TrainingSets.module.css';
 
-const Trainings: FC = () => {
-  const [trainings, setTrainings] = useState<ITraining[]>([]);
+const TrainingSets: FC = () => {
+  const [workout, setWorkout] = useState<IWorkout[]>([]);
 
   useEffect(() => {
     (async () => {
       const response = await fetch('/data/trainings.json');
-      const data = (await response.json()) as ITraining[];
-      setTrainings(data);
+      const data = (await response.json()) as IWorkout[];
+      setWorkout(data);
     })().catch(() => {});
   }, []);
 
@@ -27,12 +27,12 @@ const Trainings: FC = () => {
         </button>
       </div>
       <div className={s.filters}>
-        <Button text="Begginer" isStyled customStyles={s.button} />
+        <Button text="Beginner" isStyled customStyles={s.button} />
         <Button text="Intermediate" isStyled customStyles={s.button} />
         <Button text="Advanced" isStyled customStyles={s.button} />
       </div>
       <div className={s.trainings}>
-        {trainings.map((training) => {
+        {workout.map((training) => {
           return <TrainingCard key={uuidv4()} training={training} />;
         })}
       </div>
@@ -40,4 +40,4 @@ const Trainings: FC = () => {
   );
 };
 
-export { Trainings };
+export { TrainingSets };

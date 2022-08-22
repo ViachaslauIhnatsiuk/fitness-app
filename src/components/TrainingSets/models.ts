@@ -1,4 +1,4 @@
-interface ITraining {
+interface IWorkout {
   id: number;
   title: string;
   level: string;
@@ -13,4 +13,4 @@ interface IExercise {
   img: string;
 }
 
-export type { ITraining, IExercise };
+export type { IWorkout, IExercise };

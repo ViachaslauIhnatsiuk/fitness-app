@@ -5,19 +5,19 @@ import { Button } from '../button/Button';
 import { CircleTimerProps } from './models';
 
 const CircleTimer = ({
-  duration,
+  duration = 0,
   onClick,
   colors,
   btnTitle,
   size = 180,
   fontSize = 40,
   strokeWidth = 12
-}: CircleTimerProps) => {
+}: Partial<CircleTimerProps>) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
   const onClickHandler = () => {
     if (onClick) onClick();
-    setIsPlaying((prev) => !prev);
+    setIsPlaying(!isPlaying);
   };
 
   return (

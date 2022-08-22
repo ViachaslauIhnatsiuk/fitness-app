@@ -6,8 +6,8 @@ import { Button } from '../../UI/button/Button';
 import s from './TrainingActive.module.css';
 import { EXERCISE_INITIAL_TIME, PREPARATION_TIME, REST_TIME } from '../constants';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
-import { IExercise, ITraining } from '../models';
-import { TrainingResult } from '../resultTraining/TrainingResult';
+import { IExercise, IWorkout } from '../models';
+import { TrainingResult } from '../trainingResult/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
 import { Path } from '../../../models/Workout';
@@ -15,7 +15,7 @@ import { Path } from '../../../models/Workout';
 const TrainingActive: FC = () => {
   const params = useParams();
 
-  const [training, setTraining] = useState<ITraining>();
+  const [training, setTraining] = useState<IWorkout>();
   const [currentExercise, setCurrentExercise] = useState<IExercise>();
   const [currentPosition, setCurrentPosition] = useState<number>(0);
   const [isNextButtonClicked, setNextButtonClicked] = useState<boolean>(false);
@@ -35,8 +35,8 @@ const TrainingActive: FC = () => {
 
       (async () => {
         const response = await fetch('/data/trainings.json');
-        const data = (await response.json()) as ITraining[];
-        const currentTraining = data.find(({ id }) => isCurrentTraining(id)) as ITraining;
+        const data = (await response.json()) as IWorkout[];
+        const currentTraining = data.find(({ id }) => isCurrentTraining(id)) as IWorkout;
         setTraining(currentTraining);
       })().catch(() => {});
     },

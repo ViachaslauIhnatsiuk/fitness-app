@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import s from './Button.module.css';
 import { ButtonProps } from './models';
 
-const Button: FC<ButtonProps> = ({
+const Button: FC<Partial<ButtonProps>> = ({
   path,
   icon,
   iconPosition = 'left',

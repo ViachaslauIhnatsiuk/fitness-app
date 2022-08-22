@@ -5,9 +5,9 @@ import { TrainingCardProps } from './models';
 
 const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title, img } }) => {
   const navigate = useNavigate();
-  const pathTraining = `${String(id)}/`;
 
   const openTrainingDetailsHandler = () => {
+    const pathTraining = `${String(id)}/`;
     navigate(pathTraining);
   };
 

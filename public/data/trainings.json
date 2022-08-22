@@ -1,0 +1,78 @@
+[
+  {
+    "id": 1,
+    "title": "Full Body Training Exercise",
+    "level": "Beginner",
+    "img": "/images/training.jpg",
+    "exercises": [
+      {
+        "title": "Warrior",
+        "description": "exercise description 1",
+        "time": 20,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "Side Plank",
+        "description": "exercise description 2",
+        "time": 15,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "Triangle Pose",
+        "description": "exercise description 3",
+        "time": 15,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "One Leg",
+        "description": "exercise description 4",
+        "time": 20,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "Stark Pose",
+        "description": "exercise description 5",
+        "time": 30,
+        "img": "/images/exercise.jpg"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Squat Movement Exercise",
+    "level": "Advanced",
+    "img": "/images/training.jpg",
+    "exercises": [
+      {
+        "title": "Warrior",
+        "description": "exercise description 1",
+        "time": 20,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "Side Plank",
+        "description": "exercise description 2",
+        "time": 15,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "Triangle Pose",
+        "description": "exercise description 3",
+        "time": 15,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "One Leg",
+        "description": "exercise description 4",
+        "time": 20,
+        "img": "/images/exercise.jpg"
+      },
+      {
+        "title": "Stark Pose",
+        "description": "exercise description 5",
+        "time": 30,
+        "img": "/images/exercise.jpg"
+      }
+    ]
+  }
+]

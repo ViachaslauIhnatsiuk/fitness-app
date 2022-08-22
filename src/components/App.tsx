@@ -9,6 +9,10 @@ import { Layout } from './layout/Layout';
 import { NotFound } from '../pages/notFound/NotFound';
 import { Ration } from './ration/Ration';
 import { Recipes } from './recipes/Recipes';
+import { TrainingSets } from './TrainingSets/TrainingSets';
+import { TrainingVideos } from './TrainingVideos/TrainingVideos';
+import { Exercises } from './TrainingSets/exercises/Exercises';
+import { TrainingActive } from './TrainingSets/trainingActive/TrainingActive';
 
 const App: FC = () => {
   return (
@@ -16,10 +20,15 @@ const App: FC = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="workout" element={<Workout />} />
           <Route path="food" element={<Food />}>
             <Route path="ration" element={<Ration />} />
             <Route path="recipes" element={<Recipes />} />
+          </Route>
+          <Route path="workout" element={<Workout />}>
+            <Route path="videos" element={<TrainingVideos />} />
+            <Route path="trainings" element={<TrainingSets />} />
+            <Route path="trainings/:trainingId" element={<Exercises />} />
+            <Route path="trainings/:trainingId/active" element={<TrainingActive />} />
           </Route>
           <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />

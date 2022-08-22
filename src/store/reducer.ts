@@ -1,9 +1,10 @@
-import { combineReducers } from 'redux';
-import profileSlice from './slices/profileSlice';
+import { combineReducers } from '@reduxjs/toolkit';
+import { profileSlice } from './slices/profileSlice';
+import { recipesSlice } from './slices/recipesSlice';
 
 const rootReducer = combineReducers({
-  profile: profileSlice,
+  profile: profileSlice.reducer,
+  recipes: recipesSlice.reducer
 });
 
-type RootState = ReturnType<typeof rootReducer>;
-export { rootReducer, type RootState };
+export { rootReducer };

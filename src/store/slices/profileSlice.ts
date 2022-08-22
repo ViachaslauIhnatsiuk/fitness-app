@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ProfileState, RootState } from '../model';
+import type { ProfileState } from '../model';
 
 const initialState: ProfileState = {
   isAuth: false,
-  user: null,
+  user: null
 };
 
-export const profileSlice = createSlice({
+const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
@@ -16,10 +16,9 @@ export const profileSlice = createSlice({
     },
     setLogOut: (state) => {
       state = initialState;
-    },
-  },
+    }
+  }
 });
 
 export const { setLogIn, setLogOut } = profileSlice.actions;
-export const profileSelector = (state: RootState) => state.profile;
-export default profileSlice.reducer;
+export { profileSlice };

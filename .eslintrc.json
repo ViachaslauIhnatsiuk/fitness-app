@@ -35,6 +35,8 @@
     // ругается на модульные стили, мол тип any, хз их типизировать, искал -- не нашел (из-за этого не юзал модульные стили в прошлых проектах)
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
+    // необходимо для того, чтобы переприсвоить state, т.е. мутировать его
+    "no-param-reassign": "off"
     "@typescript-eslint/no-misused-promises": "off",
     "react/jsx-props-no-spreading": "off"
   }

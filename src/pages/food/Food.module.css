@@ -1,4 +1,31 @@
-.wrapper {
-  font-size: 30px;
-  color: #fff;
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.link {
+  flex-basis: calc(50% - 5px);
+  text-align: center;
+  color: #7755ff;
+  border: 1px solid #7755ff;
+  padding: 5px 0;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.link:hover,
+.link_active:hover {
+  color: #ffffff;
+  background-color: #9379ff;
+}
+
+.link_active {
+  flex-basis: calc(50% - 5px);
+  text-align: center;
+  color: #ffffff;
+  background-color: #7755ff;
+  border: 1px solid #7755ff;
+  padding: 5px 0;
+  border-radius: 10px;
+  text-decoration: none;
 }

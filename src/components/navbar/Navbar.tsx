@@ -12,7 +12,7 @@ const Navbar: FC = () => {
       <NavLink to="/">
         <HomeButton />
       </NavLink>
-      <NavLink to="workout">
+      <NavLink to="workout/videos">
         <WorkoutButton />
       </NavLink>
       <NavLink to="food">

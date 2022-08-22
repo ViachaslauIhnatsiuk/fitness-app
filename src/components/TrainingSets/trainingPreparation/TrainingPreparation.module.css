@@ -1,0 +1,37 @@
+.preparation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.preparation__timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6b03fd;
+  width: 315px;
+  height: 50px;
+  border-radius: 99px;
+  padding: 0.2rem 1rem;
+  column-gap: 0.6rem;
+  color: #dedede;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  background-color: #720dff;
+  color: #ffffff;
+  transition: all 0.5s;
+}

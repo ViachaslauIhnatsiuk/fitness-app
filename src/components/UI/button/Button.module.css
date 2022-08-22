@@ -1,0 +1,31 @@
+.button_redirect {
+  border: none;
+  outline: none;
+  background: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  align-self: start;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #6b03fd 1px solid;
+  width: 315px;
+  height: 50px;
+  border-radius: 99px;
+  padding: 0.2rem 1rem;
+  column-gap: 0.6rem;
+  color: #dedede;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  background: none;
+}
+
+.button:hover {
+  background-color: #6b03fd;
+  transition: background-color 0.3s;
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Full Body Training Video",
+    "poster": "/images/training.jpg",
+    "video": "/videos/workout.mp4"
+  },
+  {
+    "id": 2,
+    "title": "Legs Training Video",
+    "poster": "/images/training.jpg",
+    "video": "/videos/workout.mp4"
+  }
+]

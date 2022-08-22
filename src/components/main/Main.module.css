@@ -1,4 +1,6 @@
 .main {
-  color: #fff;
+  display: flex;
+  justify-content: center;
   flex-grow: 1;
+  color: #fff;
 }

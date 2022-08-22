@@ -1,4 +1,6 @@
 .wrapper {
-  font-size: 30px;
-  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }

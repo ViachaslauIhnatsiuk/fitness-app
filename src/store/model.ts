@@ -29,7 +29,7 @@ interface RecipeResponse {
   };
   hits: [
     {
-      recipe: Recipe;
+      recipe: IRecipe;
       _links: {
         self: {
           href: string;
@@ -44,7 +44,7 @@ interface RecipeResponse {
   ];
 }
 
-interface Recipe {
+interface IRecipe {
   uri: string;
   label: string;
   image: string;
@@ -116,4 +116,4 @@ interface Recipe {
 }
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-export type { ProfileState, RecipesState, RecipeResponse, Recipe };
+export type { ProfileState, RecipesState, RecipeResponse, IRecipe };

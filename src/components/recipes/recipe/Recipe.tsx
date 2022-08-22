@@ -1,24 +1,20 @@
-import React from 'react';
-import { Recipe } from '../../../store/model';
+import React, { FC } from 'react';
+import { RecipeProps } from './models';
 import s from './Recipe.module.css';
 
-interface Props {
-  data: Recipe;
-}
-
-const RecipeItem = ({ data: { image, label, dishType, calories } }: Props) => {
+const Recipe: FC<RecipeProps> = ({ data: { image, label, dishType, calories } }) => {
   return (
-    <div className={s.recipe}>
-      <div className={s.recipe_image_wrapper}>
-        <img src={image} className={s.recipe_image} alt={label} />
+    <div className={s.wrapper}>
+      <div className={s.image_wrapper}>
+        <img src={image} className={s.image} alt={label} />
       </div>
-      <div className={s.recipe_overlay}>
-        <span className={s.recipe_label}>{label}</span>
-        <span className={s.recipe_label}>Type: {dishType}</span>
-        <span className={s.recipe_label}>Calories: {calories.toFixed(1)} cal</span>
+      <div className={s.overlay}>
+        <span className={s.label}>{label}</span>
+        <span className={s.label}>Type: {dishType}</span>
+        <span className={s.label}>Calories: {calories.toFixed(1)} cal</span>
       </div>
     </div>
   );
 };
 
-export { RecipeItem };
+export { Recipe };

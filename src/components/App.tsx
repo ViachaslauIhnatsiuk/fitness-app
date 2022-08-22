@@ -7,6 +7,8 @@ import { Food } from '../pages/food/Food';
 import { Profile } from '../pages/profile/Profile';
 import { Layout } from './layout/Layout';
 import { NotFound } from '../pages/notFound/NotFound';
+import { Ration } from './ration/Ration';
+import { Recipes } from './recipes/Recipes';
 
 const App: FC = () => {
   return (
@@ -15,7 +17,10 @@ const App: FC = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="workout" element={<Workout />} />
-          <Route path="food" element={<Food />} />
+          <Route path="food" element={<Food />}>
+            <Route path="ration" element={<Ration />} />
+            <Route path="recipes" element={<Recipes />} />
+          </Route>
           <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Route>

@@ -1,5 +1,5 @@
 .wrapper {
-  height: 100px;
+  height: 150px;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -9,7 +9,7 @@
   cursor: pointer;
 }
 .wrapper:hover .image {
-  transform: scale(1.1);
+  transform: scale(1.15);
   transition: 0.5s;
 }
 .wrapper:hover .overlay {
@@ -28,15 +28,17 @@
   position: absolute;
   top: 0;
   left: 0;
+  transform: scale(1.1);
   transition: 0.5s;
 }
 .overlay {
   padding: 5px;
   width: 90%;
   position: absolute;
-  bottom: -37px;
+  bottom: -44px;
   right: 0;
   background-color: #000000a4;
+  border-top-left-radius: 5px;
   display: flex;
   flex-direction: column;
   transition: 0.5s;

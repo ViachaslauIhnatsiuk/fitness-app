@@ -10,8 +10,9 @@ const initialState: RecipesState = {
     totalResults: 0
   },
   isLoading: false,
-  error: '',
-  isUploaded: false
+  isUploaded: false,
+  queryRequest: '',
+  error: ''
 };
 
 export const fetchRecipes = createAsyncThunk(
@@ -21,7 +22,8 @@ export const fetchRecipes = createAsyncThunk(
       const response = await fetch(
         `${BASE_URL}/complexSearch?query=${query}&apiKey=${API_KEY}&number=12`
       ).catch((error: Error) => error);
-      return (await (response as Response).json()) as RecipesState;
+      const data = await (response as Response).json();
+      return { recipes: data, queryRequest: query } as RecipesState;
     } catch (error) {
       return rejectWithValue('Error fetching recipes');
     }
@@ -34,10 +36,11 @@ const recipesSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchRecipes.fulfilled.type]: (state, action) => {
+      state.recipes = action.payload.recipes;
       state.isLoading = false;
-      state.error = '';
-      state.recipes = action.payload;
       state.isUploaded = true;
+      state.queryRequest = action.payload.queryRequest;
+      state.error = '';
     },
     [fetchRecipes.pending.type]: (state) => {
       state.isLoading = true;

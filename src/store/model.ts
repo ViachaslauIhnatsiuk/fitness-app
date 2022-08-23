@@ -10,8 +10,9 @@ interface ProfileState {
 interface RecipesState {
   recipes: RecipeResponse;
   isLoading: boolean;
-  error: string;
   isUploaded: boolean;
+  queryRequest: string;
+  error: string;
 }
 
 interface RecipeResponse {

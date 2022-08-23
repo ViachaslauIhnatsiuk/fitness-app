@@ -1,0 +1,56 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.8rem;
+  color: #7755ff;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+.icon_active {
+  font-size: 1.8rem;
+  color: #828283;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+.title {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #7755ff;
+  transition: 0.7s;
+}
+
+.title_active {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #828283;
+  transition: 0.7s;
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 4px;
+  height: 0;
+  transition: 0.7s;
+}
+
+.line_active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  border-radius: 3px 0 0 3px;
+  height: 100%;
+  background-color: #7755ff;
+  z-index: 2;
+  transition: 0.7s;
+}

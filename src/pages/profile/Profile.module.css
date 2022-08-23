@@ -1,4 +1,113 @@
 .wrapper {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
   font-size: 30px;
   color: #fff;
+}
+
+.title {
+  width: 100%;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #464648;
+}
+
+.name,
+.email {
+  font-size: 18px;
+}
+
+.email {
+  margin-bottom: 30px;
+}
+
+.settings {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+}
+
+.setting_title {
+  flex: 1 1 auto;
+}
+
+.logout_title {
+  flex: 1 1 auto;
+  color: #c64849;
+}
+
+.icon {
+  margin-right: 20px;
+  color: #fff;
+  font-size: 30px;
+}
+
+.logout_icon {
+  margin-right: 20px;
+  color: #c64849;
+  font-size: 30px;
+}
+
+.theme {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 60px;
+  height: 27px;
+  border-radius: 30px;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #7755ff;
+  opacity: 1;
+}
+
+.toggler {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 34px;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.off {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  left: 28px;
+  font-size: 12px;
+  color: #fff;
+  user-select: none;
+}
+
+.on {
+  display: none;
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  left: 11px;
+  font-size: 12px;
+  color: #fff;
+  user-select: none;
 }

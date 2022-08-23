@@ -1,16 +1,16 @@
-import React from 'react';
-import s from './Layout.module.css';
+import React, { FC } from 'react';
 import { Footer } from '../footer/Footer';
-import { Header } from '../header/Header';
+import { Aside } from '../header/Aside';
 import { Main } from '../main/Main';
-import { Navbar } from '../navbar/Navbar';
+import s from './Layout.module.css';
 
-const Layout = () => {
+const Layout: FC = () => {
   return (
     <div className={s.layout}>
-      <Header />
-      <Main />
-      <Navbar />
+      <div className={s.main}>
+        <Aside />
+        <Main />
+      </div>
       <Footer />
     </div>
   );

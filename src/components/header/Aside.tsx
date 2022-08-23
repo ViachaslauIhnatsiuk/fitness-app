@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
-import s from './Header.module.css';
+import { Navbar } from '../navbar/Navbar';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
+import s from './Aside.module.css';
 
-const Header: FC = () => {
+const Aside: FC = () => {
   return (
     <div className={s.wrapper}>
       <Logo className={s.logo} />
+      <Navbar />
     </div>
   );
 };
 
-export { Header };
+export { Aside };

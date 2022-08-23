@@ -4,18 +4,41 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  padding: 0 15px;
   flex-shrink: 0;
 }
 
 .githubs {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  column-gap: 40px;
 }
 
 .github {
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  transition: 0.4s;
+  cursor: pointer;
+  color: #fff;
+  font-size: 20px;
+}
+
+.github:hover {
+  color: #7755ff;
+  transition: 0.6s;
+}
+
+.ref {
+  font-size: 16px;
   color: #fff;
   text-decoration: none;
+  transition: 0.4s;
+}
+
+.ref:hover {
+  color: #7755ff;
+  transition: 0.6s;
 }
 
 .year {

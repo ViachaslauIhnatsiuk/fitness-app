@@ -1,5 +1,5 @@
-const BASE_URL = 'https://api.edamam.com/api/recipes/v2';
+const BASE_URL = 'https://api.spoonacular.com/recipes';
 const APP_ID = 'ac5bbe55';
-const API_KEY = '67a1c2dc981fb53050986b9d1de149b4';
+const API_KEY = 'bd922f0f53d040feb8de23de17ba820b';
 
 export { BASE_URL, APP_ID, API_KEY };

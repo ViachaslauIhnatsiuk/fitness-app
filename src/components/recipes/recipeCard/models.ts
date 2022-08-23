@@ -1,7 +1,7 @@
 import { IRecipe } from '../../../store/model';
 
-type RecipeProps = {
+type RecipeCardProps = {
   data: IRecipe;
 };
 
-export type { RecipeProps };
+export type { RecipeCardProps };

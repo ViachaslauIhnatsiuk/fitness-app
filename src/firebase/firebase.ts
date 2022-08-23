@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, setDoc, getDoc, doc } from 'firebase/firestore';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -25,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
+const storage = getStorage();
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const twitterProvider = new TwitterAuthProvider();
@@ -33,12 +35,15 @@ export {
   app,
   db,
   auth,
+  storage,
   googleProvider,
   facebookProvider,
   twitterProvider,
   setDoc,
   getDoc,
   doc,
+  ref,
+  getDownloadURL,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,

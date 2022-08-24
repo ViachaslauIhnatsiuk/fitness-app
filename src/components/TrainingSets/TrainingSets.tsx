@@ -1,21 +1,25 @@
+import { collection, getDocs } from 'firebase/firestore';
 import React, { FC, useEffect, useState } from 'react';
 import { IoChevronBackCircleOutline, IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
+import { db } from '../../firebase/firebase';
 import { Path } from '../../models/Workout';
 import { Button } from '../UI/button/Button';
-import { IWorkout } from './models';
+import { IWorkout, IWorkouts } from './models';
 import { TrainingCard } from './trainingCard/TrainingCard';
 import s from './TrainingSets.module.css';
 
 const TrainingSets: FC = () => {
-  const [workout, setWorkout] = useState<IWorkout[]>([]);
+  const [workouts, setWorkouts] = useState<IWorkout[]>([]);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/data/trainings.json');
-      const data = (await response.json()) as IWorkout[];
-      setWorkout(data);
-    })().catch(() => {});
+      const querySnapshot = await getDocs(collection(db, 'trainings'));
+      querySnapshot.forEach((doc) => {
+        const { trainings } = doc.data() as IWorkouts;
+        setWorkouts(trainings);
+      });
+    })().catch((error: Error) => error);
   }, []);
 
   return (
@@ -32,7 +36,7 @@ const TrainingSets: FC = () => {
         <Button text="Advanced" isStyled customStyles={s.button} />
       </div>
       <div className={s.trainings}>
-        {workout.map((training) => {
+        {workouts.map((training) => {
           return <TrainingCard key={uuidv4()} training={training} />;
         })}
       </div>

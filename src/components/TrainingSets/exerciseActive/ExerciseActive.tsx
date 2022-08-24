@@ -6,7 +6,7 @@ import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { ExerciseActiveProps } from './models';
 
 const ExerciseActive: FC<ExerciseActiveProps> = ({
-  exercise: { img, time, title },
+  exercise: { time, title },
   onClickTimerHandler,
   onPrevHandler,
   onNextHandler
@@ -14,7 +14,6 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
   return (
     <div className={s.wrapper}>
       <div className={s.info}>
-        <img className={s.image} src={img} alt="exercise" />
         <h1>{title}</h1>
       </div>
       <CircleTimer

@@ -3,17 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import s from './TrainingCard.module.css';
 import { TrainingCardProps } from './models';
 
-const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title, img } }) => {
+const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } }) => {
   const navigate = useNavigate();
 
   const openTrainingDetailsHandler = () => {
     const pathTraining = `${String(id)}/`;
     navigate(pathTraining);
-  };
-
-  const srcPreviewImage = `url(${String(img)})`;
-  const styles = {
-    backgroundImage: srcPreviewImage
   };
 
   return (
@@ -23,7 +18,6 @@ const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title, img
       onKeyPress={openTrainingDetailsHandler}
       role="link"
       tabIndex={0}
-      style={styles}
     >
       <h2>{title}</h2>
       <p>{level}</p>

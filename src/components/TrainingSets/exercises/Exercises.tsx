@@ -10,8 +10,8 @@ import { Path } from '../../../models/Workout';
 
 const Exercises: FC = () => {
   const { pathname } = useLocation();
-  const [exercises, setExercises] = useState<IExercise[]>([]);
   const { trainingId } = useParams();
+  const [exercises, setExercises] = useState<IExercise[]>([]);
   const redirectPath = `${pathname}active`;
 
   useEffect(() => {

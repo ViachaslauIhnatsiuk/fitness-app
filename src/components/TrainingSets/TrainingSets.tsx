@@ -36,6 +36,7 @@ const TrainingSets: FC = () => {
         <Button text="Advanced" isStyled customStyles={s.button} />
       </div>
       <div className={s.trainings}>
+        {!workouts.length && <h1>LOADING...</h1>}
         {workouts.map((training) => {
           return <TrainingCard key={uuidv4()} training={training} />;
         })}

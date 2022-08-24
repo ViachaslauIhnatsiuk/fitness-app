@@ -3,32 +3,26 @@ import { v4 as uuidv4 } from 'uuid';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useLocation, useParams } from 'react-router-dom';
 import s from './Exercises.module.css';
-import { IExercise, IWorkout } from '../models';
 import { Button } from '../../UI/button/Button';
 import { ExerciseCard } from '../exerciseCard/ExerciseCard';
-import { Path } from '../../../models/Workout';
+import { IExercise, IWorkout, Path } from '../../../models/Workout';
+import { useAppSelector } from '../../../store/model';
+import { selectWorkout } from '../../../store/selectors';
 
 const Exercises: FC = () => {
   const { pathname } = useLocation();
   const { trainingId } = useParams();
+  const { trainings } = useAppSelector(selectWorkout);
   const [exercises, setExercises] = useState<IExercise[]>([]);
   const redirectPath = `${pathname}active`;
 
   useEffect(() => {
-    const isCurrentExercises = (id: number) => {
-      if (trainingId === String(id)) return true;
-      return false;
-    };
+    const { exercises: exercisesData } = trainings.find(
+      ({ id }) => Number(trainingId) === id
+    ) as IWorkout;
 
-    (async () => {
-      const response = await fetch('/data/trainings.json');
-      const data = (await response.json()) as IWorkout[];
-      const { exercises: exercisesData } = data.find(({ id }) =>
-        isCurrentExercises(id)
-      ) as IWorkout;
-      setExercises(exercisesData);
-    })().catch(() => {});
-  }, [trainingId]);
+    setExercises(exercisesData);
+  }, [trainingId, trainings]);
 
   return (
     <div className={s.wrapper}>

@@ -7,12 +7,14 @@ import { ExerciseActiveProps } from './models';
 
 const ExerciseActive: FC<ExerciseActiveProps> = ({
   exercise: { time, title },
+  exerciseGifUrl,
   onClickTimerHandler,
   onPrevHandler,
   onNextHandler
 }) => {
   return (
     <div className={s.wrapper}>
+      <img src={exerciseGifUrl} alt="exercise" />
       <div className={s.info}>
         <h1>{title}</h1>
       </div>

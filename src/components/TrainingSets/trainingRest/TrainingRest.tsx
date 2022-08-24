@@ -5,7 +5,11 @@ import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { REST_TIME } from '../constants';
 import { TrainingRestProps } from './models';
 
-const TrainingRest: FC<TrainingRestProps> = ({ onSkipHandler, nextExercise: { title } }) => {
+const TrainingRest: FC<TrainingRestProps> = ({
+  onSkipHandler,
+  exerciseGifUrl,
+  nextExercise: { title }
+}) => {
   return (
     <div className={s.rest}>
       <div className={s.rest__timer}>
@@ -22,6 +26,7 @@ const TrainingRest: FC<TrainingRestProps> = ({ onSkipHandler, nextExercise: { ti
         <h2>
           Next exercise: <i>{title}</i>
         </h2>
+        <img src={exerciseGifUrl} alt="exercise" />
       </div>
       <Button text="Skip Rest" onClick={onSkipHandler} isStyled customStyles={s.button} />
     </div>

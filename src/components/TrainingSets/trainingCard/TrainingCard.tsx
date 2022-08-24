@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import s from './TrainingCard.module.css';
 import { TrainingCardProps } from './models';
@@ -6,40 +6,37 @@ import { useStorage } from '../../../hooks/useStorage';
 
 const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } }) => {
   const navigate = useNavigate();
-  const [urlBackgroundImage, setUrlBackgroundImage] = useState<string>('');
+  const { trainingPreviewUrl, getTrainingPreviewUrl } = useStorage();
 
   const openTrainingDetailsHandler = (): void => {
     const pathTraining = `${String(id)}/`;
     navigate(pathTraining);
   };
 
-  const { getTrainingPreviewUrl } = useStorage();
-
   useEffect(
     function setTrainingPreview(): void {
       (async () => {
-        const urlPreview = await getTrainingPreviewUrl(title);
-        setUrlBackgroundImage(urlPreview);
+        await getTrainingPreviewUrl(title);
       })().catch((error: Error) => error);
     },
     [getTrainingPreviewUrl, title]
   );
 
   return (
-    <div className={s.wrapper}>
-      {urlBackgroundImage && (
+    <div
+      className={s.wrapper}
+      onClick={openTrainingDetailsHandler}
+      onKeyPress={openTrainingDetailsHandler}
+      role="link"
+      tabIndex={0}
+    >
+      {trainingPreviewUrl && (
         <>
-          <div
-            className={s.info}
-            onClick={openTrainingDetailsHandler}
-            onKeyPress={openTrainingDetailsHandler}
-            role="link"
-            tabIndex={0}
-          >
+          <div className={s.info}>
             <h2>{title}</h2>
             <p>{level}</p>
           </div>
-          <img className={s.image} src={urlBackgroundImage} alt="f" />
+          <img className={s.image} src={trainingPreviewUrl} alt="f" />
         </>
       )}
     </div>

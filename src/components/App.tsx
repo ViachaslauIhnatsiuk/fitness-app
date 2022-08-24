@@ -13,6 +13,7 @@ import { TrainingSets } from './TrainingSets/TrainingSets';
 import { TrainingVideos } from './TrainingVideos/TrainingVideos';
 import { Exercises } from './TrainingSets/exercises/Exercises';
 import { TrainingActive } from './TrainingSets/trainingActive/TrainingActive';
+import { Recipe } from './recipes/recipe/Recipe';
 
 const App: FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: FC = () => {
           <Route path="food" element={<Food />}>
             <Route path="ration" element={<Ration />} />
             <Route path="recipes" element={<Recipes />} />
+            <Route path="recipes/:recipeId" element={<Recipe />} />
           </Route>
           <Route path="workout" element={<Workout />}>
             <Route path="videos" element={<TrainingVideos />} />

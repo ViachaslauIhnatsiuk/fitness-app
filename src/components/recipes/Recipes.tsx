@@ -1,15 +1,17 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import { CgCloseR } from 'react-icons/cg';
+import { FiSearch } from 'react-icons/fi';
+import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../../store/model';
 import { selectRecipes } from '../../store/selectors';
 import { fetchRecipes } from '../../store/slices/recipesSlice';
 import { useAppDispatch } from '../../store/store';
-import { Recipe } from './recipe/Recipe';
+import { RecipeCard } from './recipeCard/RecipeCard';
 import s from './Recipes.module.css';
 
 const Recipes: FC = () => {
   const [query, setQuery] = useState<string>('');
-  const { recipes, isLoading, error } = useAppSelector(selectRecipes);
+  const { recipes, isLoading, error, isUploaded, queryRequest } = useAppSelector(selectRecipes);
   const dispatch = useAppDispatch();
 
   const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
@@ -18,8 +20,9 @@ const Recipes: FC = () => {
     e.preventDefault();
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     dispatch(fetchRecipes(query));
-    setQuery('');
   };
+
+  const handleDeleteValue = () => setQuery('');
 
   return (
     <div className={s.wrapper}>
@@ -32,22 +35,26 @@ const Recipes: FC = () => {
             value={query}
             onChange={(e) => handleInputValue(e)}
           />
-          {query && (
-            <button type="submit" className={s.button}>
-              <CgCloseR className={s.icon} />
-            </button>
-          )}
+          <FiSearch className={s.icon_search} />
+          {query && <CgCloseR className={s.icon_delete} onClick={handleDeleteValue} />}
         </div>
       </form>
       <div>
         {isLoading && <h1>Loading...</h1>}
         {error && <h2>{error}</h2>}
         {recipes && (
-          <div className={s.recipes}>
-            {recipes.hits.map((item) => (
-              <Recipe data={item.recipe} />
-            ))}
-          </div>
+          <>
+            {isUploaded && (
+              <h3 className={s.subtitle}>
+                1-12 of {recipes.totalResults} results for &ldquo;{queryRequest}&rdquo;
+              </h3>
+            )}
+            <div className={s.recipes}>
+              {recipes.results.map((item) => (
+                <RecipeCard data={item} key={uuidv4()} />
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -8,6 +8,7 @@ const Food: FC = () => {
 
   return (
     <div className={s.wrapper}>
+      <h2 className={s.title}>Food</h2>
       <div className={s.links}>
         <Link to="recipes" className={currentLocation === 'recipes' ? s.link_active : s.link}>
           Recipes
@@ -16,6 +17,12 @@ const Food: FC = () => {
           Daily ration
         </Link>
       </div>
+      {currentLocation === 'food' && (
+        <p className={s.decription}>
+          В этом разделе Вы можете найти подходящий для себя рецепт. Контролировать свой дневной
+          рацион питания.
+        </p>
+      )}
       <Outlet />
     </div>
   );

@@ -11,9 +11,18 @@ const useStorage = () => {
     setVideoUrl(url);
   };
 
+  const getTrainingPreviewUrl = async (name: string): Promise<string> => {
+    const convertedName = name.toLowerCase().split(' ').join('_');
+    const url = await getDownloadURL(
+      ref(storage, `exercises_preview/${convertedName}.jpg`)
+    ).catch();
+    return url;
+  };
+
   return {
     videoUrl,
-    getVideoUrl
+    getVideoUrl,
+    getTrainingPreviewUrl
   };
 };
 

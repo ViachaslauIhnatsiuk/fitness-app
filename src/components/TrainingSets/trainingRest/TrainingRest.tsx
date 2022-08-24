@@ -4,6 +4,7 @@ import { Button } from '../../UI/button/Button';
 import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { REST_TIME } from '../constants';
 import { TrainingRestProps } from './models';
+import { LoadableImage } from '../../loadableImage/LoadableImage';
 
 const TrainingRest: FC<TrainingRestProps> = ({
   onSkipHandler,
@@ -26,7 +27,7 @@ const TrainingRest: FC<TrainingRestProps> = ({
         <h2>
           Next exercise: <i>{title}</i>
         </h2>
-        <img src={exerciseGifUrl} alt="exercise" />
+        <LoadableImage src={exerciseGifUrl} alt="exercise" />
       </div>
       <Button text="Skip Rest" onClick={onSkipHandler} isStyled customStyles={s.button} />
     </div>

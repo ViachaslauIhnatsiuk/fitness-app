@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import s from './TrainingCard.module.css';
 import { TrainingCardProps } from './models';
 import { useStorage } from '../../../hooks/useStorage';
+import { LoadableImage } from '../../loadableImage/LoadableImage';
 
 const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } }) => {
   const navigate = useNavigate();
-  const { trainingPreviewUrl, getTrainingPreviewUrl } = useStorage();
+  const { trainingImageUrl, getTrainingPreviewUrl } = useStorage();
 
   const openTrainingDetailsHandler = (): void => {
     const pathTraining = `${String(id)}/`;
@@ -14,7 +15,7 @@ const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } })
   };
 
   useEffect(
-    function setTrainingPreview(): void {
+    function setTrainingImage(): void {
       (async () => {
         await getTrainingPreviewUrl(title);
       })().catch((error: Error) => error);
@@ -30,15 +31,13 @@ const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } })
       role="link"
       tabIndex={0}
     >
-      {trainingPreviewUrl && (
-        <>
-          <div className={s.info}>
-            <h2>{title}</h2>
-            <p>{level}</p>
-          </div>
-          <img className={s.image} src={trainingPreviewUrl} alt="f" />
-        </>
-      )}
+      <div className={s.info}>
+        <h2>{title}</h2>
+        <p>{level}</p>
+      </div>
+      <div className={s.image}>
+        <LoadableImage src={trainingImageUrl} alt="training" />
+      </div>
     </div>
   );
 };

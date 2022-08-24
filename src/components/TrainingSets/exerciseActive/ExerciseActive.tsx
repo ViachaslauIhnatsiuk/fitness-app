@@ -4,6 +4,7 @@ import s from './ExerciseActive.module.css';
 import { Button } from '../../UI/button/Button';
 import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { ExerciseActiveProps } from './models';
+import { LoadableImage } from '../../loadableImage/LoadableImage';
 
 const ExerciseActive: FC<ExerciseActiveProps> = ({
   exercise: { time, title },
@@ -14,7 +15,7 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
 }) => {
   return (
     <div className={s.wrapper}>
-      <img src={exerciseGifUrl} alt="exercise" />
+      <LoadableImage src={exerciseGifUrl} alt="exercise" />
       <div className={s.info}>
         <h1>{title}</h1>
       </div>

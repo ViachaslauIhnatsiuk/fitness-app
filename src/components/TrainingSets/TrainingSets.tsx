@@ -1,26 +1,24 @@
-import { collection, getDocs } from 'firebase/firestore';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { IoChevronBackCircleOutline, IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
-import { db } from '../../firebase/firebase';
 import { Path } from '../../models/Workout';
+import { useAppSelector } from '../../store/model';
+import { selectWorkout } from '../../store/selectors';
+import { fetchTrainings } from '../../store/slices/workout/workoutSlice';
+import { useAppDispatch } from '../../store/store';
 import { Button } from '../UI/button/Button';
-import { IWorkout, IWorkouts } from './models';
 import { TrainingCard } from './trainingCard/TrainingCard';
 import s from './TrainingSets.module.css';
 
 const TrainingSets: FC = () => {
-  const [workouts, setWorkouts] = useState<IWorkout[]>([]);
+  const dispatch = useAppDispatch();
+  const { trainings: workouts, status } = useAppSelector(selectWorkout);
 
   useEffect(() => {
     (async () => {
-      const querySnapshot = await getDocs(collection(db, 'trainings'));
-      querySnapshot.forEach((doc) => {
-        const { trainings } = doc.data() as IWorkouts;
-        setWorkouts(trainings);
-      });
+      await dispatch(fetchTrainings());
     })().catch((error: Error) => error);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={s.wrapper}>
@@ -36,7 +34,7 @@ const TrainingSets: FC = () => {
         <Button text="Advanced" isStyled customStyles={s.button} />
       </div>
       <div className={s.trainings}>
-        {!workouts.length && <h1>LOADING...</h1>}
+        {status === 'loading' && <h1>LOADING...</h1>}
         {workouts.map((training) => {
           return <TrainingCard key={uuidv4()} training={training} />;
         })}

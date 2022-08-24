@@ -6,14 +6,18 @@ import { Button } from '../../UI/button/Button';
 import s from './TrainingActive.module.css';
 import { EXERCISE_INITIAL_TIME, PREPARATION_TIME, REST_TIME } from '../constants';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
-import { IExercise, IWorkout } from '../models';
+
 import { TrainingResult } from '../trainingResult/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
-import { Path } from '../../../models/Workout';
+import { IExercise, IWorkout, Path } from '../../../models/Workout';
+import { useAppSelector } from '../../../store/model';
+import { selectWorkout } from '../../../store/selectors';
+import { useStorage } from '../../../hooks/useStorage';
 
 const TrainingActive: FC = () => {
   const params = useParams();
+  const { trainings } = useAppSelector(selectWorkout);
 
   const [training, setTraining] = useState<IWorkout>();
   const [currentExercise, setCurrentExercise] = useState<IExercise>();
@@ -22,25 +26,17 @@ const TrainingActive: FC = () => {
   const [isPrevButtonClicked, setPrevButtonClicked] = useState<boolean>(false);
   const [isTrainingFinished, setTrainingIsFinished] = useState<boolean>(false);
   const [isLastExercise, setIsLastExercise] = useState<boolean>(false);
+  const { exerciseGifUrl, getExerciseGifUrl } = useStorage();
 
   const trainingId = params.trainingId as string;
   const redirectPath = `${Path.trainings}/${trainingId}/`;
 
   useEffect(
     function getTraining() {
-      const isCurrentTraining = (id: number) => {
-        if (trainingId && trainingId === String(id)) return true;
-        return false;
-      };
-
-      (async () => {
-        const response = await fetch('/data/trainings.json');
-        const data = (await response.json()) as IWorkout[];
-        const currentTraining = data.find(({ id }) => isCurrentTraining(id)) as IWorkout;
-        setTraining(currentTraining);
-      })().catch(() => {});
+      const currentTraining = trainings.find(({ id }) => Number(trainingId) === id) as IWorkout;
+      setTraining(currentTraining);
     },
-    [trainingId]
+    [trainingId, trainings]
   );
 
   useEffect(
@@ -173,6 +169,17 @@ const TrainingActive: FC = () => {
     }
   }, [isExerciseRunning, onNextHandler, counterOfRestTimer, startExercise, stopRestTimer]);
 
+  useEffect(
+    function setExercisePreview(): void {
+      (async () => {
+        if (currentExercise?.title) {
+          await getExerciseGifUrl(currentExercise?.title);
+        }
+      })().catch((error: Error) => error);
+    },
+    [currentExercise, getExerciseGifUrl]
+  );
+
   return (
     <div className={s.wrapper}>
       <Button path={redirectPath} icon={<IoChevronBackCircleOutline />} />
@@ -187,12 +194,14 @@ const TrainingActive: FC = () => {
                 <TrainingRest
                   onSkipHandler={onSkipHandler}
                   nextExercise={currentExercise as IExercise}
+                  exerciseGifUrl={exerciseGifUrl}
                 />
               ) : (
                 <div>
                   {currentExercise && (
                     <ExerciseActive
                       exercise={currentExercise}
+                      exerciseGifUrl={exerciseGifUrl}
                       onClickTimerHandler={pauseExerciseTimer}
                       onNextHandler={onNextHandler}
                       onPrevHandler={onPrevHandler}

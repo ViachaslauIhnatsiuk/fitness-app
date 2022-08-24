@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Navbar } from '../navbar/Navbar';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
-import s from './Aside.module.css';
+import s from './SideBar.module.css';
 
-const Aside: FC = () => {
+const SideBar: FC = () => {
   return (
     <div className={s.wrapper}>
       <Logo className={s.logo} />
@@ -12,4 +12,4 @@ const Aside: FC = () => {
   );
 };
 
-export { Aside };
+export { SideBar };

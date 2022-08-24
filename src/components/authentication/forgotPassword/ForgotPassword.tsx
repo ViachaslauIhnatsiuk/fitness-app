@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useResetPassword } from '../../../hooks/useResetPassword';
+import { usePasswordReset } from '../../../hooks/usePasswordReset';
 import { IUserForgotPassword } from './models';
 import { emailRegister } from '../../../constants/formValidation';
 import s from './ForgotPassword.module.css';
 
 const ForgotPassword: FC = () => {
-  const { resetPasswordError, handleForgotPassword } = useResetPassword();
+  const { resetPasswordError, handleForgotPassword } = usePasswordReset();
   const {
     register,
     handleSubmit,

@@ -10,7 +10,9 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   TwitterAuthProvider,
-  signOut
+  signOut,
+  updateEmail,
+  updatePassword
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -48,5 +50,7 @@ export {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithPopup,
-  signOut
+  signOut,
+  updateEmail,
+  updatePassword
 };

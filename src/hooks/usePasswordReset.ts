@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { auth, sendPasswordResetEmail } from '../firebase/firebase';
 
-const useResetPassword = () => {
+const usePasswordReset = () => {
   const [resetPasswordError, setResetPasswordError] = useState<boolean>(false);
 
   const handleForgotPassword = async (email: string): Promise<void> => {
@@ -18,4 +18,4 @@ const useResetPassword = () => {
   };
 };
 
-export { useResetPassword };
+export { usePasswordReset };

@@ -19,15 +19,14 @@ import { auth } from '../firebase/firebase';
 import { Welcome } from '../pages/welcome/Welcome';
 import { PasswordAuthentication } from './authentication/passwordAuthentication/PasswordAuthentication';
 import { RegistrationUserProfile } from './registration/registrationUserProfile/RegistrationUserProfile';
-
 import s from './App.module.css';
-import { RegistrationUserData } from './registration/registrationUserData/registrationUserData';
+import { RegistrationUserData } from './registration/registrationUserData/RegistrationUserData';
 
 const App: FC = () => {
   return (
     <div className={s.app}>
       <Routes>
-        {auth.currentUser ? (
+        {!auth.currentUser ? (
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="food" element={<Food />}>

@@ -1,16 +1,17 @@
+interface IWorkouts {
+  trainings: IWorkout[];
+}
 interface IWorkout {
   id: number;
   title: string;
-  level: string;
-  img: string;
+  level: 'Begginer' | 'Intermediate' | 'Advanced';
+  cal: number;
   exercises: IExercise[];
 }
 
 interface IExercise {
   title: string;
-  description: string;
   time: number;
-  img: string;
 }
 
-export type { IWorkout, IExercise };
+export type { IWorkouts, IWorkout, IExercise };

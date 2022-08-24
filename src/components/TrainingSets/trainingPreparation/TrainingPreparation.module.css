@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  row-gap: 2rem;
   flex-grow: 1;
 }
 

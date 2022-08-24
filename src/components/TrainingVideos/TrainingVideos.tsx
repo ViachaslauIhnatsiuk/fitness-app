@@ -1,34 +1,32 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { IVideo } from './models';
+import { Status } from '../../models/Workout';
+import { useAppSelector } from '../../store/model';
+import { selectWorkout } from '../../store/selectors';
+import { fetchTrainingVideos } from '../../store/slices/workout/workoutSlice';
+import { useAppDispatch } from '../../store/store';
+import { Category } from './category/Category';
+import s from './TrainingVideos.module.css';
 
 const TrainingVideos: FC = () => {
-  const [videos, setVideos] = useState<IVideo[]>([]);
+  const dispatch = useAppDispatch();
+  const { categories, status } = useAppSelector(selectWorkout);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/data/videos.json');
-      const data = (await response.json()) as IVideo[];
-      setVideos(data);
-    })().catch(() => {});
-  }, []);
+      await dispatch(fetchTrainingVideos());
+    })().catch((error: Error) => error);
+  }, [dispatch]);
 
   return (
-    <>
-      {videos.map(({ poster, title, video }) => {
-        return (
-          <div key={uuidv4()}>
-            <h2>{title}</h2>
-            <video width="100%" height="300" controls poster={poster} preload="metadata">
-              <track kind="captions" />
-              <source src={video} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-              Тег video не поддерживается вашим браузером.
-              <a href={video}>Скачайте видео</a>.
-            </video>
-          </div>
-        );
-      })}
-    </>
+    <div className={s.wrapper}>
+      {status === Status.loading && <h1>LOADING...</h1>}
+      <div className={s.categories}>
+        {categories.map((category) => {
+          return <Category category={category} key={uuidv4()} />;
+        })}
+      </div>
+    </div>
   );
 };
 

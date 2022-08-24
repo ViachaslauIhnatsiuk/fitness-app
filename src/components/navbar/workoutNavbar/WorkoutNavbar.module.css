@@ -5,6 +5,7 @@
   align-items: center;
   column-gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
 .icon {

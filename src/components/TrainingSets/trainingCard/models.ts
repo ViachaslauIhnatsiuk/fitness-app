@@ -1,4 +1,4 @@
-import { IWorkout } from '../models';
+import { IWorkout } from '../../../models/Workout';
 
 type TrainingCardProps = {
   training: IWorkout;

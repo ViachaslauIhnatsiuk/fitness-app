@@ -1,22 +1,24 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { IoChevronBackCircleOutline, IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
-import { Path } from '../../models/Workout';
+import { Path, Status } from '../../models/Workout';
+import { useAppSelector } from '../../store/model';
+import { selectWorkout } from '../../store/selectors';
+import { fetchTrainings } from '../../store/slices/workout/workoutSlice';
+import { useAppDispatch } from '../../store/store';
 import { Button } from '../UI/button/Button';
-import { IWorkout } from './models';
 import { TrainingCard } from './trainingCard/TrainingCard';
 import s from './TrainingSets.module.css';
 
 const TrainingSets: FC = () => {
-  const [workout, setWorkout] = useState<IWorkout[]>([]);
+  const dispatch = useAppDispatch();
+  const { trainings: workouts, status } = useAppSelector(selectWorkout);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/data/trainings.json');
-      const data = (await response.json()) as IWorkout[];
-      setWorkout(data);
-    })().catch(() => {});
-  }, []);
+      await dispatch(fetchTrainings());
+    })().catch((error: Error) => error);
+  }, [dispatch]);
 
   return (
     <div className={s.wrapper}>
@@ -32,7 +34,8 @@ const TrainingSets: FC = () => {
         <Button text="Advanced" isStyled customStyles={s.button} />
       </div>
       <div className={s.trainings}>
-        {workout.map((training) => {
+        {status === Status.loading && <h1>LOADING...</h1>}
+        {workouts.map((training) => {
           return <TrainingCard key={uuidv4()} training={training} />;
         })}
       </div>

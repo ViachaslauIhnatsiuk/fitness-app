@@ -2,11 +2,14 @@ import React, { FC } from 'react';
 import s from './TrainingResult.module.css';
 import { Button } from '../../UI/button/Button';
 import { Path } from '../../../models/Workout';
+import { LoadableImage } from '../../loadableImage/LoadableImage';
 
 const TrainingResult: FC = () => {
   return (
     <div className={s.wrapper}>
-      <img className={s.image} src="/images/result.png" alt="result" />
+      <div className={s.image}>
+        <LoadableImage src="/images/result.png" alt="result" />
+      </div>
       <h1 className={s.title}>Congratulations!</h1>
       <p className={s.description}>You have completed the workout!</p>
       <div className={s.buttons}>

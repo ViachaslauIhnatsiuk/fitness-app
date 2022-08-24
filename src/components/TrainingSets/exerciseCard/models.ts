@@ -1,4 +1,4 @@
-import { IExercise } from '../models';
+import { IExercise } from '../../../models/Workout';
 
 type ExerciseProps = {
   exercise: IExercise;

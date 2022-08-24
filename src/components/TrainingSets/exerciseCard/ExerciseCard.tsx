@@ -1,11 +1,26 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useStorage } from '../../../hooks/useStorage';
+import { LoadableImage } from '../../loadableImage/LoadableImage';
 import s from './ExerciseCard.module.css';
 import { ExerciseProps } from './models';
 
-const ExerciseCard: FC<ExerciseProps> = ({ exercise: { img, time, title } }) => {
+const ExerciseCard: FC<ExerciseProps> = ({ exercise: { time, title } }) => {
+  const { exerciseGifUrl, getExerciseGifUrl } = useStorage();
+
+  useEffect(
+    function setExercisePreview(): void {
+      (async () => {
+        await getExerciseGifUrl(title);
+      })().catch((error: Error) => error);
+    },
+    [getExerciseGifUrl, title]
+  );
+
   return (
     <div className={s.wrapper}>
-      <img className={s.image} src={img} alt="exercise" />
+      <div className={s.image}>
+        <LoadableImage src={exerciseGifUrl} alt="exercise" />
+      </div>
       <div className={s.description}>
         <h2>{title}</h2>
         <p className={s.info}>{time} seconds</p>

@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
-import { IWorkout, IWorkouts } from '../../../models/Workout';
+import { IWorkout, IWorkouts, Status } from '../../../models/Workout';
 import { WorkoutState } from './models';
 
 const initialState: WorkoutState = {
   videos: [],
   trainings: [],
-  status: 'loading',
+  status: Status.loading,
   error: ''
 };
 
@@ -37,16 +37,16 @@ const workoutSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(fetchTrainings.pending, (state) => {
-      state.status = 'loading';
+      state.status = Status.loading;
       state.error = '';
     });
     builder.addCase(fetchTrainings.fulfilled, (state) => {
-      state.status = 'resolved';
+      state.status = Status.resolved;
     });
     builder.addCase(
       fetchTrainings.rejected,
       (state, { payload }: PayloadAction<unknown | string>) => {
-        state.status = 'rejected';
+        state.status = Status.rejected;
         state.error = payload as string;
       }
     );

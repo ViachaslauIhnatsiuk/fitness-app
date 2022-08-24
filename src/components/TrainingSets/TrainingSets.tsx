@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { IoChevronBackCircleOutline, IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
-import { Path } from '../../models/Workout';
+import { Path, Status } from '../../models/Workout';
 import { useAppSelector } from '../../store/model';
 import { selectWorkout } from '../../store/selectors';
 import { fetchTrainings } from '../../store/slices/workout/workoutSlice';
@@ -34,7 +34,7 @@ const TrainingSets: FC = () => {
         <Button text="Advanced" isStyled customStyles={s.button} />
       </div>
       <div className={s.trainings}>
-        {status === 'loading' && <h1>LOADING...</h1>}
+        {status === Status.loading && <h1>LOADING...</h1>}
         {workouts.map((training) => {
           return <TrainingCard key={uuidv4()} training={training} />;
         })}

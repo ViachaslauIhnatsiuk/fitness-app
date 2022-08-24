@@ -1,9 +1,9 @@
-import { IVideo, IWorkout } from '../../../models/Workout';
+import { IVideo, IWorkout, Status } from '../../../models/Workout';
 
 type WorkoutState = {
   videos: IVideo[];
   trainings: IWorkout[];
-  status: 'loading' | 'resolved' | 'rejected';
+  status: Status;
   error: string;
 };
 

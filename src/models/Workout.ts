@@ -39,5 +39,11 @@ enum Path {
   videoTrainings = '/workout/videos'
 }
 
+enum Status {
+  loading = 'loading',
+  resolved = 'resolved',
+  rejected = 'rejected'
+}
+
 export type { IVideoTrainings, IVideo, IWorkouts, IWorkout, IExercise };
-export { Path };
+export { Path, Status };

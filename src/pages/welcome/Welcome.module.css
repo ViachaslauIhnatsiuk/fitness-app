@@ -47,6 +47,7 @@
 
 .button {
   width: 180px;
+  text-decoration: none;
 }
 
 .start:hover,

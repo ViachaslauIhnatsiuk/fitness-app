@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useReg } from '../../../hooks/useReg';
 import { IUserProfile } from './models';
@@ -67,14 +68,16 @@ const RegistrationUserProfile: FC = () => {
           />
           <p className={s.warning}>{errors.confirmPassword?.message}</p>
         </div>
-        <input
-          className={s.button}
-          style={{ backgroundColor: !isValid ? '#35383f' : '#7755ff' }}
-          disabled={!isValid}
-          type="submit"
-          value="Start"
-          onClick={() => handleRegistration(...getValues(['name', 'email', 'password']))}
-        />
+        <Link to="user-data" className={s.link}>
+          <input
+            className={s.button}
+            style={{ backgroundColor: !isValid ? '#35383f' : '#7755ff' }}
+            disabled={!isValid}
+            type="submit"
+            value="Start"
+            onClick={() => handleRegistration(...getValues(['name', 'email', 'password']))}
+          />
+        </Link>
       </form>
     </div>
   );

@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, setDoc, getDoc, doc } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import {
+  User,
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -54,3 +55,5 @@ export {
   updateEmail,
   updatePassword
 };
+
+export type { User };

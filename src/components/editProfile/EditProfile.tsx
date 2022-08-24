@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useProfileUpdate } from '../../hooks/useProfileUpdate';
+import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { IUserProfile } from '../registration/registrationUserProfile/models';
 import { nameRegister, emailRegister, passwordRegister } from '../../constants/formValidation';
+import { Button } from '../UI/button/Button';
+import { useProfileUpdate } from '../../hooks/useProfileUpdate';
 import s from './EditProfile.module.css';
 
 const EditProfile: FC = () => {
@@ -17,6 +19,7 @@ const EditProfile: FC = () => {
 
   return (
     <div className={s.wrapper}>
+      <Button path="/profile" icon={<IoChevronBackCircleOutline />} />
       <div className={s.title}>Edit Profile</div>
       <form className={s.form} onSubmit={handleSubmit(() => reset())}>
         <div className={s.field}>

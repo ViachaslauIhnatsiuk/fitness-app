@@ -14,6 +14,8 @@ import { TrainingVideos } from './TrainingVideos/TrainingVideos';
 import { Exercises } from './TrainingSets/exercises/Exercises';
 import { TrainingActive } from './TrainingSets/trainingActive/TrainingActive';
 import { Recipe } from './recipes/recipe/Recipe';
+import { EditProfile } from './editProfile/EditProfile';
+import { EditPersonalData } from './editPersonalData/EditPersonalData';
 
 const App: FC = () => {
   return (
@@ -33,6 +35,8 @@ const App: FC = () => {
             <Route path="trainings/:trainingId/active" element={<TrainingActive />} />
           </Route>
           <Route path="profile" element={<Profile />} />
+          <Route path="profile/edit-profile" element={<EditProfile />} />
+          <Route path="profile/edit-personal-data" element={<EditPersonalData />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

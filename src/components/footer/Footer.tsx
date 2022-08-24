@@ -33,12 +33,12 @@ const Footer: FC = () => {
         <div className={s.github}>
           <BsGithub />
           <a
-            href="https://github.com/Dauhaliavets"
+            href="https://github.com/GlebKolyano"
             target="_blank"
             className={s.ref}
             rel="noreferrer"
           >
-            Dauhaliavets
+            GlebKolyano
           </a>
         </div>
       </div>

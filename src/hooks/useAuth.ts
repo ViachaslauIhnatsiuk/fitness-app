@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { db, auth, getDoc, doc, signInWithEmailAndPassword } from '../firebase/firebase';
+import { db, auth, getDoc, doc, signInWithEmailAndPassword, signOut } from '../firebase/firebase';
 
 const useAuth = () => {
   const [loginError, setLoginError] = useState<boolean>(false);
@@ -13,9 +13,14 @@ const useAuth = () => {
     }
   };
 
+  const handleLogout = async (): Promise<void> => {
+    await signOut(auth);
+  };
+
   return {
     loginError,
-    handleLogin
+    handleLogin,
+    handleLogout
   };
 };
 

@@ -1,0 +1,120 @@
+.wrapper {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 15px;
+  font-size: 0.7em;
+}
+
+.subtitle {
+  margin-bottom: 15px;
+  font-size: 0.5em;
+  color: #c0c1c3;
+  text-align: center;
+}
+
+
+.selects {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+  margin-bottom: 30px;
+}
+
+.select {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.select-label {
+  align-self: start;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.css-b62m3t-container {
+  width: 100% !important;
+}
+
+.select__control {
+  background-color: #1f222a !important;
+  border: 2px solid #7755ff !important;
+  border-radius: 10px !important;
+}
+
+.select__control--is-focused {
+  border: 2px solid #7755ff !important;
+  box-shadow: none !important;
+}
+
+.select__value-container {
+  padding: 0 8px !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+}
+
+.select__single-value {
+  color: #c0c1c3 !important;
+  font-size: 18px !important;
+}
+
+.select__input-container {
+  margin: 0 !important;
+  color: #c0c1c3 !important;
+  font-size: 18px !important;
+}
+
+.select__option {
+  padding: 7px 10px !important;
+  font-size: 18px !important;
+  color: #c0c1c3 !important;
+  cursor: pointer !important;
+}
+
+.select__menu-list {
+  background-color: #1f222a !important;
+}
+
+.select__menu-list::-webkit-scrollbar {
+  width: 0;
+}
+
+.select__option--is-focused,
+.select__option--is-selected {
+  background-color: #7755ff !important;
+}
+
+.select__indicator {
+  cursor: pointer !important;
+}
+
+.select__indicator-separator {
+  display: none !important;
+}
+
+.update {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  border-radius: 20px;
+  background-color: #35383f;
+  font-size: 15px;
+  transition: 0.4s;
+  color: #c0c1c3;
+  cursor: pointer;
+}
+
+.update:hover {
+  background-color: #7755ff;
+  transition: 0.6s;
+}

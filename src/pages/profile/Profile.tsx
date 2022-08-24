@@ -1,11 +1,15 @@
-import React, { FC } from 'react';
-import { FiLogOut } from 'react-icons/fi';
-import { CgProfile } from 'react-icons/cg';
+import React, { FC, useState } from 'react';
+import { BsFillPersonFill } from 'react-icons/bs';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
-import { AiOutlineEye } from 'react-icons/ai';
+import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
+import { FiLogOut } from 'react-icons/fi';
+import { useAuth } from '../../hooks/useAuth';
 import s from './Profile.module.css';
 
 const Profile: FC = () => {
+  const [theme, setTheme] = useState<boolean>(false);
+  const { handleLogout } = useAuth();
+
   return (
     <div className={s.wrapper}>
       <div className={s.title}>Profile</div>
@@ -14,7 +18,7 @@ const Profile: FC = () => {
       <div className={s.email}>rssfinaltask@gmail.com</div>
       <div className={s.settings}>
         <div className={s.setting}>
-          <CgProfile className={s.icon} />
+          <BsFillPersonFill className={s.icon} />
           <span className={s.setting_title}>Edit Profile</span>
         </div>
         <div className={s.setting}>
@@ -22,17 +26,21 @@ const Profile: FC = () => {
           <span className={s.setting_title}>Edit Personal Data</span>
         </div>
         <div className={s.setting}>
-          <AiOutlineEye className={s.icon} />
+          {theme ? (
+            <MdOutlineLightMode className={s.icon} style={{ color: '#181a20' }} />
+          ) : (
+            <MdOutlineDarkMode className={s.icon} style={{ color: '#fff' }} />
+          )}
           <span className={s.setting_title}>Theme</span>
-          <div className={s.theme}>
-            <div className={s.toggler} />
-            <div className={s.off}></div>
-            <div className={s.on}></div>
-          </div>
+          <button type="button" className={s.theme} onClick={() => setTheme(!theme)}>
+            <div className={s.slider} style={theme ? { left: '30px' } : { left: '3px' }} />
+          </button>
         </div>
         <div className={s.setting}>
           <FiLogOut className={s.logout_icon} />
-          <span className={s.logout_title}>Logout</span>
+          <span role="presentation" className={s.logout_title} onClick={handleLogout}>
+            Logout
+          </span>
         </div>
       </div>
     </div>

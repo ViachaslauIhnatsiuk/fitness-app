@@ -1,6 +1,9 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 100%;
+  flex-grow: 1;
+  font-size: 30px;
+  color: #fff;
 }

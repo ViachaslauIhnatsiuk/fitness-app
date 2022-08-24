@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Footer } from '../footer/Footer';
 import { SideBar } from '../sideBar/SideBar';
-import { Main } from '../main/Main';
 import s from './Layout.module.css';
 
 const Layout: FC = () => {
@@ -9,7 +9,7 @@ const Layout: FC = () => {
     <div className={s.layout}>
       <div className={s.main}>
         <SideBar />
-        <Main />
+        <Outlet />
       </div>
       <Footer />
     </div>

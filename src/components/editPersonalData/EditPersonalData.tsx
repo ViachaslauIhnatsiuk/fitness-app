@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
+import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { IOption, IUserData } from '../registration/registrationUserData/models';
 import {
   initialUserData,
@@ -7,6 +8,7 @@ import {
   selectOptions
 } from '../registration/registrationUserData/constants';
 import { handleValue } from '../../helpers/select';
+import { Button } from '../UI/button/Button';
 import './EditPersonalData.css';
 
 const EditPersonalData: FC = () => {
@@ -19,6 +21,7 @@ const EditPersonalData: FC = () => {
 
   return (
     <div className="wrapper">
+      <Button path="/profile" icon={<IoChevronBackCircleOutline />} />
       <div className="title">Edit Personal Data</div>
       <div className="selects">
         {registrationSelects.map((select) => {

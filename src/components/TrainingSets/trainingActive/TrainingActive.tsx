@@ -12,12 +12,12 @@ import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation'
 import { TrainingRest } from '../trainingRest/TrainingRest';
 import { IExercise, IWorkout, WorkoutPath } from '../../../models/Workout';
 import { useAppSelector } from '../../../store/model';
-import { selectWorkout } from '../../../store/selectors';
+import { selectTrainings } from '../../../store/selectors';
 import { useStorage } from '../../../hooks/useStorage';
 
 const TrainingActive: FC = () => {
   const params = useParams();
-  const { trainings } = useAppSelector(selectWorkout);
+  const { trainings } = useAppSelector(selectTrainings);
 
   const [training, setTraining] = useState<IWorkout>();
   const [currentExercise, setCurrentExercise] = useState<IExercise>();

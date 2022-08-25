@@ -4,17 +4,17 @@ import { v4 as uuidv4 } from 'uuid';
 import { useTrainings } from '../../hooks/useTrainings';
 import { WorkoutStatus } from '../../models/Workout';
 import { useAppSelector } from '../../store/model';
-import { selectWorkout } from '../../store/selectors';
-import { fetchTrainings } from '../../store/slices/workout/workoutSlice';
+import { selectTrainings } from '../../store/selectors';
 import { useAppDispatch } from '../../store/store';
 import { TrainingCard } from './trainingCard/TrainingCard';
 import s from './TrainingSets.module.css';
 import { FilterBySearch } from './FilterBySearch/filterBySearch';
 import { FilterByLevel } from './FilterByLevel/filterByLevel';
+import { fetchTrainings } from '../../store/slices/training/trainingSlice';
 
 const TrainingSets: FC = () => {
   const dispatch = useAppDispatch();
-  const { status } = useAppSelector(selectWorkout);
+  const { status } = useAppSelector(selectTrainings);
 
   useEffect(() => {
     (async () => {

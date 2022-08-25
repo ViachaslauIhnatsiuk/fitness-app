@@ -7,12 +7,12 @@ import { Button } from '../../UI/button/Button';
 import { ExerciseCard } from '../exerciseCard/ExerciseCard';
 import { IExercise, IWorkout, WorkoutPath } from '../../../models/Workout';
 import { useAppSelector } from '../../../store/model';
-import { selectWorkout } from '../../../store/selectors';
+import { selectTrainings } from '../../../store/selectors';
 
 const Exercises: FC = () => {
   const { pathname } = useLocation();
   const { trainingId } = useParams();
-  const { trainings } = useAppSelector(selectWorkout);
+  const { trainings } = useAppSelector(selectTrainings);
   const [exercises, setExercises] = useState<IExercise[]>([]);
   const redirectPath = `${pathname}active`;
 

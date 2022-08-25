@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '../store/model';
-import { selectWorkout } from '../store/selectors';
+import { selectTrainings } from '../store/selectors';
 
 const useTrainings = () => {
-  const { filterByLevel, filterBySearch, trainings } = useAppSelector(selectWorkout);
+  const { filterByLevel, filterBySearch, trainings } = useAppSelector(selectTrainings);
 
   let filteredTrainings = trainings;
 

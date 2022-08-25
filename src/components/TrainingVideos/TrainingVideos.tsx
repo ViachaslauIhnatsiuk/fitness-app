@@ -2,19 +2,19 @@ import React, { FC, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { WorkoutStatus } from '../../models/Workout';
 import { useAppSelector } from '../../store/model';
-import { selectWorkout } from '../../store/selectors';
-import { fetchTrainingVideos } from '../../store/slices/workout/workoutSlice';
+import { selectVideos } from '../../store/selectors';
+import { fetchVideoCategories } from '../../store/slices/videoTraining/videoTraining';
 import { useAppDispatch } from '../../store/store';
 import { Category } from './category/Category';
 import s from './TrainingVideos.module.css';
 
 const TrainingVideos: FC = () => {
   const dispatch = useAppDispatch();
-  const { categories, status } = useAppSelector(selectWorkout);
+  const { categories, status } = useAppSelector(selectVideos);
 
   useEffect(() => {
     (async () => {
-      await dispatch(fetchTrainingVideos());
+      await dispatch(fetchVideoCategories());
     })().catch((error: Error) => error);
   }, [dispatch]);
 

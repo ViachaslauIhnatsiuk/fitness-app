@@ -1,13 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDebounce } from '../../../hooks/useDebounce';
 import { useAppSelector } from '../../../store/model';
-import { selectWorkout } from '../../../store/selectors';
-import { setFilterBySearch } from '../../../store/slices/workout/workoutSlice';
+import { selectTrainings } from '../../../store/selectors';
+import { setFilterBySearch } from '../../../store/slices/training/trainingSlice';
 import { useAppDispatch } from '../../../store/store';
 
 const FilterBySearch = () => {
   const dispatch = useAppDispatch();
-  const { filterBySearch } = useAppSelector(selectWorkout);
+  const { filterBySearch } = useAppSelector(selectTrainings);
   const [filter, setFilter] = useState<string>(filterBySearch || '');
 
   const debouncedValue = useDebounce<string>(filter, 500);

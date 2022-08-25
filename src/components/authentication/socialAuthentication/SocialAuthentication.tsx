@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { useSocialAuth } from '../../../hooks/useSocialAuth';
+import { SocialAuthButton } from '../../UI/socialAuthButton/SocialAuthButton';
+import { Separator } from '../../UI/separator/Separator';
 import s from './SocialAuthentication.module.css';
 
 const SocialAuthentication: FC = () => {
@@ -11,22 +13,25 @@ const SocialAuthentication: FC = () => {
     <div className={s.wrapper}>
       <div className={s.title}>Let`s you in</div>
       <div className={s.social}>
-        <button className={s.sign} type="button" onClick={signInWithGoogle}>
-          <FcGoogle className={s.google} />
-          <span>Continue with Google</span>
-        </button>
-        <button className={s.sign} type="button" onClick={signInWithFacebook}>
-          <FaFacebook className={s.facebook} />
-          <span>Continue with Facebook</span>
-        </button>
-        <button className={s.sign} type="button" onClick={signInWithTwitter}>
-          <FaTwitter className={s.twitter} />
-          <span>Continue with Twitter</span>
-        </button>
+        <SocialAuthButton
+          icon={<FcGoogle />}
+          method={signInWithGoogle}
+          title="Continue with Google"
+        />
+        <SocialAuthButton
+          style={{ color: '#2099ed' }}
+          icon={<FaFacebook />}
+          method={signInWithFacebook}
+          title="Continue with Facebook"
+        />
+        <SocialAuthButton
+          style={{ color: '#1da1f2' }}
+          icon={<FaTwitter />}
+          method={signInWithTwitter}
+          title="Continue with Twitter"
+        />
       </div>
-      <div className={s.separator}>
-        <div className={s.or}>or</div>
-      </div>
+      <Separator text="or" />
       <button className={s.button} type="button">
         Sign in with password
       </button>

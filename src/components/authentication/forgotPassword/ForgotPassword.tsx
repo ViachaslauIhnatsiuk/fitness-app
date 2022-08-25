@@ -26,6 +26,7 @@ const ForgotPassword: FC = () => {
           <input
             autoComplete="off"
             className={s.input}
+            placeholder="E-mail"
             type="email"
             {...register('email', emailRegister)}
           />
@@ -33,7 +34,7 @@ const ForgotPassword: FC = () => {
         </div>
         <input
           className={s.button}
-          style={{ backgroundColor: !isValid ? '#35383f' : '#7755ff' }}
+          style={{ backgroundColor: !isValid ? '#6b5bab' : '#7755ff' }}
           disabled={!isValid}
           type="submit"
           value="Continue"

@@ -70,14 +70,8 @@ const workoutSlice = createSlice({
     setFilterBySearch: (state, { payload }: PayloadAction<string>) => {
       state.filterBySearch = payload;
     },
-    resetStateFilterBySearch: (state) => {
-      state.filterBySearch = '';
-    },
     setFilterByLevel: (state, { payload }: PayloadAction<WorkoutFilterByLevel>) => {
       state.filterByLevel = payload;
-    },
-    resetStateFilterByLevel: (state) => {
-      state.filterByLevel = WorkoutFilterByLevel.all;
     }
   },
   extraReducers(builder) {

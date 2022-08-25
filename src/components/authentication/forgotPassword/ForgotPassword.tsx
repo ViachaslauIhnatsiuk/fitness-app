@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { usePasswordReset } from '../../../hooks/usePasswordReset';
 import { IUserForgotPassword } from './models';
@@ -32,14 +33,19 @@ const ForgotPassword: FC = () => {
           />
           <p className={s.warning}>{errors.email?.message}</p>
         </div>
-        <input
-          className={s.button}
-          style={{ backgroundColor: !isValid ? '#6b5bab' : '#7755ff' }}
-          disabled={!isValid}
-          type="submit"
-          value="Continue"
-          onClick={() => handleForgotPassword(getValues('email'))}
-        />
+        <div className={s.buttons}>
+          <Link to="/sign-in-with-password" className={s.button}>
+            Go back
+          </Link>
+          <input
+            className={s.button}
+            style={{ backgroundColor: !isValid ? '#6b5bab' : '#7755ff' }}
+            disabled={!isValid}
+            type="submit"
+            value="Continue"
+            onClick={() => handleForgotPassword(getValues('email'))}
+          />
+        </div>
       </form>
     </div>
   );

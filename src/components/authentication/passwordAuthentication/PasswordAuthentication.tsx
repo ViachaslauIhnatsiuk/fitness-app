@@ -62,6 +62,12 @@ const PasswordAuthentication: FC = () => {
       </Link>
       <Separator text="or continue with" />
       <SocialAuthRowButtons />
+      <div className={s.no_account}>
+        Don&apos;t have an account?&nbsp;
+        <Link to="/sign-up" className={s.sign_up}>
+          Sing up
+        </Link>
+      </div>
     </div>
   );
 };

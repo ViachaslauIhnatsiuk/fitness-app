@@ -9,6 +9,9 @@ import {
   passwordRegister,
   matchPasswordReport
 } from '../../../constants/formValidation';
+import { RememberMe } from '../../UI/rememberMe/RememberMe';
+import { Separator } from '../../UI/separator/Separator';
+import { SocialAuthRowButtons } from '../../authentication/socialAuthRowButtons/SocialAuthRowButtons';
 import s from './RegistrationUserProfile.module.css';
 
 const RegistrationUserProfile: FC = () => {
@@ -68,10 +71,11 @@ const RegistrationUserProfile: FC = () => {
           />
           <p className={s.warning}>{errors.confirmPassword?.message}</p>
         </div>
+        <RememberMe />
         <Link to="user-data" className={s.link}>
           <input
             className={s.button}
-            style={{ backgroundColor: !isValid ? '#35383f' : '#7755ff' }}
+            style={{ backgroundColor: !isValid ? '#6b5bab' : '#7755ff' }}
             disabled={!isValid}
             type="submit"
             value="Start"
@@ -79,6 +83,14 @@ const RegistrationUserProfile: FC = () => {
           />
         </Link>
       </form>
+      <Separator text="or continue with" />
+      <SocialAuthRowButtons />
+      <div className={s.no_account}>
+        Already have an account?&nbsp;
+        <Link to="/sign-in" className={s.sign_up}>
+          Sing in
+        </Link>
+      </div>
     </div>
   );
 };

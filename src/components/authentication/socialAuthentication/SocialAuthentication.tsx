@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { SocialAuthColumnButtons } from '../socialAuthColumnButtons/SocialAuthColumnButtons';
 import { Separator } from '../../UI/separator/Separator';
+import { AccountExistance } from '../../UI/accountExistance/AccountExistance';
+import { SignLinkTitle, SignLink } from '../../../models/CrossSignLinks';
 import s from './SocialAuthentication.module.css';
 
 const SocialAuthentication: FC = () => {
@@ -13,12 +15,7 @@ const SocialAuthentication: FC = () => {
       <Link to="/sign-in-with-password" className={s.button}>
         Sign in with password
       </Link>
-      <div className={s.no_account}>
-        Don&apos;t have an account?&nbsp;
-        <Link to="/sign-up" className={s.sign_up}>
-          Sing up
-        </Link>
-      </div>
+      <AccountExistance title={SignLinkTitle.noAccount} path="sign-up" link={SignLink.signUp} />
     </div>
   );
 };

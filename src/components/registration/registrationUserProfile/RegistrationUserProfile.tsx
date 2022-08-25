@@ -10,8 +10,10 @@ import {
   matchPasswordReport
 } from '../../../constants/formValidation';
 import { RememberMe } from '../../UI/rememberMe/RememberMe';
-import { Separator } from '../../UI/separator/Separator';
 import { SocialAuthRowButtons } from '../../authentication/socialAuthRowButtons/SocialAuthRowButtons';
+import { Separator } from '../../UI/separator/Separator';
+import { AccountExistance } from '../../UI/accountExistance/AccountExistance';
+import { SignLinkTitle, SignLink } from '../../../models/CrossSignLinks';
 import s from './RegistrationUserProfile.module.css';
 
 const RegistrationUserProfile: FC = () => {
@@ -85,12 +87,7 @@ const RegistrationUserProfile: FC = () => {
       </form>
       <Separator text="or continue with" />
       <SocialAuthRowButtons />
-      <div className={s.no_account}>
-        Already have an account?&nbsp;
-        <Link to="/sign-in" className={s.sign_up}>
-          Sing in
-        </Link>
-      </div>
+      <AccountExistance title={SignLinkTitle.haveAccount} path="sign-in" link={SignLink.signIn} />
     </div>
   );
 };

@@ -7,6 +7,8 @@ import { IUserAuth } from './models';
 import { emailRegister, passwordRegister } from '../../../constants/formValidation';
 import { SocialAuthRowButtons } from '../socialAuthRowButtons/SocialAuthRowButtons';
 import { Separator } from '../../UI/separator/Separator';
+import { AccountExistance } from '../../UI/accountExistance/AccountExistance';
+import { SignLinkTitle, SignLink } from '../../../models/CrossSignLinks';
 import s from './PasswordAuthentication.module.css';
 
 const PasswordAuthentication: FC = () => {
@@ -62,12 +64,7 @@ const PasswordAuthentication: FC = () => {
       </Link>
       <Separator text="or continue with" />
       <SocialAuthRowButtons />
-      <div className={s.no_account}>
-        Don&apos;t have an account?&nbsp;
-        <Link to="/sign-up" className={s.sign_up}>
-          Sing up
-        </Link>
-      </div>
+      <AccountExistance title={SignLinkTitle.noAccount} path="sign-up" link={SignLink.signUp} />
     </div>
   );
 };

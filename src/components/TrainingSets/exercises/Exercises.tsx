@@ -5,7 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import s from './Exercises.module.css';
 import { Button } from '../../UI/button/Button';
 import { ExerciseCard } from '../exerciseCard/ExerciseCard';
-import { IExercise, IWorkout, Path } from '../../../models/Workout';
+import { IExercise, IWorkout, WorkoutPath } from '../../../models/Workout';
 import { useAppSelector } from '../../../store/model';
 import { selectWorkout } from '../../../store/selectors';
 
@@ -27,7 +27,7 @@ const Exercises: FC = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.header}>
-        <Button path={Path.trainings} icon={<IoChevronBackCircleOutline />} />
+        <Button path={WorkoutPath.trainings} icon={<IoChevronBackCircleOutline />} />
         <h2>Workout Activity</h2>
       </div>
       <div className={s.exercises}>

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useOnScreen } from '../../hooks/useOnScreen';
 import s from './LoadableImage.module.css';
 import { LoadableImageProps } from './models';
 
 const LoadableImage = ({ src, alt = '', onLoad = () => {} }: LoadableImageProps) => {
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isVisible = useOnScreen(containerRef);
@@ -13,6 +13,7 @@ const LoadableImage = ({ src, alt = '', onLoad = () => {} }: LoadableImageProps)
     if (!isVisible || isLoaded) {
       return;
     }
+
     if (imageRef.current) {
       imageRef.current.onload = () => {
         setIsLoaded(true);

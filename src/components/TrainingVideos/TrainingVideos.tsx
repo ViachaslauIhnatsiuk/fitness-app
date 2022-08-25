@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Status } from '../../models/Workout';
+import { WorkoutStatus } from '../../models/Workout';
 import { useAppSelector } from '../../store/model';
 import { selectWorkout } from '../../store/selectors';
 import { fetchTrainingVideos } from '../../store/slices/workout/workoutSlice';
@@ -20,7 +20,7 @@ const TrainingVideos: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      {status === Status.loading && <h1>LOADING...</h1>}
+      {status === WorkoutStatus.loading && <h1>LOADING...</h1>}
       <div className={s.categories}>
         {categories.map((category) => {
           return <Category category={category} key={uuidv4()} />;

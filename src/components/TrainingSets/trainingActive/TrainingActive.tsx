@@ -10,7 +10,7 @@ import { ExerciseActive } from '../exerciseActive/ExerciseActive';
 import { TrainingResult } from '../trainingResult/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
-import { IExercise, IWorkout, Path } from '../../../models/Workout';
+import { IExercise, IWorkout, WorkoutPath } from '../../../models/Workout';
 import { useAppSelector } from '../../../store/model';
 import { selectWorkout } from '../../../store/selectors';
 import { useStorage } from '../../../hooks/useStorage';
@@ -29,7 +29,7 @@ const TrainingActive: FC = () => {
   const { exerciseGifUrl, getExerciseGifUrl } = useStorage();
 
   const trainingId = params.trainingId as string;
-  const redirectPath = `${Path.trainings}/${trainingId}/`;
+  const redirectPath = `${WorkoutPath.trainings}/${trainingId}/`;
 
   useEffect(
     function getTraining() {

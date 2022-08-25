@@ -35,16 +35,3 @@
   transition: 0.4s;
   background-color: #7755ff;
 }
-
-.no_account {
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  color: #ffffff;
-}
-
-.sign_up {
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  color: #7755ff;
-  text-decoration: none;
-}

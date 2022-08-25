@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useAuth } from '../../../hooks/useAuth';
+import { EmailInput } from '../../UI/emailInput/EmailInput';
+import { PasswordInput } from '../../UI/passwordInput/PasswordInput';
+import { AuthSubmitButton } from '../../UI/submitButtons/authSubmitButton/AuthSubmitButton';
 import { RememberMe } from '../../UI/rememberMe/RememberMe';
 import { IUserAuth } from './models';
-import { emailRegister, passwordRegister } from '../../../constants/formValidation';
 import { SocialAuthRowButtons } from '../socialAuthRowButtons/SocialAuthRowButtons';
 import { Separator } from '../../UI/separator/Separator';
 import { AccountExistance } from '../../UI/accountExistance/AccountExistance';
@@ -13,13 +15,8 @@ import s from './PasswordAuthentication.module.css';
 
 const PasswordAuthentication: FC = () => {
   const { loginError, handleLogin } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    getValues,
-    formState: { errors, isValid }
-  } = useForm<IUserAuth>({ mode: 'onBlur' });
+  const methods = useForm<IUserAuth>({ mode: 'onBlur' });
+  const { handleSubmit, reset } = methods;
 
   return (
     <div className={s.wrapper}>
@@ -29,36 +26,14 @@ const PasswordAuthentication: FC = () => {
           We cannot find an account with that email address and password
         </div>
       )}
-      <form className={s.form} onSubmit={handleSubmit(() => reset())}>
-        <div className={s.field}>
-          <input
-            autoComplete="off"
-            className={s.input}
-            placeholder="E-mail"
-            type="email"
-            {...register('email', emailRegister)}
-          />
-          <p className={s.warning}>{errors.email?.message}</p>
-        </div>
-        <div className={s.field}>
-          <input
-            className={s.input}
-            placeholder="Password"
-            type="password"
-            {...register('password', passwordRegister)}
-          />
-          <p className={s.warning}>{errors.password?.message}</p>
-        </div>
-        <RememberMe />
-        <input
-          className={s.button}
-          style={{ backgroundColor: !isValid ? '#6b5bab' : '#7755ff' }}
-          disabled={!isValid}
-          type="submit"
-          value="Sign in"
-          onClick={() => handleLogin(...getValues(['email', 'password']))}
-        />
-      </form>
+      <FormProvider {...methods}>
+        <form className={s.form} onSubmit={handleSubmit(() => reset())}>
+          <EmailInput />
+          <PasswordInput />
+          <RememberMe />
+          <AuthSubmitButton path="" value="Continue" handler={handleLogin} />
+        </form>
+      </FormProvider>
       <Link to="/forgot-password" className={s.forgot}>
         Forgot the password?
       </Link>

@@ -36,7 +36,7 @@ const RegistrationUserData: FC = () => {
         })}
       </div>
       <div className="buttons">
-        <Link to="sign-up" className="back">
+        <Link to="/sign-up" className="back">
           Back
         </Link>
         <Link to="/" className="continue">

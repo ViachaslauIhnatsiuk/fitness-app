@@ -1,0 +1,29 @@
+.buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  margin-top: 50px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #6b5bab;
+  transition: 0.4s;
+  text-decoration: none;
+  font-family: 'Urbanist';
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #7755ff;
+  transition: 0.6s;
+}

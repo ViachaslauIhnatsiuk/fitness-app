@@ -4,7 +4,7 @@ interface IWorkouts {
 interface IWorkout {
   id: number;
   title: string;
-  level: 'Begginer' | 'Intermediate' | 'Advanced';
+  level: WorkoutFilterByLevel;
   cal: number;
   exercises: IExercise[];
 }
@@ -33,17 +33,24 @@ type VideoDetails = {
   reps: string;
 };
 
-enum Path {
+enum WorkoutPath {
   home = '/',
   trainings = '/workout/trainings',
   videoTrainings = '/workout/videos'
 }
 
-enum Status {
+enum WorkoutStatus {
   loading = 'loading',
   resolved = 'resolved',
   rejected = 'rejected'
 }
 
+enum WorkoutFilterByLevel {
+  all = 'All',
+  beginner = 'Beginner',
+  intermediate = 'Intermediate',
+  advanced = 'Advanced'
+}
+
 export type { IVideoTrainings, IVideo, IWorkouts, IWorkout, IExercise };
-export { Path, Status };
+export { WorkoutPath, WorkoutStatus, WorkoutFilterByLevel };

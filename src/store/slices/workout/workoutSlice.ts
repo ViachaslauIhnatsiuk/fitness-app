@@ -1,14 +1,23 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
-import { IVideo, IVideoTrainings, IWorkout, IWorkouts, Status } from '../../../models/Workout';
+import {
+  IVideo,
+  IVideoTrainings,
+  IWorkout,
+  IWorkouts,
+  WorkoutFilterByLevel,
+  WorkoutStatus
+} from '../../../models/Workout';
 import { WorkoutState } from './models';
 
 const initialState: WorkoutState = {
   videos: [],
   trainings: [],
   categories: [],
-  status: Status.loading,
+  filterBySearch: '',
+  filterByLevel: WorkoutFilterByLevel.all,
+  status: WorkoutStatus.loading,
   error: ''
 };
 
@@ -57,39 +66,52 @@ const workoutSlice = createSlice({
     },
     setCategories: (state, { payload }: PayloadAction<string[]>) => {
       state.categories = payload;
+    },
+    setFilterBySearch: (state, { payload }: PayloadAction<string>) => {
+      state.filterBySearch = payload;
+    },
+    resetStateFilterBySearch: (state) => {
+      state.filterBySearch = '';
+    },
+    setFilterByLevel: (state, { payload }: PayloadAction<WorkoutFilterByLevel>) => {
+      state.filterByLevel = payload;
+    },
+    resetStateFilterByLevel: (state) => {
+      state.filterByLevel = WorkoutFilterByLevel.all;
     }
   },
   extraReducers(builder) {
     builder.addCase(fetchTrainings.pending, (state) => {
-      state.status = Status.loading;
+      state.status = WorkoutStatus.loading;
       state.error = '';
     });
     builder.addCase(fetchTrainings.fulfilled, (state) => {
-      state.status = Status.resolved;
+      state.status = WorkoutStatus.resolved;
     });
     builder.addCase(
       fetchTrainings.rejected,
       (state, { payload }: PayloadAction<unknown | string>) => {
-        state.status = Status.rejected;
+        state.status = WorkoutStatus.rejected;
         state.error = payload as string;
       }
     );
     builder.addCase(fetchTrainingVideos.pending, (state) => {
-      state.status = Status.loading;
+      state.status = WorkoutStatus.loading;
       state.error = '';
     });
     builder.addCase(fetchTrainingVideos.fulfilled, (state) => {
-      state.status = Status.resolved;
+      state.status = WorkoutStatus.resolved;
     });
     builder.addCase(
       fetchTrainingVideos.rejected,
       (state, { payload }: PayloadAction<unknown | string>) => {
-        state.status = Status.rejected;
+        state.status = WorkoutStatus.rejected;
         state.error = payload as string;
       }
     );
   }
 });
 
-export const { setTrainings, setVideos, setCategories } = workoutSlice.actions;
+export const { setTrainings, setVideos, setCategories, setFilterByLevel, setFilterBySearch } =
+  workoutSlice.actions;
 export { workoutSlice, fetchTrainings, fetchTrainingVideos };

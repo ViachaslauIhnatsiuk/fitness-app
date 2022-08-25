@@ -1,18 +1,20 @@
 import React, { FC, useEffect } from 'react';
-import { IoChevronBackCircleOutline, IoSearch } from 'react-icons/io5';
+import { IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
-import { Path, Status } from '../../models/Workout';
+import { useTrainings } from '../../hooks/useTrainings';
+import { WorkoutStatus } from '../../models/Workout';
 import { useAppSelector } from '../../store/model';
 import { selectWorkout } from '../../store/selectors';
 import { fetchTrainings } from '../../store/slices/workout/workoutSlice';
 import { useAppDispatch } from '../../store/store';
-import { Button } from '../UI/button/Button';
 import { TrainingCard } from './trainingCard/TrainingCard';
 import s from './TrainingSets.module.css';
+import { FilterBySearch } from './FilterBySearch/filterBySearch';
+import { FilterByLevel } from './FilterByLevel/filterByLevel';
 
 const TrainingSets: FC = () => {
   const dispatch = useAppDispatch();
-  const { trainings: workouts, status } = useAppSelector(selectWorkout);
+  const { status } = useAppSelector(selectWorkout);
 
   useEffect(() => {
     (async () => {
@@ -20,22 +22,20 @@ const TrainingSets: FC = () => {
     })().catch((error: Error) => error);
   }, [dispatch]);
 
+  const filteredTrainings = useTrainings();
+
   return (
     <div className={s.wrapper}>
       <div className={s.header}>
-        <Button path={Path.videoTrainings} icon={<IoChevronBackCircleOutline />} />
+        <FilterBySearch />
         <button type="button" className={s.search}>
           <IoSearch />
         </button>
       </div>
-      <div className={s.filters}>
-        <Button text="Beginner" isStyled customStyles={s.button} />
-        <Button text="Intermediate" isStyled customStyles={s.button} />
-        <Button text="Advanced" isStyled customStyles={s.button} />
-      </div>
+      <FilterByLevel />
       <div className={s.trainings}>
-        {status === Status.loading && <h1>LOADING...</h1>}
-        {workouts.map((training) => {
+        {status === WorkoutStatus.loading && <h1>LOADING...</h1>}
+        {filteredTrainings.map((training) => {
           return <TrainingCard key={uuidv4()} training={training} />;
         })}
       </div>

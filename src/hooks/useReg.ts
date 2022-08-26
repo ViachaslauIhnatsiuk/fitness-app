@@ -1,8 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { initialUserData } from '../components/registration/registrationUserData/constants';
+import { IUserData } from '../components/registration/registrationUserData/models';
 import { db, auth, setDoc, doc, createUserWithEmailAndPassword } from '../firebase/firebase';
 
 const useReg = () => {
   const [registrationError, setRegistrationError] = useState<boolean>(false);
+  const [userData, setUserData] = useState<IUserData>(initialUserData);
+  const navigate = useNavigate();
 
   const handleRegistration = async (
     name: string,
@@ -16,8 +21,10 @@ const useReg = () => {
         email,
         password,
         id: user.uid,
-        token: await user.getIdToken(true)
+        token: await user.getIdToken(true),
+        userData
       }).catch((error: Error) => error);
+      navigate('/');
     } catch {
       setRegistrationError(true);
     }
@@ -25,6 +32,8 @@ const useReg = () => {
 
   return {
     registrationError,
+    userData,
+    setUserData,
     handleRegistration
   };
 };

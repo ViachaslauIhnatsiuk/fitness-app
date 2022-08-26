@@ -1,13 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import Select, { SingleValue } from 'react-select';
 import { Link } from 'react-router-dom';
-import { IUserData, IOption } from './models';
-import { selectOptions, initialUserData, registrationSelects } from './constants';
+import { useReg } from '../../../hooks/useReg';
+import { IOption } from './models';
+import { selectOptions, registrationSelects } from './constants';
 import { handleValue } from '../../../helpers/select';
 import './RegistrationUserData.css';
 
 const RegistrationUserData: FC = () => {
-  const [userData, setUserData] = useState<IUserData>(initialUserData);
+  const { userData, setUserData } = useReg();
 
   const handleChange = (selectedOption: SingleValue<string | IOption>) => {
     const { type, value } = selectedOption as IOption;
@@ -36,10 +37,10 @@ const RegistrationUserData: FC = () => {
         })}
       </div>
       <div className="buttons">
-        <Link to="/sign-up" className="back">
+        <Link to="/" className="back">
           Back
         </Link>
-        <Link to="/" className="continue">
+        <Link to="user-profile" className="continue">
           Continue
         </Link>
       </div>

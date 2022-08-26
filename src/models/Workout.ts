@@ -69,5 +69,14 @@ enum FirestoreDocument {
   categories = 'Categories'
 }
 
-export type { IVideoTrainings, IVideo, IWorkouts, IWorkout, IExercise, IVideos, ICategories };
+export type {
+  IVideoTrainings,
+  IVideo,
+  IWorkouts,
+  IWorkout,
+  IExercise,
+  IVideos,
+  ICategories,
+  VideoDetails
+};
 export { WorkoutPath, WorkoutStatus, WorkoutFilterByLevel, FirestoreCollection, FirestoreDocument };

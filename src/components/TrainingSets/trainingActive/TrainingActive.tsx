@@ -10,14 +10,14 @@ import { ExerciseActive } from '../exerciseActive/ExerciseActive';
 import { TrainingResult } from '../trainingResult/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
-import { IExercise, IWorkout, WorkoutPath } from '../../../models/Workout';
+import { IExercise, WorkoutPath } from '../../../models/Workout';
 import { useStorage } from '../../../hooks/useStorage';
-import TrainingService from '../../../services/TrainingService';
+import { useTraining } from '../../../hooks/useTraining';
 
 const TrainingActive: FC = () => {
   const params = useParams();
 
-  const [training, setTraining] = useState<IWorkout>();
+  const { getTrainingById, trainingById } = useTraining();
   const [currentExercise, setCurrentExercise] = useState<IExercise>();
   const [currentPosition, setCurrentPosition] = useState<number>(0);
   const [isNextButtonClicked, setNextButtonClicked] = useState<boolean>(false);
@@ -30,20 +30,17 @@ const TrainingActive: FC = () => {
   const redirectPath = `${WorkoutPath.trainings}/${trainingId}/`;
 
   useEffect(() => {
-    (async () => {
-      const trainingById = TrainingService.getTrainingById(Number(trainingId));
-      setTraining(await trainingById);
-    })().catch((error: Error) => error);
-  }, [trainingId]);
+    if (trainingId) getTrainingById(trainingId).catch((error: Error) => error);
+  }, [getTrainingById, trainingId]);
 
   useEffect(
     function setExercise() {
-      if (training) {
-        const { exercises } = training;
+      if (trainingById) {
+        const { exercises } = trainingById;
         setCurrentExercise(exercises[currentPosition]);
       }
     },
-    [currentPosition, training]
+    [currentPosition, trainingById]
   );
 
   // timers
@@ -79,8 +76,8 @@ const TrainingActive: FC = () => {
   }, [currentExercise?.time, setExerciseCounter, startExerciseTimer, stopExerciseTimer]);
 
   const changeNumberOfExercise = useCallback(() => {
-    if (training) {
-      const { exercises } = training;
+    if (trainingById) {
+      const { exercises } = trainingById;
       const amountExercise = exercises.length - 1;
       let nextPosition = currentPosition + 1;
       if (isPrevButtonClicked) {
@@ -96,7 +93,7 @@ const TrainingActive: FC = () => {
         setExerciseCounter(0);
       }
     }
-  }, [currentPosition, isPrevButtonClicked, setExerciseCounter, training]);
+  }, [currentPosition, isPrevButtonClicked, setExerciseCounter, trainingById]);
 
   useEffect(
     function startTimerBeforeTraining() {
@@ -123,11 +120,11 @@ const TrainingActive: FC = () => {
 
   // handlers
   const onNextHandler = useCallback(() => {
-    if (training) {
+    if (trainingById) {
       changeNumberOfExercise();
       setNextButtonClicked(true);
     }
-  }, [changeNumberOfExercise, training]);
+  }, [changeNumberOfExercise, trainingById]);
 
   const onPrevHandler = () => {
     const nextPosition = currentPosition > 0 ? currentPosition - 1 : currentPosition;
@@ -166,16 +163,12 @@ const TrainingActive: FC = () => {
     }
   }, [isExerciseRunning, onNextHandler, counterOfRestTimer, startExercise, stopRestTimer]);
 
-  useEffect(
-    function setExercisePreview(): void {
-      (async () => {
-        if (currentExercise?.title) {
-          await getExerciseGifUrl(currentExercise?.title);
-        }
-      })().catch((error: Error) => error);
-    },
-    [currentExercise, getExerciseGifUrl]
-  );
+  useEffect(() => {
+    if (currentExercise?.title) {
+      const { title } = currentExercise;
+      getExerciseGifUrl(title).catch((error: Error) => error);
+    }
+  }, [currentExercise, getExerciseGifUrl]);
 
   return (
     <div className={s.wrapper}>

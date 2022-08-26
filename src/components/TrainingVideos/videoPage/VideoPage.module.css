@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 85%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  row-gap: 1rem;
+  font-size: 1.6rem;
+}
+
+.description {
+  max-width: 660px;
+  width: 60%;
+  font-size: 1.4rem;
+}

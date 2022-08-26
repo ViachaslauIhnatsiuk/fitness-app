@@ -1,4 +1,5 @@
-.wrapper {
+.video {
+  max-width: 660px;
   width: 60%;
   border-radius: 10px;
   border: 3px solid #9e86f661;

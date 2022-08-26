@@ -4,7 +4,7 @@ import s from './VideoPlayer.module.css';
 
 const VideoPlayer: FC<VideoPlayerProps> = ({ previewUrl, videoUrl }) => {
   return (
-    <video className={s.wrapper} controls poster={previewUrl}>
+    <video className={s.video} controls poster={previewUrl} preload="none">
       <track kind="captions" />
       {videoUrl && <source src={videoUrl} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />}
       Тег video не поддерживается вашим браузером.

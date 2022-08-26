@@ -11,13 +11,11 @@ import { TrainingResult } from '../trainingResult/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
 import { IExercise, IWorkout, WorkoutPath } from '../../../models/Workout';
-import { useAppSelector } from '../../../store/model';
-import { selectTrainings } from '../../../store/selectors';
 import { useStorage } from '../../../hooks/useStorage';
+import TrainingService from '../../../services/TrainingService';
 
 const TrainingActive: FC = () => {
   const params = useParams();
-  const { trainings } = useAppSelector(selectTrainings);
 
   const [training, setTraining] = useState<IWorkout>();
   const [currentExercise, setCurrentExercise] = useState<IExercise>();
@@ -31,13 +29,12 @@ const TrainingActive: FC = () => {
   const trainingId = params.trainingId as string;
   const redirectPath = `${WorkoutPath.trainings}/${trainingId}/`;
 
-  useEffect(
-    function getTraining() {
-      const currentTraining = trainings.find(({ id }) => Number(trainingId) === id) as IWorkout;
-      setTraining(currentTraining);
-    },
-    [trainingId, trainings]
-  );
+  useEffect(() => {
+    (async () => {
+      const trainingById = TrainingService.getTrainingById(Number(trainingId));
+      setTraining(await trainingById);
+    })().catch((error: Error) => error);
+  }, [trainingId]);
 
   useEffect(
     function setExercise() {

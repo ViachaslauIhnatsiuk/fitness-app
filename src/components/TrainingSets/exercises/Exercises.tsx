@@ -5,24 +5,21 @@ import { useLocation, useParams } from 'react-router-dom';
 import s from './Exercises.module.css';
 import { Button } from '../../UI/button/Button';
 import { ExerciseCard } from '../exerciseCard/ExerciseCard';
-import { IExercise, IWorkout, WorkoutPath } from '../../../models/Workout';
-import { useAppSelector } from '../../../store/model';
-import { selectTrainings } from '../../../store/selectors';
+import { IExercise, WorkoutPath } from '../../../models/Workout';
+import TrainingService from '../../../services/TrainingService';
 
 const Exercises: FC = () => {
   const { pathname } = useLocation();
   const { trainingId } = useParams();
-  const { trainings } = useAppSelector(selectTrainings);
   const [exercises, setExercises] = useState<IExercise[]>([]);
   const redirectPath = `${pathname}active`;
 
   useEffect(() => {
-    const { exercises: exercisesData } = trainings.find(
-      ({ id }) => Number(trainingId) === id
-    ) as IWorkout;
-
-    setExercises(exercisesData);
-  }, [trainingId, trainings]);
+    (async () => {
+      const exercisesById = TrainingService.getExercisesById(Number(trainingId));
+      setExercises(await exercisesById);
+    })().catch((error: Error) => error);
+  }, [trainingId]);
 
   return (
     <div className={s.wrapper}>

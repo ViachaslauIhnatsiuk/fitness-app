@@ -1,7 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
-import { IWorkout, IWorkouts, WorkoutFilterByLevel, WorkoutStatus } from '../../../models/Workout';
+import {
+  FirestoreCollection,
+  FirestoreDocument,
+  IWorkout,
+  IWorkouts,
+  WorkoutFilterByLevel,
+  WorkoutStatus
+} from '../../../models/Workout';
 import { TrainingState } from './models';
 
 const initialState: TrainingState = {
@@ -14,14 +21,16 @@ const initialState: TrainingState = {
 
 const fetchTrainings = createAsyncThunk(
   'workout/fetchTrainings',
-  async (_, { rejectWithValue, dispatch }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'trainings'));
+      const docRef = doc(db, FirestoreCollection.trainings, FirestoreDocument.trainings);
+      const docSnap = await getDoc(docRef);
 
-      return querySnapshot.forEach((doc) => {
-        const { trainings } = doc.data() as IWorkouts;
-        dispatch(setTrainings(trainings));
-      });
+      if (!docSnap.exists()) {
+        throw new Error('Trainings dont exists!');
+      }
+      const trainings = docSnap.data() as IWorkouts;
+      return Object.values(trainings);
     } catch (error) {
       return rejectWithValue('Error fetching trainings');
     }
@@ -47,8 +56,9 @@ const trainingSlice = createSlice({
       state.status = WorkoutStatus.loading;
       state.error = '';
     });
-    builder.addCase(fetchTrainings.fulfilled, (state) => {
+    builder.addCase(fetchTrainings.fulfilled, (state, { payload }: PayloadAction<IWorkout[]>) => {
       state.status = WorkoutStatus.resolved;
+      state.trainings = payload;
     });
     builder.addCase(
       fetchTrainings.rejected,

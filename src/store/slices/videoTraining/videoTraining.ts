@@ -1,7 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
-import { IVideo, IVideoTrainings, WorkoutStatus } from '../../../models/Workout';
+import {
+  FirestoreCollection,
+  FirestoreDocument,
+  ICategories,
+  IVideo,
+  IVideos,
+  WorkoutStatus
+} from '../../../models/Workout';
 import { VideoTrainingState } from './models';
 
 const initialState: VideoTrainingState = {
@@ -13,14 +20,16 @@ const initialState: VideoTrainingState = {
 
 const fetchTrainingVideos = createAsyncThunk(
   'workout/fetchTrainingVideos',
-  async (_, { rejectWithValue, dispatch }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'videos'));
+      const docRef = doc(db, FirestoreCollection.videoTrainings, FirestoreDocument.videos);
+      const docSnap = await getDoc(docRef);
 
-      return querySnapshot.forEach((doc) => {
-        const { videos } = doc.data() as IVideoTrainings;
-        dispatch(setVideos(videos));
-      });
+      if (!docSnap.exists()) {
+        throw new Error('Videos dont exists!');
+      }
+      const videos = docSnap.data() as IVideos;
+      return Object.values(videos);
     } catch (error) {
       return rejectWithValue('Error fetching videos');
     }
@@ -29,14 +38,16 @@ const fetchTrainingVideos = createAsyncThunk(
 
 const fetchVideoCategories = createAsyncThunk(
   'workout/fetchVideoCategories',
-  async (_, { rejectWithValue, dispatch }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'videos'));
+      const docRef = doc(db, FirestoreCollection.videoTrainings, FirestoreDocument.categories);
+      const docSnap = await getDoc(docRef);
 
-      return querySnapshot.forEach((doc) => {
-        const { categories } = doc.data() as IVideoTrainings;
-        dispatch(setCategories(categories));
-      });
+      if (!docSnap.exists()) {
+        throw new Error('Categories dont exists!');
+      }
+      const { categories } = docSnap.data() as ICategories;
+      return categories;
     } catch (error) {
       return rejectWithValue('Error fetching categories');
     }
@@ -59,9 +70,13 @@ const videoTrainingSlice = createSlice({
       state.status = WorkoutStatus.loading;
       state.error = '';
     });
-    builder.addCase(fetchTrainingVideos.fulfilled, (state) => {
-      state.status = WorkoutStatus.resolved;
-    });
+    builder.addCase(
+      fetchTrainingVideos.fulfilled,
+      (state, { payload }: PayloadAction<IVideo[]>) => {
+        state.status = WorkoutStatus.resolved;
+        state.videos = payload;
+      }
+    );
     builder.addCase(
       fetchTrainingVideos.rejected,
       (state, { payload }: PayloadAction<unknown | string>) => {
@@ -73,9 +88,13 @@ const videoTrainingSlice = createSlice({
       state.status = WorkoutStatus.loading;
       state.error = '';
     });
-    builder.addCase(fetchVideoCategories.fulfilled, (state) => {
-      state.status = WorkoutStatus.resolved;
-    });
+    builder.addCase(
+      fetchVideoCategories.fulfilled,
+      (state, { payload }: PayloadAction<string[]>) => {
+        state.status = WorkoutStatus.resolved;
+        state.categories = payload;
+      }
+    );
     builder.addCase(
       fetchVideoCategories.rejected,
       (state, { payload }: PayloadAction<unknown | string>) => {
@@ -83,6 +102,20 @@ const videoTrainingSlice = createSlice({
         state.error = payload as string;
       }
     );
+    // builder.addCase(fetchTrainingVideoById.pending, (state) => {
+    //   state.status = WorkoutStatus.loading;
+    //   state.error = '';
+    // });
+    // builder.addCase(fetchTrainingVideoById.fulfilled, (state) => {
+    //   state.status = WorkoutStatus.resolved;
+    // });
+    // builder.addCase(
+    //   fetchTrainingVideoById.rejected,
+    //   (state, { payload }: PayloadAction<unknown | string>) => {
+    //     state.status = WorkoutStatus.rejected;
+    //     state.error = payload as string;
+    //   }
+    // );
   }
 });
 

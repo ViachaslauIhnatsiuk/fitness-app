@@ -1,6 +1,5 @@
-interface IWorkouts {
-  trainings: IWorkout[];
-}
+type IWorkouts = { [key: number]: IWorkout };
+
 interface IWorkout {
   id: number;
   title: string;
@@ -16,13 +15,20 @@ interface IExercise {
 
 interface IVideoTrainings {
   categories: string[];
-  videos: IVideo[];
+  videos: IVideos;
 }
+
+type IVideos = { [key: number]: IVideo };
+
 interface IVideo {
   id: number;
   title: string;
   category: string;
   details: VideoDetails;
+}
+
+interface ICategories {
+  categories: string[];
 }
 
 type VideoDetails = {
@@ -52,5 +58,16 @@ enum WorkoutFilterByLevel {
   advanced = 'Advanced'
 }
 
-export type { IVideoTrainings, IVideo, IWorkouts, IWorkout, IExercise };
-export { WorkoutPath, WorkoutStatus, WorkoutFilterByLevel };
+enum FirestoreCollection {
+  trainings = 'trainings',
+  videoTrainings = 'videoTrainings'
+}
+
+enum FirestoreDocument {
+  trainings = 'Trainings',
+  videos = 'Videos',
+  categories = 'Categories'
+}
+
+export type { IVideoTrainings, IVideo, IWorkouts, IWorkout, IExercise, IVideos, ICategories };
+export { WorkoutPath, WorkoutStatus, WorkoutFilterByLevel, FirestoreCollection, FirestoreDocument };

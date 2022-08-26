@@ -1,0 +1,35 @@
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 7px;
+  outline: none;
+  transition: all .1s linear;
+  color: #fff;
+  background-color: #1f222a;
+  transition: 0.3s;
+}
+
+.input:focus {
+  border-color: #7755ff;
+  box-shadow: 0 0 3px 2px rgb(119 85 255 / 50%);
+  background-color: #1e1d31;
+  transition: 0.3s;
+}
+
+.error {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.warning {
+  margin: 5px 0 0 2px;
+  font-size: 11px;
+  color: #7755ff;
+}

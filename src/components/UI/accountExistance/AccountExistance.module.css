@@ -1,0 +1,13 @@
+.account {
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  cursor: default;
+}
+
+.sign {
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: #7755ff;
+  text-decoration: none;
+}

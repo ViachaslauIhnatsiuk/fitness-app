@@ -9,14 +9,9 @@ const Category: FC<CategoryProps> = ({ category }) => {
   const navigate = useNavigate();
   const { categoryImageUrl, getCategoryImageUrl } = useStorage();
 
-  useEffect(
-    function setCategoryImage(): void {
-      (async () => {
-        await getCategoryImageUrl(category);
-      })().catch((error: Error) => error);
-    },
-    [getCategoryImageUrl, category]
-  );
+  useEffect(() => {
+    getCategoryImageUrl(category).catch((error: Error) => error);
+  }, [getCategoryImageUrl, category]);
 
   const openVideosByCategoryHandler = (): void => {
     const pathVideos = `${category}/`;

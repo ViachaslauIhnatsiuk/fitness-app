@@ -2,14 +2,8 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormContext } from 'react-hook-form';
 import { IUserProfile } from '../../../registration/registrationUserProfile/models';
-// import { ForgotSubmitButtonProps } from '../models';
+import { ForgotSubmitButtonProps } from '../models';
 import s from './ForgotSubmitButton.module.css';
-
-interface ForgotSubmitButtonProps {
-  path: string;
-  value: string;
-  handler(email: string): Promise<void>;
-}
 
 const ForgotSubmitButton: FC<ForgotSubmitButtonProps> = ({ path, value, handler }) => {
   const {

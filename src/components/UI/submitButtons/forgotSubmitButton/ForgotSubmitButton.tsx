@@ -19,12 +19,15 @@ const ForgotSubmitButton: FC<ForgotSubmitButtonProps> = ({ path, value, handler 
 
   return (
     <div className={s.buttons}>
-      <Link to={path} className={s.button}>
+      <Link to={path} className={s.back}>
         Go back
       </Link>
       <input
-        className={s.button}
-        style={{ backgroundColor: !isValid ? '#6b5bab' : '#7755ff' }}
+        className={s.submit}
+        style={{
+          backgroundColor: !isValid ? '#1f222a' : '#7755ff',
+          color: !isValid ? '#7e7f81' : '#ffffff'
+        }}
         disabled={!isValid}
         type="submit"
         value={value}

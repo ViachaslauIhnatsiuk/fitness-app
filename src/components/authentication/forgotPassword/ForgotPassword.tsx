@@ -7,7 +7,7 @@ import { ForgotSubmitButton } from '../../UI/submitButtons/forgotSubmitButton/Fo
 import s from './ForgotPassword.module.css';
 
 const ForgotPassword: FC = () => {
-  const { resetPasswordError, handleForgotPassword } = usePasswordReset();
+  const { success, resetPasswordError, handleForgotPassword } = usePasswordReset();
   const methods = useForm<IUserForgotPassword>({ mode: 'onBlur' });
   const { handleSubmit, reset } = methods;
 
@@ -16,6 +16,12 @@ const ForgotPassword: FC = () => {
       <div className={s.title}>Enter the email address associated with your Fit & Eat account</div>
       {resetPasswordError && (
         <div className={s.error}>We cannot find an account with that email address</div>
+      )}
+      {success && (
+        <div className={s.error}>
+          We have sent a link for changing password to your email. Please check it, then go back and
+          try to authenticate
+        </div>
       )}
       <FormProvider {...methods}>
         <form className={s.form} onSubmit={handleSubmit(() => reset())}>

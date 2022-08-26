@@ -25,8 +25,10 @@ import { SocialAuthentication } from './authentication/socialAuthentication/Soci
 import { PasswordAuthentication } from './authentication/passwordAuthentication/PasswordAuthentication';
 import { ForgotPassword } from './authentication/forgotPassword/ForgotPassword';
 import { RegistrationUserProfile } from './registration/registrationUserProfile/RegistrationUserProfile';
-import { RegistrationUserData } from './registration/registrationUserData/RegistrationUserData';
+import { Videos } from './TrainingVideos/videos/Videos';
+import { VideoPage } from './TrainingVideos/videoPage/VideoPage';
 import s from './App.module.css';
+import { RegistrationUserData } from './registration/registrationUserData/registrationUserData';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -45,7 +47,7 @@ const App: FC = () => {
   return (
     <div className={s.app}>
       <Routes>
-        {isAuth ? (
+        {!isAuth ? (
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="food" element={<Food />}>
@@ -55,6 +57,8 @@ const App: FC = () => {
             </Route>
             <Route path="workout" element={<Workout />}>
               <Route path="videos" element={<TrainingVideos />} />
+              <Route path="videos/:videoCategory" element={<Videos />} />
+              <Route path="videos/:videoCategory/:videoId" element={<VideoPage />} />
               <Route path="trainings" element={<TrainingSets />} />
               <Route path="trainings/:trainingId" element={<Exercises />} />
               <Route path="trainings/:trainingId/active" element={<TrainingActive />} />

@@ -10,12 +10,11 @@ const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    setLogIn: (state, payload) => {
-      state.user = payload.payload;
+    setLogIn: (state) => {
       state.isAuth = true;
     },
     setLogOut: (state) => {
-      state = initialState;
+      state.isAuth = false;
     }
   }
 });

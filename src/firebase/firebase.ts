@@ -13,7 +13,11 @@ import {
   TwitterAuthProvider,
   signOut,
   updateEmail,
-  updatePassword
+  updatePassword,
+  browserSessionPersistence,
+  browserLocalPersistence,
+  setPersistence,
+  onAuthStateChanged
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -42,6 +46,8 @@ export {
   googleProvider,
   facebookProvider,
   twitterProvider,
+  browserSessionPersistence,
+  browserLocalPersistence,
   setDoc,
   getDoc,
   doc,
@@ -53,7 +59,9 @@ export {
   signInWithPopup,
   signOut,
   updateEmail,
-  updatePassword
+  updatePassword,
+  setPersistence,
+  onAuthStateChanged
 };
 
 export type { User };

@@ -1,0 +1,26 @@
+.remember {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  padding: 1px 0 0 1px;
+  border: 3px solid #7755ff;
+  border-radius: 5px;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.check {
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.text {
+  font-size: 14px;
+  color: #ffffff;
+  cursor: default;
+}

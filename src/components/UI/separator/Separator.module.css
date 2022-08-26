@@ -1,0 +1,17 @@
+.separator {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #26292f;
+}
+
+.text {
+  position: relative;
+  z-index: 2;
+  padding: 0 10px;
+  margin-top: -11px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #181a20;
+  cursor: default;
+}

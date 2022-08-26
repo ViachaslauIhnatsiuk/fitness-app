@@ -1,19 +1,15 @@
 import React, { FC } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { usePasswordReset } from '../../../hooks/usePasswordReset';
 import { IUserForgotPassword } from './models';
-import { emailRegister } from '../../../constants/formValidation';
+import { EmailInput } from '../../UI/emailInput/EmailInput';
+import { ForgotSubmitButton } from '../../UI/submitButtons/forgotSubmitButton/ForgotSubmitButton';
 import s from './ForgotPassword.module.css';
 
 const ForgotPassword: FC = () => {
-  const { resetPasswordError, handleForgotPassword } = usePasswordReset();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    getValues,
-    formState: { errors, isValid }
-  } = useForm<IUserForgotPassword>({ mode: 'onBlur' });
+  const { success, resetPasswordError, handleForgotPassword } = usePasswordReset();
+  const methods = useForm<IUserForgotPassword>({ mode: 'onBlur' });
+  const { handleSubmit, reset } = methods;
 
   return (
     <div className={s.wrapper}>
@@ -21,25 +17,22 @@ const ForgotPassword: FC = () => {
       {resetPasswordError && (
         <div className={s.error}>We cannot find an account with that email address</div>
       )}
-      <form className={s.form} onSubmit={handleSubmit(() => reset())}>
-        <div className={s.field}>
-          <input
-            autoComplete="off"
-            className={s.input}
-            type="email"
-            {...register('email', emailRegister)}
-          />
-          <p className={s.warning}>{errors.email?.message}</p>
+      {success && (
+        <div className={s.error}>
+          We have sent a link for changing password to your email. Please check it, then go back and
+          try to authenticate
         </div>
-        <input
-          className={s.button}
-          style={{ backgroundColor: !isValid ? '#35383f' : '#7755ff' }}
-          disabled={!isValid}
-          type="submit"
-          value="Continue"
-          onClick={() => handleForgotPassword(getValues('email'))}
-        />
-      </form>
+      )}
+      <FormProvider {...methods}>
+        <form className={s.form} onSubmit={handleSubmit(() => reset())}>
+          <EmailInput />
+          <ForgotSubmitButton
+            path="/sign-in-with-password"
+            value="Continue"
+            handler={handleForgotPassword}
+          />
+        </form>
+      </FormProvider>
     </div>
   );
 };

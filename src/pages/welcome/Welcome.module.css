@@ -33,10 +33,10 @@
   align-items: center;
   padding: 15px 0;
   border-radius: 30px;
-  background-color: #35383f;
+  background-color: #7755ff;
   font-size: 20px;
   transition: 0.4s;
-  color: #c0c1c3;
+  color: #fff;
   font-family: 'Urbanist';
   cursor: pointer;
 }
@@ -52,7 +52,6 @@
 
 .start:hover,
 .button:hover {
-  background-color: #7755ff;
-  color: #fff;
+  background-color: #6b5bab;
   transition: 0.6s;
 }

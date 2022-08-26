@@ -1,5 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { auth, onAuthStateChanged } from '../firebase/firebase';
+import { useAppSelector } from '../store/model';
+import { useAppDispatch } from '../store/store';
+import { selectProfile } from '../store/selectors';
+import { setLogIn, setLogOut } from '../store/slices/profileSlice';
 import { Home } from '../pages/home/Home';
 import { Workout } from '../pages/workout/Workout';
 import { Food } from '../pages/food/Food';
@@ -15,18 +20,32 @@ import { TrainingActive } from './TrainingSets/trainingActive/TrainingActive';
 import { Recipe } from './recipes/recipe/Recipe';
 import { EditProfile } from './editProfile/EditProfile';
 import { EditPersonalData } from './editPersonalData/EditPersonalData';
-import { auth } from '../firebase/firebase';
 import { Welcome } from '../pages/welcome/Welcome';
+import { SocialAuthentication } from './authentication/socialAuthentication/SocialAuthentication';
 import { PasswordAuthentication } from './authentication/passwordAuthentication/PasswordAuthentication';
+import { ForgotPassword } from './authentication/forgotPassword/ForgotPassword';
 import { RegistrationUserProfile } from './registration/registrationUserProfile/RegistrationUserProfile';
-import s from './App.module.css';
 import { RegistrationUserData } from './registration/registrationUserData/RegistrationUserData';
+import s from './App.module.css';
 
 const App: FC = () => {
+  const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector(selectProfile);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setLogIn());
+      } else {
+        dispatch(setLogOut());
+      }
+    });
+  }, [dispatch]);
+
   return (
     <div className={s.app}>
       <Routes>
-        {!auth.currentUser ? (
+        {isAuth ? (
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="food" element={<Food />}>
@@ -48,7 +67,9 @@ const App: FC = () => {
         ) : (
           <>
             <Route path="/" element={<Welcome />} />
-            <Route path="sign-in" element={<PasswordAuthentication />} />
+            <Route path="sign-in" element={<SocialAuthentication />} />
+            <Route path="sign-in-with-password" element={<PasswordAuthentication />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="sign-up" element={<RegistrationUserProfile />} />
             <Route path="sign-up/user-data" element={<RegistrationUserData />} />
           </>

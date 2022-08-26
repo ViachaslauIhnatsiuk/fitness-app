@@ -1,0 +1,37 @@
+.buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.back {
+  color: #fff;
+  background-color: #7755ff;
+}
+
+.back,
+.submit {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  margin-top: 50px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.4s;
+  text-decoration: none;
+  font-family: 'Urbanist';
+  cursor: pointer;
+}
+
+.back:hover {
+  background-color: #6b5bab;
+  transition: 0.6s;
+}
+
+.submit:hover {
+  transition: 0.6s;
+}

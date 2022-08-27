@@ -74,8 +74,8 @@ const App: FC = () => {
             <Route path="sign-in" element={<SocialAuthentication />} />
             <Route path="sign-in-with-password" element={<PasswordAuthentication />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
-            <Route path="sign-up" element={<RegistrationUserProfile />} />
-            <Route path="sign-up/user-data" element={<RegistrationUserData />} />
+            <Route path="sign-up" element={<RegistrationUserData />} />
+            <Route path="sign-up/user-profile" element={<RegistrationUserProfile />} />
           </>
         )}
       </Routes>

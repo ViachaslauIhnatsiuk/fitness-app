@@ -31,7 +31,7 @@ const RegistrationUserProfile: FC = () => {
           <PasswordInput />
           <ConfirmPasswordInput />
           <RememberMe />
-          <RegSubmitButton path="user-data" value="Continue" handler={handleRegistration} />
+          <RegSubmitButton path="" value="Continue" handler={handleRegistration} />
         </form>
       </FormProvider>
       <Separator text="or continue with" />

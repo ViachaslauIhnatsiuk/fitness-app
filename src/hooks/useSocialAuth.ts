@@ -1,14 +1,26 @@
+import { useNavigate } from 'react-router-dom';
 import {
+  db,
   auth,
   signInWithPopup,
   googleProvider,
   facebookProvider,
-  twitterProvider
+  twitterProvider,
+  doc,
+  setDoc
 } from '../firebase/firebase';
 
 const useSocialAuth = () => {
+  const navigate = useNavigate();
+
   const signInWithGoogle = async () => {
-    await signInWithPopup(auth, googleProvider);
+    const { user } = await signInWithPopup(auth, googleProvider);
+    setDoc(doc(db, 'users', user.uid), {
+      email: user.email,
+      id: user.uid,
+      token: await user.getIdToken(true)
+    }).catch((error: Error) => error);
+    navigate('/');
   };
 
   const signInWithFacebook = async () => {

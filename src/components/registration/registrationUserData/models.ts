@@ -5,6 +5,12 @@ interface IOption {
 }
 
 interface IUserData {
+  gender: string;
+  age: number;
+  height: number;
+  weight: number;
+  activity: string;
+  goal: string;
   [key: string]: string | number;
 }
 

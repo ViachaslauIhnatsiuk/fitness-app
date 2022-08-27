@@ -4,7 +4,7 @@ import { RootState } from './store';
 
 interface ProfileState {
   isAuth: boolean;
-  user: IUser | null;
+  currentUser: IUser;
 }
 
 interface RecipesState {

@@ -1,10 +1,9 @@
-interface IWorkouts {
-  trainings: IWorkout[];
-}
+type IWorkouts = { [key: number]: IWorkout };
+
 interface IWorkout {
   id: number;
   title: string;
-  level: 'Begginer' | 'Intermediate' | 'Advanced';
+  level: WorkoutFilterByLevel;
   cal: number;
   exercises: IExercise[];
 }
@@ -16,13 +15,20 @@ interface IExercise {
 
 interface IVideoTrainings {
   categories: string[];
-  videos: IVideo[];
+  videos: IVideos;
 }
+
+type IVideos = { [key: number]: IVideo };
+
 interface IVideo {
   id: number;
   title: string;
   category: string;
   details: VideoDetails;
+}
+
+interface ICategories {
+  categories: string[];
 }
 
 type VideoDetails = {
@@ -33,17 +39,44 @@ type VideoDetails = {
   reps: string;
 };
 
-enum Path {
+enum WorkoutPath {
   home = '/',
   trainings = '/workout/trainings',
   videoTrainings = '/workout/videos'
 }
 
-enum Status {
+enum WorkoutStatus {
   loading = 'loading',
   resolved = 'resolved',
   rejected = 'rejected'
 }
 
-export type { IVideoTrainings, IVideo, IWorkouts, IWorkout, IExercise };
-export { Path, Status };
+enum WorkoutFilterByLevel {
+  all = 'All',
+  beginner = 'Beginner',
+  intermediate = 'Intermediate',
+  advanced = 'Advanced'
+}
+
+enum FirestoreCollection {
+  trainings = 'trainings',
+  videoTrainings = 'videoTrainings'
+}
+
+enum FirestoreDocument {
+  trainings = 'Trainings',
+  videos = 'Videos',
+  categories = 'Categories'
+}
+
+export type {
+  IVideoTrainings,
+  IVideo,
+  IWorkouts,
+  IWorkout,
+  IExercise,
+  IVideos,
+  ICategories,
+  VideoDetails
+};
+export { WorkoutPath, WorkoutStatus, WorkoutFilterByLevel, FirestoreCollection, FirestoreDocument };

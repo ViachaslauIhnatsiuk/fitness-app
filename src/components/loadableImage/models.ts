@@ -1,7 +1,7 @@
 type LoadableImageProps = {
   src: string;
   alt?: string;
-  onLoad?(): void;
+  onLoad?: () => void;
 };
 
 export type { LoadableImageProps };

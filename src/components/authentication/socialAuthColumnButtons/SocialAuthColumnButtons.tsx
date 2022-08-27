@@ -1,15 +1,26 @@
 import React, { FC } from 'react';
-import { FaFacebook, FaTwitter } from 'react-icons/fa';
+import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import { IoMdClose } from 'react-icons/io';
 import { useSocialAuth } from '../../../hooks/useSocialAuth';
 import { SocialAuthButton } from '../../UI/socialAuthButton/SocialAuthButton';
 import s from './SocialAuthColumnButtons.module.css';
 
 const SocialAuthColumnButtons: FC = () => {
-  const { signInWithGoogle, signInWithFacebook, signInWithTwitter } = useSocialAuth();
+  const { socialAuthError, setSocialAuthError, signInWithGoogle, signInWithFacebook } =
+    useSocialAuth();
 
   return (
     <div className={s.wrapper}>
+      {socialAuthError && (
+        <div className={s.notification}>
+          <div className={s.text}>
+            Account with the email you are using already exists. Try to log in with a previously
+            used account
+          </div>
+          <IoMdClose className={s.close} onClick={() => setSocialAuthError(false)} />
+        </div>
+      )}
       <SocialAuthButton
         icon={<FcGoogle />}
         method={signInWithGoogle}
@@ -20,12 +31,6 @@ const SocialAuthColumnButtons: FC = () => {
         icon={<FaFacebook />}
         method={signInWithFacebook}
         title="Continue with Facebook"
-      />
-      <SocialAuthButton
-        style={{ color: '#1da1f2' }}
-        icon={<FaTwitter />}
-        method={signInWithTwitter}
-        title="Continue with Twitter"
       />
     </div>
   );

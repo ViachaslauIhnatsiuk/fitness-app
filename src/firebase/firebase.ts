@@ -10,9 +10,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  TwitterAuthProvider,
   signOut,
-  updateEmail,
   updatePassword,
   browserSessionPersistence,
   browserLocalPersistence,
@@ -36,7 +34,6 @@ const auth = getAuth();
 const storage = getStorage();
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
-const twitterProvider = new TwitterAuthProvider();
 
 export {
   app,
@@ -45,7 +42,6 @@ export {
   storage,
   googleProvider,
   facebookProvider,
-  twitterProvider,
   browserSessionPersistence,
   browserLocalPersistence,
   setDoc,
@@ -58,7 +54,6 @@ export {
   sendPasswordResetEmail,
   signInWithPopup,
   signOut,
-  updateEmail,
   updatePassword,
   setPersistence,
   onAuthStateChanged

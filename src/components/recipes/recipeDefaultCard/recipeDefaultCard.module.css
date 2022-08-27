@@ -1,23 +1,20 @@
-.wrapper {
-  height: 150px;
+.wrapper_card {
   border-radius: 10px;
   position: relative;
   overflow: hidden;
   transition: 0.5s;
 }
-.wrapper:hover {
+.wrapper_card:hover {
   cursor: pointer;
 }
-.wrapper:hover .image {
+.wrapper_card:hover .image {
   transform: scale(1.15);
   transition: 0.5s;
 }
-
 .image_wrapper {
   position: relative;
   min-height: 150px;
 }
-
 .image {
   width: 100%;
   height: 100%;
@@ -32,7 +29,7 @@
   padding: 5px;
   width: 90%;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   right: 0;
   background-color: #000000a4;
   border-top-left-radius: 5px;

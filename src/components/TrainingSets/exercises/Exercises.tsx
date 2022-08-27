@@ -1,41 +1,43 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useLocation, useParams } from 'react-router-dom';
 import s from './Exercises.module.css';
 import { Button } from '../../UI/button/Button';
 import { ExerciseCard } from '../exerciseCard/ExerciseCard';
-import { IExercise, IWorkout, Path } from '../../../models/Workout';
-import { useAppSelector } from '../../../store/model';
-import { selectWorkout } from '../../../store/selectors';
+import { WorkoutPath } from '../../../models/Workout';
+import { useTraining } from '../../../hooks/useTraining';
+import Loader from '../../UI/loader/Loader';
 
 const Exercises: FC = () => {
   const { pathname } = useLocation();
   const { trainingId } = useParams();
-  const { trainings } = useAppSelector(selectWorkout);
-  const [exercises, setExercises] = useState<IExercise[]>([]);
+  const { getExercisesById, exercisesById, isLoading } = useTraining();
+
   const redirectPath = `${pathname}active`;
 
   useEffect(() => {
-    const { exercises: exercisesData } = trainings.find(
-      ({ id }) => Number(trainingId) === id
-    ) as IWorkout;
-
-    setExercises(exercisesData);
-  }, [trainingId, trainings]);
+    if (trainingId) getExercisesById(trainingId).catch((error: Error) => error);
+  }, [getExercisesById, trainingId]);
 
   return (
     <div className={s.wrapper}>
       <div className={s.header}>
-        <Button path={Path.trainings} icon={<IoChevronBackCircleOutline />} />
+        <Button path={WorkoutPath.trainings} icon={<IoChevronBackCircleOutline />} />
         <h2>Workout Activity</h2>
       </div>
-      <div className={s.exercises}>
-        {exercises.map((exercise) => {
-          return <ExerciseCard key={uuidv4()} exercise={exercise} />;
-        })}
-      </div>
-      <Button path={redirectPath} text="START" isStyled customStyles={s.button} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className={s.exercises}>
+            {exercisesById?.map((exercise) => {
+              return <ExerciseCard key={uuidv4()} exercise={exercise} />;
+            })}
+          </div>
+          <Button path={redirectPath} text="START" isStyled customStyles={s.button} />
+        </>
+      )}
     </div>
   );
 };

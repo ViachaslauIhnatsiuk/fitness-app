@@ -21,7 +21,10 @@ const RegSubmitButton: FC<RegSubmitButtonProps> = ({ path, value, handler }) => 
     <Link to={path} className={s.link}>
       <input
         className={s.button}
-        style={{ backgroundColor: !isValid ? '#6b5bab' : '#7755ff' }}
+        style={{
+          backgroundColor: !isValid ? '#1f222a' : '#7755ff',
+          color: !isValid ? '#7e7f81' : '#ffffff'
+        }}
         disabled={!isValid}
         type="submit"
         value={value}

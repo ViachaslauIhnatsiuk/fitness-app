@@ -7,14 +7,9 @@ import { ExerciseProps } from './models';
 const ExerciseCard: FC<ExerciseProps> = ({ exercise: { time, title } }) => {
   const { exerciseGifUrl, getExerciseGifUrl } = useStorage();
 
-  useEffect(
-    function setExercisePreview(): void {
-      (async () => {
-        await getExerciseGifUrl(title);
-      })().catch((error: Error) => error);
-    },
-    [getExerciseGifUrl, title]
-  );
+  useEffect(() => {
+    getExerciseGifUrl(title).catch((error: Error) => error);
+  }, [getExerciseGifUrl, title]);
 
   return (
     <div className={s.wrapper}>

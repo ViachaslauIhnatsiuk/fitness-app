@@ -21,7 +21,7 @@ const Recipe = () => {
       {Object.keys(recipeInfo).length && (
         <div className={s.recipe_info}>
           <h3 className={s.title}>{recipeInfo.title}</h3>
-          <img className={s.image} src={recipeInfo.image} />
+          <img className={s.image} src={recipeInfo.image} alt="recipe" />
           <div>
             <span>Ready In Minutes: {recipeInfo.readyInMinutes}</span>
             <div>

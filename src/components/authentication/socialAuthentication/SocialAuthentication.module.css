@@ -24,7 +24,7 @@
   border-radius: 25px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #6b5bab;
+  background-color: #7755ff;
   color: #fff;
   transition: 0.4s;
   text-decoration: none;
@@ -33,5 +33,5 @@
 
 .button:hover {
   transition: 0.4s;
-  background-color: #7755ff;
+  background-color: #6b5bab;
 }

@@ -1,5 +1,4 @@
 import React, { FC, useEffect } from 'react';
-import { IoSearch } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
 import { useFilteredTrainings } from '../../hooks/useFilteredTrainings';
 import { WorkoutStatus } from '../../models/Workout';
@@ -27,9 +26,6 @@ const TrainingSets: FC = () => {
     <div className={s.wrapper}>
       <div className={s.header}>
         <FilterBySearch />
-        <button type="button" className={s.search}>
-          <IoSearch />
-        </button>
       </div>
       <FilterByLevel />
       <div className={s.trainings}>

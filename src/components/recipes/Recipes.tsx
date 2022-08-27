@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { CgCloseR } from 'react-icons/cg';
 import { FiSearch } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,8 +18,7 @@ const Recipes: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    dispatch(fetchRecipes(query));
+    dispatch(fetchRecipes(query)).catch((err: Error) => err);
   };
 
   const handleDeleteValue = () => setQuery('');

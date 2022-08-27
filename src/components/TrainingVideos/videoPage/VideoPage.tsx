@@ -5,12 +5,13 @@ import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import s from './VideoPage.module.css';
 import { useStorage } from '../../../hooks/useStorage';
 import { VideoPlayer } from '../../UI/videoPlayer/VideoPlayer';
-import { convertTitleVideoCard } from '../videoCard/utils';
+import { convertTitleVideoCard } from '../utils';
 import { VideoTable } from '../videoTable/VideoTable';
 import { Button } from '../../UI/button/Button';
 import Loader from '../../UI/loader/Loader';
 import { useVideo } from '../../../hooks/useVideo';
 import { WorkoutPath } from '../../../models/Workout';
+import { convertToArrayByValue } from './utils';
 
 const VideoPage: FC = () => {
   const { videoId } = useParams();
@@ -51,12 +52,9 @@ const VideoPage: FC = () => {
               <VideoTable videoDetails={video.details} />
               <p className={s.subtitle}>Instruction</p>
               <ul className={s.description}>
-                {video.details.description
-                  .split('Step:')
-                  .splice(1)
-                  .map((step) => {
-                    return <li key={uuidv4()}>{step}</li>;
-                  })}
+                {convertToArrayByValue(video.details.description, 'Step:').map((step) => {
+                  return <li key={uuidv4()}>{step}</li>;
+                })}
               </ul>
             </>
           )

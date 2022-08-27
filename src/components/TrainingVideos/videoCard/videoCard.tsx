@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStorage } from '../../../hooks/useStorage';
 import { LoadableImage } from '../../loadableImage/LoadableImage';
 import { VideoCardProps } from './models';
-import { convertTitleVideoCard } from './utils';
+import { convertTitleVideoCard } from '../utils';
 import s from './videoCard.module.css';
 
 const VideoCard: FC<VideoCardProps> = ({ title, id }) => {

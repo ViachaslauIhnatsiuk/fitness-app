@@ -1,17 +1,24 @@
 import React, { FC, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
 import { Link } from 'react-router-dom';
-import { IUserData, IOption } from './models';
-import { selectOptions, initialUserData, registrationSelects } from './constants';
+import { useAppDispatch } from '../../../store/store';
+import { setNewUser } from '../../../store/slices/profileSlice';
+import { IOption, IUserData } from './models';
+import { selectOptions, registrationSelects, initialUserData } from './constants';
 import { handleValue } from '../../../helpers/select';
 import './RegistrationUserData.css';
 
 const RegistrationUserData: FC = () => {
-  const [userData, setUserData] = useState<IUserData>(initialUserData);
+  const [newUserData, setNewUserData] = useState<IUserData>(initialUserData);
+  const dispatch = useAppDispatch();
 
   const handleChange = (selectedOption: SingleValue<string | IOption>) => {
     const { type, value } = selectedOption as IOption;
-    setUserData({ ...userData, [type]: value });
+    setNewUserData({ ...newUserData, [type]: value });
+  };
+
+  const saveNewUserData = () => {
+    dispatch(setNewUser(newUserData));
   };
 
   return (
@@ -28,7 +35,7 @@ const RegistrationUserData: FC = () => {
               <Select
                 classNamePrefix="select"
                 onChange={handleChange}
-                value={handleValue(userData, select, selectOptions[select])}
+                value={handleValue(newUserData, select, selectOptions[select])}
                 options={selectOptions[select]}
               />
             </div>
@@ -36,10 +43,10 @@ const RegistrationUserData: FC = () => {
         })}
       </div>
       <div className="buttons">
-        <Link to="/sign-up" className="back">
+        <Link to="/" className="back">
           Back
         </Link>
-        <Link to="/" className="continue">
+        <Link to="user-profile" className="continue" onClick={saveNewUserData}>
           Continue
         </Link>
       </div>

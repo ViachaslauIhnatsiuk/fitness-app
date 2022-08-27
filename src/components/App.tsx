@@ -24,11 +24,11 @@ import { Welcome } from '../pages/welcome/Welcome';
 import { SocialAuthentication } from './authentication/socialAuthentication/SocialAuthentication';
 import { PasswordAuthentication } from './authentication/passwordAuthentication/PasswordAuthentication';
 import { ForgotPassword } from './authentication/forgotPassword/ForgotPassword';
+import { RegistrationUserData } from './registration/registrationUserData/RegistrationUserData';
 import { RegistrationUserProfile } from './registration/registrationUserProfile/RegistrationUserProfile';
 import { Videos } from './TrainingVideos/videos/Videos';
 import { VideoPage } from './TrainingVideos/videoPage/VideoPage';
 import s from './App.module.css';
-import { RegistrationUserData } from './registration/registrationUserData/registrationUserData';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -47,7 +47,7 @@ const App: FC = () => {
   return (
     <div className={s.app}>
       <Routes>
-        {!isAuth ? (
+        {isAuth ? (
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="food" element={<Food />}>
@@ -74,8 +74,8 @@ const App: FC = () => {
             <Route path="sign-in" element={<SocialAuthentication />} />
             <Route path="sign-in-with-password" element={<PasswordAuthentication />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
-            <Route path="sign-up" element={<RegistrationUserProfile />} />
-            <Route path="sign-up/user-data" element={<RegistrationUserData />} />
+            <Route path="sign-up" element={<RegistrationUserData />} />
+            <Route path="sign-up/user-profile" element={<RegistrationUserProfile />} />
           </>
         )}
       </Routes>

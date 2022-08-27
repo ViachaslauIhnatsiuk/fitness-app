@@ -43,9 +43,9 @@ const ProfileMain: FC = () => {
         </div>
         <div className={s.setting}>
           <FiLogOut className={s.logout_icon} />
-          <span role="presentation" className={s.logout_title} onClick={handleLogout}>
+          <Link to="/" role="presentation" className={s.logout_title} onClick={handleLogout}>
             Logout
-          </span>
+          </Link>
         </div>
       </div>
     </div>

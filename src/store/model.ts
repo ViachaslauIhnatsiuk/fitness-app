@@ -4,7 +4,7 @@ import { RootState } from './store';
 
 interface ProfileState {
   isAuth: boolean;
-  user: IUser | null;
+  currentUser: IUser;
 }
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

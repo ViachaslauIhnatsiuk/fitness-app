@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { db, auth, doc, setDoc, updateEmail, updatePassword, User } from '../firebase/firebase';
 
 const useProfileUpdate = () => {
+  const [success, setSuccess] = useState<boolean>(false);
+
   const updateUserProfile = async (
     name: string,
     email: string,
@@ -16,8 +19,11 @@ const useProfileUpdate = () => {
       id: user.uid,
       token: await user.getIdToken(true)
     }).catch((error: Error) => error);
+    setSuccess(true);
   };
   return {
+    success,
+    setSuccess,
     updateUserProfile
   };
 };

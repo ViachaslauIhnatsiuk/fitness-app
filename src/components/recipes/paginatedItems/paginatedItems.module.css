@@ -17,6 +17,7 @@
 }
 
 .btns_container {
+  margin-top: 10px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -47,12 +48,13 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  user-select: none;
 }
 .arrow_prev a {
   display: block;
   width: 18px;
   height: 18px;
-  background-color: #7755ff;
+  color: #7755ff;
 }
 .arrow_next {
   width: 24px;
@@ -61,16 +63,17 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  user-select: none;
 }
 .arrow_next a {
   display: block;
   width: 18px;
   height: 18px;
-  background-color: #7755ff;
+  color: #7755ff;
 }
 .arrow_disabled {
   cursor: default;
 }
 .arrow_disabled a {
-  background-color: #808080;
+  color: #808080;
 }

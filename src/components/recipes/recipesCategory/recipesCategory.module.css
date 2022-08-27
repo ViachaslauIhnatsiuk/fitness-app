@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 .input_wrapper {
   min-width: 400px;
@@ -10,11 +10,11 @@
 }
 .input {
   width: 100%;
-  padding: 12px 20px 12px 40px;
+  padding: 8px 20px 8px 40px;
   background-color: #1f222a;
   border: 1px solid #1f222a;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 16px;
   color: #ffffff;
 }
 .input:active,
@@ -55,8 +55,8 @@
   color: #f7f7f7;
 }
 .subtitle {
-  margin: 20px 0;
-  font-size: 18px;
+  margin: 16px 0;
+  font-size: 16px;
 }
 
 .recipes {

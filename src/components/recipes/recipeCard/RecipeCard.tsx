@@ -4,7 +4,7 @@ import { RecipeCardProps } from './models';
 import s from './RecipeCard.module.css';
 
 const RecipeCard: FC<RecipeCardProps> = ({ data: { id, title, image } }) => {
-  const composePath = `${id}/`;
+  const composePath = `${String(id)}/`;
 
   return (
     <div className={s.wrapper}>

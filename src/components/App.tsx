@@ -47,7 +47,7 @@ const App: FC = () => {
   return (
     <div className={s.app}>
       <Routes>
-        {!isAuth ? (
+        {isAuth ? (
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="food" element={<Food />}>

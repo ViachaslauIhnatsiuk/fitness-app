@@ -18,7 +18,7 @@ const ConfirmPasswordInput: FC = () => {
       <input
         className={s.input}
         placeholder="Confirm Password"
-        type="password"
+        type={passwordType}
         {...register('confirmPassword', {
           ...passwordRegister,
           validate: (value) => value === watch('password') || matchPasswordReport

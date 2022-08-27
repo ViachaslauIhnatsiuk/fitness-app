@@ -1,9 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IUserData } from '../../components/registration/registrationUserData/models';
 import type { ProfileState } from '../model';
 
 const initialState: ProfileState = {
   isAuth: false,
-  user: null
+  currentUser: {
+    name: '',
+    email: '',
+    password: '',
+    id: '',
+    token: '',
+    userData: {
+      gender: 'male',
+      age: 30,
+      height: 170,
+      weight: 60,
+      activity: 'intermediate',
+      goal: 'get fitter'
+    }
+  }
 };
 
 const profileSlice = createSlice({
@@ -15,9 +30,12 @@ const profileSlice = createSlice({
     },
     setLogOut: (state) => {
       state.isAuth = false;
+    },
+    setNewUser: (state, { payload }: PayloadAction<IUserData>) => {
+      state.currentUser.userData = payload;
     }
   }
 });
 
-export const { setLogIn, setLogOut } = profileSlice.actions;
+export const { setLogIn, setLogOut, setNewUser } = profileSlice.actions;
 export { profileSlice };

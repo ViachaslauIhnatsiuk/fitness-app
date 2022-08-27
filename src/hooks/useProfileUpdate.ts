@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { db, auth, doc, setDoc, updatePassword, User } from '../firebase/firebase';
+import { IUserData } from '../components/registration/registrationUserData/models';
+import { db, auth, doc, setDoc, getDoc, updatePassword, User } from '../firebase/firebase';
 
 const useProfileUpdate = () => {
   const [success, setSuccess] = useState<boolean>(false);
@@ -16,10 +17,22 @@ const useProfileUpdate = () => {
     }).catch((error: Error) => error);
     setSuccess(true);
   };
+
+  const updateUserData = async (userData: IUserData) => {
+    const user = auth.currentUser as User;
+    const userProfile = (await getDoc(doc(db, 'users', user.uid))).data();
+    setDoc(doc(db, 'users', user.uid), {
+      ...userProfile,
+      userData
+    }).catch((error: Error) => error);
+    setSuccess(true);
+  };
+
   return {
     success,
     setSuccess,
-    updateUserProfile
+    updateUserProfile,
+    updateUserData
   };
 };
 

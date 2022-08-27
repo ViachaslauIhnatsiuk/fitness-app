@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { API_KEY, BASE_URL } from '../../constants';
 import type { RecipeResponse, RecipesState, RecipesRequestConfig } from './model';
 import { getMixedQueries } from '../../../helpers/getMixedQueries';
@@ -14,7 +14,8 @@ const initialState: RecipesState = {
   isUploaded: false,
   queryParams: {
     query: '',
-    type: ''
+    type: '',
+    offset: 0
   },
   error: ''
 };
@@ -38,7 +39,11 @@ export const fetchRecipes = createAsyncThunk(
 const recipesSlice = createSlice({
   name: 'recipes',
   initialState,
-  reducers: {},
+  reducers: {
+    setQueryParams: (state, { payload }: PayloadAction<RecipesRequestConfig>) => {
+      state.queryParams = payload;
+    }
+  },
   extraReducers: {
     [fetchRecipes.fulfilled.type]: (state, action) => {
       state.recipes = action.payload.recipes;
@@ -57,4 +62,5 @@ const recipesSlice = createSlice({
   }
 });
 
+export const { setQueryParams } = recipesSlice.actions;
 export { recipesSlice };

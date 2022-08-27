@@ -8,6 +8,7 @@ interface IRecipe {
 type RecipesRequestConfig = {
   query: string;
   type: string;
+  offset: number;
 };
 
 interface RecipeResponse {

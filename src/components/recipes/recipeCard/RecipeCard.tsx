@@ -7,16 +7,14 @@ const RecipeCard: FC<RecipeCardProps> = ({ data: { id, title, image } }) => {
   const composePath = `${String(id)}/`;
 
   return (
-    <div className={s.wrapper}>
-      <Link to={composePath} className={s.link}>
-        <div className={s.image_wrapper}>
-          <img src={image} className={s.image} alt={title} />
-        </div>
-        <div className={s.overlay}>
-          <span className={s.label}>{title}</span>
-        </div>
-      </Link>
-    </div>
+    <Link to={composePath} className={s.link}>
+      <div className={s.image_wrapper}>
+        <img src={image} className={s.image} alt={title} />
+      </div>
+      <div className={s.overlay}>
+        <span className={s.label}>{title}</span>
+      </div>
+    </Link>
   );
 };
 

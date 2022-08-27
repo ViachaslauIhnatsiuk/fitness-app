@@ -1,14 +1,15 @@
-.wrapper {
+.link {
   height: 150px;
+  width: 250px;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
   transition: 0.5s;
 }
-.wrapper:hover {
+.link:hover {
   cursor: pointer;
 }
-.wrapper:hover .image {
+.link:hover .image {
   transform: scale(1.15);
   transition: 0.5s;
 }

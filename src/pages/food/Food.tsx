@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { CustomLink } from '../../components/UI/customLink/CustomLink';
 import s from './Food.module.css';
 
 const Food: FC = () => {
@@ -17,12 +18,6 @@ const Food: FC = () => {
           Daily ration
         </Link>
       </div>
-      {currentLocation === 'food' && (
-        <p className={s.decription}>
-          В этом разделе Вы можете найти подходящий для себя рецепт. Контролировать свой дневной
-          рацион питания.
-        </p>
-      )}
       <Outlet />
     </div>
   );

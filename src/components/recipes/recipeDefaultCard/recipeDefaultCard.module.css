@@ -1,13 +1,13 @@
-.wrapper_card {
+.link {
   border-radius: 10px;
   position: relative;
   overflow: hidden;
   transition: 0.5s;
 }
-.wrapper_card:hover {
+.link:hover {
   cursor: pointer;
 }
-.wrapper_card:hover .image {
+.link:hover .image {
   transform: scale(1.15);
   transition: 0.5s;
 }

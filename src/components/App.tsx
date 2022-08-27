@@ -24,11 +24,11 @@ import { Welcome } from '../pages/welcome/Welcome';
 import { SocialAuthentication } from './authentication/socialAuthentication/SocialAuthentication';
 import { PasswordAuthentication } from './authentication/passwordAuthentication/PasswordAuthentication';
 import { ForgotPassword } from './authentication/forgotPassword/ForgotPassword';
+import { RegistrationUserData } from './registration/registrationUserData/RegistrationUserData';
 import { RegistrationUserProfile } from './registration/registrationUserProfile/RegistrationUserProfile';
 import { Videos } from './TrainingVideos/videos/Videos';
 import { VideoPage } from './TrainingVideos/videoPage/VideoPage';
 import s from './App.module.css';
-import { RegistrationUserData } from './registration/registrationUserData/registrationUserData';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();

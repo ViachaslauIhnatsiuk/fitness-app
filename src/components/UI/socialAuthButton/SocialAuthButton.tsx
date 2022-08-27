@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { SocialAuthButtonProps } from './Models';
+import { SocialAuthButtonProps } from './models';
 import s from './SocialAuthButton.module.css';
 
 const SocialAuthButton: FC<SocialAuthButtonProps> = ({ icon, method, title, style }) => {

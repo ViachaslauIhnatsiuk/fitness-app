@@ -14,14 +14,9 @@ const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } })
     navigate(pathTraining);
   };
 
-  useEffect(
-    function setTrainingImage(): void {
-      (async () => {
-        await getTrainingPreviewUrl(title);
-      })().catch((error: Error) => error);
-    },
-    [getTrainingPreviewUrl, title]
-  );
+  useEffect(() => {
+    getTrainingPreviewUrl(title).catch((error: Error) => error);
+  }, [getTrainingPreviewUrl, title]);
 
   return (
     <div

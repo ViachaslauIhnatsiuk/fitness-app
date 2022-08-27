@@ -1,0 +1,78 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.input_wrapper {
+  min-width: 400px;
+  position: relative;
+}
+.input {
+  width: 100%;
+  padding: 12px 20px 12px 40px;
+  background-color: #1f222a;
+  border: 1px solid #1f222a;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #ffffff;
+}
+.input:active,
+.input:focus {
+  background-color: #1e1d31;
+  border-color: #6842ff;
+  outline: none;
+}
+.icon_search {
+  color: #757575;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 13px;
+  left: 13px;
+}
+.input:active ~ .icon_search,
+.input:focus ~ .icon_search {
+  color: #6842ff;
+}
+.icon_delete {
+  color: #6842ff;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: calc(50% - 10px);
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+.icon_delete:hover {
+  cursor: pointer;
+}
+.input:active.icon_delete,
+.input:focus.icon_delete {
+  color: #f7f7f7;
+}
+.subtitle {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(4, 3fr);
+  gap: 10px;
+}
+
+@media (max-width: 1120px) {
+  .recipes {
+    grid-template-columns: repeat(3, 4fr);
+  }
+}
+
+@media (max-width: 870px) {
+  .recipes {
+    grid-template-columns: repeat(2, 6fr);
+  }
+}

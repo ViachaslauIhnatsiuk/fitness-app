@@ -1,17 +1,20 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { CgCloseR } from 'react-icons/cg';
 import { FiSearch } from 'react-icons/fi';
+import { normalizeRangeItems } from '../../../helpers/normalizeRangeItems';
 import { useAppSelector } from '../../../store/model';
 import { selectRecipes } from '../../../store/selectors';
 import { fetchRecipes, setQueryParams } from '../../../store/slices/recipes/recipesSlice';
 import { useAppDispatch } from '../../../store/store';
 import Loader from '../../UI/loader/Loader';
+import { itemsPerPage } from '../constants';
 import { PaginatedItems } from '../paginatedItems/paginatedItems';
 import s from './recipesCategory.module.css';
 
 const RecipesCategory = () => {
   const { recipes, isLoading, error, isUploaded, queryParams } = useAppSelector(selectRecipes);
   const dispatch = useAppDispatch();
+  const [left, right] = normalizeRangeItems(queryParams.offset, itemsPerPage, recipes.totalResults);
 
   const handleInputValue = (e: ChangeEvent<HTMLInputElement>) =>
     setQueryParams({ ...queryParams, query: e.target.value });
@@ -47,7 +50,8 @@ const RecipesCategory = () => {
                 </div>
               </form>
               <h3 className={s.subtitle}>
-                1-12 of {recipes.totalResults} results for query=&ldquo;{queryParams.query}
+                {left}-{right} of {recipes.totalResults} results for query=&ldquo;
+                {queryParams.query}
                 &rdquo;, type=&ldquo;{queryParams.type}&rdquo;
               </h3>
             </>

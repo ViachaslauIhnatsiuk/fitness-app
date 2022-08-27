@@ -13,4 +13,6 @@ const recipeTypes = [
   'drink'
 ];
 
-export { recipeTypes };
+const itemsPerPage = 12;
+
+export { recipeTypes, itemsPerPage };

@@ -5,6 +5,7 @@ import { useAppSelector } from '../../../store/model';
 import { selectRecipes } from '../../../store/selectors';
 import { fetchRecipes } from '../../../store/slices/recipes/recipesSlice';
 import { useAppDispatch } from '../../../store/store';
+import { itemsPerPage } from '../constants';
 import { RecipeCard } from '../recipeCard/RecipeCard';
 import { ItemsProps } from './models';
 import s from './paginatedItems.module.css';
@@ -21,7 +22,6 @@ const PaginatedItems: FC = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const { recipes, queryParams } = useAppSelector(selectRecipes);
   const dispatch = useAppDispatch();
-  const itemsPerPage = 12;
   const pageCount = Math.ceil(recipes.totalResults / itemsPerPage);
 
   useEffect(() => {

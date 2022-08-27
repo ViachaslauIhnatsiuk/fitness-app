@@ -5,24 +5,3 @@
   align-items: center;
   gap: 20px;
 }
-
-.notification {
-  width: 100%;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  column-gap: 10px;
-}
-
-.text {
-  font-size: 16px;
-  color: #6b5bab;
-  text-align: center;
-}
-
-.close {
-  font-size: 20px;
-  color: #ffffff;
-  cursor: pointer;
-}

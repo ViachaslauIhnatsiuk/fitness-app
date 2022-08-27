@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { IoMdClose } from 'react-icons/io';
 import { useSocialAuth } from '../../../hooks/useSocialAuth';
 import { SocialAuthButton } from '../../UI/socialAuthButton/SocialAuthButton';
+import { Notification } from '../../UI/notification/Notification';
+import { NotificationMessage } from '../../../models/notifications';
 import s from './SocialAuthColumnButtons.module.css';
 
 const SocialAuthColumnButtons: FC = () => {
@@ -13,13 +14,7 @@ const SocialAuthColumnButtons: FC = () => {
   return (
     <div className={s.wrapper}>
       {socialAuthError && (
-        <div className={s.notification}>
-          <div className={s.text}>
-            Account with the email you are using already exists. Try to log in with a previously
-            used account
-          </div>
-          <IoMdClose className={s.close} onClick={() => setSocialAuthError(false)} />
-        </div>
+        <Notification text={NotificationMessage.authWarning} handler={setSocialAuthError} />
       )}
       <SocialAuthButton
         icon={<FcGoogle />}

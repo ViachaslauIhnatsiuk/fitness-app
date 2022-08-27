@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
-import { IoMdClose } from 'react-icons/io';
 import { v4 as uuidv4 } from 'uuid';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { IOption, IUserData } from '../registration/registrationUserData/models';
@@ -11,6 +10,8 @@ import {
   selectOptions
 } from '../registration/registrationUserData/constants';
 import { handleValue } from '../../helpers/select';
+import { Notification } from '../UI/notification/Notification';
+import { NotificationMessage } from '../../models/notifications';
 import { Button } from '../UI/button/Button';
 import './EditPersonalData.css';
 
@@ -32,14 +33,7 @@ const EditPersonalData: FC = () => {
     <div className="wrapper">
       <Button path="/profile" icon={<IoChevronBackCircleOutline />} />
       <div className="title">Edit Personal Data</div>
-      {success && (
-        <div className="notification">
-          <div className="text">
-            Congratulations, your pesonal data has been successfully updated
-          </div>
-          <IoMdClose className="close" onClick={() => setSuccess(false)} />
-        </div>
-      )}
+      {success && <Notification text={NotificationMessage.dataUpdate} handler={setSuccess} />}
       <div className="selects_wrapper">
         {registrationSelects.map((select) => {
           return (

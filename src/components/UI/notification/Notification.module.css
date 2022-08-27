@@ -1,0 +1,18 @@
+.notification {
+  width: 400px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.text {
+  font-size: 16px;
+  color: #6b5bab;
+  text-align: center;
+}
+
+.close {
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}

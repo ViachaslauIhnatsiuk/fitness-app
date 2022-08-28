@@ -1,10 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { auth, onAuthStateChanged } from '../firebase/firebase';
+import { auth, db, doc, getDoc, onAuthStateChanged } from '../firebase/firebase';
 import { useAppSelector } from '../store/model';
 import { useAppDispatch } from '../store/store';
 import { selectProfile } from '../store/selectors';
-import { setLogIn, setLogOut } from '../store/slices/profileSlice';
+import { setLogIn, setLogOut, setUserState } from '../store/slices/profileSlice';
 import { Home } from '../pages/home/Home';
 import { Workout } from '../pages/workout/Workout';
 import { Food } from '../pages/food/Food';
@@ -29,6 +29,7 @@ import { RegistrationUserProfile } from './registration/registrationUserProfile/
 import { Videos } from './TrainingVideos/videos/Videos';
 import { VideoPage } from './TrainingVideos/videoPage/VideoPage';
 import s from './App.module.css';
+import { IUser } from '../models/User';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -44,10 +45,24 @@ const App: FC = () => {
     });
   }, [dispatch]);
 
+  useEffect(() => {
+    (async () => {
+      if (isAuth) {
+        const docRef = doc(db, 'users', auth.currentUser?.uid as string);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const user = docSnap.data() as IUser;
+          dispatch(setUserState(user));
+        }
+      }
+    })().catch((error: Error) => error);
+  }, [dispatch, isAuth]);
+
   return (
     <div className={s.app}>
       <Routes>
-        {!isAuth ? (
+        {isAuth ? (
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="food" element={<Food />}>

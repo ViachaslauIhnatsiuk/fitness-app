@@ -1,3 +1,6 @@
+import { IFavorite } from './Favorite';
+import { IStatistics } from './Statistics';
+
 interface IUser {
   name: string;
   email: string;
@@ -12,6 +15,8 @@ interface IUser {
     activity: string;
     goal: string;
   };
+  statistics: IStatistics;
+  favorite: IFavorite;
 }
 
 export type { IUser };

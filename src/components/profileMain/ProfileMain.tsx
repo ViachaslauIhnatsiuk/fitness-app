@@ -11,7 +11,6 @@ import { Avatar } from '../UI/avatar/Avatar';
 import s from './ProfileMain.module.css';
 
 const ProfileMain: FC = () => {
-  const [imageUrl, setImageUrl] = useState<string>('');
   const [theme, setTheme] = useState<boolean>(false);
   const { currentUser } = useAppSelector(selectProfile);
   const { handleLogout } = useAuth();
@@ -19,7 +18,7 @@ const ProfileMain: FC = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.page}>Profile</div>
-      <Avatar imageUrl={imageUrl} setImageUrl={setImageUrl} />
+      <Avatar setImageUrl={() => {}} />
       <div className={s.name}>{currentUser.name}</div>
       <div className={s.email}>{currentUser.email}</div>
       <div className={s.settings}>

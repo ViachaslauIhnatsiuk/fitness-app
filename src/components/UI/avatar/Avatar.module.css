@@ -6,21 +6,6 @@
   margin-bottom: 20px;
 }
 
-.edit_label {
-  position: absolute;
-  right: 5px;
-  bottom: -5px;
-}
-
-.edit {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  display: block;
-  width: 0;
-  height: 0;
-}
-
 .image_wrapper {
   position: relative;
   display: flex;
@@ -42,13 +27,21 @@
   object-fit: cover;
 }
 
-.check {
+.edit_label {
   position: absolute;
   right: 5px;
-  bottom: 0px;
+  bottom: -5px;
 }
 
-.check,
+.edit {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
 .edit_icon {
   font-size: 22px;
   padding: 2px;
@@ -59,7 +52,6 @@
   cursor: pointer;
 }
 
-.check:hover,
 .edit_icon:hover {
   background-color: #6b5bab;
   transition: 0.4s;

@@ -1,23 +1,35 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { MdModeEditOutline } from 'react-icons/md';
-import { AiOutlineCheck } from 'react-icons/ai';
+import { v4 as uuidv4 } from 'uuid';
 import { storage, ref, getDownloadURL, uploadBytes } from '../../../firebase/firebase';
 import { AvatarProps } from './models';
+import { useAppSelector } from '../../../store/model';
+import { selectProfile } from '../../../store/selectors';
 import avatar from '../../../assets/avatar.svg';
 import s from './Avatar.module.css';
 
-const Avatar: FC<AvatarProps> = ({ imageUrl, setImageUrl }) => {
+const Avatar: FC<AvatarProps> = ({ setImageUrl }) => {
   const [image, setImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string>('');
+  const { currentUser } = useAppSelector(selectProfile);
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = (e.target.files as FileList)[0];
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(image);
+    } else {
+      setPreview('');
+    }
+  }, [image]);
+
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const [file] = Object.values(e.target.files as FileList);
     if (file) setImage(file);
-  };
-
-  const handleImageSubmit = async () => {
-    const imageRef = ref(storage, `avatars/${image?.name as string}`);
-    setImage(null);
-    await uploadBytes(imageRef, image as File);
+    const imageRef = ref(storage, `avatars/${uuidv4()}`);
+    await uploadBytes(imageRef, file);
     const url = await getDownloadURL(imageRef);
     setImageUrl(url);
   };
@@ -25,16 +37,12 @@ const Avatar: FC<AvatarProps> = ({ imageUrl, setImageUrl }) => {
   return (
     <div className={s.avatar}>
       <div className={s.image_wrapper}>
-        <img className={s.image} src={imageUrl || avatar} alt="avatar" />
+        <img className={s.image} src={preview || currentUser.avatar || avatar} alt="avatar" />
       </div>
-      {image ? (
-        <AiOutlineCheck className={s.check} onClick={handleImageSubmit} />
-      ) : (
-        <label htmlFor="edit" className={s.edit_label}>
-          <MdModeEditOutline className={s.edit_icon} />
-          <input id="edit" type="file" className={s.edit} onChange={(e) => handleImageChange(e)} />
-        </label>
-      )}
+      <label htmlFor="edit" className={s.edit_label}>
+        <MdModeEditOutline className={s.edit_icon} />
+        <input id="edit" type="file" className={s.edit} onChange={handleImageChange} />
+      </label>
     </div>
   );
 };

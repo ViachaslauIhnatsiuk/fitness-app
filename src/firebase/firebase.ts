@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, setDoc, getDoc, doc } from 'firebase/firestore';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import {
   User,
   getAuth,
@@ -49,6 +49,7 @@ export {
   doc,
   ref,
   getDownloadURL,
+  uploadBytes,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,

@@ -6,17 +6,20 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import { useAuth } from '../../hooks/useAuth';
 import s from './ProfileMain.module.css';
+import { useAppSelector } from '../../store/model';
+import { selectProfile } from '../../store/selectors';
 
 const ProfileMain: FC = () => {
   const [theme, setTheme] = useState<boolean>(false);
+  const { currentUser } = useAppSelector(selectProfile);
   const { handleLogout } = useAuth();
 
   return (
     <div className={s.wrapper}>
       <div className={s.page}>Profile</div>
-      <div className={s.avatar} />
-      <div className={s.name}>rssfinaltask</div>
-      <div className={s.email}>rssfinaltask@gmail.com</div>
+      <div className={s.avatar}></div>
+      <div className={s.name}>{currentUser.name}</div>
+      <div className={s.email}>{currentUser.email}</div>
       <div className={s.settings}>
         <div className={s.setting}>
           <BsFillPersonFill className={s.icon} />

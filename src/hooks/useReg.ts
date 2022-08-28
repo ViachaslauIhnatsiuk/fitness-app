@@ -10,6 +10,7 @@ const useReg = () => {
   const navigate = useNavigate();
 
   const handleRegistration = async (
+    avatar: string,
     name: string,
     email: string,
     password: string
@@ -17,6 +18,7 @@ const useReg = () => {
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       setDoc(doc(db, 'users', user.uid), {
+        avatar,
         name,
         email,
         password,

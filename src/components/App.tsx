@@ -13,7 +13,7 @@ import { Layout } from './layout/Layout';
 import { NotFound } from '../pages/notFound/NotFound';
 import { Ration } from './ration/Ration';
 import { Recipes } from './recipes/Recipes';
-import { RecipesCategory } from './recipes/recipesCategory/recipesCategory';
+import { RecipesCategory } from './recipes/recipesCategory/RecipesCategory';
 import { Recipe } from './recipes/recipe/Recipe';
 import { TrainingSets } from './TrainingSets/TrainingSets';
 import { TrainingVideos } from './TrainingVideos/TrainingVideos';

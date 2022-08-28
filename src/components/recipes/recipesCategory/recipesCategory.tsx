@@ -8,8 +8,8 @@ import { fetchRecipes, setQueryParams } from '../../../store/slices/recipes/reci
 import { useAppDispatch } from '../../../store/store';
 import Loader from '../../UI/loader/Loader';
 import { itemsPerPage } from '../constants';
-import { PaginatedItems } from '../paginatedItems/paginatedItems';
-import s from './recipesCategory.module.css';
+import { PaginatedItems } from '../paginatedItems/PaginatedItems';
+import s from './RecipesCategory.module.css';
 
 const RecipesCategory = () => {
   const { recipes, isLoading, error, isUploaded, queryParams } = useAppSelector(selectRecipes);
@@ -34,14 +34,14 @@ const RecipesCategory = () => {
         <>
           {isUploaded && (
             <>
-              <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
+              <form className={s.form} onSubmit={handleSubmit}>
                 <div className={s.input_wrapper}>
                   <input
                     type="text"
                     className={s.input}
                     placeholder="Enter recipe"
                     value={queryParams.query}
-                    onChange={(e) => handleInputValue(e)}
+                    onChange={handleInputValue}
                   />
                   <FiSearch className={s.icon_search} />
                   {queryParams.query && (

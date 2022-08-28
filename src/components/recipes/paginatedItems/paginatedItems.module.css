@@ -1,21 +1,3 @@
-.recipes {
-  display: grid;
-  grid-template-columns: repeat(4, 3fr);
-  gap: 10px;
-}
-
-@media (max-width: 1120px) {
-  .recipes {
-    grid-template-columns: repeat(3, 4fr);
-  }
-}
-
-@media (max-width: 870px) {
-  .recipes {
-    grid-template-columns: repeat(2, 6fr);
-  }
-}
-
 .btns_container {
   margin-top: 10px;
   display: flex;

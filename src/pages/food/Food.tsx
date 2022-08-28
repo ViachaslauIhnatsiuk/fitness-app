@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { CustomLink } from '../../components/UI/customLink/CustomLink';
 import s from './Food.module.css';
 
 const Food: FC = () => {

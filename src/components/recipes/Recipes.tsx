@@ -5,7 +5,7 @@ import { selectRecipes } from '../../store/selectors';
 import { fetchRecipes } from '../../store/slices/recipes/recipesSlice';
 import { useAppDispatch } from '../../store/store';
 import { recipeTypes } from './constants';
-import { RecipeDefaultCard } from './recipeDefaultCard/recipeDefaultCard';
+import { RecipeDefaultCard } from './recipeDefaultCard/RecipeDefaultCard';
 import s from './Recipes.module.css';
 
 const Recipes: FC = () => {

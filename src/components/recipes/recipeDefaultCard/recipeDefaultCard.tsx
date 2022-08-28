@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { concatName } from '../../../helpers/concatName';
 import { setTitleCase } from '../../../helpers/setTitleCase';
 import { RecipeDefaultCardProps } from './models';
-import s from './recipeDefaultCard.module.css';
+import s from './RecipeDefaultCard.module.css';
 
 const RecipeDefaultCard: FC<RecipeDefaultCardProps> = ({ type, onClick }) => {
   const composePath = `recipesCategory=${type}/`;

@@ -1,4 +1,4 @@
-import { IRecipe } from '../../../store/slices/recipes/model';
+import { IRecipe } from '../../../../store/slices/recipes/model';
 
 type ItemsProps = {
   currentItems: IRecipe[];

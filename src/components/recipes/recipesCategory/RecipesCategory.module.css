@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0;
+  margin-bottom: 10px;
 }
 
 .input_wrapper {
@@ -43,10 +43,10 @@
 
 .icon_delete {
   color: #6842ff;
-  width: 20px;
+  width: 16px;
   position: absolute;
   height: 20px;
-  top: calc(50% - 10px);
+  top: calc(50% - 8px);
   right: 20px;
   display: flex;
   justify-content: center;

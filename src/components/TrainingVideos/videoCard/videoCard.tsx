@@ -1,16 +1,15 @@
 import React, { FC, useEffect, useState } from 'react';
-
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useStorage } from '../../../hooks/useStorage';
 import { LoadableImage } from '../../loadableImage/LoadableImage';
 import { VideoCardProps } from './models';
 import { convertTitleVideoCard } from '../utils';
-import s from './videoCard.module.css';
+import s from './VideoCard.module.css';
 import { useAppSelector } from '../../../store/model';
 import { selectProfile } from '../../../store/selectors';
+import { buildRedirectPath } from './helpers';
 
-const VideoCard: FC<VideoCardProps> = ({ title, id }) => {
-  const navigate = useNavigate();
+const VideoCard: FC<VideoCardProps> = ({ title, id, videoCategory }) => {
   const {
     currentUser: { favorite }
   } = useAppSelector(selectProfile);
@@ -32,26 +31,18 @@ const VideoCard: FC<VideoCardProps> = ({ title, id }) => {
     },
     [favorite, id]
   );
+  const { pathname } = useLocation();
 
-  const openPageVideoHandler = () => {
-    const pathTraining = `${String(id)}/`;
-    navigate(pathTraining);
-  };
+  const redirectPath = buildRedirectPath(pathname, videoCategory as string, id);
 
   return (
-    <div
-      className={s.wrapper}
-      onClick={openPageVideoHandler}
-      onKeyPress={openPageVideoHandler}
-      role="link"
-      tabIndex={0}
-    >
+    <Link className={s.wrapper} to={redirectPath}>
       {isFavorite && <span className={s.favorite}>In Favorite</span>}
       <h3 className={s.title}>{convertTitleVideoCard(title)}</h3>
       <div className={s.image}>
         <LoadableImage src={videoPreviewUrl} alt="preview" />
       </div>
-    </div>
+    </Link>
   );
 };
 

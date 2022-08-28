@@ -17,10 +17,20 @@
   position: relative;
   z-index: 10;
 }
+
 .image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 200%;
+}
+
+.favorite {
+  position: absolute;
+  color: #ff5100;
+  right: 5%;
+  top: 5%;
+  font-size: 1rem;
+  z-index: 100;
 }

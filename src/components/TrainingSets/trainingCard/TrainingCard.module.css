@@ -11,6 +11,8 @@
   border-radius: 20px;
   cursor: pointer;
   overflow: hidden;
+  text-decoration: none;
+  color: #fff;
 }
 
 .info {

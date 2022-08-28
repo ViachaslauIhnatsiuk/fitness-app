@@ -9,10 +9,12 @@ import {
   WorkoutFilterByLevel,
   WorkoutStatus
 } from '../../../models/Workout';
+import { getValuesFromObjectByArrayOfId } from '../../helpers';
 import { TrainingState } from './models';
 
 const initialState: TrainingState = {
   trainings: [],
+  favorite: [],
   filterByLevel: WorkoutFilterByLevel.all,
   status: WorkoutStatus.loading,
   filterBySearch: '',
@@ -31,6 +33,30 @@ const fetchTrainings = createAsyncThunk(
       }
       const trainings = docSnap.data() as IWorkouts;
       return Object.values(trainings);
+    } catch (error) {
+      return rejectWithValue('Error fetching trainings');
+    }
+  }
+);
+
+const fetchFavoriteTrainings = createAsyncThunk(
+  'workout/fetchFavoriteTrainings',
+  async (trainingIds: number[], { rejectWithValue }) => {
+    try {
+      const docRef = doc(db, FirestoreCollection.trainings, FirestoreDocument.trainings);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        throw new Error('Trainings dont exists!');
+      }
+      const trainings = docSnap.data() as IWorkouts;
+
+      const favoriteTrainings = getValuesFromObjectByArrayOfId(
+        trainingIds,
+        trainings
+      ) as IWorkout[];
+
+      return favoriteTrainings;
     } catch (error) {
       return rejectWithValue('Error fetching trainings');
     }
@@ -67,8 +93,26 @@ const trainingSlice = createSlice({
         state.error = payload as string;
       }
     );
+    builder.addCase(fetchFavoriteTrainings.pending, (state) => {
+      state.status = WorkoutStatus.loading;
+      state.error = '';
+    });
+    builder.addCase(
+      fetchFavoriteTrainings.fulfilled,
+      (state, { payload }: PayloadAction<IWorkout[]>) => {
+        state.status = WorkoutStatus.resolved;
+        state.favorite = payload;
+      }
+    );
+    builder.addCase(
+      fetchFavoriteTrainings.rejected,
+      (state, { payload }: PayloadAction<unknown | string>) => {
+        state.status = WorkoutStatus.rejected;
+        state.error = payload as string;
+      }
+    );
   }
 });
 
 export const { setTrainings, setFilterByLevel, setFilterBySearch } = trainingSlice.actions;
-export { trainingSlice, fetchTrainings };
+export { trainingSlice, fetchTrainings, fetchFavoriteTrainings };

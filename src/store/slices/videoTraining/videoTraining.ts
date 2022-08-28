@@ -9,7 +9,7 @@ import {
   IVideos,
   WorkoutStatus
 } from '../../../models/Workout';
-import { getValuesFromObjectByArrayOfId } from './helpers';
+import { getValuesFromObjectByArrayOfId } from '../../helpers';
 import { VideoTrainingState } from './models';
 
 const initialState: VideoTrainingState = {
@@ -50,7 +50,7 @@ const fetchFavoriteVideos = createAsyncThunk(
       }
       const videos = docSnap.data() as IVideos;
 
-      const favoriteVideos = getValuesFromObjectByArrayOfId(videoIds, videos);
+      const favoriteVideos = getValuesFromObjectByArrayOfId(videoIds, videos) as IVideo[];
 
       return favoriteVideos;
     } catch (error) {

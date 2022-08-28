@@ -26,7 +26,7 @@ const FavoriteVideos: FC = () => {
       <h2 className={s.title}>Favorite Videos</h2>
       {status === WorkoutStatus.loading && <Loader />}
       {status === WorkoutStatus.resolved && (
-        <div className={s.cards}>
+        <div className={s.videos}>
           {favoriteVideos.map(({ title, id, category }) => {
             return <VideoCard key={uuidv4()} title={title} id={id} videoCategory={category} />;
           })}

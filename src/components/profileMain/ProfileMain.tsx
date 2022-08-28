@@ -4,12 +4,14 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
-import { useAuth } from '../../hooks/useAuth';
-import s from './ProfileMain.module.css';
 import { useAppSelector } from '../../store/model';
 import { selectProfile } from '../../store/selectors';
+import { useAuth } from '../../hooks/useAuth';
+import { Avatar } from '../UI/avatar/Avatar';
+import s from './ProfileMain.module.css';
 
 const ProfileMain: FC = () => {
+  const [imageUrl, setImageUrl] = useState<string>('');
   const [theme, setTheme] = useState<boolean>(false);
   const { currentUser } = useAppSelector(selectProfile);
   const { handleLogout } = useAuth();
@@ -17,7 +19,7 @@ const ProfileMain: FC = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.page}>Profile</div>
-      <div className={s.avatar}></div>
+      <Avatar imageUrl={imageUrl} setImageUrl={setImageUrl} />
       <div className={s.name}>{currentUser.name}</div>
       <div className={s.email}>{currentUser.email}</div>
       <div className={s.settings}>

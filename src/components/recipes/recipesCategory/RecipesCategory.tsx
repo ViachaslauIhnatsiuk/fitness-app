@@ -50,20 +50,22 @@ const RecipesCategory = () => {
       </form>
       {isLoading && <Loader />}
       {error && <h2>{error}</h2>}
-      {recipes.totalResults ? (
-        <>
-          {isUploaded && (
+      {isUploaded &&
+        (recipes.totalResults ? (
+          <>
             <h3 className={s.subtitle}>
               {left}-{right} of {recipes.totalResults} results for query=&ldquo;
               {queryParams.query}
               &rdquo;, type=&ldquo;{queryParams.type}&rdquo;
             </h3>
-          )}
-          <PaginatedItems />
-        </>
-      ) : (
-        <p>По Вашему запросу ничего не найдено</p>
-      )}
+            <PaginatedItems />
+          </>
+        ) : (
+          <h3 className={s.subtitle}>
+            Nothing was found for your query &ldquo;{queryParams.query}&rdquo; in the &ldquo;
+            {queryParams.type}&rdquo; category
+          </h3>
+        ))}
     </>
   );
 };

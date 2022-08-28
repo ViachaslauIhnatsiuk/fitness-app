@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
+import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../store/store';
 import { setNewUser } from '../../../store/slices/profileSlice';
@@ -30,7 +31,7 @@ const RegistrationUserData: FC = () => {
       <div className="selects">
         {registrationSelects.map((select) => {
           return (
-            <div className="select" key={Math.random()}>
+            <div className="select" key={uuidv4()}>
               <div className="select-label">{select[0].toUpperCase() + select.slice(1)}</div>
               <Select
                 classNamePrefix="select"

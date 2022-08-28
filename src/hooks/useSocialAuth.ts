@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   db,
@@ -5,36 +6,48 @@ import {
   signInWithPopup,
   googleProvider,
   facebookProvider,
-  twitterProvider,
   doc,
-  setDoc
+  setDoc,
+  User
 } from '../firebase/firebase';
 
 const useSocialAuth = () => {
+  const [socialAuthError, setSocialAuthError] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const signInWithGoogle = async () => {
-    const { user } = await signInWithPopup(auth, googleProvider);
+  const setUserToDatabase = async (user: User) => {
     setDoc(doc(db, 'users', user.uid), {
       email: user.email,
+      name: user.email?.split('@')[0],
       id: user.uid,
       token: await user.getIdToken(true)
     }).catch((error: Error) => error);
     navigate('/');
   };
 
-  const signInWithFacebook = async () => {
-    await signInWithPopup(auth, facebookProvider);
+  const signInWithGoogle = async () => {
+    try {
+      const { user } = await signInWithPopup(auth, googleProvider);
+      await setUserToDatabase(user);
+    } catch {
+      setSocialAuthError(true);
+    }
   };
 
-  const signInWithTwitter = async () => {
-    await signInWithPopup(auth, twitterProvider);
+  const signInWithFacebook = async () => {
+    try {
+      const { user } = await signInWithPopup(auth, facebookProvider);
+      await setUserToDatabase(user);
+    } catch {
+      setSocialAuthError(true);
+    }
   };
 
   return {
     signInWithGoogle,
     signInWithFacebook,
-    signInWithTwitter
+    setSocialAuthError,
+    socialAuthError
   };
 };
 

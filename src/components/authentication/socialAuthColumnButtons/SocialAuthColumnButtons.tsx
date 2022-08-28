@@ -1,15 +1,21 @@
 import React, { FC } from 'react';
-import { FaFacebook, FaTwitter } from 'react-icons/fa';
+import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { useSocialAuth } from '../../../hooks/useSocialAuth';
 import { SocialAuthButton } from '../../UI/socialAuthButton/SocialAuthButton';
+import { Notification } from '../../UI/notification/Notification';
+import { NotificationMessage } from '../../../models/notifications';
 import s from './SocialAuthColumnButtons.module.css';
 
 const SocialAuthColumnButtons: FC = () => {
-  const { signInWithGoogle, signInWithFacebook, signInWithTwitter } = useSocialAuth();
+  const { socialAuthError, setSocialAuthError, signInWithGoogle, signInWithFacebook } =
+    useSocialAuth();
 
   return (
     <div className={s.wrapper}>
+      {socialAuthError && (
+        <Notification text={NotificationMessage.authWarning} handler={setSocialAuthError} />
+      )}
       <SocialAuthButton
         icon={<FcGoogle />}
         method={signInWithGoogle}
@@ -20,12 +26,6 @@ const SocialAuthColumnButtons: FC = () => {
         icon={<FaFacebook />}
         method={signInWithFacebook}
         title="Continue with Facebook"
-      />
-      <SocialAuthButton
-        style={{ color: '#1da1f2' }}
-        icon={<FaTwitter />}
-        method={signInWithTwitter}
-        title="Continue with Twitter"
       />
     </div>
   );

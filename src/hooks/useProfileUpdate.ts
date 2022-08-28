@@ -1,30 +1,38 @@
 import { useState } from 'react';
-import { db, auth, doc, setDoc, updateEmail, updatePassword, User } from '../firebase/firebase';
+import { IUserData } from '../components/registration/registrationUserData/models';
+import { db, auth, doc, setDoc, getDoc, updatePassword, User } from '../firebase/firebase';
 
 const useProfileUpdate = () => {
   const [success, setSuccess] = useState<boolean>(false);
 
-  const updateUserProfile = async (
-    name: string,
-    email: string,
-    password: string
-  ): Promise<void> => {
+  const updateUserProfile = async (name: string, password: string): Promise<void> => {
     const user = auth.currentUser as User;
     await updatePassword(user, password);
-    await updateEmail(user, email);
     setDoc(doc(db, 'users', user.uid), {
       name,
-      email,
+      email: user.email,
       password,
       id: user.uid,
       token: await user.getIdToken(true)
     }).catch((error: Error) => error);
     setSuccess(true);
   };
+
+  const updateUserData = async (userData: IUserData) => {
+    const user = auth.currentUser as User;
+    const userProfile = (await getDoc(doc(db, 'users', user.uid))).data();
+    setDoc(doc(db, 'users', user.uid), {
+      ...userProfile,
+      userData
+    }).catch((error: Error) => error);
+    setSuccess(true);
+  };
+
   return {
     success,
     setSuccess,
-    updateUserProfile
+    updateUserProfile,
+    updateUserData
   };
 };
 

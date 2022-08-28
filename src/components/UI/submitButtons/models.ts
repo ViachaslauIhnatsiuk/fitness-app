@@ -4,6 +4,12 @@ interface RegSubmitButtonProps {
   handler(name: string, email: string, password: string): Promise<void>;
 }
 
+interface UpdateProfileSubmitButtonProps {
+  path: string;
+  value: string;
+  handler(name: string, password: string): Promise<void>;
+}
+
 interface AuthSubmitButtonProps {
   path: string;
   value: string;
@@ -16,4 +22,9 @@ interface ForgotSubmitButtonProps {
   handler(email: string): Promise<void>;
 }
 
-export type { RegSubmitButtonProps, AuthSubmitButtonProps, ForgotSubmitButtonProps };
+export type {
+  RegSubmitButtonProps,
+  UpdateProfileSubmitButtonProps,
+  AuthSubmitButtonProps,
+  ForgotSubmitButtonProps
+};

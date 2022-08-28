@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { API_KEY, BASE_URL } from '../constants';
-import type { RecipesState } from '../model';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { API_KEY, BASE_URL } from '../../constants';
+import type { RecipeResponse, RecipesState, RecipesRequestConfig } from './model';
+import { getMixedQueries } from '../../../helpers/getMixedQueries';
 
 const initialState: RecipesState = {
   recipes: {
@@ -11,19 +12,24 @@ const initialState: RecipesState = {
   },
   isLoading: false,
   isUploaded: false,
-  queryRequest: '',
+  queryParams: {
+    query: '',
+    type: '',
+    offset: 0
+  },
   error: ''
 };
 
 export const fetchRecipes = createAsyncThunk(
   'recipes/fetchRecipes',
-  async (query: string, { rejectWithValue }) => {
+  async (config: RecipesRequestConfig, { rejectWithValue }) => {
     try {
+      const mixedQueries = getMixedQueries(config);
       const response = await fetch(
-        `${BASE_URL}/complexSearch?query=${query}&apiKey=${API_KEY}&number=12`
+        `${BASE_URL}/complexSearch?${mixedQueries}&apiKey=${API_KEY}&number=12`
       ).catch((error: Error) => error);
-      const data = await (response as Response).json();
-      return { recipes: data, queryRequest: query } as RecipesState;
+      const data = (await (response as Response).json()) as RecipeResponse;
+      return { recipes: data, queryParams: config } as RecipesState;
     } catch (error) {
       return rejectWithValue('Error fetching recipes');
     }
@@ -33,13 +39,17 @@ export const fetchRecipes = createAsyncThunk(
 const recipesSlice = createSlice({
   name: 'recipes',
   initialState,
-  reducers: {},
+  reducers: {
+    setQueryParams: (state, { payload }: PayloadAction<RecipesRequestConfig>) => {
+      state.queryParams = payload;
+    }
+  },
   extraReducers: {
     [fetchRecipes.fulfilled.type]: (state, action) => {
       state.recipes = action.payload.recipes;
       state.isLoading = false;
       state.isUploaded = true;
-      state.queryRequest = action.payload.queryRequest;
+      state.queryParams = action.payload.queryParams;
       state.error = '';
     },
     [fetchRecipes.pending.type]: (state) => {
@@ -52,4 +62,5 @@ const recipesSlice = createSlice({
   }
 });
 
+export const { setQueryParams } = recipesSlice.actions;
 export { recipesSlice };

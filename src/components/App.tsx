@@ -13,11 +13,12 @@ import { Layout } from './layout/Layout';
 import { NotFound } from '../pages/notFound/NotFound';
 import { Ration } from './ration/Ration';
 import { Recipes } from './recipes/Recipes';
+import { RecipesCategory } from './recipes/recipesCategory/RecipesCategory';
+import { Recipe } from './recipes/recipe/Recipe';
 import { TrainingSets } from './TrainingSets/TrainingSets';
 import { TrainingVideos } from './TrainingVideos/TrainingVideos';
 import { Exercises } from './TrainingSets/exercises/Exercises';
 import { TrainingActive } from './TrainingSets/trainingActive/TrainingActive';
-import { Recipe } from './recipes/recipe/Recipe';
 import { EditProfile } from './editProfile/EditProfile';
 import { EditPersonalData } from './editPersonalData/EditPersonalData';
 import { Welcome } from '../pages/welcome/Welcome';
@@ -70,7 +71,8 @@ const App: FC = () => {
             <Route path="food" element={<Food />}>
               <Route path="ration" element={<Ration />} />
               <Route path="recipes" element={<Recipes />} />
-              <Route path="recipes/:recipeId" element={<Recipe />} />
+              <Route path="recipes/:category" element={<RecipesCategory />} />
+              <Route path="recipes/:category/:recipeId" element={<Recipe />} />
             </Route>
             <Route path="workout" element={<Workout />}>
               <Route path="videos" element={<TrainingVideos />} />

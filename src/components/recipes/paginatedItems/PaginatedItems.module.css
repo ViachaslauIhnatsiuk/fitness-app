@@ -1,0 +1,61 @@
+.btns_container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+  font-size: 14px;
+  line-height: 21px;
+  color: #808080;
+  gap: 16px;
+}
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btn_active {
+  padding: 2px 6px;
+  width: auto;
+  height: 25px;
+  background-color: #7755ff;
+  border-radius: 3px;
+  color: #ffffff;
+}
+.arrow_prev {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+.arrow_prev a {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: #7755ff;
+}
+.arrow_next {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+.arrow_next a {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: #7755ff;
+}
+.arrow_disabled {
+  cursor: default;
+}
+.arrow_disabled a {
+  color: #808080;
+}

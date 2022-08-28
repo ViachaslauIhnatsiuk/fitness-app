@@ -6,8 +6,11 @@ import s from './Items.module.css';
 
 const Items: FC<ItemsProps> = ({ currentItems }) => {
   return (
-    <div className={s.recipes}>
-      {currentItems.length && currentItems.map((item) => <RecipeCard data={item} key={uuidv4()} />)}
+    <div className={s.wrapper}>
+      <div className={s.recipes}>
+        {currentItems.length &&
+          currentItems.map((item) => <RecipeCard data={item} key={uuidv4()} />)}
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { toggleValueInArray } from '../../helpers/toggleValueInArray';
 import { updateFirestoreState } from '../../helpers/updateFirestoreState';
 import { IUser } from '../../models/User';
 import type { ProfileState } from '../model';
-import { convertDateToString } from '../utils';
+import { convertDateToString } from '../helpers';
 
 const initialState: ProfileState = {
   isAuth: false,

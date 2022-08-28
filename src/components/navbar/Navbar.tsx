@@ -24,7 +24,7 @@ const Navbar: FC = () => {
       <NavLink to="workout/videos" className={s.link} id="workout" onClick={(e) => setLink(e)}>
         <WorkoutButton isActive={active.workout} />
       </NavLink>
-      <NavLink to="food" className={s.link} id="food" onClick={(e) => setLink(e)}>
+      <NavLink to="food/recipes" className={s.link} id="food" onClick={(e) => setLink(e)}>
         <FoodButton isActive={active.food} />
       </NavLink>
       <NavLink to="profile" className={s.link} id="profile" onClick={(e) => setLink(e)}>

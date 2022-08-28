@@ -17,12 +17,6 @@ const Food: FC = () => {
           Daily ration
         </Link>
       </div>
-      {currentLocation === 'food' && (
-        <p className={s.decription}>
-          В этом разделе Вы можете найти подходящий для себя рецепт. Контролировать свой дневной
-          рацион питания.
-        </p>
-      )}
       <Outlet />
     </div>
   );

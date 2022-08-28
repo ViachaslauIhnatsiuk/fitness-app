@@ -1,4 +1,4 @@
-import { IRecipe } from '../../../store/model';
+import type { IRecipe } from '../../../store/slices/recipes/model';
 
 type RecipeCardProps = {
   data: IRecipe;

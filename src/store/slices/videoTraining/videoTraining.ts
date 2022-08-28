@@ -102,20 +102,6 @@ const videoTrainingSlice = createSlice({
         state.error = payload as string;
       }
     );
-    // builder.addCase(fetchTrainingVideoById.pending, (state) => {
-    //   state.status = WorkoutStatus.loading;
-    //   state.error = '';
-    // });
-    // builder.addCase(fetchTrainingVideoById.fulfilled, (state) => {
-    //   state.status = WorkoutStatus.resolved;
-    // });
-    // builder.addCase(
-    //   fetchTrainingVideoById.rejected,
-    //   (state, { payload }: PayloadAction<unknown | string>) => {
-    //     state.status = WorkoutStatus.rejected;
-    //     state.error = payload as string;
-    //   }
-    // );
   }
 });
 

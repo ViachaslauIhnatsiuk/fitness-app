@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useOnScreen } from '../../hooks/useOnScreen';
 import s from './LoadableImage.module.css';
 import { LoadableImageProps } from './models';
 
-const LoadableImage = ({ src, alt = '', onLoad = () => {} }: LoadableImageProps) => {
+const LoadableImage: FC<LoadableImageProps> = ({ src, alt = '', onLoad = () => {} }) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);

@@ -18,7 +18,7 @@ const PaginatedItems: FC = () => {
     dispatch(fetchRecipes({ ...queryParams, offset: itemOffset })).catch((err: Error) => err);
   }, [itemOffset]);
 
-  const handlePageClick = ({ selected }: { selected: number }) => {
+  const handlePageClick = ({ selected }: { selected: number }): void => {
     const newOffset = (selected * itemsPerPage) % recipes.totalResults;
     setItemOffset(newOffset);
   };

@@ -7,7 +7,7 @@ import s from './RecipeDefaultCard.module.css';
 
 const RecipeDefaultCard: FC<RecipeDefaultCardProps> = ({ type, onClick }) => {
   const composePath = `recipesCategory=${type}/`;
-  const imgSrc = process.env.PUBLIC_URL?.concat(`/images/recipePreviews/${concatName(type)}.jpg`);
+  const imgSrc = `/images/recipePreviews/${concatName(type)}.jpg`;
 
   return (
     <Link to={composePath} className={s.link} onClick={() => onClick(type)}>

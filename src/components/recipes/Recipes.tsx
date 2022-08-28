@@ -12,7 +12,7 @@ const Recipes: FC = () => {
   const { queryParams } = useAppSelector(selectRecipes);
   const dispatch = useAppDispatch();
 
-  const handleClickOnDefaultType = (type: string) => {
+  const handleClickOnDefaultType = (type: string): void => {
     dispatch(fetchRecipes({ ...queryParams, type })).catch((err: Error) => err);
   };
 

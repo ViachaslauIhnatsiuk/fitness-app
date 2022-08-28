@@ -1,4 +1,4 @@
-const normalizeRangeItems = (startValue: number, step: number, maxValue: number) => {
+const normalizeRangeItems = (startValue: number, step: number, maxValue: number): number[] => {
   const left = startValue + 1;
 
   let right: number;

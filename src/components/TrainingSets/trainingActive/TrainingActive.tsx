@@ -25,7 +25,7 @@ const TrainingActive: FC = () => {
   const [isTrainingFinished, setTrainingIsFinished] = useState<boolean>(false);
   const [isLastExercise, setIsLastExercise] = useState<boolean>(false);
   const { exerciseGifUrl, getExerciseGifUrl } = useStorage();
-
+  const [statistic, setStatistic] = useState({ cal: 0, time: 0, calPerExercise: 0 });
   const trainingId = params.trainingId as string;
   const redirectPath = `${WorkoutPath.trainings}/${trainingId}/`;
 
@@ -36,11 +36,16 @@ const TrainingActive: FC = () => {
   useEffect(
     function setExercise() {
       if (trainingById) {
-        const { exercises } = trainingById;
+        const { exercises, cal } = trainingById;
+        if (!statistic.cal) {
+          statistic.cal = cal;
+          statistic.calPerExercise = Math.round(cal / exercises.length);
+          setStatistic(statistic);
+        }
         setCurrentExercise(exercises[currentPosition]);
       }
     },
-    [currentPosition, trainingById]
+    [currentPosition, statistic, trainingById]
   );
 
   // timers
@@ -123,8 +128,9 @@ const TrainingActive: FC = () => {
     if (trainingById) {
       changeNumberOfExercise();
       setNextButtonClicked(true);
+      setStatistic({ ...statistic, cal: (statistic.cal -= statistic.calPerExercise) });
     }
-  }, [changeNumberOfExercise, trainingById]);
+  }, [changeNumberOfExercise, statistic, trainingById]);
 
   const onPrevHandler = () => {
     const nextPosition = currentPosition > 0 ? currentPosition - 1 : currentPosition;
@@ -144,6 +150,7 @@ const TrainingActive: FC = () => {
       if (!isNextButtonClicked) {
         changeNumberOfExercise();
       }
+
       startRestTimer();
     }
   }, [
@@ -152,7 +159,8 @@ const TrainingActive: FC = () => {
     isLastExercise,
     isNextButtonClicked,
     counterOfExerciseTimer,
-    startRestTimer
+    startRestTimer,
+    statistic
   ]);
 
   useEffect(() => {
@@ -174,7 +182,7 @@ const TrainingActive: FC = () => {
     <div className={s.wrapper}>
       <Button path={redirectPath} icon={<IoChevronBackCircleOutline />} />
       {isTrainingFinished ? (
-        <TrainingResult />
+        <TrainingResult statisticsOfTraining={statistic} />
       ) : (
         <div className={s.active}>
           {isPreparationTimerRunning && <TrainingPreparation onSkipHandler={onSkipHandler} />}

@@ -27,7 +27,7 @@ const Recipe = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await fetchRecipeByID(+recipeId);
+      const data = await fetchRecipeByID(Number(recipeId));
       setRecipeInfo(data);
     })().catch(() => {});
   }, [recipeId]);
@@ -59,9 +59,9 @@ const Recipe = () => {
             </div>
             <div className={s.description}>
               <p>Ready In Minutes: {recipeInfo.readyInMinutes} min.</p>
-              <p>Cuisines: {Object.values(recipeInfo.cuisines).join(', ')}</p>
-              <p>Diets: {Object.values(recipeInfo.diets).join(', ')}</p>
-              <p>Types: {Object.values(recipeInfo.dishTypes).join(', ')}</p>
+              <p>Cuisines: {recipeInfo.cuisines.join(', ')}</p>
+              <p>Diets: {recipeInfo.diets.join(', ')}</p>
+              <p>Types: {recipeInfo.dishTypes.join(', ')}</p>
             </div>
             <p className={s.summary}>Summary: {transformSummary(recipeInfo.summary)}</p>
           </div>

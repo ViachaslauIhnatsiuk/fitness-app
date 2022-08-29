@@ -35,7 +35,7 @@ const RecipesCategory = () => {
   return (
     <>
       <Button path="/food/recipes" icon={<IoChevronBackCircleOutline />} />
-      <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
+      <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.input_wrapper}>
           <input
             type="text"

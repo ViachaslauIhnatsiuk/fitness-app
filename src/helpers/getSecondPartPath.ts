@@ -1,5 +1,5 @@
 const getSecondPartPath = (path: string): string => {
-  const [, secondPart] = path.slice(1).split('/');
+  const [_, secondPart] = path.slice(1).split('/');
   return secondPart;
 };
 

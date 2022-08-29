@@ -24,7 +24,7 @@ const initialState: ProfileState = {
       goal: 'get fitter'
     },
     statistics: { calorieExpenditure: {}, calorieСonsumption: {} },
-    favorite: { videoTrainings: [], trainings: [] }
+    favorite: { videoTrainings: [], trainings: [], recipes: [] }
   }
 };
 
@@ -70,6 +70,14 @@ const profileSlice = createSlice({
       favorite.trainings = toggleValueInArray(favorite.trainings, trainingId);
       updateFirestoreState(state.currentUser);
     },
+    toggleRecipeInFavorites: (state, { payload: recipeId }: PayloadAction<number>) => {
+      const {
+        currentUser: { favorite }
+      } = state;
+
+      favorite.recipes = toggleValueInArray(favorite.recipes, recipeId);
+      updateFirestoreState(state.currentUser);
+    },
     setCalorieExpenditure: (state, { payload: calorie }: PayloadAction<number>) => {
       const {
         currentUser: { statistics }
@@ -104,6 +112,7 @@ export const {
   setUserState,
   setVideoTrainingToFavorites,
   setTrainingToFavorites,
+  toggleRecipeInFavorites,
   setCalorieExpenditure,
   setCalorieСonsumption
 } = profileSlice.actions;

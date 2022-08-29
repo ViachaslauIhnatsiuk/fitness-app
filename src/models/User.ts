@@ -2,6 +2,7 @@ import { IFavorite } from './Favorite';
 import { IStatistics } from './Statistics';
 
 interface IUser {
+  avatar: string;
   name: string;
   email: string;
   password: string;

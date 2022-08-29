@@ -9,6 +9,7 @@ import { convertDateToString } from '../helpers';
 const initialState: ProfileState = {
   isAuth: false,
   currentUser: {
+    avatar: '',
     name: '',
     email: '',
     password: '',

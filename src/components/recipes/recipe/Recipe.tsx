@@ -22,6 +22,7 @@ const Recipe = () => {
   const recipeId = params.recipeId || '';
   const category = params.category || '';
   const path = `/food/recipes/${category}/`;
+  const { id, title, image } = recipeInfo;
 
   useEffect(() => {
     (async () => {
@@ -30,7 +31,7 @@ const Recipe = () => {
     })().catch(() => {});
   }, [recipeId]);
 
-  const toggleFavoriteRecipe = () => dispatch(toggleRecipeInFavorites(+recipeId));
+  const toggleFavoriteRecipe = () => dispatch(toggleRecipeInFavorites({ id, title, image }));
 
   return (
     <div>
@@ -38,7 +39,7 @@ const Recipe = () => {
       {Object.keys(recipeInfo).length && (
         <div className={s.wrapper}>
           <div>
-            {favorites.recipes.includes(+recipeId) ? (
+            {favorites.recipes.find((recipe) => recipe.id === recipeInfo.id) ? (
               <Button icon={<MdFavorite />} onClick={toggleFavoriteRecipe} />
             ) : (
               <Button icon={<MdFavoriteBorder />} onClick={toggleFavoriteRecipe} />

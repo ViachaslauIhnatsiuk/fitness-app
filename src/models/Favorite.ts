@@ -1,7 +1,9 @@
+import { IRecipeInfoShort } from './modelRecipeById';
+
 interface IFavorite {
   videoTrainings: number[];
   trainings: number[];
-  recipes: number[];
+  recipes: IRecipeInfoShort[];
 }
 
 enum FavoritePath {

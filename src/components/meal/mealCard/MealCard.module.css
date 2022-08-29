@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 250px;
+  padding: 10px;
+  border: 1px solid #7755ff;
+  border-radius: 10px;
+  row-gap: 20px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  flex: 1 1 auto;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.meals,
+.calories {
+  font-size: 13px;
+  color: #d6d1d2;
+}
+
+.meals {
+  border-right: 1px solid #d6d1d2;
+  padding-right: 5px;
+}

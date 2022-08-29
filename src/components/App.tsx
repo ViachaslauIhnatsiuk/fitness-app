@@ -11,7 +11,7 @@ import { Food } from '../pages/food/Food';
 import { Profile } from '../pages/profile/Profile';
 import { Layout } from './layout/Layout';
 import { NotFound } from '../pages/notFound/NotFound';
-import { Ration } from './ration/Ration';
+import { Meal } from './meal/Meal';
 import { Recipes } from './recipes/Recipes';
 import { RecipesCategory } from './recipes/recipesCategory/RecipesCategory';
 import { Recipe } from './recipes/recipe/Recipe';
@@ -69,7 +69,7 @@ const App: FC = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="food" element={<Food />}>
-              <Route path="ration" element={<Ration />} />
+              <Route path="meal" element={<Meal />} />
               <Route path="recipes" element={<Recipes />} />
               <Route path="recipes/:category" element={<RecipesCategory />} />
               <Route path="recipes/:category/:recipeId" element={<Recipe />} />

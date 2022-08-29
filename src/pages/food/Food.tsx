@@ -13,8 +13,8 @@ const Food: FC = () => {
         <Link to="recipes" className={currentLocation === 'recipes' ? s.link_active : s.link}>
           Recipes
         </Link>
-        <Link to="ration" className={currentLocation === 'ration' ? s.link_active : s.link}>
-          Daily ration
+        <Link to="meal" className={currentLocation === 'meal' ? s.link_active : s.link}>
+          Meal
         </Link>
       </div>
       <Outlet />

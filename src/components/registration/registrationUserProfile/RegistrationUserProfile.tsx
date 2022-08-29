@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useReg } from '../../../hooks/useReg';
 import { IUserProfile } from './models';
@@ -12,9 +12,11 @@ import { EmailInput } from '../../UI/emailInput/EmailInput';
 import { PasswordInput } from '../../UI/passwordInput/PasswordInput';
 import { ConfirmPasswordInput } from '../../UI/confirmPasswordInput/ConfirmPasswordInput';
 import { RegSubmitButton } from '../../UI/submitButtons/regSubmitButton/RegSubmitButton';
+import { Avatar } from '../../UI/avatar/Avatar';
 import s from './RegistrationUserProfile.module.css';
 
 const RegistrationUserProfile: FC = () => {
+  const [imageUrl, setImageUrl] = useState<string>('');
   const { registrationError, handleRegistration } = useReg();
   const methods = useForm<IUserProfile>({ mode: 'onBlur' });
   const { handleSubmit, reset } = methods;
@@ -22,7 +24,7 @@ const RegistrationUserProfile: FC = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.title}>Fill Your Profile</div>
-      <div className={s.avatar} />
+      <Avatar setImageUrl={setImageUrl} />
       {registrationError && <div className={s.error}>This email address is already in use</div>}
       <FormProvider {...methods}>
         <form className={s.form} onSubmit={handleSubmit(() => reset())}>
@@ -31,7 +33,12 @@ const RegistrationUserProfile: FC = () => {
           <PasswordInput />
           <ConfirmPasswordInput />
           <RememberMe />
-          <RegSubmitButton path="" value="Continue" handler={handleRegistration} />
+          <RegSubmitButton
+            avatar={imageUrl}
+            path=""
+            value="Complete registration"
+            handler={handleRegistration}
+          />
         </form>
       </FormProvider>
       <Separator text="or continue with" />

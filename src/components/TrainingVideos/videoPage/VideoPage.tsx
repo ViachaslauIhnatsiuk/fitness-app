@@ -18,12 +18,20 @@ import {
   setVideoTrainingToFavorites
 } from '../../../store/slices/profileSlice';
 import { Radio } from '../../UI/radio/Radio';
+import { useAppSelector } from '../../../store/model';
+import { selectProfile } from '../../../store/selectors';
 
 const VideoPage: FC = () => {
   const { videoId } = useParams();
   const dispatch = useAppDispatch();
   const { getVideoPreviewUrl, getVideoUrl, videoPreviewUrl, videoUrl } = useStorage();
   const { getVideoById, isLoading, video } = useVideo();
+  const {
+    currentUser: {
+      favorite: { videoTrainings }
+    }
+  } = useAppSelector(selectProfile);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [sets, setSets] = useState<number>(3);
 
   useEffect(() => {
@@ -31,7 +39,7 @@ const VideoPage: FC = () => {
   }, [getVideoById, videoId]);
 
   useEffect(
-    function setVideoAssets(): void {
+    function setVideoAssets() {
       (async () => {
         if (video) {
           const { category, title } = video;
@@ -41,6 +49,14 @@ const VideoPage: FC = () => {
       })().catch((err: Error) => err);
     },
     [getVideoPreviewUrl, getVideoUrl, video]
+  );
+
+  useEffect(
+    function changeStateIsFavorite() {
+      const state = videoTrainings.includes(Number(videoId));
+      setIsFavorite(state);
+    },
+    [videoId, videoTrainings]
   );
 
   const addToFavoriteHandler = () => {
@@ -75,9 +91,13 @@ const VideoPage: FC = () => {
         ) : (
           video && (
             <>
-              <div className={s.header}>
+              <div className={s.header} style={{}}>
                 <h2 className={s.title}>{convertTitleVideoCard(video.title)}</h2>
-                <Button onClick={addToFavoriteHandler} isStyled text="Add To Favorites" />
+                <Button
+                  onClick={addToFavoriteHandler}
+                  isStyled
+                  text={isFavorite ? 'Remove' : 'Add To Favorites'}
+                />
               </div>
               <VideoPlayer previewUrl={videoPreviewUrl} videoUrl={videoUrl} />
               <VideoTable videoDetails={video.details} />

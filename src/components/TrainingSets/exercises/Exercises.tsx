@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useLocation, useParams } from 'react-router-dom';
@@ -10,12 +10,20 @@ import { useTraining } from '../../../hooks/useTraining';
 import Loader from '../../UI/loader/Loader';
 import { useAppDispatch } from '../../../store/store';
 import { setTrainingToFavorites } from '../../../store/slices/profileSlice';
+import { useAppSelector } from '../../../store/model';
+import { selectProfile } from '../../../store/selectors';
 
 const Exercises: FC = () => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
   const { trainingId } = useParams();
   const { getExercisesById, exercisesById, isLoading } = useTraining();
+  const {
+    currentUser: {
+      favorite: { trainings }
+    }
+  } = useAppSelector(selectProfile);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const redirectPath = `${pathname}active`;
 
@@ -28,13 +36,21 @@ const Exercises: FC = () => {
     if (trainingId) dispatch(setTrainingToFavorites(Number(trainingId)));
   };
 
+  useEffect(
+    function changeStateIsFavorite() {
+      const state = trainings.includes(Number(trainingId));
+      setIsFavorite(state);
+    },
+    [trainingId, trainings]
+  );
+
   return (
     <div className={s.wrapper}>
       <div className={s.header}>
         <Button path={WorkoutPath.trainings} icon={<IoChevronBackCircleOutline />} />
         <h2>Workout Activity</h2>
         <button onClick={addToFavoriteHandler} type="button">
-          Add To Favorite
+          {isFavorite ? 'Remove' : 'Add To Favorite'}
         </button>
       </div>
       {isLoading ? (

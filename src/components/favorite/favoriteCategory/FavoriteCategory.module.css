@@ -10,12 +10,14 @@
   border-radius: 10px;
   cursor: pointer;
   overflow: hidden;
+  text-decoration: none;
 }
 
 .title {
   position: relative;
   font-size: 1rem;
   z-index: 10;
+  color: #fff;
 }
 
 .image {

@@ -47,6 +47,7 @@ const profileSlice = createSlice({
       currentUser.name = user.name;
       currentUser.password = user.password;
       currentUser.token = user.token;
+      currentUser.avatar = user.avatar;
 
       if (favorite) currentUser.favorite = favorite;
       if (statistics) currentUser.statistics = statistics;

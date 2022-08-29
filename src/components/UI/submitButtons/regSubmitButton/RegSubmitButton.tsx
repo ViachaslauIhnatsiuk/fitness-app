@@ -5,7 +5,7 @@ import { IUserProfile } from '../../../registration/registrationUserProfile/mode
 import { RegSubmitButtonProps } from '../models';
 import s from './RegSubmitButton.module.css';
 
-const RegSubmitButton: FC<RegSubmitButtonProps> = ({ path, value, handler }) => {
+const RegSubmitButton: FC<RegSubmitButtonProps> = ({ avatar, path, value, handler }) => {
   const {
     getValues,
     reset,
@@ -13,7 +13,7 @@ const RegSubmitButton: FC<RegSubmitButtonProps> = ({ path, value, handler }) => 
   } = useFormContext<IUserProfile>();
 
   const handleSubmit = async () => {
-    await handler(...getValues(['name', 'email', 'password'])).catch();
+    await handler(avatar, ...getValues(['name', 'email', 'password'])).catch();
     reset();
   };
 

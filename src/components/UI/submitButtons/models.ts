@@ -1,7 +1,8 @@
 interface RegSubmitButtonProps {
+  avatar: string;
   path: string;
   value: string;
-  handler(name: string, email: string, password: string): Promise<void>;
+  handler(avatar: string, name: string, email: string, password: string): Promise<void>;
 }
 
 interface UpdateProfileSubmitButtonProps {

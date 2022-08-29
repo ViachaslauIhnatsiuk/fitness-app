@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { calculateCalories } from '../utils';
 import { tableHeaders, tableRows } from './constants';
 import { VideoTableProps } from './models';
-import { addPercentage } from './utils';
 import s from './VideoTable.module.css';
 
 const VideoTable: FC<VideoTableProps> = ({ videoDetails: { cal, levels, reps, rest } }) => {
@@ -13,18 +14,18 @@ const VideoTable: FC<VideoTableProps> = ({ videoDetails: { cal, levels, reps, re
       <thead>
         <tr>
           {tableHeaders.map((header) => (
-            <th>{header}</th>
+            <th key={uuidv4()}>{header}</th>
           ))}
         </tr>
       </thead>
       <tbody>
         {tableRows.map((row, index) => (
-          <tr>
+          <tr key={uuidv4()}>
             <td>{row}</td>
             <td>{levels[index]}</td>
             <td>{reps.replace('reps', '')}</td>
             <td>{rest}</td>
-            <td>{addPercentage(cal, index)}</td>
+            <td>{calculateCalories(levels[index], cal)}</td>
           </tr>
         ))}
       </tbody>

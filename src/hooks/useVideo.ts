@@ -29,7 +29,6 @@ const useVideo = () => {
     },
     [videos]
   );
-
   return { isLoading, video, getVideoById, getVideosByCategory };
 };
 

@@ -2,6 +2,7 @@ import { IWorkout, WorkoutFilterByLevel, WorkoutStatus } from '../../../models/W
 
 type TrainingState = {
   trainings: IWorkout[];
+  favorite: IWorkout[];
   filterBySearch: string;
   filterByLevel: WorkoutFilterByLevel;
   status: WorkoutStatus;

@@ -4,9 +4,9 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: 0.4rem 1.2rem;
-  width: 20%;
+  width: 10%;
   height: 0;
-  padding-top: 20%;
+  padding-top: 10%;
   border-radius: 10px;
   cursor: pointer;
   overflow: hidden;
@@ -15,6 +15,7 @@
 
 .title {
   position: relative;
+  font-size: 1rem;
   z-index: 10;
   color: #fff;
 }
@@ -23,6 +24,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
 }

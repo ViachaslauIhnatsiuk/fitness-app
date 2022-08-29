@@ -13,10 +13,10 @@
   justify-content: center;
   align-items: center;
   border: #6b03fd 1px solid;
-  width: 315px;
+  width: fit-content;
   height: 50px;
   border-radius: 99px;
-  padding: 0.2rem 1rem;
+  padding: 0rem 2rem;
   column-gap: 0.6rem;
   color: #dedede;
   font-size: 1rem;

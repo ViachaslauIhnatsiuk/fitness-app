@@ -9,10 +9,12 @@ import {
   IVideos,
   WorkoutStatus
 } from '../../../models/Workout';
+import { getValuesFromObjectByArrayOfId } from '../../helpers';
 import { VideoTrainingState } from './models';
 
 const initialState: VideoTrainingState = {
   videos: [],
+  favorite: [],
   categories: [],
   status: WorkoutStatus.loading,
   error: ''
@@ -30,6 +32,27 @@ const fetchTrainingVideos = createAsyncThunk(
       }
       const videos = docSnap.data() as IVideos;
       return Object.values(videos);
+    } catch (error) {
+      return rejectWithValue('Error fetching videos');
+    }
+  }
+);
+
+const fetchFavoriteVideos = createAsyncThunk(
+  'workout/fetchFavoriteVideos',
+  async (videoIds: number[], { rejectWithValue }) => {
+    try {
+      const docRef = doc(db, FirestoreCollection.videoTrainings, FirestoreDocument.videos);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        throw new Error('Videos dont exists!');
+      }
+      const videos = docSnap.data() as IVideos;
+
+      const favoriteVideos = getValuesFromObjectByArrayOfId(videoIds, videos) as IVideo[];
+
+      return favoriteVideos;
     } catch (error) {
       return rejectWithValue('Error fetching videos');
     }
@@ -102,22 +125,26 @@ const videoTrainingSlice = createSlice({
         state.error = payload as string;
       }
     );
-    // builder.addCase(fetchTrainingVideoById.pending, (state) => {
-    //   state.status = WorkoutStatus.loading;
-    //   state.error = '';
-    // });
-    // builder.addCase(fetchTrainingVideoById.fulfilled, (state) => {
-    //   state.status = WorkoutStatus.resolved;
-    // });
-    // builder.addCase(
-    //   fetchTrainingVideoById.rejected,
-    //   (state, { payload }: PayloadAction<unknown | string>) => {
-    //     state.status = WorkoutStatus.rejected;
-    //     state.error = payload as string;
-    //   }
-    // );
+    builder.addCase(fetchFavoriteVideos.pending, (state) => {
+      state.status = WorkoutStatus.loading;
+      state.error = '';
+    });
+    builder.addCase(
+      fetchFavoriteVideos.fulfilled,
+      (state, { payload }: PayloadAction<IVideo[]>) => {
+        state.status = WorkoutStatus.resolved;
+        state.favorite = payload;
+      }
+    );
+    builder.addCase(
+      fetchFavoriteVideos.rejected,
+      (state, { payload }: PayloadAction<unknown | string>) => {
+        state.status = WorkoutStatus.rejected;
+        state.error = payload as string;
+      }
+    );
   }
 });
 
 export const { setVideos, setCategories } = videoTrainingSlice.actions;
-export { videoTrainingSlice, fetchTrainingVideos, fetchVideoCategories };
+export { videoTrainingSlice, fetchTrainingVideos, fetchVideoCategories, fetchFavoriteVideos };

@@ -31,12 +31,6 @@ const Recipe = () => {
           <h3 className={s.title}>{recipeInfo.title}</h3>
           <div className={s.recipe_info}>
             <img className={s.image} src={recipeInfo.image} alt={recipeInfo.sourceName} />
-            <div className={s.description}>
-              <p>Ready In Minutes: {recipeInfo.readyInMinutes} min.</p>
-              <p>Cuisines: {Object.values(recipeInfo.cuisines).join(', ')}</p>
-              <p>Diets: {Object.values(recipeInfo.diets).join(', ')}</p>
-              <p>Types: {Object.values(recipeInfo.dishTypes).join(', ')}</p>
-            </div>
             <div className={s.ingredients}>
               Ingredients:
               {recipeInfo.extendedIngredients.map(({ name, measures }) => (
@@ -44,6 +38,12 @@ const Recipe = () => {
                   {concatFieldOfIngredient(name, measures.metric.amount, measures.metric.unitShort)}
                 </span>
               ))}
+            </div>
+            <div className={s.description}>
+              <p>Ready In Minutes: {recipeInfo.readyInMinutes} min.</p>
+              <p>Cuisines: {Object.values(recipeInfo.cuisines).join(', ')}</p>
+              <p>Diets: {Object.values(recipeInfo.diets).join(', ')}</p>
+              <p>Types: {Object.values(recipeInfo.dishTypes).join(', ')}</p>
             </div>
             <p className={s.summary}>Summary: {transformSummary(recipeInfo.summary)}</p>
           </div>

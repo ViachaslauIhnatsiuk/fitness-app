@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { fetchRecipeByID } from '../../../helpers/fetchRecipeById';
 import { IRecipeInfo } from '../../../models/modelRecipeById';
@@ -13,6 +13,7 @@ import { useAppDispatch } from '../../../store/store';
 import { useAppSelector } from '../../../store/model';
 import { selectFavorites } from '../../../store/selectors';
 import { toggleRecipeInFavorites } from '../../../store/slices/profileSlice';
+import { getPrevLocation } from '../../../helpers/getPrevLocation';
 
 const Recipe = () => {
   const [recipeInfo, setRecipeInfo] = useState<IRecipeInfo>({} as IRecipeInfo);
@@ -20,8 +21,8 @@ const Recipe = () => {
   const favorites = useAppSelector(selectFavorites);
   const params = useParams();
   const recipeId = params.recipeId || '';
-  const category = params.category || '';
-  const path = `/food/recipes/${category}/`;
+  const location = useLocation();
+  const prevLocation = getPrevLocation(location.pathname);
   const { id, title, image } = recipeInfo;
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const Recipe = () => {
 
   return (
     <div>
-      <Button path={path} icon={<IoChevronBackCircleOutline />} />
+      <Button path={prevLocation} icon={<IoChevronBackCircleOutline />} />
       {Object.keys(recipeInfo).length && (
         <div className={s.wrapper}>
           <div>

@@ -33,6 +33,7 @@ import s from './App.module.css';
 import { IUser } from '../models/User';
 import { FavoriteVideos } from './favorite/favoriteVideos/FavoriteVideos';
 import { FavoriteTrainings } from './favorite/FavoriteTrainings/FavoriteTrainings';
+import { FavoriteRecipes } from './favorite/favoriteRecipes/FavoriteRecipes';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -87,6 +88,8 @@ const App: FC = () => {
             <Route path="profile/edit-personal-data" element={<EditPersonalData />} />
             <Route path="favorite/video-trainings" element={<FavoriteVideos />} />
             <Route path="favorite/trainings" element={<FavoriteTrainings />} />
+            <Route path="favorite/recipes" element={<FavoriteRecipes />} />
+            <Route path="favorite/recipes/:recipeId" element={<Recipe />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         ) : (

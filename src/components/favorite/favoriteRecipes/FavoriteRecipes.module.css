@@ -1,0 +1,30 @@
+.wrapper {
+  font-size: 30px;
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.title {
+  text-align: center;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(4, 3fr);
+  gap: 10px;
+  padding-top: 20px;
+}
+
+@media (max-width: 1120px) {
+  .content {
+    grid-template-columns: repeat(3, 4fr);
+  }
+}
+
+@media (max-width: 870px) {
+  .content {
+    grid-template-columns: repeat(2, 6fr);
+  }
+}

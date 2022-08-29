@@ -26,7 +26,8 @@ const initialState: ProfileState = {
       goal: 'get fitter'
     },
     statistics: { calorieExpenditure: {}, calorieСonsumption: {} },
-    favorite: { videoTrainings: [], trainings: [], recipes: [] }
+    favorite: { videoTrainings: [], trainings: [], recipes: [] },
+    meals: {}
   }
 };
 

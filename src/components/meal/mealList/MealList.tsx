@@ -7,11 +7,12 @@ import {
   DraggableLocation
 } from 'react-beautiful-dnd';
 import { MealCard } from '../mealCard/MealCard';
-import { mealsTitles } from './constants';
+import { NewMealCard } from '../newMealCard/NewMealCard';
+import { meals } from './constants';
 import './MealList.css';
 
 const MealList: FC = () => {
-  const [cardsOrder, updateCardsOrder] = useState<{ id: number; title: string }[]>(mealsTitles);
+  const [cardsOrder, updateCardsOrder] = useState<{ id: number; title: string }[]>(meals);
 
   const handleOnDragEnd = (result: DropResult): void => {
     const cards = Array.from(cardsOrder);
@@ -30,6 +31,7 @@ const MealList: FC = () => {
                 <Draggable key={id} draggableId={id.toString()} index={index}>
                   {(provider) => (
                     <div
+                      className="card_wrapper"
                       ref={provider.innerRef}
                       {...provider.draggableProps}
                       {...provider.dragHandleProps}
@@ -40,6 +42,7 @@ const MealList: FC = () => {
                 </Draggable>
               );
             })}
+            <NewMealCard />
             {provided.placeholder}
           </div>
         )}

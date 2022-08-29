@@ -7,12 +7,14 @@
   border: 1px solid #7755ff;
   border-radius: 10px;
   row-gap: 20px;
+  background-color: #1f222a;
 }
 
 .header {
   width: 100%;
   display: flex;
   align-items: center;
+  cursor: default;
 }
 
 .title {

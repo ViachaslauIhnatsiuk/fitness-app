@@ -1,6 +1,6 @@
 enum Links {
   Recipes = 'recipes',
-  Ration = 'ration'
+  Meal = 'meal'
 }
 
 export { Links };

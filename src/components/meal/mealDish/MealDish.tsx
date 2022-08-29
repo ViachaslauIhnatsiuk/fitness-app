@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { IoTrashOutline } from 'react-icons/io5';
 import image from '../../../assets/soup.jpg';
 import s from './MealDish.module.css';
 
@@ -11,6 +12,7 @@ const MealDish: FC = () => {
         <div className={s.calories}>100 calories</div>
         <div className={s.time}>10:00</div>
       </div>
+      <IoTrashOutline className={s.remove} />
     </div>
   );
 };

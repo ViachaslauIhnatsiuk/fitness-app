@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { MealDish } from '../mealDish/MealDish';
+import { NewDish } from '../newDish/NewDish';
 import { MealCardProps } from './models';
 import s from './MealCard.module.css';
 
@@ -15,7 +16,7 @@ const MealCard: FC<MealCardProps> = ({ title }) => {
       </div>
       <MealDish />
       <MealDish />
-      <MealDish />
+      <NewDish />
     </div>
   );
 };

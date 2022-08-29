@@ -2,7 +2,7 @@ interface IRecipe {
   id: number;
   title: string;
   image: string;
-  imageType: string;
+  imageType?: string;
 }
 
 type RecipesRequestConfig = {

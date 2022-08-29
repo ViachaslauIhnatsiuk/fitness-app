@@ -1,24 +1,30 @@
 .wrapper {
   font-size: 30px;
   color: #ffffff;
+  padding: 20px;
   width: 100%;
   padding: 10px;
 }
 
-.recipes {
+.title {
+  text-align: center;
+}
+
+.content {
   display: grid;
   grid-template-columns: repeat(4, 3fr);
   gap: 10px;
+  padding-top: 20px;
 }
 
 @media (max-width: 1120px) {
-  .recipes {
+  .content {
     grid-template-columns: repeat(3, 4fr);
   }
 }
 
 @media (max-width: 870px) {
-  .recipes {
+  .content {
     grid-template-columns: repeat(2, 6fr);
   }
 }

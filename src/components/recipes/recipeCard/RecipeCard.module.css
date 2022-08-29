@@ -1,14 +1,14 @@
 .link {
-  height: 150px;
-  width: 250px;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
   transition: 0.5s;
 }
+
 .link:hover {
   cursor: pointer;
 }
+
 .link:hover .image {
   transform: scale(1.15);
   transition: 0.5s;
@@ -42,6 +42,7 @@
   transition: 0.5s;
   color: #ffffff;
 }
+
 .label {
   font-size: 14px;
 }

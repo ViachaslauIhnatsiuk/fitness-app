@@ -38,6 +38,12 @@ interface IRecipeInfo {
   winePairing: WinePairing;
 }
 
+interface IRecipeInfoShort {
+  id: number;
+  title: string;
+  image: string;
+}
+
 interface ExtendedIngredient {
   aisle: string;
   amount: number;
@@ -86,4 +92,4 @@ interface ProductMatch {
   link: string;
 }
 
-export type { IRecipeInfo };
+export type { IRecipeInfo, IRecipeInfoShort };

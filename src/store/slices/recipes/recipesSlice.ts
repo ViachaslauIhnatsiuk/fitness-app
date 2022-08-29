@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { API_KEY, BASE_URL } from '../../constants';
 import type { RecipeResponse, RecipesState, RecipesRequestConfig } from './model';
 import { getMixedQueries } from '../../../helpers/getMixedQueries';
+import { itemsPerPage } from '../../../components/recipes/constants';
 
 const initialState: RecipesState = {
   recipes: {
@@ -26,7 +27,7 @@ export const fetchRecipes = createAsyncThunk(
     try {
       const mixedQueries = getMixedQueries(config);
       const response = await fetch(
-        `${BASE_URL}/complexSearch?${mixedQueries}&apiKey=${API_KEY}&number=12`
+        `${BASE_URL}/complexSearch?${mixedQueries}&apiKey=${API_KEY}&number=${itemsPerPage}`
       ).catch((error: Error) => error);
       const data = (await (response as Response).json()) as RecipeResponse;
       return { recipes: data, queryParams: config } as RecipesState;
@@ -40,25 +41,28 @@ const recipesSlice = createSlice({
   name: 'recipes',
   initialState,
   reducers: {
-    setQueryParams: (state, { payload }: PayloadAction<RecipesRequestConfig>) => {
-      state.queryParams = payload;
+    setQueryParams: (state, payload) => {
+      state.queryParams = payload.payload;
     }
   },
-  extraReducers: {
-    [fetchRecipes.fulfilled.type]: (state, action) => {
-      state.recipes = action.payload.recipes;
+  extraReducers(builder) {
+    builder.addCase(fetchRecipes.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchRecipes.fulfilled, (state, { payload }: PayloadAction<RecipesState>) => {
+      state.recipes = payload.recipes;
       state.isLoading = false;
       state.isUploaded = true;
-      state.queryParams = action.payload.queryParams;
+      state.queryParams = payload.queryParams;
       state.error = '';
-    },
-    [fetchRecipes.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-    [fetchRecipes.rejected.type]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    }
+    });
+    builder.addCase(
+      fetchRecipes.rejected,
+      (state, { payload }: PayloadAction<unknown | string>) => {
+        state.isLoading = false;
+        state.error = payload as string;
+      }
+    );
   }
 });
 

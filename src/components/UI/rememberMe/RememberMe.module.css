@@ -24,3 +24,10 @@
   color: #ffffff;
   cursor: default;
 }
+
+@media (max-width: 450px) {
+  .text {
+    font-size: 12px;
+    font-weight: 300;
+  }
+}

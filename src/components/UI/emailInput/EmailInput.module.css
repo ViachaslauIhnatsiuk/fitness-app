@@ -33,3 +33,9 @@
   font-size: 11px;
   color: #7755ff;
 }
+
+@media (max-width: 450px) {
+  .input {
+    height: 35px;
+  }
+}

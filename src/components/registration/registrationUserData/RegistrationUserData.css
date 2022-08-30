@@ -10,20 +10,22 @@
 
 .title {
   margin-bottom: 50px;
-  font-size: 42px;
+  font-size: 52px;
   text-align: center;
+  cursor: default;
 }
 
 .subtitle {
-  width: 400px;
+  width: 500px;
   margin-bottom: 25px;
-  font-size: 20px;
+  font-size: 22px;
   color: #c0c1c3;
   text-align: center;
+  cursor: default;
 }
 
 .selects {
-  width: 400px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,7 +107,7 @@
 }
 
 .buttons {
-  width: 400px;
+  width: 500px;
   display: flex;
   align-items: center;
   column-gap: 20px;
@@ -117,9 +119,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
-  border-radius: 20px;
-  font-size: 15px;
+  padding: 15px 0;
+  border-radius: 30px;
+  font-size: 18px;
   color: #ffffff;
   background-color: #7755ff;
   text-decoration: none;
@@ -131,4 +133,75 @@
 .continue:hover {
   background-color: #6b5bab;
   transition: 0.6s;
+  box-shadow: 0px 0px 10px 5px rgba(119, 85, 255, 0.2);
+}
+
+@media (max-width: 870px) {
+  .title {
+    font-size: 42px;
+  }
+
+  .subtitle {
+    width: 400px;
+    font-size: 20px;
+  }
+
+  .selects {
+    width: 400px;
+    margin-bottom: 30px;
+  }
+
+  .buttons {
+    width: 400px;
+  }
+
+  .back,
+  .continue {
+    padding: 12px 0;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 450px) {
+  .title {
+    font-size: 30px;
+    margin-bottom: 25px;
+  }
+
+  .subtitle {
+    width: 290px;
+    font-size: 16px;
+  }
+
+  .selects {
+    width: 290px;
+    row-gap: 12px;
+  }
+
+  .select__single-value {
+    font-size: 16px !important;
+  }
+
+  .select__input-container {
+    font-size: 16px !important;
+  }
+
+  .select__option {
+    padding: 5px 10px !important;
+    font-size: 16px !important;
+  }
+
+  .select-label {
+    font-size: 12px;
+  }
+
+  .buttons {
+    width: 290px;
+  }
+
+  .back,
+  .continue {
+    padding: 10px 0;
+    font-size: 13px;
+  }
 }

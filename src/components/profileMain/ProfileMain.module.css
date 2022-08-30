@@ -86,13 +86,13 @@
 .logout_icon {
   margin-right: 20px;
   color: #c64849;
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .theme {
   position: relative;
   width: 55px;
-  height: 27px;
+  height: 28px;
   border-radius: 30px;
   background-color: #7755ff;
   transition: 0.4s;
@@ -109,4 +109,69 @@
   background-color: #fff;
   transition: 0.4s;
   cursor: pointer;
+}
+
+@media (max-width: 1120px) {
+  .main {
+    width: 600px;
+  }
+
+  .name {
+    font-size: 34px;
+  }
+
+  .email {
+    font-size: 20px;
+    margin-bottom: 70px;
+  }
+
+  .settings {
+    row-gap: 25px;
+  }
+
+  .setting {
+    font-size: 24px;
+  }
+
+  .icon,
+  .logout_icon {
+    font-size: 30px;
+  }
+
+}
+
+@media (max-width: 870px) {
+  .main {
+    width: 500px;
+  }
+
+  .name {
+    font-size: 30px;
+  }
+
+  .email {
+    font-size: 16px;
+    margin-bottom: 60px;
+  }
+
+  .settings {
+    row-gap: 20px;
+  }
+
+  .setting {
+    font-size: 20px;
+  }
+
+  .theme {
+    width: 50px;
+    height: 22px;
+  }
+
+  .slider {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+  }
 }

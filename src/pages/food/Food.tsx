@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { getSecondPartPath } from '../../helpers/getSecondPartPath';
-import s from './Food.module.css';
 import { Links } from './models';
+import s from './Food.module.css';
 
 const Food: FC = () => {
   const location = useLocation();
@@ -13,7 +13,6 @@ const Food: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <h2 className={s.title}>Food</h2>
       <div className={s.links}>
         <Link to={Links.Recipes} className={recipesClassName}>
           Recipes

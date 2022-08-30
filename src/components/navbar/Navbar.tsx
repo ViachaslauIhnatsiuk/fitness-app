@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { HomeButton } from '../UI/navButtons/HomeButton';
 import { WorkoutButton } from '../UI/navButtons/WorkoutButton';
@@ -10,6 +10,15 @@ import s from './Navbar.module.css';
 
 const Navbar: FC = () => {
   const [active, setActive] = useState<INavLinksState>(defaultState);
+
+  useEffect(() => {
+    const getActiveTab = JSON.parse(localStorage.getItem('activeTab') as string);
+    if (getActiveTab) setActive(getActiveTab as INavLinksState);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('activeTab', JSON.stringify(active));
+  }, [active]);
 
   const setLink = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
     const tab = e.currentTarget.id;

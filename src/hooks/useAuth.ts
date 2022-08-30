@@ -18,7 +18,6 @@ const useAuth = () => {
   const handleLogout = async (): Promise<void> => {
     await signOut(auth);
     navigate('/');
-    localStorage.clear();
   };
 
   return {

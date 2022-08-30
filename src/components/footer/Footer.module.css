@@ -30,7 +30,7 @@
 }
 
 .ref {
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
   text-decoration: none;
   transition: 0.4s;
@@ -42,7 +42,7 @@
 }
 
 .year {
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
   cursor: default;
 }

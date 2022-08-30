@@ -7,14 +7,14 @@
 }
 
 .icon {
-  font-size: 1.8rem;
+  font-size: 2.7rem;
   color: #7755ff;
   cursor: pointer;
   transition: 0.7s;
 }
 
 .icon_active {
-  font-size: 1.8rem;
+  font-size: 2.7rem;
   color: #828283;
   cursor: pointer;
   transition: 0.7s;
@@ -45,11 +45,11 @@
 
 .line_active {
   position: absolute;
-  top: 0;
+  top: -10%;
   right: 0;
   width: 4px;
   border-radius: 3px 0 0 3px;
-  height: 100%;
+  height: 120%;
   background-color: #7755ff;
   z-index: 2;
   transition: 0.7s;

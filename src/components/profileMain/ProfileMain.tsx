@@ -17,39 +17,40 @@ const ProfileMain: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.page}>Profile</div>
-      <Avatar setImageUrl={() => {}} />
-      <div className={s.name}>{currentUser.name}</div>
-      <div className={s.email}>{currentUser.email}</div>
-      <div className={s.settings}>
-        <div className={s.setting}>
-          <BsFillPersonFill className={s.icon} />
-          <Link to="edit-profile" className={s.title}>
-            Edit Profile
-          </Link>
-        </div>
-        <div className={s.setting}>
-          <IoMdInformationCircleOutline className={s.icon} />
-          <Link to="edit-personal-data" className={s.title}>
-            Edit Personal Data
-          </Link>
-        </div>
-        <div className={s.setting}>
-          {theme ? (
-            <MdOutlineLightMode className={s.icon} style={{ color: '#181a20' }} />
-          ) : (
-            <MdOutlineDarkMode className={s.icon} style={{ color: '#fff' }} />
-          )}
-          <span className={s.theme_title}>Theme</span>
-          <button type="button" className={s.theme} onClick={() => setTheme(!theme)}>
-            <div className={s.slider} style={theme ? { left: '30px' } : { left: '3px' }} />
-          </button>
-        </div>
-        <div className={s.setting}>
-          <FiLogOut className={s.logout_icon} />
-          <Link to="/" role="presentation" className={s.logout_title} onClick={handleLogout}>
-            Logout
-          </Link>
+      <div className={s.main}>
+        <Avatar setImageUrl={() => {}} />
+        <div className={s.name}>{currentUser.name}</div>
+        <div className={s.email}>{currentUser.email}</div>
+        <div className={s.settings}>
+          <div className={s.setting}>
+            <BsFillPersonFill className={s.icon} />
+            <Link to="edit-profile" className={s.title}>
+              Edit Profile
+            </Link>
+          </div>
+          <div className={s.setting}>
+            <IoMdInformationCircleOutline className={s.icon} />
+            <Link to="edit-personal-data" className={s.title}>
+              Edit Personal Data
+            </Link>
+          </div>
+          <div className={s.setting}>
+            {theme ? (
+              <MdOutlineLightMode className={s.icon} style={{ color: '#181a20' }} />
+            ) : (
+              <MdOutlineDarkMode className={s.icon} style={{ color: '#fff' }} />
+            )}
+            <span className={s.theme_title}>Theme</span>
+            <button type="button" className={s.theme} onClick={() => setTheme(!theme)}>
+              <div className={s.slider} style={theme ? { left: '30px' } : { left: '3px' }} />
+            </button>
+          </div>
+          <div className={s.setting}>
+            <FiLogOut className={s.logout_icon} />
+            <Link to="/" role="presentation" className={s.logout_title} onClick={handleLogout}>
+              Logout
+            </Link>
+          </div>
         </div>
       </div>
     </div>

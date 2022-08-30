@@ -73,6 +73,18 @@
 
 @media (max-width: 870px) {
   .wrapper {
-    padding: 60px 60px 0;
+    padding: 60px 60px 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 60px 40px 105px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding: 60px 0 105px;
   }
 }

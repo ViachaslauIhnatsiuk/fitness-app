@@ -13,3 +13,28 @@
   display: flex;
   width: 100%;
 }
+
+@media (max-width: 870px) {
+  .wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 100px;
+  }
+
+  .link {
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .wrapper {
+    padding: 20px 80px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding: 20px 40px;
+  }
+}

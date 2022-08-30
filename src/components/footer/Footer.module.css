@@ -50,3 +50,9 @@
 .logo {
   width: 60px;
 }
+
+@media (max-width: 870px) {
+  .wrapper {
+    display: none;
+  }
+}

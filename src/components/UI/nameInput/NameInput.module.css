@@ -3,6 +3,7 @@
   height: 40px;
   padding: 0 10px;
   border-radius: 7px;
+  font-size: 16px;
   outline: none;
   transition: all .1s linear;
   color: #fff;
@@ -34,8 +35,15 @@
   color: #7755ff;
 }
 
+@media (max-width: 870px) {
+  .input {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 450px) {
   .input {
     height: 35px;
+    font-size: 13px;
   }
 }

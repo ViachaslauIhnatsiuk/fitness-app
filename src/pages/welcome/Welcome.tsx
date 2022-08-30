@@ -18,7 +18,7 @@ const Welcome: FC = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <div className={s.main}>
           <div className={s.greeting}>Welcome to</div>
           <Logo className={s.logo} />
           {greeting ? (
@@ -35,7 +35,7 @@ const Welcome: FC = () => {
               Get started
             </button>
           )}
-        </>
+        </div>
       )}
     </div>
   );

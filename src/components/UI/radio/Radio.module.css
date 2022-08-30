@@ -1,4 +1,4 @@
-input[type='radio'] {
+.input {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,17 +16,17 @@ input[type='radio'] {
   background: none;
 }
 
-input[type='radio']:hover + label {
+.input:hover+label {
   background-color: #6b03fd;
   transition: background-color 0.3s;
 }
 
-input[type='radio']:checked + label {
+.input:checked+label {
   background-color: #6b03fd;
   transition: background-color 0.3s;
 }
 
-label {
+.label {
   display: inline-block;
   cursor: pointer;
   padding: 0px 15px;
@@ -36,6 +36,6 @@ label {
   border: 1px solid #6b03fd;
 }
 
-input[type='radio'] {
+.input {
   display: none;
 }

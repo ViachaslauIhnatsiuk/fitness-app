@@ -8,7 +8,7 @@ const Radio: FC<RadioProps> = ({ name, onChange, value, state }) => {
   return (
     <div className={s.radio}>
       <input
-        className={s.radio}
+        className={s.input}
         id={value}
         type="radio"
         name={name}
@@ -16,7 +16,9 @@ const Radio: FC<RadioProps> = ({ name, onChange, value, state }) => {
         checked={isCheckedBox}
         onChange={onChange}
       />
-      <label htmlFor={value}>{value}</label>
+      <label htmlFor={value} className={s.label}>
+        {value}
+      </label>
     </div>
   );
 };

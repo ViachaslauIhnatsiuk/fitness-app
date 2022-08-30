@@ -9,7 +9,7 @@ const Food: FC = () => {
   const secondPart = getSecondPartPath(location.pathname);
 
   const recipesClassName = secondPart === Links.Recipes ? s.link_active : s.link;
-  const rationClassName = secondPart === Links.Ration ? s.link_active : s.link;
+  const rationClassName = secondPart === Links.Meal ? s.link_active : s.link;
 
   return (
     <div className={s.wrapper}>
@@ -18,8 +18,8 @@ const Food: FC = () => {
         <Link to={Links.Recipes} className={recipesClassName}>
           Recipes
         </Link>
-        <Link to={Links.Ration} className={rationClassName}>
-          Daily ration
+        <Link to={Links.Meal} className={rationClassName}>
+          Meal
         </Link>
       </div>
       <Outlet />

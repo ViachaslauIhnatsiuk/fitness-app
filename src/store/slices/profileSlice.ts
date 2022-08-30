@@ -26,7 +26,8 @@ const initialState: ProfileState = {
       goal: 'get fitter'
     },
     statistics: { calorieExpenditure: {}, calorieСonsumption: {} },
-    favorite: { videoTrainings: [], trainings: [], recipes: [] }
+    favorite: { videoTrainings: [], trainings: [], recipes: [] },
+    meals: {}
   }
 };
 
@@ -49,6 +50,7 @@ const profileSlice = createSlice({
       currentUser.name = user.name;
       currentUser.password = user.password;
       currentUser.token = user.token;
+      currentUser.avatar = user.avatar;
 
       if (favorite) currentUser.favorite = favorite;
       if (statistics) currentUser.statistics = statistics;

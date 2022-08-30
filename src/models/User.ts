@@ -1,4 +1,5 @@
 import { IFavorite } from './Favorite';
+import { IMeals } from '../store/slices/meals/model';
 import { IStatistics } from './Statistics';
 
 interface IUser {
@@ -18,6 +19,7 @@ interface IUser {
   };
   statistics: IStatistics;
   favorite: IFavorite;
+  meals: IMeals;
 }
 
 export type { IUser };

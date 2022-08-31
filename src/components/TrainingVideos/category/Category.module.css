@@ -1,28 +1,35 @@
 .wrapper {
-  display: flex;
   position: relative;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0.4rem 1.2rem;
-  width: 20%;
-  height: 0;
-  padding-top: 20%;
+  width: 300px;
+  height: 200px;
   border-radius: 10px;
   cursor: pointer;
-  overflow: hidden;
   text-decoration: none;
 }
 
 .title {
-  position: relative;
-  z-index: 10;
+  position: absolute;
+  bottom: 10px;
+  font-size: 22px;
+  right: 15px;
+  z-index: 2;
   color: #fff;
+  text-transform: uppercase;
+}
+
+.image_wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
 }

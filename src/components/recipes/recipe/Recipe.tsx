@@ -11,6 +11,7 @@ import { useAppSelector } from '../../../store/model';
 import { selectFavorites } from '../../../store/selectors';
 import { toggleRecipeInFavorites } from '../../../store/slices/profileSlice';
 import { getPrevLocation } from '../../../helpers/getPrevLocation';
+import Loader from '../../UI/loader/Loader';
 import s from './Recipe.module.css';
 
 const Recipe = () => {
@@ -37,7 +38,7 @@ const Recipe = () => {
       <Link className={s.return} to={prevLocation}>
         <BsArrowLeft className={s.icon} />
       </Link>
-      {Object.keys(recipeInfo).length && (
+      {Object.keys(recipeInfo).length ? (
         <div className={s.wrapper}>
           {favorites.recipes.find((recipe) => recipe.id === recipeInfo.id) ? (
             <BsBookmarkDashFill onClick={toggleFavoriteRecipe} className={s.bookmark} />
@@ -71,6 +72,8 @@ const Recipe = () => {
             <p className={s.summary}>Summary: {transformSummary(recipeInfo.summary)}</p>
           </div>
         </div>
+      ) : (
+        <Loader />
       )}
     </div>
   );

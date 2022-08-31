@@ -150,6 +150,7 @@
 @media (max-width: 870px) {
   .title {
     font-size: 42px;
+    margin-bottom: 30px !important;
   }
 
   .return {

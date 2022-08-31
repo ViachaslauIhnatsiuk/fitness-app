@@ -34,6 +34,7 @@ import { IUser } from '../models/User';
 import { FavoriteVideos } from './favorite/favoriteVideos/FavoriteVideos';
 import { FavoriteTrainings } from './favorite/FavoriteTrainings/FavoriteTrainings';
 import { FavoriteRecipes } from './favorite/favoriteRecipes/FavoriteRecipes';
+import { RecipeWrapper } from './recipes/recipeWrapper/RecipeWrapper';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -89,7 +90,7 @@ const App: FC = () => {
             <Route path="favorite/video-trainings" element={<FavoriteVideos />} />
             <Route path="favorite/trainings" element={<FavoriteTrainings />} />
             <Route path="favorite/recipes" element={<FavoriteRecipes />} />
-            <Route path="favorite/recipes/:recipeId" element={<Recipe />} />
+            <Route path="favorite/recipes/:recipeId" element={<RecipeWrapper />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         ) : (

@@ -26,7 +26,10 @@ const RecipesCategory = () => {
     dispatch(fetchRecipes({ ...queryParams, query: inputValue })).catch((err: Error) => err);
   };
 
-  const handleDeleteValue = () => setInputValue('');
+  const handleDeleteValue = () => {
+    setInputValue('');
+    dispatch(fetchRecipes({ ...queryParams, query: '' })).catch((err: Error) => err);
+  };
 
   useEffect(() => {
     dispatch(fetchRecipes(queryParams)).catch((err: Error) => err);

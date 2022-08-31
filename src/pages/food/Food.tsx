@@ -13,15 +13,17 @@ const Food: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.links}>
-        <Link to={Links.Recipes} className={recipesClassName}>
-          Recipes
-        </Link>
-        <Link to={Links.Meal} className={rationClassName}>
-          Meal
-        </Link>
+      <div className={s.main}>
+        <div className={s.links}>
+          <Link to={Links.Recipes} className={recipesClassName}>
+            Recipes
+          </Link>
+          <Link to={Links.Meal} className={rationClassName}>
+            Meal
+          </Link>
+        </div>
+        <Outlet />
       </div>
-      <Outlet />
     </div>
   );
 };

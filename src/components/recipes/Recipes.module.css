@@ -18,11 +18,20 @@
 @media (max-width: 870px) {
   .recipes {
     grid-template-columns: repeat(2, 6fr);
+    padding-top: 90px;
+  }
+}
+
+@media (max-width: 600px) {
+  .recipes {
+    grid-template-columns: repeat(2, 6fr);
+    padding-top: 60px;
   }
 }
 
 @media (max-width: 450px) {
   .recipes {
     grid-template-columns: repeat(1, 12fr);
+    padding-top: 40px;
   }
 }

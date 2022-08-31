@@ -2,14 +2,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 120px 0;
   flex-grow: 1;
+  padding: 60px 120px 0;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fade-in 1.5s forwards;
   font-size: 30px;
   color: #fff;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .links {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,16 +35,24 @@
 }
 
 .link {
-  flex-basis: calc(50% - 15px);
-  text-align: center;
-  border: 1px solid #7755ff;
-  text-decoration: none;
-  max-width: 250px;
-  border-radius: 10px;
-  padding: 0.4rem 0;
   color: #dedede;
+}
+
+.link_active {
+  color: #ffffff;
+  background-color: #7755ff;
+}
+
+.link,
+.link_active {
+  width: 250px;
+  border: 1px solid #7755ff;
+  border-radius: 25px;
   font-size: 1.2rem;
+  padding: 0.4rem 0;
   transition: 0.5s;
+  text-align: center;
+  text-decoration: none;
 }
 
 .link:hover,
@@ -36,19 +61,6 @@
   background-color: #7755ff;
   box-shadow: 0px 0px 10px 5px rgba(119, 85, 255, 0.2);
   transition: 0.5s;
-}
-
-.link_active {
-  flex-basis: calc(50% - 15px);
-  text-align: center;
-  color: #ffffff;
-  background-color: #7755ff;
-  border: 1px solid #7755ff;
-  text-decoration: none;
-  max-width: 250px;
-  border-radius: 10px;
-  padding: 0.4rem 0;
-  font-size: 1.2rem;
 }
 
 .decription {
@@ -67,17 +79,24 @@
 
   .link,
   .link_active {
-    max-width: 200px;
+    width: 200px;
   }
 }
 
 @media (max-width: 870px) {
   .wrapper {
-    padding: 100px 60px 0;
+    padding: 100px 60px 105px;
   }
 
   .links {
+    width: 100%;
     margin-bottom: 50px;
+    position: fixed;
+    z-index: 2;
+    top: 80px;
+    padding: 30px 0;
+    margin: 0;
+    background-color: #181a20;
   }
 }
 
@@ -86,13 +105,9 @@
     padding: 100px 20px 105px;
   }
 
-  .links {
-    margin-bottom: 40px;
-  }
-
   .link,
   .link_active {
-    max-width: 150px;
+    width: 150px;
     padding: 0.3rem 0;
     font-size: 1rem;
   }
@@ -101,6 +116,15 @@
 @media (max-width: 450px) {
   .wrapper {
     padding: 100px 0 105px;
+  }
+
+  .links {
+    padding: 15px 0;
+  }
+
+  .link,
+  .link_active {
+    width: 120px;
   }
 
 }

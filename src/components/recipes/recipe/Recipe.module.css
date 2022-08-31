@@ -1,27 +1,75 @@
-.wrapper {
-  padding: 20px;
+.main {
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  animation: fade-in 1.5s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 0.03em;
+  font-weight: 300;
 }
 
 .title {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  cursor: default;
+}
+
+.return {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bookmark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 30px;
+  transition: 0.5s;
+  color: #ffffff;
+}
+
+.icon:hover {
+  color: #7755ff;
+  transition: 0.5s;
 }
 
 .recipe_info {
-  padding-top: 10px;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  row-gap: 15px;
   font-size: 16px;
+  cursor: default;
+}
+
+.recipe_top {
+  display: flex;
+  gap: 15px;
 }
 
 .image {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -29,10 +77,23 @@
 .ingredients {
   display: flex;
   flex-direction: column;
+  max-height: 250px;
+  column-gap: 20px;
+  overflow: auto;
+}
+
+.ingredients::-webkit-scrollbar {
+  display: none;
+}
+
+.ingredients_title {
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-decoration: underline;
 }
 
 .ingredient {
-  padding-left: 10px;
+  font-size: 14px;
 }
 
 .description {
@@ -40,6 +101,61 @@
 }
 
 .summary {
-  text-indent: 20px;
   text-align: justify;
+}
+
+@media (max-width: 1120px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .ingredients {
+    max-height: 200px;
+  }
+
+  .ingredient {
+    font-size: 13px;
+  }
+
+  .description,
+  .summary {
+    font-size: 14px;
+  }
+
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    padding-top: 100px;
+  }
+
+  .return,
+  .bookmark {
+    top: 60px;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .recipe_info {
+    row-gap: 20px;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .recipe_top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ingredients {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .ingredient {
+    font-size: 15px;
+  }
 }

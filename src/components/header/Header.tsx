@@ -7,20 +7,26 @@ import s from './Header.module.css';
 const Header: FC = () => {
   const location = useLocation();
   const path = location.pathname.slice(1);
+  const validPathes = 'food/recipes' || 'workout/videos' || 'workout/trainings';
   const trainingsPath =
     path === 'workout/videos' ? 'favorite/video-trainings' : 'favorite/trainings';
 
   return (
     <div className={s.wrapper}>
       <Logo className={s.logo} />
-      <div className={s.icons}>
-        <Link to={path === 'food/recipes' ? 'favorite/recipes' : trainingsPath} className={s.link}>
-          <BsBookmarkDash className={s.bookmark} />
-        </Link>
-        <Link to="profile" className={s.link}>
-          <BsPerson className={s.profile} />
-        </Link>
-      </div>
+      {path === validPathes && (
+        <div className={s.icons}>
+          <Link
+            to={path === 'food/recipes' ? 'favorite/recipes' : trainingsPath}
+            className={s.link}
+          >
+            <BsBookmarkDash className={s.bookmark} />
+          </Link>
+          <Link to="profile" className={s.link}>
+            <BsPerson className={s.profile} />
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

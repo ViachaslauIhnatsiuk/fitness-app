@@ -46,6 +46,8 @@
 
 .label {
   font-size: 17px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 1300px) {
@@ -60,7 +62,7 @@
 
 @media (max-width: 1120px) {
   .image_wrapper {
-    min-height: 120px;
+    min-height: 110px;
   }
 
 }

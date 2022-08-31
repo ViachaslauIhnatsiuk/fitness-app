@@ -56,9 +56,9 @@
   font-size: 24px;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1300px) {
   .wrapper {
-    padding: 60px 90px 0;
+    padding: 60px 60px 0;
   }
 
   .links {
@@ -71,12 +71,6 @@
   }
 }
 
-@media (max-width: 870px) {
-  .wrapper {
-    padding: 60px 60px 120px;
-  }
-}
-
 @media (max-width: 600px) {
   .wrapper {
     padding: 60px 40px 105px;
@@ -86,5 +80,16 @@
 @media (max-width: 450px) {
   .wrapper {
     padding: 60px 0 105px;
+  }
+
+  .links {
+    margin-bottom: 40px;
+  }
+
+  .link,
+  .link_active {
+    max-width: 200px;
+    padding: 0.3rem 0;
+    font-size: 1rem;
   }
 }

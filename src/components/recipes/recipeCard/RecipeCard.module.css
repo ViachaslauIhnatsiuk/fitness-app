@@ -37,7 +37,7 @@
   bottom: 0px;
   right: 0;
   background-color: #000000a4;
-  border-top-left-radius: 5px;
+  border-radius: 5px 0 10px 0;
   display: flex;
   flex-direction: column;
   transition: 0.5s;

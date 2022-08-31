@@ -71,15 +71,19 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 870px) {
   .wrapper {
-    padding: 60px 40px 105px;
+    padding: 100px 60px 0;
+  }
+
+  .links {
+    margin-bottom: 50px;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
   .wrapper {
-    padding: 60px 0 105px;
+    padding: 100px 20px 105px;
   }
 
   .links {
@@ -88,8 +92,15 @@
 
   .link,
   .link_active {
-    max-width: 200px;
+    max-width: 150px;
     padding: 0.3rem 0;
     font-size: 1rem;
   }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding: 100px 0 105px;
+  }
+
 }

@@ -178,21 +178,46 @@
   }
 
   .selects_wrapper {
-    width: 290px;
+    width: 280px;
     row-gap: 12px;
   }
 
+  .css-b62m3t-container {
+    width: 100% !important;
+  }
+
+  .select__control {
+    min-height: 25px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .select__option--is-focused,
+  .select__option--is-selected {
+    min-height: 25px !important;
+  }
+
+
+  .select__value-container {
+    padding: 0 8px !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+  }
+
   .select__single-value {
-    font-size: 16px !important;
+    margin: -5px 0 !important;
   }
 
   .select__input-container {
-    font-size: 16px !important;
+    min-height: 25px !important;
+  }
+
+  .select__indicator {
+    margin: -5px 0 !important;
   }
 
   .select__option {
     padding: 5px 10px !important;
-    font-size: 16px !important;
   }
 
   .select-label {

@@ -57,3 +57,16 @@
     font-size: 15px;
   }
 }
+
+@media (max-width: 1120px) {
+  .image_wrapper {
+    min-height: 120px;
+  }
+
+}
+
+@media (max-width: 870px) {
+  .label {
+    font-size: 13px;
+  }
+}

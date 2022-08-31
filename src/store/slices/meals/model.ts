@@ -1,18 +1,27 @@
-interface IDish {
-  name: string;
-  time: string;
-  calories: number;
-  proteins: number;
-  fats: number;
-  carbs: number;
+interface MealsResponse {
+  items: IMeal[];
 }
 
 interface IMeal {
-  [meal: string]: IDish[];
+  sugar_g: number;
+  fiber_g: number;
+  serving_size_g: number;
+  sodium_mg: number;
+  name: string;
+  potassium_mg: number;
+  fat_saturated_g: number;
+  fat_total_g: number;
+  calories: number;
+  cholesterol_mg: number;
+  protein_g: number;
+  carbohydrates_total_g: number;
 }
 
-interface IMeals {
-  [date: string]: IMeal;
+interface IDailyMeals {
+  id: number;
+  title: string;
+  date: string;
+  meals: IMeal[];
 }
 
-export type { IMeal, IMeals };
+export type { IMeal, MealsResponse, IDailyMeals };

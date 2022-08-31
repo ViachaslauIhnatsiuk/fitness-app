@@ -23,7 +23,11 @@ const initialState: ProfileState = {
       activity: 'intermediate',
       goal: 'get fitter'
     },
-    statistics: { calorieExpenditure: {}, calorieСonsumption: {} },
+    statistics: {
+      calorieExpenditure: {},
+      calorieСonsumption: {},
+      trainings: { dailyTimeTrainings: {}, totalTime: 0, totalTrainings: 0 }
+    },
     favorite: { videoTrainings: [], trainings: [] }
   }
 };
@@ -71,19 +75,37 @@ const profileSlice = createSlice({
       updateFirestoreState(state.currentUser);
     },
     setCalorieExpenditure: (state, { payload: calorie }: PayloadAction<number>) => {
-      const {
-        currentUser: { statistics }
-      } = state;
-      const { calorieExpenditure } = statistics;
-
+      const { calorieExpenditure } = state.currentUser.statistics;
       const date = convertDateToString(new Date());
 
       if (!calorieExpenditure[date]) {
         calorieExpenditure[date] = calorie;
+      } else {
+        const cal = calorieExpenditure[date];
+        calorieExpenditure[date] = calorie + cal;
       }
 
-      const cal = calorieExpenditure[date];
-      calorieExpenditure[date] = calorie + cal;
+      updateFirestoreState(state.currentUser);
+    },
+    setTotalTimeTrainings: (state, { payload: time }: PayloadAction<number>) => {
+      const { trainings } = state.currentUser.statistics;
+      trainings.totalTime += time;
+    },
+    setTotalTrainings: (state, { payload: count }: PayloadAction<number>) => {
+      const { trainings } = state.currentUser.statistics;
+      trainings.totalTrainings += count;
+    },
+    setDailyTimeTrainings: (state, { payload: time }: PayloadAction<number>) => {
+      const { dailyTimeTrainings } = state.currentUser.statistics.trainings;
+
+      const date = convertDateToString(new Date());
+
+      if (!dailyTimeTrainings[date]) {
+        dailyTimeTrainings[date] = time;
+      } else {
+        const currentTime = dailyTimeTrainings[date];
+        dailyTimeTrainings[date] = currentTime + time;
+      }
 
       updateFirestoreState(state.currentUser);
     },
@@ -105,6 +127,9 @@ export const {
   setVideoTrainingToFavorites,
   setTrainingToFavorites,
   setCalorieExpenditure,
-  setCalorieСonsumption
+  setCalorieСonsumption,
+  setTotalTimeTrainings,
+  setTotalTrainings,
+  setDailyTimeTrainings
 } = profileSlice.actions;
 export { profileSlice };

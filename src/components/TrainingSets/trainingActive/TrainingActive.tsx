@@ -25,7 +25,12 @@ const TrainingActive: FC = () => {
   const [isTrainingFinished, setTrainingIsFinished] = useState<boolean>(false);
   const [isLastExercise, setIsLastExercise] = useState<boolean>(false);
   const { exerciseGifUrl, getExerciseGifUrl } = useStorage();
-  const [statistic, setStatistic] = useState({ cal: 0, time: 0, calPerExercise: 0 });
+  const [statistic, setStatistic] = useState({
+    cal: 0,
+    time: 0,
+    calPerExercise: 0,
+    timePerExercise: 0
+  });
   const trainingId = params.trainingId as string;
   const redirectPath = `${WorkoutPath.trainings}/${trainingId}/`;
 
@@ -37,9 +42,12 @@ const TrainingActive: FC = () => {
     function setExercise() {
       if (trainingById) {
         const { exercises, cal } = trainingById;
+        const totalTime = exercises.reduce((sum, { time }) => sum + time, 0);
         if (!statistic.cal) {
           statistic.cal = cal;
+          statistic.time = totalTime;
           statistic.calPerExercise = Math.round(cal / exercises.length);
+          statistic.timePerExercise = Math.round(totalTime / exercises.length);
           setStatistic(statistic);
         }
         setCurrentExercise(exercises[currentPosition]);
@@ -129,6 +137,7 @@ const TrainingActive: FC = () => {
       changeNumberOfExercise();
       setNextButtonClicked(true);
       setStatistic({ ...statistic, cal: (statistic.cal -= statistic.calPerExercise) });
+      setStatistic({ ...statistic, time: (statistic.time -= statistic.timePerExercise) });
     }
   }, [changeNumberOfExercise, statistic, trainingById]);
 

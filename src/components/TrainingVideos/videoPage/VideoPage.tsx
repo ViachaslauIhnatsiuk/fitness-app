@@ -5,7 +5,7 @@ import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import s from './VideoPage.module.css';
 import { useStorage } from '../../../hooks/useStorage';
 import { VideoPlayer } from '../../UI/videoPlayer/VideoPlayer';
-import { calculateCalories, convertTitleVideoCard } from '../utils';
+import { calculateCalories, calculateTime, convertTitleVideoCard } from '../utils';
 import { VideoTable } from '../videoTable/VideoTable';
 import { Button } from '../../UI/button/Button';
 import Loader from '../../UI/loader/Loader';
@@ -15,6 +15,9 @@ import { convertToArrayByValue } from './utils';
 import { useAppDispatch } from '../../../store/store';
 import {
   setCalorieExpenditure,
+  setDailyTimeTrainings,
+  setTotalTimeTrainings,
+  setTotalTrainings,
   setVideoTrainingToFavorites
 } from '../../../store/slices/profileSlice';
 import { Radio } from '../../UI/radio/Radio';
@@ -66,11 +69,15 @@ const VideoPage: FC = () => {
   const setCaloriesHandler = () => {
     if (video) {
       const {
-        details: { cal }
+        details: { cal, reps }
       } = video;
 
-      const calorieTotal = calculateCalories(sets, cal);
-      dispatch(setCalorieExpenditure(calorieTotal));
+      const totalCalories = calculateCalories(sets, cal);
+      const resultTime = calculateTime(sets, reps);
+      dispatch(setCalorieExpenditure(totalCalories));
+      dispatch(setTotalTimeTrainings(resultTime));
+      dispatch(setDailyTimeTrainings(resultTime));
+      dispatch(setTotalTrainings(1));
     }
   };
 

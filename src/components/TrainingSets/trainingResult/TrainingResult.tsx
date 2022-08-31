@@ -4,14 +4,22 @@ import { Button } from '../../UI/button/Button';
 import { WorkoutPath } from '../../../models/Workout';
 import { TrainingResultProps } from './models';
 import { useAppDispatch } from '../../../store/store';
-import { setCalorieExpenditure } from '../../../store/slices/profileSlice';
+import {
+  setCalorieExpenditure,
+  setDailyTimeTrainings,
+  setTotalTimeTrainings,
+  setTotalTrainings
+} from '../../../store/slices/profileSlice';
 
 const TrainingResult: FC<TrainingResultProps> = ({ statisticsOfTraining: { cal, time } }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(setCalorieExpenditure(cal));
-  }, [cal, dispatch]);
+    dispatch(setTotalTimeTrainings(time));
+    dispatch(setDailyTimeTrainings(time));
+    dispatch(setTotalTrainings(1));
+  }, [cal, dispatch, time]);
 
   return (
     <div className={s.wrapper}>

@@ -4,15 +4,7 @@
   justify-content: center;
   align-items: center;
   row-gap: 2rem;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  row-gap: 1rem;
+  cursor: default;
 }
 
 .buttons {
@@ -27,27 +19,50 @@
 
 .image {
   width: 80%;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #7755ff;
   width: 160px;
-  height: 50px;
+  height: 40px;
   border-radius: 99px;
   padding: 0.2rem 1rem;
   column-gap: 0.6rem;
-  background-color: #323232;
-  color: #e2e2e2;
-  font-size: 1rem;
+  font-size: 15px;
+  color: #ffffff;
   cursor: pointer;
-  outline: none;
+  transition: 0.5s;
 }
 
 .button:hover {
-  background-color: #424242;
   color: #ffffff;
-  transition: background-color 0.3s;
+  transition: 0.5s;
+  background-color: #6b5bab;
+  box-shadow: 0px 0px 10px 5px rgba(119, 85, 255, 0.2);
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    row-gap: 20px;
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding-top: 10px;
+  }
+
+  .image {
+    width: 100%;
+  }
+
+  .button {
+    width: 130px;
+    height: 35px;
+  }
 }

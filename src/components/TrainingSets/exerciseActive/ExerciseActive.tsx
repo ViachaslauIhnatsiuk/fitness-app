@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
-import s from './ExerciseActive.module.css';
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { Button } from '../../UI/button/Button';
 import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { ExerciseActiveProps } from './models';
-import { LoadableImage } from '../../loadableImage/LoadableImage';
+import s from './ExerciseActive.module.css';
 
 const ExerciseActive: FC<ExerciseActiveProps> = ({
   exercise: { time, title },
@@ -15,32 +14,30 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
 }) => {
   return (
     <div className={s.wrapper}>
-      <LoadableImage src={exerciseGifUrl} alt="exercise" />
-      <div className={s.info}>
-        <h1>{title}</h1>
-      </div>
+      <h1>{title}</h1>
+      <img className={s.image} src={exerciseGifUrl} alt="exercise" />
       <CircleTimer
         duration={time}
         btnTitle="PAUSE"
         onClick={onClickTimerHandler}
-        colors={['#7C00FF', '#7C00FF']}
+        colors={['#7755ff', '#7755ff']}
         size={110}
-        fontSize={50}
-        strokeWidth={10}
+        fontSize={42}
+        strokeWidth={5}
       />
       <div className={s.buttons}>
         <Button
           text="Previous"
           onClick={onPrevHandler}
           isStyled
-          icon={<AiOutlineArrowLeft />}
+          icon={<AiOutlineLeft />}
           customStyles={s.button}
         />
         <Button
           text="Skip"
           onClick={onNextHandler}
           isStyled
-          icon={<AiOutlineArrowRight />}
+          icon={<AiOutlineRight />}
           iconPosition="right"
           customStyles={s.button}
         />

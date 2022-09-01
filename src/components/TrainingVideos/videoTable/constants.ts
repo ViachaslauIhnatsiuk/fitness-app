@@ -1,4 +1,4 @@
-const tableHeaders = ['level', 'sets', 'reps', 'rest', 'cal'];
-const tableRows = ['beginner', 'intermediate', 'advanced'];
+const tableHeaders = ['Level', 'Sets', 'Reps', 'Rest', 'Cal'];
+const tableRows = ['Beginner', 'Intermediate', 'Advanced'];
 
 export { tableHeaders, tableRows };

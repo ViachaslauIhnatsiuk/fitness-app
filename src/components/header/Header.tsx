@@ -2,24 +2,21 @@ import React, { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BsBookmarkDash, BsPerson } from 'react-icons/bs';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { getPath, getCurrentPath } from './helpers';
 import s from './Header.module.css';
 
 const Header: FC = () => {
   const location = useLocation();
-  const path = location.pathname.slice(1);
-  const validPathes = 'food/recipes' || 'workout/videos' || 'workout/trainings';
-  const trainingsPath =
-    path === 'workout/videos' ? 'favorite/video-trainings' : 'favorite/trainings';
+  const path = getCurrentPath(location.pathname);
+  const validPathes =
+    path === 'food/recipes' || path === 'workout/trainings' || path === 'workout/videos';
 
   return (
     <div className={s.wrapper}>
       <Logo className={s.logo} />
-      {path === validPathes && (
+      {validPathes && (
         <div className={s.icons}>
-          <Link
-            to={path === 'food/recipes' ? 'favorite/recipes' : trainingsPath}
-            className={s.link}
-          >
+          <Link to={getPath(path)} className={s.link}>
             <BsBookmarkDash className={s.bookmark} />
           </Link>
           <Link to="profile" className={s.link}>

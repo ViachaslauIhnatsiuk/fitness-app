@@ -6,6 +6,11 @@
   align-items: center;
 }
 
+.wrapper:hover .icon_active,
+.wrapper:hover .title_active {
+  color: #7755ff;
+}
+
 .icon {
   font-size: 2.7rem;
   color: #7755ff;

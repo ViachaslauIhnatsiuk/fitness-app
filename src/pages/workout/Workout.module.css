@@ -33,7 +33,13 @@
 
 @media (max-width: 870px) {
   .wrapper {
-    padding: 60px 20px 105px;
+    padding: 60px 60px 105px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 30px 20px 105px;
   }
 }
 

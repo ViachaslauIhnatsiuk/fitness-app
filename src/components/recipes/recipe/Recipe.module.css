@@ -21,15 +21,19 @@
   width: 200px;
   height: 200px;
   object-fit: cover;
+  border-radius: 10px;
 }
 .ingredients {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding: 5px;
 }
 .ingredient {
   padding-left: 10px;
 }
+.description {
+  flex-basis: 100%;
+}
 .summary {
+  text-indent: 20px;
+  text-align: justify;
 }

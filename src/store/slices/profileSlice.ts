@@ -5,6 +5,8 @@ import { updateFirestoreState } from '../../helpers/updateFirestoreState';
 import { IUser } from '../../models/User';
 import type { ProfileState } from '../model';
 import { convertDateToString } from '../helpers';
+import { IRecipeInfoShort } from '../../models/modelRecipeById';
+import { toggleObjectInArray } from '../../helpers/toggleObjectInArray';
 
 const initialState: ProfileState = {
   isAuth: false,
@@ -28,7 +30,8 @@ const initialState: ProfileState = {
       calorieСonsumption: {},
       trainings: { dailyTimeTrainings: {}, totalTime: 0, totalTrainings: 0 }
     },
-    favorite: { videoTrainings: [], trainings: [] }
+    favorite: { videoTrainings: [], trainings: [], recipes: [] },
+    meals: {}
   }
 };
 
@@ -51,6 +54,7 @@ const profileSlice = createSlice({
       currentUser.name = user.name;
       currentUser.password = user.password;
       currentUser.token = user.token;
+      currentUser.avatar = user.avatar;
 
       if (favorite) currentUser.favorite = favorite;
       if (statistics) currentUser.statistics = statistics;
@@ -72,6 +76,14 @@ const profileSlice = createSlice({
       } = state;
 
       favorite.trainings = toggleValueInArray(favorite.trainings, trainingId);
+      updateFirestoreState(state.currentUser);
+    },
+    toggleRecipeInFavorites: (state, { payload }: PayloadAction<IRecipeInfoShort>) => {
+      const {
+        currentUser: { favorite }
+      } = state;
+
+      favorite.recipes = toggleObjectInArray(favorite.recipes, payload);
       updateFirestoreState(state.currentUser);
     },
     setCalorieExpenditure: (state, { payload: calorie }: PayloadAction<number>) => {
@@ -126,6 +138,7 @@ export const {
   setUserState,
   setVideoTrainingToFavorites,
   setTrainingToFavorites,
+  toggleRecipeInFavorites,
   setCalorieExpenditure,
   setCalorieСonsumption,
   setTotalTimeTrainings,

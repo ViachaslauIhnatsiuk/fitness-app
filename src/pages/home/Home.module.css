@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 60px 100px;
   flex-grow: 1;
   font-size: 30px;
   color: #fff;

@@ -11,7 +11,7 @@ import { Food } from '../pages/food/Food';
 import { Profile } from '../pages/profile/Profile';
 import { Layout } from './layout/Layout';
 import { NotFound } from '../pages/notFound/NotFound';
-import { Ration } from './ration/Ration';
+import { Meal } from './meal/Meal';
 import { Recipes } from './recipes/Recipes';
 import { RecipesCategory } from './recipes/recipesCategory/RecipesCategory';
 import { Recipe } from './recipes/recipe/Recipe';
@@ -33,6 +33,7 @@ import s from './App.module.css';
 import { IUser } from '../models/User';
 import { FavoriteVideos } from './favorite/favoriteVideos/FavoriteVideos';
 import { FavoriteTrainings } from './favorite/FavoriteTrainings/FavoriteTrainings';
+import { FavoriteRecipes } from './favorite/favoriteRecipes/FavoriteRecipes';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -69,7 +70,7 @@ const App: FC = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="food" element={<Food />}>
-              <Route path="ration" element={<Ration />} />
+              <Route path="meal" element={<Meal />} />
               <Route path="recipes" element={<Recipes />} />
               <Route path="recipes/:category" element={<RecipesCategory />} />
               <Route path="recipes/:category/:recipeId" element={<Recipe />} />
@@ -87,6 +88,8 @@ const App: FC = () => {
             <Route path="profile/edit-personal-data" element={<EditPersonalData />} />
             <Route path="favorite/video-trainings" element={<FavoriteVideos />} />
             <Route path="favorite/trainings" element={<FavoriteTrainings />} />
+            <Route path="favorite/recipes" element={<FavoriteRecipes />} />
+            <Route path="favorite/recipes/:recipeId" element={<Recipe />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         ) : (

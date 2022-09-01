@@ -1,20 +1,25 @@
 import React, { FC } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { getSecondPartPath } from '../../helpers/getSecondPartPath';
 import s from './Food.module.css';
+import { Links } from './models';
 
 const Food: FC = () => {
   const location = useLocation();
-  const currentLocation = location.pathname.slice(location.pathname.lastIndexOf('/') + 1);
+  const secondPart = getSecondPartPath(location.pathname);
+
+  const recipesClassName = secondPart === Links.Recipes ? s.link_active : s.link;
+  const rationClassName = secondPart === Links.Meal ? s.link_active : s.link;
 
   return (
     <div className={s.wrapper}>
       <h2 className={s.title}>Food</h2>
       <div className={s.links}>
-        <Link to="recipes" className={currentLocation === 'recipes' ? s.link_active : s.link}>
+        <Link to={Links.Recipes} className={recipesClassName}>
           Recipes
         </Link>
-        <Link to="ration" className={currentLocation === 'ration' ? s.link_active : s.link}>
-          Daily ration
+        <Link to={Links.Meal} className={rationClassName}>
+          Meal
         </Link>
       </div>
       <Outlet />

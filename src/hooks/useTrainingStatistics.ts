@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { convertDateToReadableForm } from '../helpers/convertDateToReadableForm';
 import { convertDateToString } from '../store/helpers';
 import { useAppSelector } from '../store/model';

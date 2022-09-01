@@ -1,23 +1,21 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { createElement, FC, useEffect, useState } from 'react';
-import { TiDelete } from 'react-icons/ti';
 import ReactDatePicker from 'react-datepicker';
 import s from './DatePicker.module.css';
 import { Button } from '../button/Button';
 import { DatePickerProps } from './models';
 
-const DatePicker: FC<DatePickerProps> = ({ initialDate, getCurrentState }) => {
-  const [date, setDate] = useState<Date>(initialDate);
+const DatePicker: FC<DatePickerProps> = ({ initialDates, getCurrentState }) => {
+  const [dateRange, setDateRange] = useState<[Date | null, Date | null]>(initialDates);
+  const [startDate, endDate] = dateRange;
 
-  const changeDateHandler = (dateValue: Date) => {
-    setDate(dateValue);
-  };
-
-  const resetStateHandler = () => setDate(initialDate);
+  const resetStateHandler = () => setDateRange(initialDates);
 
   useEffect(() => {
-    getCurrentState(date);
-  }, [date, getCurrentState]);
+    if (startDate && endDate) {
+      getCurrentState(dateRange as [Date, Date]);
+    }
+  }, [dateRange, endDate, getCurrentState, startDate]);
 
   type CustomInputProps = {
     value: string;
@@ -34,11 +32,15 @@ const DatePicker: FC<DatePickerProps> = ({ initialDate, getCurrentState }) => {
   return (
     <div className={s.wrapper}>
       <ReactDatePicker
-        selected={date}
-        onChange={changeDateHandler}
+        selectsRange
+        startDate={startDate}
+        endDate={endDate}
+        onChange={(update) => {
+          setDateRange(update);
+        }}
         customInput={createElement(СustomInput)}
       />
-      <Button onClick={resetStateHandler} icon={<TiDelete className={s.icon} />} />
+      <Button onClick={resetStateHandler} text="Reset" isStyled />
     </div>
   );
 };

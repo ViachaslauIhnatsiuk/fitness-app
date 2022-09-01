@@ -64,15 +64,6 @@ const AreaChart: FC<Partial<AreaChartProps>> = ({ data, labels = [], title = 'De
         borderColor: 'rgb(53, 162, 235, 0.9)',
         backgroundColor: 'rgba(53, 162, 235, 0.3)',
         tension: 0.4
-      },
-      {
-        fill: true,
-        label: labels[1],
-        data,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        tension: 0.4,
-        hidden: true
       }
     ]
   };

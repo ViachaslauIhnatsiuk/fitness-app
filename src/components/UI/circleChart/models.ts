@@ -1,12 +1,12 @@
 type CircleTimerProps = {
   maxValue: number;
   currentValue: number;
-  color: `#${string}`;
+  color: string;
   colorsTime: number[];
   size: number;
   fontSize: number;
   strokeWidth: number;
-  title: string;
+  text: string;
 };
 
 export type { CircleTimerProps };

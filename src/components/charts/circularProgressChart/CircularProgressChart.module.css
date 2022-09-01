@@ -1,0 +1,7 @@
+.circles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 1.4rem;
+  column-gap: 1.4rem;
+}

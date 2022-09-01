@@ -1,37 +1,36 @@
 import React from 'react';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import s from './CircleChart.module.css';
 import { CircleTimerProps } from './models';
 
 const CircleChart = ({
   maxValue = 100,
   currentValue = 0,
-  size = 180,
-  fontSize = 60,
-  strokeWidth = 12,
-  title = 'Cal',
-  color = '#FBD026'
+  fontSize = 40,
+  strokeWidth = 10,
+  text = 'Cal',
+  color = '#7755ff'
 }: Partial<CircleTimerProps>) => {
   return (
-    <div className={s.timer}>
-      <CountdownCircleTimer
-        isPlaying={false}
-        duration={maxValue}
-        colors={[color, color] || ['#7C00FF', '#7C00FF']}
-        colorsTime={[0, 0]}
-        onComplete={() => ({ shouldRepeat: false, delay: 1 })}
-        size={size}
+    <div className={s.wrapper}>
+      <h4>{text}</h4>
+      <CircularProgressbar
         strokeWidth={strokeWidth}
-        initialRemainingTime={currentValue}
-        rotation="counterclockwise"
-      >
-        {({ remainingTime }) => (
-          <div style={{ fontSize, fontWeight: 'bold' }} className={s.title}>
-            <p>{remainingTime}</p>
-            <p style={{ fontSize: 30, fontWeight: 'normal' }}>{title}</p>
-          </div>
-        )}
-      </CountdownCircleTimer>
+        minValue={0}
+        maxValue={maxValue}
+        value={currentValue}
+        text={`${currentValue}`}
+        styles={buildStyles({
+          strokeLinecap: 'round',
+          textSize: `${fontSize}px`,
+          pathTransitionDuration: 0.5,
+          pathColor: color,
+          textColor: '#ffff',
+          trailColor: '#d6d6d6',
+          backgroundColor: '#3e98c7'
+        })}
+      />
     </div>
   );
 };

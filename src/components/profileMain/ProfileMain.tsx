@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillPersonFill } from 'react-icons/bs';
+import { AiOutlineSound, AiFillSound } from 'react-icons/ai';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
@@ -12,6 +13,7 @@ import s from './ProfileMain.module.css';
 
 const ProfileMain: FC = () => {
   const [theme, setTheme] = useState<boolean>(false);
+  const [sound, setSound] = useState<boolean>(false);
   const { currentUser } = useAppSelector(selectProfile);
   const { handleLogout } = useAuth();
 
@@ -41,8 +43,29 @@ const ProfileMain: FC = () => {
               <MdOutlineDarkMode className={s.icon} style={{ color: '#fff' }} />
             )}
             <span className={s.theme_title}>Theme</span>
-            <button type="button" className={s.theme} onClick={() => setTheme(!theme)}>
+            <button
+              type="button"
+              className={s.theme}
+              onClick={() => setTheme(!theme)}
+              style={theme ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }}
+            >
               <div className={s.slider} style={theme ? { left: '30px' } : { left: '3px' }} />
+            </button>
+          </div>
+          <div className={s.setting}>
+            {sound ? (
+              <AiOutlineSound className={s.icon} style={{ color: '#181a20' }} />
+            ) : (
+              <AiFillSound className={s.icon} style={{ color: '#fff' }} />
+            )}
+            <span className={s.sound_title}>Sound</span>
+            <button
+              type="button"
+              className={s.sound}
+              onClick={() => setSound(!sound)}
+              style={sound ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }}
+            >
+              <div className={s.slider} style={sound ? { left: '30px' } : { left: '3px' }} />
             </button>
           </div>
           <div className={s.setting}>

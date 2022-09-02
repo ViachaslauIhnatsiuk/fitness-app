@@ -6,23 +6,22 @@ import {
   DropResult,
   DraggableLocation
 } from 'react-beautiful-dnd';
+import { transformDate } from '../../../helpers/transformDate';
 import { useAppSelector } from '../../../store/model';
 import { selectUserMeals } from '../../../store/selectors';
 import { IDailyMeals } from '../../../store/slices/meals/model';
 import { MealCard } from '../mealCard/MealCard';
-import { NewMealCard } from '../newMealCard/NewMealCard';
 import { meals as defaultMeals } from './constants';
 import './MealList.css';
 
 const MealList: FC = () => {
   const [cardsOrder, updateCardsOrder] = useState<IDailyMeals[]>(defaultMeals);
-
   const userMeals = useAppSelector(selectUserMeals);
+  const dateToday = transformDate(new Date());
 
   useEffect(() => {
-    if (userMeals.length) {
-      updateCardsOrder(userMeals);
-    }
+    const todayUserMeals = userMeals.filter((meal) => meal.date === dateToday);
+    updateCardsOrder(todayUserMeals);
   }, [userMeals]);
 
   const handleOnDragEnd = (result: DropResult): void => {
@@ -47,13 +46,12 @@ const MealList: FC = () => {
                       {...provider.draggableProps}
                       {...provider.dragHandleProps}
                     >
-                      <MealCard title={title} meals={meals} />
+                      <MealCard id={id} title={title} meals={meals} />
                     </div>
                   )}
                 </Draggable>
               );
             })}
-            <NewMealCard />
             {provided.placeholder}
           </div>
         )}

@@ -4,29 +4,30 @@ import s from './ExerciseActive.module.css';
 import { Button } from '../../UI/button/Button';
 import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { ExerciseActiveProps } from './models';
-import { LoadableImage } from '../../loadableImage/LoadableImage';
 
 const ExerciseActive: FC<ExerciseActiveProps> = ({
   exercise: { time, title },
   exerciseGifUrl,
-  onClickTimerHandler,
   onPrevHandler,
-  onNextHandler
+  onNextHandler,
+  onUpdate,
+  currentPosition
 }) => {
   return (
     <div className={s.wrapper}>
-      <LoadableImage src={exerciseGifUrl} alt="exercise" />
+      <img src={exerciseGifUrl} alt="exercise" />
       <div className={s.info}>
         <h1>{title}</h1>
       </div>
       <CircleTimer
         duration={time}
         btnTitle="PAUSE"
-        onClick={onClickTimerHandler}
         colors={['#7C00FF', '#7C00FF']}
         size={110}
         fontSize={50}
         strokeWidth={10}
+        onUpdate={onUpdate}
+        isTimerCanPause
       />
       <div className={s.buttons}>
         <Button
@@ -35,6 +36,7 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
           isStyled
           icon={<AiOutlineArrowLeft />}
           customStyles={s.button}
+          isDisabled={currentPosition === 0}
         />
         <Button
           text="Skip"

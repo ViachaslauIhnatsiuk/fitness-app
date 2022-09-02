@@ -9,7 +9,8 @@ import { LoadableImage } from '../../loadableImage/LoadableImage';
 const TrainingRest: FC<TrainingRestProps> = ({
   onSkipHandler,
   exerciseGifUrl,
-  nextExercise: { title }
+  nextExercise: { title },
+  onUpdate
 }) => {
   return (
     <div className={s.rest}>
@@ -21,6 +22,7 @@ const TrainingRest: FC<TrainingRestProps> = ({
           size={80}
           strokeWidth={8}
           fontSize={30}
+          onUpdate={onUpdate}
         />
       </div>
       <div className={s.rest__info}>

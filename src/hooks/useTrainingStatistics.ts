@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { convertDateToReadableForm } from '../helpers/convertDateToReadableForm';
+import { covertToMinutesNumber } from '../helpers/covertSecondsToMinutes';
 import { convertDateToString } from '../store/helpers';
 import { useAppSelector } from '../store/model';
 import { selectStatistics } from '../store/selectors';
@@ -21,7 +22,8 @@ const useTrainingStatistics = (
   const keys = Object.keys(dailyTimeTrainings).sort();
 
   let dates = keys.map((key) => {
-    return { x: key, y: dailyTimeTrainings[key] };
+    const minutes = covertToMinutesNumber(dailyTimeTrainings[key]);
+    return { x: key, y: minutes };
   });
 
   dates = useMemo(() => {
@@ -34,7 +36,9 @@ const useTrainingStatistics = (
     const resultedDates = filteredDates.map((date) => convertDateToString(new Date(date))).sort();
     return resultedDates.map((key) => {
       const readableDate = convertDateToReadableForm(key);
-      return { x: readableDate, y: dailyTimeTrainings[key] };
+      const minutes = covertToMinutesNumber(dailyTimeTrainings[key]);
+
+      return { x: readableDate, y: minutes };
     });
   }, [dates, startFilterDate, endFilterDate, dailyTimeTrainings]);
 

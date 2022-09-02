@@ -10,16 +10,19 @@ import {
   setTotalTimeTrainings,
   setTotalTrainings
 } from '../../../store/slices/profileSlice';
+import { covertToMinutesString } from '../../../helpers/covertSecondsToMinutes';
 
 const TrainingResult: FC<TrainingResultProps> = ({ statisticsOfTraining: { cal, time } }) => {
   const dispatch = useAppDispatch();
+  const resultCal = cal < 0 ? 0 : cal;
+  const resultTime = time < 0 ? 0 : time;
 
   useEffect(() => {
-    dispatch(setCalorieExpenditure(cal));
-    dispatch(setTotalTimeTrainings(time));
-    dispatch(setDailyTimeTrainings(time));
-    dispatch(setTotalTrainings(1));
-  }, [cal, dispatch, time]);
+    dispatch(setCalorieExpenditure(resultCal));
+    dispatch(setTotalTimeTrainings(resultTime));
+    dispatch(setDailyTimeTrainings(resultTime));
+    dispatch(setTotalTrainings(resultCal));
+  }, [resultCal, dispatch, resultTime]);
 
   return (
     <div className={s.wrapper}>
@@ -28,8 +31,8 @@ const TrainingResult: FC<TrainingResultProps> = ({ statisticsOfTraining: { cal, 
       </div>
       <h1 className={s.title}>Congratulations!</h1>
       <p className={s.description}>You have completed the workout!</p>
-      <span>Cal: {cal}</span>
-      <span>Time: {time}</span>
+      <span>Cal: {resultCal}</span>
+      <span>Time: {covertToMinutesString(resultTime)}</span>
       <div className={s.buttons}>
         <Button
           path={WorkoutPath.trainings}

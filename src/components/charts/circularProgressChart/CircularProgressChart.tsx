@@ -4,6 +4,7 @@ import { CircleChart } from '../../UI/circleChart/CircleChart';
 import { useAppSelector } from '../../../store/model';
 import { selectProfile } from '../../../store/selectors';
 import { DEFAULT_CIRCULAR_PATH_COLOR } from './constants';
+import { covertToMinutesNumber } from '../../../helpers/covertSecondsToMinutes';
 
 const CircularProgressChart: FC = () => {
   const {
@@ -24,7 +25,7 @@ const CircularProgressChart: FC = () => {
       />
       <CircleChart
         maxValue={200}
-        currentValue={totalTime}
+        currentValue={covertToMinutesNumber(totalTime)}
         color={DEFAULT_CIRCULAR_PATH_COLOR}
         text="Minutes"
       />

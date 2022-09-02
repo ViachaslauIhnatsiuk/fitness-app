@@ -5,12 +5,21 @@ import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { PREPARATION_TIME } from '../constants';
 import { TrainingPreparationProps } from './models';
 
-const TrainingPreparation: FC<TrainingPreparationProps> = ({ onSkipHandler }) => {
+const TrainingPreparation: FC<TrainingPreparationProps> = ({ onSkipHandler, onUpdate }) => {
+  const onUpdateHandler = (remainingTime: number) => {
+    if (onUpdate) onUpdate(remainingTime);
+  };
+
   return (
     <div className={s.preparation}>
       <div className={s.preparation__timer}>
         <h1>Get Ready!</h1>
-        <CircleTimer duration={PREPARATION_TIME} colors={['#7C00FF', '#7C00FF']} fontSize={70} />
+        <CircleTimer
+          duration={PREPARATION_TIME}
+          colors={['#7C00FF', '#7C00FF']}
+          fontSize={70}
+          onUpdate={onUpdateHandler}
+        />
       </div>
       <Button text="Start Over" onClick={onSkipHandler} isStyled customStyles={s.button} />
     </div>

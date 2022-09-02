@@ -50,7 +50,8 @@ const useStorage = () => {
     getTrainingPreviewUrl,
     getExerciseGifUrl,
     getCategoryImageUrl,
-    getVideoPreviewUrl
+    getVideoPreviewUrl,
+    setExerciseGifUrl
   };
 };
 

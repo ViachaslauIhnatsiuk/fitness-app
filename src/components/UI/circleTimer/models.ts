@@ -7,6 +7,8 @@ type CircleTimerProps = {
   size: number;
   fontSize: number;
   strokeWidth: number;
+  onUpdate: (remainigTime: number) => void;
+  isTimerCanPause: boolean;
 };
 
 export type { CircleTimerProps };

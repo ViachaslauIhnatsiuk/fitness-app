@@ -1,12 +1,9 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { IoChevronBackCircleOutline } from 'react-icons/io5';
 import { useParams } from 'react-router-dom';
-import { useTimer } from '../../../hooks/useTimer';
 import { Button } from '../../UI/button/Button';
 import s from './TrainingActive.module.css';
-import { EXERCISE_INITIAL_TIME, PREPARATION_TIME, REST_TIME } from '../constants';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
-
 import { TrainingResult } from '../trainingResult/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
@@ -20,11 +17,8 @@ const TrainingActive: FC = () => {
   const { getTrainingById, trainingById } = useTraining();
   const [currentExercise, setCurrentExercise] = useState<IExercise>();
   const [currentPosition, setCurrentPosition] = useState<number>(0);
-  const [isNextButtonClicked, setNextButtonClicked] = useState<boolean>(false);
-  const [isPrevButtonClicked, setPrevButtonClicked] = useState<boolean>(false);
   const [isTrainingFinished, setTrainingIsFinished] = useState<boolean>(false);
-  const [isLastExercise, setIsLastExercise] = useState<boolean>(false);
-  const { exerciseGifUrl, getExerciseGifUrl } = useStorage();
+  const { exerciseGifUrl, getExerciseGifUrl, setExerciseGifUrl } = useStorage();
   const [statistic, setStatistic] = useState({
     cal: 0,
     time: 0,
@@ -39,7 +33,7 @@ const TrainingActive: FC = () => {
   }, [getTrainingById, trainingId]);
 
   useEffect(
-    function setExercise() {
+    function setInitialStatisticData() {
       if (trainingById) {
         const { exercises, cal } = trainingById;
         const totalTime = exercises.reduce((sum, { time }) => sum + time, 0);
@@ -50,135 +44,17 @@ const TrainingActive: FC = () => {
           statistic.timePerExercise = Math.round(totalTime / exercises.length);
           setStatistic(statistic);
         }
-        setCurrentExercise(exercises[currentPosition]);
       }
     },
-    [currentPosition, statistic, trainingById]
+    [statistic, trainingById]
   );
 
-  // timers
-  const {
-    isRunning: isExerciseRunning,
-    counter: counterOfExerciseTimer,
-    start: startExerciseTimer,
-    stop: stopExerciseTimer,
-    pause: pauseExerciseTimer,
-    setCounter: setExerciseCounter
-  } = useTimer(EXERCISE_INITIAL_TIME);
-
-  const {
-    isRunning: isRestTimerRunning,
-    counter: counterOfRestTimer,
-    start: startRestTimer,
-    stop: stopRestTimer,
-    setCounter: setRestCounter
-  } = useTimer(REST_TIME);
-
-  const {
-    isRunning: isPreparationTimerRunning,
-    counter: counterOfPreparationTimer,
-    start: startPreparationTimer,
-    stop: stopPreparationTimer,
-    setCounter: setPreparationCounter
-  } = useTimer(PREPARATION_TIME);
-
-  const startExercise = useCallback(() => {
-    stopExerciseTimer();
-    setExerciseCounter(currentExercise?.time as number);
-    startExerciseTimer();
-  }, [currentExercise?.time, setExerciseCounter, startExerciseTimer, stopExerciseTimer]);
-
-  const changeNumberOfExercise = useCallback(() => {
+  useEffect(() => {
     if (trainingById) {
       const { exercises } = trainingById;
-      const amountExercise = exercises.length - 1;
-      let nextPosition = currentPosition + 1;
-      if (isPrevButtonClicked) {
-        nextPosition = currentPosition > 2 ? currentPosition - 2 : currentPosition;
-        setPrevButtonClicked(false);
-      }
-
-      if (nextPosition > amountExercise) {
-        setIsLastExercise(true);
-        setTrainingIsFinished(true);
-      } else {
-        setCurrentPosition(nextPosition);
-        setExerciseCounter(0);
-      }
+      setCurrentExercise(exercises[currentPosition]);
     }
-  }, [currentPosition, isPrevButtonClicked, setExerciseCounter, trainingById]);
-
-  useEffect(
-    function startTimerBeforeTraining() {
-      startPreparationTimer();
-    },
-    [startPreparationTimer, stopPreparationTimer]
-  );
-
-  useEffect(
-    function startTrainingAterPreparationTimer() {
-      if (counterOfPreparationTimer < 1) {
-        startExercise();
-      }
-    },
-    [isPreparationTimerRunning, counterOfPreparationTimer, startExercise]
-  );
-
-  useEffect(
-    function updateExerciseTimer() {
-      setExerciseCounter(currentExercise?.time as number);
-    },
-    [currentExercise, setExerciseCounter]
-  );
-
-  // handlers
-  const onNextHandler = useCallback(() => {
-    if (trainingById) {
-      changeNumberOfExercise();
-      setNextButtonClicked(true);
-      setStatistic({ ...statistic, cal: (statistic.cal -= statistic.calPerExercise) });
-      setStatistic({ ...statistic, time: (statistic.time -= statistic.timePerExercise) });
-    }
-  }, [changeNumberOfExercise, statistic, trainingById]);
-
-  const onPrevHandler = () => {
-    const nextPosition = currentPosition > 0 ? currentPosition - 1 : currentPosition;
-    setCurrentPosition(nextPosition);
-    setPrevButtonClicked(true);
-    setExerciseCounter(0);
-  };
-
-  const onSkipHandler = () => {
-    setPreparationCounter(0);
-    setRestCounter(0);
-  };
-
-  // when Timers is over
-  useEffect(() => {
-    if (isExerciseRunning && counterOfExerciseTimer <= 0) {
-      if (!isNextButtonClicked) {
-        changeNumberOfExercise();
-      }
-
-      startRestTimer();
-    }
-  }, [
-    changeNumberOfExercise,
-    isExerciseRunning,
-    isLastExercise,
-    isNextButtonClicked,
-    counterOfExerciseTimer,
-    startRestTimer,
-    statistic
-  ]);
-
-  useEffect(() => {
-    if (!isExerciseRunning && counterOfRestTimer <= 0) {
-      startExercise();
-      stopRestTimer();
-      setNextButtonClicked(false);
-    }
-  }, [isExerciseRunning, onNextHandler, counterOfRestTimer, startExercise, stopRestTimer]);
+  }, [currentPosition, trainingById]);
 
   useEffect(() => {
     if (currentExercise?.title) {
@@ -187,6 +63,78 @@ const TrainingActive: FC = () => {
     }
   }, [currentExercise, getExerciseGifUrl]);
 
+  const [isPreparationStart, setIsPreparationStart] = useState<boolean>(true);
+  const [isRestStart, setIsRestStart] = useState<boolean>(false);
+
+  const onUpdatePreparationTimer = (remainingTime: number) => {
+    if (remainingTime === 0) {
+      setIsPreparationStart(false);
+    }
+  };
+
+  const onUpdateRestTimer = (remainingTime: number) => {
+    if (remainingTime === 0) {
+      setIsRestStart(false);
+    }
+  };
+
+  const onSkipPreparationHandler = () => {
+    setIsPreparationStart(false);
+  };
+
+  const onSkipRestHandler = () => {
+    setIsRestStart(false);
+  };
+
+  const onUpdateExerciseTimer = (remainingTime: number) => {
+    if (remainingTime === 0) {
+      onNextHandler(false);
+    }
+  };
+
+  const changeNumberOfExercise = useCallback(
+    (isPrevBtnClicked = false) => {
+      if (trainingById) {
+        const { exercises } = trainingById;
+        const amountExercise = exercises.length - 1;
+        let nextPosition = currentPosition + 1;
+        if (isPrevBtnClicked) {
+          nextPosition = currentPosition >= 1 ? currentPosition - 1 : currentPosition;
+        }
+
+        if (nextPosition > amountExercise) {
+          setTrainingIsFinished(true);
+        } else {
+          setCurrentPosition(nextPosition);
+        }
+      }
+    },
+    [currentPosition, trainingById]
+  );
+
+  const onNextHandler = useCallback(
+    (isNextBtnClicked = true) => {
+      if (trainingById) {
+        setExerciseGifUrl('');
+        changeNumberOfExercise();
+
+        if (isNextBtnClicked) {
+          setStatistic({ ...statistic, cal: (statistic.cal -= statistic.calPerExercise) });
+          setStatistic({ ...statistic, time: (statistic.time -= statistic.timePerExercise) });
+        }
+
+        setIsRestStart(true);
+      }
+    },
+    [changeNumberOfExercise, setExerciseGifUrl, statistic, trainingById]
+  );
+
+  const onPrevHandler = () => {
+    setExerciseGifUrl('');
+    changeNumberOfExercise(true);
+    setIsRestStart(true);
+  };
+
   return (
     <div className={s.wrapper}>
       <Button path={redirectPath} icon={<IoChevronBackCircleOutline />} />
@@ -194,14 +142,20 @@ const TrainingActive: FC = () => {
         <TrainingResult statisticsOfTraining={statistic} />
       ) : (
         <div className={s.active}>
-          {isPreparationTimerRunning && <TrainingPreparation onSkipHandler={onSkipHandler} />}
-          {!isPreparationTimerRunning && (
+          {isPreparationStart && (
+            <TrainingPreparation
+              onSkipHandler={onSkipPreparationHandler}
+              onUpdate={onUpdatePreparationTimer}
+            />
+          )}
+          {!isPreparationStart && (
             <div className={s.exercises}>
-              {isRestTimerRunning ? (
+              {isRestStart ? (
                 <TrainingRest
-                  onSkipHandler={onSkipHandler}
+                  onSkipHandler={onSkipRestHandler}
                   nextExercise={currentExercise as IExercise}
                   exerciseGifUrl={exerciseGifUrl}
+                  onUpdate={onUpdateRestTimer}
                 />
               ) : (
                 <div>
@@ -209,9 +163,10 @@ const TrainingActive: FC = () => {
                     <ExerciseActive
                       exercise={currentExercise}
                       exerciseGifUrl={exerciseGifUrl}
-                      onClickTimerHandler={pauseExerciseTimer}
                       onNextHandler={onNextHandler}
                       onPrevHandler={onPrevHandler}
+                      onUpdate={onUpdateExerciseTimer}
+                      currentPosition={currentPosition}
                     />
                   )}
                 </div>

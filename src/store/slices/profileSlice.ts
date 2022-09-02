@@ -63,26 +63,17 @@ const profileSlice = createSlice({
       state.currentUser.userData = payload;
     },
     setVideoTrainingToFavorites: (state, { payload: videoId }: PayloadAction<number>) => {
-      const {
-        currentUser: { favorite }
-      } = state;
-
+      const { favorite } = state.currentUser;
       favorite.videoTrainings = toggleValueInArray(favorite.videoTrainings, videoId);
       updateFirestoreState(state.currentUser);
     },
     setTrainingToFavorites: (state, { payload: trainingId }: PayloadAction<number>) => {
-      const {
-        currentUser: { favorite }
-      } = state;
-
+      const { favorite } = state.currentUser;
       favorite.trainings = toggleValueInArray(favorite.trainings, trainingId);
       updateFirestoreState(state.currentUser);
     },
     toggleRecipeInFavorites: (state, { payload }: PayloadAction<IRecipeInfoShort>) => {
-      const {
-        currentUser: { favorite }
-      } = state;
-
+      const { favorite } = state.currentUser;
       favorite.recipes = toggleObjectInArray(favorite.recipes, payload);
       updateFirestoreState(state.currentUser);
     },

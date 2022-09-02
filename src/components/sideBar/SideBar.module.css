@@ -6,7 +6,23 @@
 }
 
 .logo {
-  width: 96px;
-  height: 32px;
-  margin-bottom: 150px;
+  height: 40px;
+  width: 120px;
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 100%;
+    padding: 0;
+    background-color: #181a20;
+  }
+
+  .logo {
+    display: none;
+  }
 }

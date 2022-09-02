@@ -1,18 +1,16 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { IoChevronBackCircleOutline } from 'react-icons/io5';
-import { useParams } from 'react-router-dom';
+import { BsArrowLeft } from 'react-icons/bs';
+import { Link, useParams } from 'react-router-dom';
 import { useTimer } from '../../../hooks/useTimer';
-import { Button } from '../../UI/button/Button';
-import s from './TrainingActive.module.css';
 import { EXERCISE_INITIAL_TIME, PREPARATION_TIME, REST_TIME } from '../constants';
 import { ExerciseActive } from '../exerciseActive/ExerciseActive';
-
 import { TrainingResult } from '../trainingResult/TrainingResult';
 import { TrainingPreparation } from '../trainingPreparation/TrainingPreparation';
 import { TrainingRest } from '../trainingRest/TrainingRest';
 import { IExercise, WorkoutPath } from '../../../models/Workout';
 import { useStorage } from '../../../hooks/useStorage';
 import { useTraining } from '../../../hooks/useTraining';
+import s from './TrainingActive.module.css';
 
 const TrainingActive: FC = () => {
   const params = useParams();
@@ -180,7 +178,9 @@ const TrainingActive: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <Button path={redirectPath} icon={<IoChevronBackCircleOutline />} />
+      <Link className={s.return} to={redirectPath}>
+        <BsArrowLeft className={s.icon} />
+      </Link>
       {isTrainingFinished ? (
         <TrainingResult statisticsOfTraining={statistic} />
       ) : (

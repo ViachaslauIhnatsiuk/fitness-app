@@ -3,58 +3,128 @@
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
+  padding: 60px 120px 0;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fade-in 1.5s forwards;
   font-size: 30px;
   color: #fff;
 }
 
-.title {
-  width: 100%;
-  font-size: 28px;
-  text-align: center;
-  margin-bottom: 20px;
-  font-weight: 400;
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .links {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  width: 100%;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 70px;
 }
 
 .link {
-  flex-basis: calc(50% - 5px);
-  text-align: center;
-  border: 1px solid #7755ff;
-  text-decoration: none;
-  max-width: 200px;
-  border-radius: 5px;
-  padding: 0.2rem 1rem;
   color: #dedede;
+}
+
+.link_active {
+  color: #ffffff;
+  background-color: #7755ff;
+}
+
+.link,
+.link_active {
+  width: 250px;
+  border: 1px solid #7755ff;
+  border-radius: 25px;
   font-size: 1.2rem;
+  padding: 0.4rem 0;
+  transition: 0.5s;
+  text-align: center;
+  text-decoration: none;
 }
 
 .link:hover,
 .link_active:hover {
   color: #ffffff;
-  background-color: #9379ff;
-  transition: 0.3s;
-}
-
-.link_active {
-  flex-basis: calc(50% - 5px);
-  text-align: center;
-  color: #ffffff;
   background-color: #7755ff;
-  border: 1px solid #7755ff;
-  text-decoration: none;
-  max-width: 200px;
-  border-radius: 5px;
-  padding: 0.2rem 1rem;
-  font-size: 1.2rem;
+  box-shadow: 0px 0px 10px 5px rgba(119, 85, 255, 0.2);
+  transition: 0.5s;
 }
 
 .decription {
   padding: 20px;
   font-size: 24px;
+}
+
+@media (max-width: 1300px) {
+  .wrapper {
+    padding: 60px 60px 0;
+  }
+
+  .links {
+    gap: 15px;
+  }
+
+  .link,
+  .link_active {
+    width: 200px;
+  }
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    padding: 100px 40px 105px;
+  }
+
+  .links {
+    width: 100%;
+    margin-bottom: 50px;
+    position: fixed;
+    z-index: 2;
+    top: 80px;
+    padding: 30px 0;
+    margin: 0;
+    background-color: #181a20;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 100px 20px 105px;
+  }
+
+  .link,
+  .link_active {
+    width: 150px;
+    padding: 0.3rem 0;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding: 100px 0 105px;
+  }
+
+  .links {
+    padding: 15px 0;
+  }
+
+  .link,
+  .link_active {
+    width: 130px;
+  }
+
 }

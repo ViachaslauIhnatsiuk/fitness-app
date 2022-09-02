@@ -3,21 +3,27 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  row-gap: 1rem;
+  row-gap: 15px;
   flex-grow: 1;
   width: 100%;
+  cursor: default;
 }
 
 .image {
-  width: 50%;
+  width: 250px;
 }
 
 .title {
-  color: #6e00db;
+  color: #7755ff;
 }
 
 .description {
+  font-size: 20px;
   color: #e5e5e5;
+}
+
+.value {
+  font-size: 18px;
 }
 
 .buttons {
@@ -28,46 +34,51 @@
   row-gap: 1rem;
 }
 
-.button_home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 315px;
-  height: 50px;
-  border-radius: 99px;
-  padding: 0.2rem 1rem;
-  column-gap: 0.6rem;
-  background-color: #323232;
-  color: #e2e2e2;
-  font-size: 1rem;
-  cursor: pointer;
-  outline: none;
-}
-
-.button_home:hover {
-  background-color: #424242;
-  color: #ffffff;
-  transition: background-color 0.3s;
-}
-
+.button_home,
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #6b03fd;
-  width: 315px;
-  height: 50px;
-  border-radius: 99px;
+  background-color: #7755ff;
+  width: 320px;
+  height: 40px;
+  border-radius: 30px;
   padding: 0.2rem 1rem;
   column-gap: 0.6rem;
-  color: #dedede;
-  font-size: 1rem;
+  font-size: 15px;
+  color: #ffffff;
   cursor: pointer;
-  outline: none;
+  transition: 0.5s;
 }
 
+.button_home:hover,
 .button:hover {
-  background-color: #720dff;
   color: #ffffff;
-  transition: all 0.5s;
+  transition: 0.5s;
+  background-color: #6b5bab;
+  box-shadow: 0px 0px 10px 5px rgba(119, 85, 255, 0.2);
+}
+
+@media (max-width: 870px) {
+  .image {
+    width: 200px;
+  }
+
+  .description {
+    font-size: 16px;
+    color: #e5e5e5;
+  }
+
+  .value {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+
+  .button_home,
+  .button {
+    width: 280px;
+    height: 35px;
+  }
 }

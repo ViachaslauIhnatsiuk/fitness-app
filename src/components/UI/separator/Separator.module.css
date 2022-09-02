@@ -1,5 +1,5 @@
 .separator {
-  width: 400px;
+  width: 500px;
   display: flex;
   justify-content: center;
   border-top: 2px solid #26292f;
@@ -14,4 +14,21 @@
   text-align: center;
   background-color: #181a20;
   cursor: default;
+}
+
+@media (max-width: 870px) {
+  .separator {
+    width: 400px;
+  }
+
+  .text {
+    font-size: 12px;
+    margin-top: -9px;
+  }
+}
+
+@media (max-width: 450px) {
+  .separator {
+    width: 290px;
+  }
 }

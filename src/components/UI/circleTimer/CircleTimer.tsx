@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-import s from './CircleTimer.module.css';
 import { Button } from '../button/Button';
 import { CircleTimerProps } from './models';
+import s from './CircleTimer.module.css';
 
 const CircleTimer = ({
   duration = 0,
@@ -11,7 +11,7 @@ const CircleTimer = ({
   btnTitle,
   size = 180,
   fontSize = 40,
-  strokeWidth = 12
+  strokeWidth = 9
 }: Partial<CircleTimerProps>) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 

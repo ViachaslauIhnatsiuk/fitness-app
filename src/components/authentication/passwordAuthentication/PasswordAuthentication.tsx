@@ -20,26 +20,28 @@ const PasswordAuthentication: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.title}>Login to your Account</div>
-      {loginError && (
-        <div className={s.error}>
-          We cannot find an account with that email address and password
-        </div>
-      )}
-      <FormProvider {...methods}>
-        <form className={s.form} onSubmit={handleSubmit(() => reset())}>
-          <EmailInput />
-          <PasswordInput />
-          <RememberMe />
-          <AuthSubmitButton path="" value="Continue" handler={handleLogin} />
-        </form>
-      </FormProvider>
-      <Link to="/forgot-password" className={s.forgot}>
-        Forgot the password?
-      </Link>
-      <Separator text="or continue with" />
-      <SocialAuthRowButtons />
-      <AccountExistance title={SignLinkTitle.noAccount} path="sign-up" link={SignLink.signUp} />
+      <div className={s.main}>
+        <div className={s.title}>Login to your Account</div>
+        {loginError && (
+          <div className={s.error}>
+            We cannot find an account with that email address and password
+          </div>
+        )}
+        <FormProvider {...methods}>
+          <form className={s.form} onSubmit={handleSubmit(() => reset())}>
+            <EmailInput />
+            <PasswordInput />
+            <RememberMe />
+            <AuthSubmitButton path="" value="Continue" handler={handleLogin} />
+          </form>
+        </FormProvider>
+        <Link to="/forgot-password" className={s.forgot}>
+          Forgot the password?
+        </Link>
+        <Separator text="or continue with" />
+        <SocialAuthRowButtons />
+        <AccountExistance title={SignLinkTitle.noAccount} path="sign-up" link={SignLink.signUp} />
+      </div>
     </div>
   );
 };

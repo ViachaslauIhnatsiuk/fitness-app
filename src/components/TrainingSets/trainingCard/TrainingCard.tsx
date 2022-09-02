@@ -1,12 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
+import { BsBookmarkDashFill } from 'react-icons/bs';
 import { Link, useLocation } from 'react-router-dom';
-import s from './TrainingCard.module.css';
 import { TrainingCardProps } from './models';
 import { useStorage } from '../../../hooks/useStorage';
 import { LoadableImage } from '../../loadableImage/LoadableImage';
 import { useAppSelector } from '../../../store/model';
 import { selectProfile } from '../../../store/selectors';
 import { buildRedirectPath } from './helpers';
+import s from './TrainingCard.module.css';
 
 const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } }) => {
   const { pathname } = useLocation();
@@ -37,9 +38,9 @@ const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } })
   return (
     <Link className={s.wrapper} to={redirectPath}>
       <div className={s.info}>
-        <h2>{title}</h2>
-        <p>{level}</p>
-        {isFavorite && <span className={s.favorite}>In Favorite</span>}
+        <h2 className={s.title}>{title}</h2>
+        <p className={s.level}>{level}</p>
+        {isFavorite && <BsBookmarkDashFill className={s.favorite} />}
       </div>
       <div className={s.image}>
         <LoadableImage src={trainingImageUrl} alt="training" />

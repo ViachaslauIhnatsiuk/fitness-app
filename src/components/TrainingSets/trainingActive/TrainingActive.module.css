@@ -1,10 +1,30 @@
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
   width: 100%;
+  padding-top: 20px;
 }
+
+.return {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.icon {
+  font-size: 30px;
+  transition: 0.5s;
+  color: #ffffff;
+}
+
+.icon:hover {
+  color: #7755ff;
+  transition: 0.5s;
+}
+
 .active {
   display: flex;
   flex-direction: column;
@@ -16,4 +36,34 @@
 .exercises {
   display: flex;
   flex-grow: 1;
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    padding-top: 100px;
+  }
+
+  .return {
+    top: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding-top: 130px;
+  }
+
+  .return {
+    top: 120px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding-top: 40px;
+  }
+
+  .return {
+    top: 20px;
+  }
 }

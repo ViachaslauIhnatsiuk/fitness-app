@@ -5,29 +5,30 @@
   align-items: center;
   column-gap: 1rem;
   row-gap: 2rem;
+  cursor: default;
 }
 
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #7755ff;
   width: 120px;
   height: 40px;
   border-radius: 99px;
   padding: 0.2rem 1rem;
   column-gap: 0.6rem;
-  background-color: #7800e2;
-  color: #f2f2f2;
-  font-size: 1rem;
+  font-size: 14px;
+  color: #ffffff;
   cursor: pointer;
-  outline: none;
-  color: #e21111;
+  transition: 0.5s;
 }
 
 .button:hover {
-  background-color: #8801ff;
   color: #ffffff;
-  transition: background-color 0.3s;
+  transition: 0.5s;
+  background-color: #6b5bab;
+  box-shadow: 0px 0px 10px 5px rgba(119, 85, 255, 0.2);
 }
 
 .title {

@@ -30,7 +30,6 @@
 }
 
 .remove {
-  align-self: flex-end;
   font-size: 18px;
   cursor: pointer;
   transition: 0.4s;

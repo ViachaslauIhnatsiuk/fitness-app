@@ -5,6 +5,7 @@ import { MealsResponse } from './model';
 interface MealsState {
   currentMeals: MealsResponse;
   isLoading: boolean;
+  isUploaded: boolean;
   error: string;
   mealCardType: string;
 }
@@ -14,6 +15,7 @@ const initialState: MealsState = {
     items: []
   },
   isLoading: false,
+  isUploaded: false,
   error: '',
   mealCardType: ''
 };
@@ -44,16 +46,25 @@ export const fetchMeals = createAsyncThunk(
 const mealsSlice = createSlice({
   name: 'meals',
   initialState,
-  reducers: {},
+  reducers: {
+    setMealCardType: (state, { payload }) => {
+      state.mealCardType = payload;
+    },
+    resetMeals: (state) => {
+      state.currentMeals.items = [];
+      state.mealCardType = '';
+    }
+  },
   extraReducers(builder) {
     builder.addCase(fetchMeals.pending, (state) => {
       state.isLoading = true;
+      state.isUploaded = false;
     });
     builder.addCase(fetchMeals.fulfilled, (state, { payload }) => {
       state.currentMeals = payload.data;
       state.isLoading = false;
+      state.isUploaded = true;
       state.error = '';
-      state.mealCardType = payload.mealCardType;
     });
     builder.addCase(fetchMeals.rejected, (state, { payload }: PayloadAction<unknown | string>) => {
       state.isLoading = false;
@@ -62,4 +73,5 @@ const mealsSlice = createSlice({
   }
 });
 
+export const { setMealCardType, resetMeals } = mealsSlice.actions;
 export { mealsSlice };

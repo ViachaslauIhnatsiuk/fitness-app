@@ -1,31 +1,25 @@
 import React, { FC, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import s from './Charts.module.css';
+import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 import { BarChart } from '../UI/barChart/BarChart';
 import { useCalorieStatistics } from '../../hooks/useCalorieStatistics';
 import { AreaChart } from '../UI/areaChart/AreaChart';
-import { Button } from '../UI/button/Button';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DatePicker } from '../UI/datePicker/DatePicker';
 import {
   AREA_CHART_TITLE,
   BAR_CHART_TITLE,
-  CHANGE_CHART_BTN_TITLE,
   INITIAL_CHART_INDEX,
   INITIAL_END_DATE,
-  INITIAL_ITEMS_PER_SLIDE,
-  INITIAL_START_DATE,
-  NEXT_SLIDE_BTN_TITLE,
-  options,
-  PREV_SLIDE_BTN_TITLE
+  INITIAL_START_DATE
 } from './constants';
 import { useTrainingStatistics } from '../../hooks/useTrainingStatistics';
 import { CircularProgressChart } from './circularProgressChart/CircularProgressChart';
+import s from './Charts.module.css';
 
 const Charts: FC = () => {
   const [date, setDate] = useState<[Date, Date]>([INITIAL_START_DATE, INITIAL_END_DATE]);
   const [page, setPage] = useState<number>(0);
-  const [maxItems, setMaxItems] = useState<number>(INITIAL_ITEMS_PER_SLIDE);
   const [currentChartIndex, setCurrentChartIndex] = useState<number>(INITIAL_CHART_INDEX);
   const [dateStart, dateEnd] = date;
 
@@ -34,14 +28,14 @@ const Charts: FC = () => {
     labels: calorieLabels,
     maxPages: maxCaloriePages,
     indicators: calorieIndicators
-  } = useCalorieStatistics(dateStart, dateEnd, page, maxItems);
+  } = useCalorieStatistics(dateStart, dateEnd, page, 7);
 
   const {
     labels: trainingLabels,
     data: trainingData,
     indicators: trainingIndicators,
     maxPages: maxTrainingPages
-  } = useTrainingStatistics(dateStart, dateEnd, page, maxItems);
+  } = useTrainingStatistics(dateStart, dateEnd, page, 7);
 
   const indicatorsChart = [calorieIndicators, trainingIndicators];
   const maxPagesCharts = [maxCaloriePages, maxTrainingPages];
@@ -59,62 +53,54 @@ const Charts: FC = () => {
   };
 
   const onNextHandler = () => {
-    if (page >= maxPagesCharts[currentChartIndex] - 1) {
-      setPage(0);
-    } else {
+    if (page < maxPagesCharts[currentChartIndex] - 1) {
       setPage((prev) => prev + 1);
     }
   };
 
   const onPrevHandler = () => {
-    if (page <= 0) {
-      setPage(0);
-    } else {
+    if (page > 0) {
       setPage((prev) => prev - 1);
     }
-  };
-
-  const changeMaxItemsViewHandler = ({
-    target: { value }
-  }: React.ChangeEvent<HTMLSelectElement>) => {
-    setMaxItems(Number(value));
-    onPrevHandler();
   };
 
   const updateStateDates = (dates: [Date, Date]) => setDate(dates);
 
   return (
     <div className={s.wrapper}>
-      <Button onClick={changeIndexChartHandler} text={CHANGE_CHART_BTN_TITLE} isStyled />
-      <div>
-        <Button onClick={onNextHandler} text={NEXT_SLIDE_BTN_TITLE} isStyled />
-        <Button onClick={onPrevHandler} text={PREV_SLIDE_BTN_TITLE} isStyled />
-      </div>
-      <select onChange={changeMaxItemsViewHandler} defaultValue={5}>
-        {options.map((value) => (
-          <option key={uuidv4()} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
-      {charts[currentChartIndex]}
-      <div className={s.indicators}>
-        {indicatorsChart[currentChartIndex].length >= 1 &&
-          indicatorsChart[currentChartIndex].map((element) => {
-            return (
-              <div
-                key={uuidv4()}
-                className={s.indicator}
-                style={{ backgroundColor: page === element ? '#7755ff' : 'transparent' }}
-              />
-            );
-          })}
-      </div>
-      <div className={s.date}>
-        <DatePicker
-          getCurrentState={updateStateDates}
-          initialDates={[INITIAL_START_DATE, INITIAL_END_DATE]}
-        />
+      <div className={s.carts}>
+        <div className={s.navigation}>
+          <div className={s.date}>
+            <DatePicker
+              getCurrentState={updateStateDates}
+              initialDates={[INITIAL_START_DATE, INITIAL_END_DATE]}
+            />
+          </div>
+          <div className={s.buttons}>
+            <button type="button" className={s.next} onClick={onPrevHandler}>
+              <AiFillCaretLeft className={s.arrow} />
+            </button>
+            <button type="button" className={s.change} onClick={changeIndexChartHandler}>
+              Change Chart
+            </button>
+            <button type="button" className={s.previuos} onClick={onNextHandler}>
+              <AiFillCaretRight className={s.arrow} />
+            </button>
+          </div>
+        </div>
+        {charts[currentChartIndex]}
+        <div className={s.indicators}>
+          {indicatorsChart[currentChartIndex].length >= 1 &&
+            indicatorsChart[currentChartIndex].map((element) => {
+              return (
+                <div
+                  key={uuidv4()}
+                  className={s.indicator}
+                  style={{ backgroundColor: page === element ? '#7755ff' : 'transparent' }}
+                />
+              );
+            })}
+        </div>
       </div>
       <CircularProgressChart />
     </div>

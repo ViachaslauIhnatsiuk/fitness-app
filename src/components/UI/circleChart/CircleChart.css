@@ -1,0 +1,36 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 120px;
+}
+
+.text {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  font-size: 17px;
+}
+
+.CircularProgressbar-text {
+  dominant-baseline: auto !important;
+}
+
+@media (max-width: 1300px) {
+  .wrapper {
+    max-width: 100px;
+  }
+
+  .text {
+    font-size: 13px;
+  }
+
+  .CircularProgressbar-text {
+    font-size: 34px !important;
+  }
+}

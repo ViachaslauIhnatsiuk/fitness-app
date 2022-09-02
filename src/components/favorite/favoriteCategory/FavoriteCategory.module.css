@@ -9,7 +9,7 @@
 
 .image_wrapper {
   position: relative;
-  min-height: 220px;
+  min-height: 190px;
 }
 
 .image {
@@ -45,14 +45,14 @@
 }
 
 .label {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
   letter-spacing: 0.05em;
 }
 
 @media (max-width: 1600px) {
   .image_wrapper {
-    min-height: 200px;
+    min-height: 170px;
   }
 
   .label {

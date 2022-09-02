@@ -6,8 +6,10 @@ import s from './Home.module.css';
 const Home: FC = () => {
   return (
     <div className={s.wrapper}>
-      <Favorite />
-      <Charts />
+      <div className={s.main}>
+        <Favorite />
+        <Charts />
+      </div>
     </div>
   );
 };

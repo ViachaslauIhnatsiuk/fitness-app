@@ -6,7 +6,7 @@ import {
   DropResult,
   DraggableLocation
 } from 'react-beautiful-dnd';
-import { transformDate } from '../../../helpers/transformDate';
+import { dateToday } from '../../../helpers/transformDate';
 import { useAppSelector } from '../../../store/model';
 import { selectUserMeals } from '../../../store/selectors';
 import { IDailyMeals } from '../../../store/slices/meals/model';
@@ -17,7 +17,6 @@ import './MealList.css';
 const MealList: FC = () => {
   const [cardsOrder, updateCardsOrder] = useState<IDailyMeals[]>(defaultMeals);
   const userMeals = useAppSelector(selectUserMeals);
-  const dateToday = transformDate(new Date());
 
   useEffect(() => {
     const todayUserMeals = userMeals.filter((meal) => meal.date === dateToday);
@@ -41,7 +40,6 @@ const MealList: FC = () => {
                 <Draggable key={id} draggableId={id.toString()} index={index}>
                   {(provider) => (
                     <div
-                      className="card_wrapper"
                       ref={provider.innerRef}
                       {...provider.draggableProps}
                       {...provider.dragHandleProps}

@@ -9,7 +9,7 @@ import { useAppSelector } from '../../../store/model';
 import { selectMeals } from '../../../store/selectors';
 import { fetchMeals, resetMeals, setMealCardType } from '../../../store/slices/meals/mealsSlice';
 import { deleteCard, editCardTitle, setMeals } from '../../../store/slices/profileSlice';
-import { transformDate } from '../../../helpers/transformDate';
+import { dateToday } from '../../../helpers/transformDate';
 import Loader from '../../UI/loader/Loader';
 
 const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
@@ -17,11 +17,16 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
   const [dishSize, setDishSize] = useState<number>(0);
   const [newTitle, setNewTitle] = useState<string>(title);
   const [editMode, setEditMode] = useState<boolean>(false);
-  const dateNow = transformDate(new Date());
   const totalCalories = meals.reduce((acc, cur) => acc + cur.calories, 0).toFixed(1);
 
   const dispatch = useAppDispatch();
-  const { isLoading, error, mealCardType, currentMeals, isUploaded } = useAppSelector(selectMeals);
+  const {
+    isLoading,
+    error,
+    mealCardType,
+    currentMeals: { items },
+    isUploaded
+  } = useAppSelector(selectMeals);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -38,7 +43,7 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
   };
 
   const handleAddNewDish = () => {
-    dispatch(setMeals({ date: dateNow, mealTitle: title, meal: currentMeals.items[0] }));
+    dispatch(setMeals({ date: dateToday, mealTitle: title, meal: items[0] }));
     setDishName('');
     setDishSize(0);
     dispatch(resetMeals());
@@ -84,14 +89,15 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
             <input
               type="text"
               className={s.dish}
-              placeholder="Dish"
+              placeholder="Dish: name"
               value={dishName}
               onChange={(e) => setDishName(e.target.value)}
             />
             <input
               type="number"
+              min={0}
               className={s.size}
-              placeholder="Dish size"
+              placeholder="Size: g"
               value={dishSize || ''}
               onChange={(e) => setDishSize(Number(e.target.value))}
             />
@@ -104,14 +110,14 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
             {error && <h3>{error}</h3>}
             {isLoading && (
               <div className={s.center}>
-                <Loader />
+                <Loader size={15} />
               </div>
             )}
             {isUploaded &&
-              (currentMeals.items.length ? (
+              (items.length ? (
                 <div className={s.form_wrapper}>
                   <div className={s.preview}>
-                    {currentMeals.items[0].name} {}: {currentMeals.items[0].calories}cal
+                    {items[0].name} - {items[0].serving_size_g}g: {items[0].calories}cal
                   </div>
                   <button type="button" className={s.button} onClick={handleAddNewDish}>
                     <IoAdd className={s.icon} />

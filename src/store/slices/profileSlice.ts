@@ -8,9 +8,7 @@ import { convertDateToString } from '../helpers';
 import { IRecipeInfoShort } from '../../models/modelRecipeById';
 import { toggleObjectInArray } from '../../helpers/toggleObjectInArray';
 import { IDailyMeals } from './meals/model';
-import { transformDate } from '../../helpers/transformDate';
-
-const dateToday = transformDate(new Date());
+import { dateToday } from '../../helpers/transformDate';
 
 const initialState: ProfileState = {
   isAuth: false,
@@ -51,7 +49,7 @@ const profileSlice = createSlice({
     },
     setUserState: (state, { payload: user }: PayloadAction<IUser>) => {
       const { currentUser } = state;
-      const { favorite, statistics } = user;
+      const { favorite, statistics, userMeals } = user;
       currentUser.userData = user.userData;
       currentUser.id = user.id;
       currentUser.email = user.email;
@@ -62,6 +60,7 @@ const profileSlice = createSlice({
 
       if (favorite) currentUser.favorite = favorite;
       if (statistics) currentUser.statistics = statistics;
+      if (userMeals) currentUser.userMeals = userMeals;
     },
     setNewUser: (state, { payload }: PayloadAction<IUserData>) => {
       state.currentUser.userData = payload;

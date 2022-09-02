@@ -2,14 +2,11 @@
   display: flex;
   flex-direction: column;
   width: 350px;
-  max-height: 230px;
-  overflow: auto;
   padding: 10px;
   border: 1px solid #7755ff;
   border-radius: 10px;
   row-gap: 10px;
   background-color: #1f222a;
-  flex-wrap: wrap;
 }
 
 .header {
@@ -158,6 +155,6 @@ input::-webkit-inner-spin-button {
 .center {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 50px;
 }

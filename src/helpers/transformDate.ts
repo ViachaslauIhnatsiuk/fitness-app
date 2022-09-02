@@ -5,4 +5,6 @@ const transformDate = (date: Date): string => {
   return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 };
 
-export { transformDate };
+const dateToday = transformDate(new Date());
+
+export { transformDate, dateToday };

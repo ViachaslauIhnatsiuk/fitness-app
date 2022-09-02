@@ -19,7 +19,7 @@ const CircularProgressChart: FC = () => {
     <div className={s.circles}>
       <CircleChart
         maxValue={100}
-        currentValue={totalTrainings + 10}
+        currentValue={totalTrainings}
         color={DEFAULT_CIRCULAR_PATH_COLOR}
         text="Workouts"
       />

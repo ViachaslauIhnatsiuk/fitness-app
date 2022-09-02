@@ -3,6 +3,49 @@
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  font-size: 30px;
-  color: #fff;
+  padding: 60px 120px 0;
+  color: #ffffff;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fade-in 1.5s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1600px) {
+  .wrapper {
+    padding: 60px 60px 0;
+  }
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    padding: 60px 40px 105px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 30px 20px 105px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding: 100px 0 105px;
+  }
+
 }

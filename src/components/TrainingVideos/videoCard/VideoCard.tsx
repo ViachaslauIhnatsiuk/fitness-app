@@ -1,13 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { BsBookmarkDashFill } from 'react-icons/bs';
 import { useStorage } from '../../../hooks/useStorage';
 import { LoadableImage } from '../../loadableImage/LoadableImage';
 import { VideoCardProps } from './models';
 import { convertTitleVideoCard } from '../utils';
-import s from './VideoCard.module.css';
 import { useAppSelector } from '../../../store/model';
 import { selectProfile } from '../../../store/selectors';
 import { buildRedirectPath } from './helpers';
+import s from './VideoCard.module.css';
 
 const VideoCard: FC<VideoCardProps> = ({ title, id, videoCategory }) => {
   const {
@@ -37,7 +38,7 @@ const VideoCard: FC<VideoCardProps> = ({ title, id, videoCategory }) => {
 
   return (
     <Link className={s.wrapper} to={redirectPath}>
-      {isFavorite && <span className={s.favorite}>In Favorite</span>}
+      {isFavorite && <BsBookmarkDashFill className={s.favorite} />}
       <h3 className={s.title}>{convertTitleVideoCard(title)}</h3>
       <div className={s.image}>
         <LoadableImage src={videoPreviewUrl} alt="preview" />

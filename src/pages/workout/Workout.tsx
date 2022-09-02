@@ -6,8 +6,10 @@ import s from './Workout.module.css';
 const Workout: FC = () => {
   return (
     <div className={s.wrapper}>
-      <WorkoutNavbar />
-      <Outlet />
+      <div className={s.main}>
+        <WorkoutNavbar />
+        <Outlet />
+      </div>
     </div>
   );
 };

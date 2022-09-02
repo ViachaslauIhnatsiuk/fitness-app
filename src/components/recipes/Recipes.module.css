@@ -1,18 +1,15 @@
 .wrapper {
-  font-size: 30px;
-  color: #fff;
-  padding: 20px;
   width: 100%;
-  padding: 10px;
+  font-size: 30px;
 }
 
 .recipes {
   display: grid;
   grid-template-columns: repeat(4, 3fr);
-  gap: 10px;
+  gap: 20px;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1300px) {
   .recipes {
     grid-template-columns: repeat(3, 4fr);
   }
@@ -21,5 +18,20 @@
 @media (max-width: 870px) {
   .recipes {
     grid-template-columns: repeat(2, 6fr);
+    padding-top: 90px;
+  }
+}
+
+@media (max-width: 600px) {
+  .recipes {
+    grid-template-columns: repeat(2, 6fr);
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 450px) {
+  .recipes {
+    grid-template-columns: repeat(1, 12fr);
+    padding-top: 40px;
   }
 }

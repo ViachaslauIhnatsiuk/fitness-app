@@ -1,20 +1,23 @@
 import React from 'react';
-import { FiVideo } from 'react-icons/fi';
-import { MdOutlineSportsBar } from 'react-icons/md';
-import { useLocation } from 'react-router-dom';
-import { WorkoutPath } from '../../../models/Workout';
-import { CustomLink } from '../../UI/customLink/CustomLink';
+import { Link, useLocation } from 'react-router-dom';
+import { getSecondPartPath } from '../../../helpers/getSecondPartPath';
 import s from './WorkoutNavbar.module.css';
 
 const WorkoutNavbar = () => {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const secondPart = getSecondPartPath(location.pathname);
 
-  if (pathname.includes(`${WorkoutPath.trainings}/`)) return null;
+  const videosClassName = secondPart === 'videos' ? s.link_active : s.link;
+  const trainingsClassName = secondPart === 'trainings' ? s.link_active : s.link;
 
   return (
-    <div className={s.navbar}>
-      <CustomLink path="videos" title="Video trainings" icon={<FiVideo />} />
-      <CustomLink path="trainings" title="Trainings" icon={<MdOutlineSportsBar />} />
+    <div className={s.links}>
+      <Link to="videos" className={videosClassName}>
+        Video trainings
+      </Link>
+      <Link to="trainings" className={trainingsClassName}>
+        Trainings
+      </Link>
     </div>
   );
 };

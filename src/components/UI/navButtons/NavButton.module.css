@@ -6,15 +6,20 @@
   align-items: center;
 }
 
+.wrapper:hover .icon_active,
+.wrapper:hover .title_active {
+  color: #7755ff;
+}
+
 .icon {
-  font-size: 1.8rem;
+  font-size: 2.7rem;
   color: #7755ff;
   cursor: pointer;
   transition: 0.7s;
 }
 
 .icon_active {
-  font-size: 1.8rem;
+  font-size: 2.7rem;
   color: #828283;
   cursor: pointer;
   transition: 0.7s;
@@ -45,12 +50,48 @@
 
 .line_active {
   position: absolute;
-  top: 0;
+  top: -5%;
   right: 0;
   width: 4px;
   border-radius: 3px 0 0 3px;
-  height: 100%;
+  height: 110%;
   background-color: #7755ff;
   z-index: 2;
   transition: 0.7s;
+}
+
+@media (max-width: 870px) {
+
+  .line,
+  .line_active {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .icon,
+  .icon_active {
+    font-size: 2rem;
+  }
+
+  .title,
+  .title_active {
+    margin-top: 6px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 450px) {
+
+  .icon,
+  .icon_active {
+    font-size: 1.7rem;
+  }
+
+  .title,
+  .title_active {
+    margin: 0;
+    font-size: 10px;
+  }
 }

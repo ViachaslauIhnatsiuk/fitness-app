@@ -13,10 +13,10 @@ const TrainingPreparation: FC<TrainingPreparationProps> = ({ onSkipHandler, onUp
   return (
     <div className={s.preparation}>
       <div className={s.preparation__timer}>
-        <h1>Get Ready!</h1>
+        <h1 className={s.title}>Get Ready!</h1>
         <CircleTimer
           duration={PREPARATION_TIME}
-          colors={['#7C00FF', '#7C00FF']}
+          colors={['#7755ff', '#7755ff']}
           fontSize={70}
           onUpdate={onUpdateHandler}
         />

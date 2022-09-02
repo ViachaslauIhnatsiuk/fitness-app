@@ -1,9 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { FiSearch } from 'react-icons/fi';
+import { IoMdClose } from 'react-icons/io';
 import { useDebounce } from '../../../hooks/useDebounce';
 import { useAppSelector } from '../../../store/model';
 import { selectTrainings } from '../../../store/selectors';
 import { setFilterBySearch } from '../../../store/slices/training/trainingSlice';
 import { useAppDispatch } from '../../../store/store';
+import s from './filterBySearch.module.css';
 
 const FilterBySearch = () => {
   const dispatch = useAppDispatch();
@@ -26,17 +29,16 @@ const FilterBySearch = () => {
   }, [debouncedValue, dispatch]);
 
   return (
-    <div>
+    <div className={s.input_wrapper}>
       <input
-        placeholder="Search"
         type="text"
-        onChange={changeSearchValueHandler}
+        className={s.input}
+        placeholder="Enter workout"
         value={filter}
-        autoComplete="off"
+        onChange={changeSearchValueHandler}
       />
-      <button type="button" onClick={clearSearchValueHandler}>
-        X
-      </button>
+      <FiSearch className={s.icon_search} />
+      {filter && <IoMdClose className={s.icon_delete} onClick={clearSearchValueHandler} />}
     </div>
   );
 };

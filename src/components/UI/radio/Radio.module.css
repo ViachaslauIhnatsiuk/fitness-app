@@ -1,41 +1,40 @@
-.input {
+.radio {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: #6b03fd 1px solid;
-  width: fit-content;
-  background-color: #6b03fd;
-  height: 50px;
-  border-radius: 99px;
-  padding: 0rem 2rem;
-  column-gap: 0.6rem;
-  color: #dedede;
-  font-size: 1rem;
-  cursor: pointer;
-  outline: none;
-  background: none;
+}
+
+.input {
+  display: none;
 }
 
 .input:hover+label {
-  background-color: #6b03fd;
-  transition: background-color 0.3s;
+  background-color: #7755ff;
+  border: 1px solid #7755ff;
+  transition: 0.5s;
 }
 
 .input:checked+label {
-  background-color: #6b03fd;
-  transition: background-color 0.3s;
+  background-color: #7755ff;
+  border: 1px solid #7755ff;
+  transition: 0.5s;
 }
 
 .label {
   display: inline-block;
   cursor: pointer;
-  padding: 0px 15px;
-  line-height: 34px;
+  padding: 3px 15px;
   border-right: none;
   user-select: none;
-  border: 1px solid #6b03fd;
+  border: 1px solid #25282f;
+  border-radius: 5px;
+  background-color: #1f222a;
+  transition: 0.5s;
 }
 
-.input {
-  display: none;
+@media (max-width: 1600px) {
+  .label {
+    padding: 3px 12px;
+    font-size: 16px;
+  }
 }

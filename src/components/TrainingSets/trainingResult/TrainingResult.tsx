@@ -1,5 +1,4 @@
 import React, { FC, useEffect } from 'react';
-import s from './TrainingResult.module.css';
 import { Button } from '../../UI/button/Button';
 import { WorkoutPath } from '../../../models/Workout';
 import { TrainingResultProps } from './models';
@@ -11,6 +10,7 @@ import {
   setTotalTrainings
 } from '../../../store/slices/profileSlice';
 import { covertToMinutesString } from '../../../helpers/covertSecondsToMinutes';
+import s from './TrainingResult.module.css';
 
 const TrainingResult: FC<TrainingResultProps> = ({ statisticsOfTraining: { cal, time } }) => {
   const dispatch = useAppDispatch();
@@ -26,13 +26,11 @@ const TrainingResult: FC<TrainingResultProps> = ({ statisticsOfTraining: { cal, 
 
   return (
     <div className={s.wrapper}>
-      <div className={s.image}>
-        <img src="/images/result.png" alt="result" />
-      </div>
+      <img className={s.image} src="/images/result.png" alt="result" />
       <h1 className={s.title}>Congratulations!</h1>
       <p className={s.description}>You have completed the workout!</p>
-      <span>Cal: {resultCal}</span>
-      <span>Time: {covertToMinutesString(resultTime)}</span>
+      <div className={s.value}>Cal: {resultCal}</div>
+      <div className={s.value}>Time: {covertToMinutesString(resultTime)}</div>
       <div className={s.buttons}>
         <Button
           path={WorkoutPath.trainings}

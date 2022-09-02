@@ -7,7 +7,6 @@ const useStorage = () => {
   const [videoPreviewUrl, setVideoPreviewUrl] = useState<string>('');
   const [trainingImageUrl, setTrainingImageUrl] = useState<string>('');
   const [exerciseGifUrl, setExerciseGifUrl] = useState<string>('');
-  const [categoryImageUrl, setCategoryImageUrl] = useState<string>('');
 
   const getVideoUrl = useCallback(async (category: string, name: string): Promise<void> => {
     const url = await getDownloadURL(
@@ -35,21 +34,14 @@ const useStorage = () => {
     setExerciseGifUrl(url);
   }, []);
 
-  const getCategoryImageUrl = useCallback(async (name: string): Promise<void> => {
-    const url = await getDownloadURL(ref(storage, `categories_preview/${name}.jpg`)).catch();
-    setCategoryImageUrl(url);
-  }, []);
-
   return {
     videoUrl,
     trainingImageUrl,
     exerciseGifUrl,
-    categoryImageUrl,
     videoPreviewUrl,
     getVideoUrl,
     getTrainingPreviewUrl,
     getExerciseGifUrl,
-    getCategoryImageUrl,
     getVideoPreviewUrl,
     setExerciseGifUrl
   };

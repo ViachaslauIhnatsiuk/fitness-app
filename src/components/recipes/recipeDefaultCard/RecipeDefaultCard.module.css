@@ -4,17 +4,21 @@
   overflow: hidden;
   transition: 0.5s;
 }
+
 .link:hover {
   cursor: pointer;
 }
+
 .link:hover .image {
   transform: scale(1.15);
   transition: 0.5s;
 }
+
 .image_wrapper {
   position: relative;
-  min-height: 150px;
+  min-height: 180px;
 }
+
 .image {
   width: 100%;
   height: 100%;
@@ -25,19 +29,46 @@
   transform: scale(1.1);
   transition: 0.5s;
 }
+
 .overlay {
-  padding: 5px;
-  width: 90%;
+  padding: 5px 5px 5px 15px;
+  width: 70%;
   position: absolute;
   bottom: 0;
   right: 0;
   background-color: #000000a4;
-  border-top-left-radius: 5px;
+  border-radius: 5px 0 10px 0;
   display: flex;
   flex-direction: column;
   transition: 0.5s;
   color: #ffffff;
 }
+
 .label {
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 1300px) {
+  .image_wrapper {
+    min-height: 150px;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .image_wrapper {
+    min-height: 110px;
+  }
+
+}
+
+@media (max-width: 870px) {
+  .label {
+    font-size: 13px;
+  }
 }

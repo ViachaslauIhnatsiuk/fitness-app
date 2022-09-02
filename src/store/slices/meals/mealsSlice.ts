@@ -1,14 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { API_KEY_MEAL, BASE_URL_MEAL } from '../../constants';
-import { MealsResponse } from './model';
-
-interface MealsState {
-  currentMeals: MealsResponse;
-  isLoading: boolean;
-  isUploaded: boolean;
-  error: string;
-  mealCardType: string;
-}
+import type { ConfigRequest, IResponse, MealsResponse, MealsState } from './model';
 
 const initialState: MealsState = {
   currentMeals: {
@@ -19,11 +11,6 @@ const initialState: MealsState = {
   error: '',
   mealCardType: ''
 };
-
-interface ConfigRequest {
-  query: string;
-  mealCardType: string;
-}
 
 export const fetchMeals = createAsyncThunk(
   'meals/fetchMeals',
@@ -47,7 +34,7 @@ const mealsSlice = createSlice({
   name: 'meals',
   initialState,
   reducers: {
-    setMealCardType: (state, { payload }) => {
+    setMealCardType: (state, { payload }: PayloadAction<string>) => {
       state.mealCardType = payload;
     },
     resetMeals: (state) => {
@@ -60,7 +47,7 @@ const mealsSlice = createSlice({
       state.isLoading = true;
       state.isUploaded = false;
     });
-    builder.addCase(fetchMeals.fulfilled, (state, { payload }) => {
+    builder.addCase(fetchMeals.fulfilled, (state, { payload }: PayloadAction<IResponse>) => {
       state.currentMeals = payload.data;
       state.isLoading = false;
       state.isUploaded = true;

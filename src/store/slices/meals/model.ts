@@ -24,4 +24,22 @@ interface IDailyMeals {
   meals: IMeal[];
 }
 
-export type { IMeal, MealsResponse, IDailyMeals };
+interface MealsState {
+  currentMeals: MealsResponse;
+  isLoading: boolean;
+  isUploaded: boolean;
+  error: string;
+  mealCardType: string;
+}
+
+interface ConfigRequest {
+  query: string;
+  mealCardType: string;
+}
+
+interface IResponse {
+  data: MealsResponse;
+  mealCardType: string;
+}
+
+export type { IMeal, MealsResponse, IDailyMeals, MealsState, ConfigRequest, IResponse };

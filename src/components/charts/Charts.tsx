@@ -28,14 +28,14 @@ const Charts: FC = () => {
     labels: calorieLabels,
     maxPages: maxCaloriePages,
     indicators: calorieIndicators
-  } = useCalorieStatistics(dateStart, dateEnd, page, 7);
+  } = useCalorieStatistics(dateStart, dateEnd, page, 10);
 
   const {
     labels: trainingLabels,
     data: trainingData,
     indicators: trainingIndicators,
     maxPages: maxTrainingPages
-  } = useTrainingStatistics(dateStart, dateEnd, page, 7);
+  } = useTrainingStatistics(dateStart, dateEnd, page, 10);
 
   const indicatorsChart = [calorieIndicators, trainingIndicators];
   const maxPagesCharts = [maxCaloriePages, maxTrainingPages];

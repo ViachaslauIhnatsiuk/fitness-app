@@ -4,9 +4,8 @@ import { BsArrowLeft, BsBookmarkDash, BsBookmarkDashFill } from 'react-icons/bs'
 import { Link, useParams } from 'react-router-dom';
 import { useStorage } from '../../../hooks/useStorage';
 import { VideoPlayer } from '../../UI/videoPlayer/VideoPlayer';
-import { calculateCalories, convertTitleVideoCard } from '../utils';
+import { calculateCalories, calculateTime, convertTitleVideoCard } from '../utils';
 import { VideoTable } from '../videoTable/VideoTable';
-import { Button } from '../../UI/button/Button';
 import Loader from '../../UI/loader/Loader';
 import { useVideo } from '../../../hooks/useVideo';
 import { WorkoutPath } from '../../../models/Workout';
@@ -14,16 +13,27 @@ import { convertToArrayByValue } from './utils';
 import { useAppDispatch } from '../../../store/store';
 import {
   setCalorieExpenditure,
+  setDailyTimeTrainings,
+  setTotalTimeTrainings,
+  setTotalTrainings,
   setVideoTrainingToFavorites
 } from '../../../store/slices/profileSlice';
 import { Radio } from '../../UI/radio/Radio';
 import s from './VideoPage.module.css';
+import { useAppSelector } from '../../../store/model';
+import { selectProfile } from '../../../store/selectors';
 
 const VideoPage: FC = () => {
   const { videoId } = useParams();
   const dispatch = useAppDispatch();
   const { getVideoPreviewUrl, getVideoUrl, videoPreviewUrl, videoUrl } = useStorage();
   const { getVideoById, isLoading, video } = useVideo();
+  const {
+    currentUser: {
+      favorite: { videoTrainings }
+    }
+  } = useAppSelector(selectProfile);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [sets, setSets] = useState<number>(3);
   const [buttonSubmit, setButtonSubmit] = useState<boolean>(false);
 
@@ -32,7 +42,7 @@ const VideoPage: FC = () => {
   }, [getVideoById, videoId]);
 
   useEffect(
-    function setVideoAssets(): void {
+    function setVideoAssets() {
       (async () => {
         if (video) {
           const { category, title } = video;
@@ -44,6 +54,14 @@ const VideoPage: FC = () => {
     [getVideoPreviewUrl, getVideoUrl, video]
   );
 
+  useEffect(
+    function changeStateIsFavorite() {
+      const state = videoTrainings.includes(Number(videoId));
+      setIsFavorite(state);
+    },
+    [videoId, videoTrainings]
+  );
+
   const addToFavoriteHandler = () => {
     if (video) dispatch(setVideoTrainingToFavorites(video.id));
   };
@@ -51,11 +69,16 @@ const VideoPage: FC = () => {
   const setCaloriesHandler = () => {
     if (video) {
       const {
-        details: { cal }
+        details: { cal, reps }
       } = video;
 
-      const calorieTotal = calculateCalories(sets, cal);
-      dispatch(setCalorieExpenditure(calorieTotal));
+      const totalCalories = calculateCalories(sets, cal);
+      const resultTime = calculateTime(sets, reps);
+
+      dispatch(setCalorieExpenditure(totalCalories));
+      dispatch(setTotalTimeTrainings(resultTime));
+      dispatch(setDailyTimeTrainings(resultTime));
+      dispatch(setTotalTrainings(1));
     }
     setButtonSubmit(true);
     setTimeout(() => setButtonSubmit(false), 4000);
@@ -75,12 +98,11 @@ const VideoPage: FC = () => {
         >
           <BsArrowLeft className={s.icon} />
         </Link>
-        {/* {favorites.recipes.find((recipe) => recipe.id === recipeInfo.id) ? (
-            <BsBookmarkDashFill onClick={addToFavoriteHandler} className={s.bookmark} />
-          ) : (
-            <BsBookmarkDash onClick={addToFavoriteHandler} className={s.bookmark} />
-          )} */}
-        <BsBookmarkDash onClick={addToFavoriteHandler} className={s.bookmark} />
+        {isFavorite ? (
+          <BsBookmarkDashFill onClick={addToFavoriteHandler} className={s.bookmark} />
+        ) : (
+          <BsBookmarkDash onClick={addToFavoriteHandler} className={s.bookmark} />
+        )}
         <div className={s.info}>
           {isLoading ? (
             <Loader />

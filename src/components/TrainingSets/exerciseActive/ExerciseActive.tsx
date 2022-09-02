@@ -8,9 +8,10 @@ import s from './ExerciseActive.module.css';
 const ExerciseActive: FC<ExerciseActiveProps> = ({
   exercise: { time, title },
   exerciseGifUrl,
-  onClickTimerHandler,
   onPrevHandler,
-  onNextHandler
+  onNextHandler,
+  onUpdate,
+  currentPosition
 }) => {
   return (
     <div className={s.wrapper}>
@@ -19,11 +20,12 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
       <CircleTimer
         duration={time}
         btnTitle="PAUSE"
-        onClick={onClickTimerHandler}
         colors={['#7755ff', '#7755ff']}
         size={110}
         fontSize={42}
         strokeWidth={5}
+        onUpdate={onUpdate}
+        isTimerCanPause
       />
       <div className={s.buttons}>
         <Button
@@ -32,6 +34,7 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
           isStyled
           icon={<AiOutlineLeft />}
           customStyles={s.button}
+          isDisabled={currentPosition === 0}
         />
         <Button
           text="Skip"

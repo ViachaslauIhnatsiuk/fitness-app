@@ -4,10 +4,15 @@ type ReturnArrayType = IVideo[] | IWorkout[];
 type PossibleObjectType = IVideos | IWorkouts;
 type PossibleArrayType = (IWorkout | IVideo)[];
 
+const addZeroToDate = (date: number) => {
+  const dateArray = String(date).split('');
+  return dateArray.length === 1 ? `0${dateArray.join('')}` : dateArray.join('');
+};
+
 const convertDateToString = (date: Date): string => {
   const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDate();
+  const month = addZeroToDate(date.getMonth() + 1);
+  const day = addZeroToDate(date.getDate());
   return `${year}-${month}-${day}`;
 };
 

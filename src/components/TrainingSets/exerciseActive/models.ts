@@ -3,9 +3,10 @@ import { IExercise } from '../../../models/Workout';
 type ExerciseActiveProps = {
   exercise: IExercise;
   exerciseGifUrl: string;
-  onClickTimerHandler: () => void;
   onNextHandler: () => void;
   onPrevHandler: () => void;
+  onUpdate: (remainingTime: number) => void;
+  currentPosition: number;
 };
 
 export type { ExerciseActiveProps };

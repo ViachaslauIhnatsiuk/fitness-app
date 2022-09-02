@@ -42,7 +42,8 @@ const useStorage = () => {
     getVideoUrl,
     getTrainingPreviewUrl,
     getExerciseGifUrl,
-    getVideoPreviewUrl
+    getVideoPreviewUrl,
+    setExerciseGifUrl
   };
 };
 

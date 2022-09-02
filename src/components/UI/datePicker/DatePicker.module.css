@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  padding-top: 1rem;
+  color: #7755ff;
+  font-size: 3.4rem;
+}
+
+.input {
+  background-color: #7755ff;
+  color: #ffff;
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}

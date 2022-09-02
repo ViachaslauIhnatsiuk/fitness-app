@@ -1,10 +1,10 @@
-const capitalize = (str: string) => {
+const capitalize = (str: string): string => {
   return str.replace(/(^|\s)\S/g, (a: string) => {
     return a.toUpperCase();
   });
 };
 
-const convertTitleVideoCard = (title: string) =>
+const convertTitleVideoCard = (title: string): string =>
   capitalize(
     title
       .split('_')
@@ -12,7 +12,7 @@ const convertTitleVideoCard = (title: string) =>
       .join(' ')
   );
 
-const calculateCalories = (numberOfSets: number, calories: number) => {
+const calculateCalories = (numberOfSets: number, calories: number): number => {
   const value = numberOfSets * (calories / 3);
 
   const addPercentage = (multiplier: number): number =>
@@ -29,4 +29,9 @@ const calculateCalories = (numberOfSets: number, calories: number) => {
   return addPercentage(3);
 };
 
-export { convertTitleVideoCard, calculateCalories };
+const calculateTime = (numberOfSets: number, numberOfReps: string): number => {
+  const reps = parseInt(numberOfReps, 10);
+  return numberOfSets * reps;
+};
+
+export { convertTitleVideoCard, calculateCalories, calculateTime };

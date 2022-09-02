@@ -13,26 +13,28 @@ const ForgotPassword: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.title}>Enter the email address associated with your Fit & Eat account</div>
-      {resetPasswordError && (
-        <div className={s.error}>We cannot find an account with that email address</div>
-      )}
-      {success && (
-        <div className={s.error}>
-          We have sent a link for changing password to your email. Please check it, then go back and
-          try to authenticate
-        </div>
-      )}
-      <FormProvider {...methods}>
-        <form className={s.form} onSubmit={handleSubmit(() => reset())}>
-          <EmailInput />
-          <ForgotSubmitButton
-            path="/sign-in-with-password"
-            value="Continue"
-            handler={handleForgotPassword}
-          />
-        </form>
-      </FormProvider>
+      <div className={s.main}>
+        <div className={s.title}>Enter email address associated with your Fit & Eat account</div>
+        {resetPasswordError && (
+          <div className={s.error}>We cannot find an account with that email address</div>
+        )}
+        {success && (
+          <div className={s.error}>
+            We have sent a link for changing password to your email. Please check it, then go back
+            and try to authenticate
+          </div>
+        )}
+        <FormProvider {...methods}>
+          <form className={s.form} onSubmit={handleSubmit(() => reset())}>
+            <EmailInput />
+            <ForgotSubmitButton
+              path="/sign-in-with-password"
+              value="Continue"
+              handler={handleForgotPassword}
+            />
+          </form>
+        </FormProvider>
+      </div>
     </div>
   );
 };

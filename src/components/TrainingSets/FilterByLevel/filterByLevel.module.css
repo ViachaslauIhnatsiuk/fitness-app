@@ -5,25 +5,9 @@
   margin-bottom: 1rem;
 }
 
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: #6b03fd 1px solid;
-  width: fit-content;
-  height: 30px;
-  border-radius: 99px;
-  padding: 0.2rem 1rem;
-  column-gap: 0.6rem;
-  color: #6b03fd;
-  font-size: 1rem;
-  cursor: pointer;
-  outline: none;
-  background: none;
-}
-
-.button:hover {
-  background-color: #6b03fd;
-  color: #fff;
-  transition: all 0.3s;
+@media (max-width: 450px) {
+  .filters {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }

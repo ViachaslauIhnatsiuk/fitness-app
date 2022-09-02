@@ -18,21 +18,19 @@ const FilterByLevel: FC = () => {
   };
 
   return (
-    <div className={s.filters}>
-      <ul>
-        {levelsOfTraining.map(({ level, nameCheckbox }) => {
-          return (
-            <Radio
-              key={level}
-              name={nameCheckbox}
-              value={level}
-              onChange={changeLevelHandler}
-              state={filterByLevel}
-            />
-          );
-        })}
-      </ul>
-    </div>
+    <ul className={s.filters}>
+      {levelsOfTraining.map(({ level, nameCheckbox }) => {
+        return (
+          <Radio
+            key={level}
+            name={nameCheckbox}
+            value={level}
+            onChange={changeLevelHandler}
+            state={filterByLevel}
+          />
+        );
+      })}
+    </ul>
   );
 };
 

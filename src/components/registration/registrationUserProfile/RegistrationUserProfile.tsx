@@ -23,27 +23,29 @@ const RegistrationUserProfile: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.title}>Fill Your Profile</div>
-      <Avatar setImageUrl={setImageUrl} />
-      {registrationError && <div className={s.error}>This email address is already in use</div>}
-      <FormProvider {...methods}>
-        <form className={s.form} onSubmit={handleSubmit(() => reset())}>
-          <NameInput />
-          <EmailInput />
-          <PasswordInput />
-          <ConfirmPasswordInput />
-          <RememberMe />
-          <RegSubmitButton
-            avatar={imageUrl}
-            path=""
-            value="Complete registration"
-            handler={handleRegistration}
-          />
-        </form>
-      </FormProvider>
-      <Separator text="or continue with" />
-      <SocialAuthRowButtons />
-      <AccountExistance title={SignLinkTitle.haveAccount} path="sign-in" link={SignLink.signIn} />
+      <div className={s.main}>
+        <div className={s.title}>Fill Your Profile</div>
+        <Avatar setImageUrl={setImageUrl} />
+        {registrationError && <div className={s.error}>This email address is already in use</div>}
+        <FormProvider {...methods}>
+          <form className={s.form} onSubmit={handleSubmit(() => reset())}>
+            <NameInput />
+            <EmailInput />
+            <PasswordInput />
+            <ConfirmPasswordInput />
+            <RememberMe />
+            <RegSubmitButton
+              avatar={imageUrl}
+              path=""
+              value="Complete registration"
+              handler={handleRegistration}
+            />
+          </form>
+        </FormProvider>
+        <Separator text="or continue with" />
+        <SocialAuthRowButtons />
+        <AccountExistance title={SignLinkTitle.haveAccount} path="sign-in" link={SignLink.signIn} />
+      </div>
     </div>
   );
 };

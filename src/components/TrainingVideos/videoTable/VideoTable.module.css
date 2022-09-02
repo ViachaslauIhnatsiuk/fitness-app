@@ -2,7 +2,8 @@
   border: 1px solid #c0c0c0;
   border-collapse: collapse;
   padding: 5px;
-  width: 100%;
+  width: 1150px;
+  font-weight: 300;
 }
 
 .table th {
@@ -16,4 +17,38 @@
   border: 1px solid #c0c0c0;
   text-align: center;
   padding: 5px;
+  font-size: 20px;
+}
+
+@media (max-width: 1600px) {
+  .table {
+    width: 800px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .table {
+    width: 570px;
+  }
+}
+
+@media (max-width: 620px) {
+  .table {
+    width: 400px;
+  }
+
+  .table th {
+    font-size: 18px;
+  }
+
+  .table td {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 450px) {
+  .table {
+    width: 290px;
+  }
+
 }

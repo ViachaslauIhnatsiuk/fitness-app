@@ -24,32 +24,34 @@ const RegistrationUserData: FC = () => {
 
   return (
     <div className="registration-wrapper">
-      <div className="title">Tell Us About Yourself</div>
-      <div className="subtitle">
-        To give you a better experience and results we need to know your:
-      </div>
-      <div className="selects">
-        {registrationSelects.map((select) => {
-          return (
-            <div className="select" key={uuidv4()}>
-              <div className="select-label">{select[0].toUpperCase() + select.slice(1)}</div>
-              <Select
-                classNamePrefix="select"
-                onChange={handleChange}
-                value={handleValue(newUserData, select, selectOptions[select])}
-                options={selectOptions[select]}
-              />
-            </div>
-          );
-        })}
-      </div>
-      <div className="buttons">
-        <Link to="/" className="back">
-          Back
-        </Link>
-        <Link to="user-profile" className="continue" onClick={saveNewUserData}>
-          Continue
-        </Link>
+      <div className="main">
+        <div className="title">Tell Us About Yourself</div>
+        <div className="subtitle">
+          To give you a better experience and results we need to know your:
+        </div>
+        <div className="selects">
+          {registrationSelects.map((select) => {
+            return (
+              <div className="select" key={uuidv4()}>
+                <div className="select-label">{select[0].toUpperCase() + select.slice(1)}</div>
+                <Select
+                  classNamePrefix="select"
+                  onChange={handleChange}
+                  value={handleValue(newUserData, select, selectOptions[select])}
+                  options={selectOptions[select]}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div className="buttons">
+          <Link to="/" className="back">
+            Back
+          </Link>
+          <Link to="user-profile" className="continue" onClick={saveNewUserData}>
+            Continue
+          </Link>
+        </div>
       </div>
     </div>
   );

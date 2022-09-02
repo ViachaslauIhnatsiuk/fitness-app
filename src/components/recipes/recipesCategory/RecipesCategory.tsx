@@ -1,13 +1,13 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { CgCloseR } from 'react-icons/cg';
+import { BsArrowLeft } from 'react-icons/bs';
+import { IoMdClose } from 'react-icons/io';
 import { FiSearch } from 'react-icons/fi';
-import { IoChevronBackCircleOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 import { normalizeRangeItems } from '../../../helpers/normalizeRangeItems';
 import { useAppSelector } from '../../../store/model';
 import { selectRecipes } from '../../../store/selectors';
 import { fetchRecipes } from '../../../store/slices/recipes/recipesSlice';
 import { useAppDispatch } from '../../../store/store';
-import { Button } from '../../UI/button/Button';
 import Loader from '../../UI/loader/Loader';
 import { itemsPerPage } from '../constants';
 import { PaginatedItems } from '../paginatedItems/PaginatedItems';
@@ -26,15 +26,20 @@ const RecipesCategory = () => {
     dispatch(fetchRecipes({ ...queryParams, query: inputValue })).catch((err: Error) => err);
   };
 
-  const handleDeleteValue = () => setInputValue('');
+  const handleDeleteValue = () => {
+    setInputValue('');
+    dispatch(fetchRecipes({ ...queryParams, query: '' })).catch((err: Error) => err);
+  };
 
   useEffect(() => {
     dispatch(fetchRecipes(queryParams)).catch((err: Error) => err);
   }, []);
 
   return (
-    <>
-      <Button path="/food/recipes" icon={<IoChevronBackCircleOutline />} />
+    <div className={s.main}>
+      <Link className={s.return} to="/food/recipes">
+        <BsArrowLeft className={s.icon} />
+      </Link>
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.input_wrapper}>
           <input
@@ -45,7 +50,7 @@ const RecipesCategory = () => {
             onChange={handleInputValue}
           />
           <FiSearch className={s.icon_search} />
-          {queryParams.query && <CgCloseR className={s.icon_delete} onClick={handleDeleteValue} />}
+          {inputValue && <IoMdClose className={s.icon_delete} onClick={handleDeleteValue} />}
         </div>
       </form>
       {isLoading && <Loader />}
@@ -54,9 +59,7 @@ const RecipesCategory = () => {
         (recipes.totalResults ? (
           <>
             <h3 className={s.subtitle}>
-              {left}-{right} of {recipes.totalResults} results for query=&ldquo;
-              {queryParams.query}
-              &rdquo;, type=&ldquo;{queryParams.type}&rdquo;
+              {left}-{right} of {recipes.totalResults} results for &ldquo;{queryParams.type}&rdquo;
             </h3>
             <PaginatedItems />
           </>
@@ -66,7 +69,7 @@ const RecipesCategory = () => {
             {queryParams.type}&rdquo; category
           </h3>
         ))}
-    </>
+    </div>
   );
 };
 

@@ -6,11 +6,11 @@ import { useAppSelector } from '../../store/model';
 import { selectTrainings } from '../../store/selectors';
 import { useAppDispatch } from '../../store/store';
 import { TrainingCard } from './trainingCard/TrainingCard';
-import s from './TrainingSets.module.css';
 import { FilterBySearch } from './FilterBySearch/filterBySearch';
 import { FilterByLevel } from './FilterByLevel/filterByLevel';
 import { fetchTrainings } from '../../store/slices/training/trainingSlice';
 import Loader from '../UI/loader/Loader';
+import s from './TrainingSets.module.css';
 
 const TrainingSets: FC = () => {
   const dispatch = useAppDispatch();
@@ -24,16 +24,16 @@ const TrainingSets: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.header}>
+      <div className={s.main}>
+        <FilterByLevel />
         <FilterBySearch />
-      </div>
-      <FilterByLevel />
-      <div className={s.trainings}>
-        {status === WorkoutStatus.loading && <Loader />}
-        {status === WorkoutStatus.resolved &&
-          filteredTrainings.map((training) => {
-            return <TrainingCard key={uuidv4()} training={training} />;
-          })}
+        <div className={s.trainings}>
+          {status === WorkoutStatus.loading && <Loader />}
+          {status === WorkoutStatus.resolved &&
+            filteredTrainings.map((training) => {
+              return <TrainingCard key={uuidv4()} training={training} />;
+            })}
+        </div>
       </div>
     </div>
   );

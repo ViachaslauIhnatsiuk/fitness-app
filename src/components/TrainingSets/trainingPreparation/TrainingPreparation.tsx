@@ -9,8 +9,8 @@ const TrainingPreparation: FC<TrainingPreparationProps> = ({ onSkipHandler }) =>
   return (
     <div className={s.preparation}>
       <div className={s.preparation__timer}>
-        <h1>Get Ready!</h1>
-        <CircleTimer duration={PREPARATION_TIME} colors={['#7C00FF', '#7C00FF']} fontSize={70} />
+        <h1 className={s.title}>Get Ready!</h1>
+        <CircleTimer duration={PREPARATION_TIME} colors={['#7755ff', '#7755ff']} fontSize={70} />
       </div>
       <Button text="Start Over" onClick={onSkipHandler} isStyled customStyles={s.button} />
     </div>

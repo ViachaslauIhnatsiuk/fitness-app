@@ -1,7 +1,19 @@
 .wrapper {
-  width: 400px;
+  width: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    width: 400px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    width: 290px;
+  }
 }

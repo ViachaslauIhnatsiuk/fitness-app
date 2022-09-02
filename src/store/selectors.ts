@@ -1,6 +1,7 @@
 import { RootState } from './store';
 
 const selectProfile = (state: RootState) => state.profile;
+const selectStatistics = (state: RootState) => state.profile.currentUser.statistics;
 const selectUserData = (state: RootState) => state.profile.currentUser.userData;
 const selectUserMeals = (state: RootState) => state.profile.currentUser.userMeals;
 const selectFavorites = (state: RootState) => state.profile.currentUser.favorite;
@@ -17,5 +18,7 @@ export {
   selectRecipes,
   selectMeals,
   selectTrainings,
-  selectVideos
+  selectVideos,
+  selectStatistics,
+  selectFavorites
 };

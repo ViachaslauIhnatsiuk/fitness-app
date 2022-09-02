@@ -24,13 +24,15 @@ const FavoriteTrainings: FC = () => {
   return (
     <div className={s.wrapper}>
       <h2 className={s.title}>Favorite Trainings</h2>
-      <div className={s.trainings}>
-        {status === WorkoutStatus.loading && <Loader />}
-        {status === WorkoutStatus.resolved &&
-          favoriteTrainings.map((training) => {
+      {status === WorkoutStatus.loading && <Loader />}
+      {status === WorkoutStatus.resolved && (
+        <div className={s.trainings}>
+          {favoriteTrainings.length === 0 && <h1>Empty</h1>}
+          {favoriteTrainings.map((training) => {
             return <TrainingCard key={uuidv4()} training={training} />;
           })}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

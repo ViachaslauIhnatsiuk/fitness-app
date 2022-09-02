@@ -27,7 +27,11 @@ const initialState: ProfileState = {
       activity: 'intermediate',
       goal: 'get fitter'
     },
-    statistics: { calorieExpenditure: {}, calorieСonsumption: {} },
+    statistics: {
+      calorieExpenditure: {},
+      calorieСonsumption: {},
+      trainings: { dailyTimeTrainings: {}, totalTime: 0, totalTrainings: 0 }
+    },
     favorite: { videoTrainings: [], trainings: [], recipes: [] },
     userMeals: [
       { id: 0, title: 'breakfast', date: dateToday, meals: [] },
@@ -66,43 +70,52 @@ const profileSlice = createSlice({
       state.currentUser.userData = payload;
     },
     setVideoTrainingToFavorites: (state, { payload: videoId }: PayloadAction<number>) => {
-      const {
-        currentUser: { favorite }
-      } = state;
-
+      const { favorite } = state.currentUser;
       favorite.videoTrainings = toggleValueInArray(favorite.videoTrainings, videoId);
       updateFirestoreState(state.currentUser);
     },
     setTrainingToFavorites: (state, { payload: trainingId }: PayloadAction<number>) => {
-      const {
-        currentUser: { favorite }
-      } = state;
-
+      const { favorite } = state.currentUser;
       favorite.trainings = toggleValueInArray(favorite.trainings, trainingId);
       updateFirestoreState(state.currentUser);
     },
     toggleRecipeInFavorites: (state, { payload }: PayloadAction<IRecipeInfoShort>) => {
-      const {
-        currentUser: { favorite }
-      } = state;
-
+      const { favorite } = state.currentUser;
       favorite.recipes = toggleObjectInArray(favorite.recipes, payload);
       updateFirestoreState(state.currentUser);
     },
     setCalorieExpenditure: (state, { payload: calorie }: PayloadAction<number>) => {
-      const {
-        currentUser: { statistics }
-      } = state;
-      const { calorieExpenditure } = statistics;
-
+      const { calorieExpenditure } = state.currentUser.statistics;
       const date = convertDateToString(new Date());
 
       if (!calorieExpenditure[date]) {
         calorieExpenditure[date] = calorie;
+      } else {
+        const cal = calorieExpenditure[date];
+        calorieExpenditure[date] = calorie + cal;
       }
 
-      const cal = calorieExpenditure[date];
-      calorieExpenditure[date] = calorie + cal;
+      updateFirestoreState(state.currentUser);
+    },
+    setTotalTimeTrainings: (state, { payload: time }: PayloadAction<number>) => {
+      const { trainings } = state.currentUser.statistics;
+      trainings.totalTime += time;
+    },
+    setTotalTrainings: (state, { payload: count }: PayloadAction<number>) => {
+      const { trainings } = state.currentUser.statistics;
+      trainings.totalTrainings += count;
+    },
+    setDailyTimeTrainings: (state, { payload: time }: PayloadAction<number>) => {
+      const { dailyTimeTrainings } = state.currentUser.statistics.trainings;
+
+      const date = convertDateToString(new Date());
+
+      if (!dailyTimeTrainings[date]) {
+        dailyTimeTrainings[date] = time;
+      } else {
+        const currentTime = dailyTimeTrainings[date];
+        dailyTimeTrainings[date] = currentTime + time;
+      }
 
       updateFirestoreState(state.currentUser);
     },
@@ -199,5 +212,8 @@ export const {
   addCardToUserMeals,
   editCardTitle,
   deleteCard
+  setTotalTimeTrainings,
+  setTotalTrainings,
+  setDailyTimeTrainings
 } = profileSlice.actions;
 export { profileSlice };

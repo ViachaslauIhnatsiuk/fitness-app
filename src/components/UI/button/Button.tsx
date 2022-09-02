@@ -10,7 +10,8 @@ const Button: FC<Partial<ButtonProps>> = ({
   text,
   onClick,
   isStyled,
-  customStyles
+  customStyles,
+  isDisabled = false
 }) => {
   const navigate = useNavigate();
   const buttonStyles = customStyles || s.button;
@@ -27,6 +28,7 @@ const Button: FC<Partial<ButtonProps>> = ({
       role="link"
       tabIndex={0}
       onKeyPress={onClick || redirectHandler}
+      disabled={isDisabled}
     >
       {iconPosition === 'left' && icon} {text}
       {iconPosition === 'right' && icon}

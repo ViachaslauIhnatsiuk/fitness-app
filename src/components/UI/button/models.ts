@@ -7,6 +7,8 @@ type ButtonProps = {
   className: string;
   isStyled: boolean;
   customStyles: string;
+  style: React.CSSProperties;
+  isDisabled: boolean;
 };
 
 export type { ButtonProps };

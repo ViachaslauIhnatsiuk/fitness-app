@@ -11,13 +11,19 @@ const CircleTimer = ({
   btnTitle,
   size = 180,
   fontSize = 40,
-  strokeWidth = 9
+  strokeWidth = 9,
+  onUpdate,
+  isTimerCanPause = false
 }: Partial<CircleTimerProps>) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
   const onClickHandler = () => {
     if (onClick) onClick();
     setIsPlaying(!isPlaying);
+  };
+
+  const onUpdateHandler = (remainingTime: number) => {
+    if (onUpdate) onUpdate(remainingTime);
   };
 
   return (
@@ -30,10 +36,11 @@ const CircleTimer = ({
         onComplete={() => ({ shouldRepeat: false, delay: 1 })}
         size={size}
         strokeWidth={strokeWidth}
+        onUpdate={onUpdateHandler}
       >
         {({ remainingTime }) => <p style={{ fontSize }}>{remainingTime}</p>}
       </CountdownCircleTimer>
-      {onClick && (
+      {isTimerCanPause && (
         <Button text={btnTitle} onClick={onClickHandler} isStyled customStyles={s.button} />
       )}
     </div>

@@ -2,7 +2,7 @@ type BarChartProps = {
   positionLegend: 'top' | 'bottom';
   title: string;
   labels: string[];
-  data: BarChartDataType[];
+  data: BarChartDataType[][];
   color: string;
   borderColor: string;
   maxMin: number[];

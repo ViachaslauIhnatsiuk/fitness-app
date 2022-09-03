@@ -5,7 +5,7 @@ import { BsArrowLeft } from 'react-icons/bs';
 import s from './TrainingCreate.module.css';
 import { IExercise, IWorkout, WorkoutFilterByLevel, WorkoutPath } from '../../../models/Workout';
 import { useAppSelector } from '../../../store/model';
-import { selectTrainings } from '../../../store/selectors';
+import { selectProfile, selectTrainings } from '../../../store/selectors';
 import { addCustomTraining } from '../../../store/slices/profileSlice';
 import { useAppDispatch } from '../../../store/store';
 import { options } from './constants';
@@ -14,6 +14,9 @@ import { Exercises } from './exercises/Exercises';
 const TrainingCreate = () => {
   const dispatch = useAppDispatch();
   const { trainings } = useAppSelector(selectTrainings);
+  const {
+    currentUser: { customTrainings }
+  } = useAppSelector(selectProfile);
   const [level, setLevel] = useState<WorkoutFilterByLevel>(WorkoutFilterByLevel.beginner);
   const [title, setTitle] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
@@ -39,9 +42,10 @@ const TrainingCreate = () => {
     if (selectedExercises.length < 5) {
       setError(true);
     } else {
+      const trainingId = customTrainings.length + trainings.length + 1;
       const customTraining: IWorkout = {
         cal: selectedExercises.length * 9,
-        id: trainings.length + 1,
+        id: trainingId,
         level,
         title,
         exercises: selectedExercises

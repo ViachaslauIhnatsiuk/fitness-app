@@ -17,7 +17,7 @@ const BarChart: FC<Partial<BarChartProps>> = ({
   positionLegend = 'top',
   title = ' Default Title',
   labels = [],
-  data,
+  data = [],
   color = '#fffffff0',
   borderColor = '#ffffff0f'
 }) => {
@@ -62,7 +62,7 @@ const BarChart: FC<Partial<BarChartProps>> = ({
     datasets: [
       {
         label: labels[0],
-        data,
+        data: data[0],
         backgroundColor: ['rgba(255, 99, 132, 0.5)'],
         borderColor: ['rgba(255, 99, 132, 1)'],
         borderWidth: 0,
@@ -70,7 +70,7 @@ const BarChart: FC<Partial<BarChartProps>> = ({
       },
       {
         label: labels[1],
-        data,
+        data: data[1],
         backgroundColor: ['rgba(153, 102, 255, 0.5)'],
         borderColor: ['rgba(153, 102, 255, 1)'],
         borderWidth: 0,

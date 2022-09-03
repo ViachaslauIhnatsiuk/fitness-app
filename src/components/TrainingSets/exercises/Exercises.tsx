@@ -13,6 +13,7 @@ import { deleteCustomTraining, setTrainingToFavorites } from '../../../store/sli
 import { useAppSelector } from '../../../store/model';
 import { selectProfile } from '../../../store/selectors';
 import s from './Exercises.module.css';
+import { isCustomTraining } from './helpers';
 
 const Exercises: FC = () => {
   const { pathname } = useLocation();
@@ -21,11 +22,12 @@ const Exercises: FC = () => {
   const { getExercisesById, exercisesById, isLoading } = useTraining();
   const {
     currentUser: {
+      customTrainings,
       favorite: { trainings }
     }
   } = useAppSelector(selectProfile);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
-
+  const isVisible = isCustomTraining(customTrainings, trainingId as string);
   const redirectPath = `${pathname}active`;
 
   useEffect(() => {
@@ -64,9 +66,11 @@ const Exercises: FC = () => {
         ) : (
           <BsBookmarkDash onClick={addToFavoriteHandler} className={s.bookmark} />
         )}
-        <Link to={WorkoutPath.trainings}>
-          <RiDeleteBin5Line className={s.delete} onClick={deleteCustomTrainingHandler} />
-        </Link>
+        {isVisible && (
+          <Link to={WorkoutPath.trainings}>
+            <RiDeleteBin5Line className={s.delete} onClick={deleteCustomTrainingHandler} />
+          </Link>
+        )}
         {isLoading ? (
           <Loader />
         ) : (

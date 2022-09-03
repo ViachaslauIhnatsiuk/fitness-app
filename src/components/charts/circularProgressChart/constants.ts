@@ -1,0 +1,3 @@
+const INITIAL_VALUE_CHART = 1000;
+
+export { INITIAL_VALUE_CHART };

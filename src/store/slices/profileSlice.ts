@@ -211,7 +211,7 @@ export const {
   removeMeals,
   addCardToUserMeals,
   editCardTitle,
-  deleteCard
+  deleteCard,
   setTotalTimeTrainings,
   setTotalTrainings,
   setDailyTimeTrainings

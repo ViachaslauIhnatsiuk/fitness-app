@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { IoTrashOutline } from 'react-icons/io5';
+import { AiFillDelete } from 'react-icons/ai';
 import { removeMeals } from '../../../store/slices/profileSlice';
 import { useAppDispatch } from '../../../store/store';
-import s from './MealDish.module.css';
 import { MealDishProps } from './models';
+import s from './MealDish.module.css';
 
 const MealDish: FC<MealDishProps> = ({ props: { name, serving_size_g, calories }, title }) => {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ const MealDish: FC<MealDishProps> = ({ props: { name, serving_size_g, calories }
         <div className={s.calories}>Size: {serving_size_g} g</div>
         <div className={s.calories}>Calories: {calories} cal</div>
       </div>
-      <IoTrashOutline className={s.remove} onClick={handleRemoveDish} />
+      <AiFillDelete className={s.remove} onClick={handleRemoveDish} />
     </div>
   );
 };

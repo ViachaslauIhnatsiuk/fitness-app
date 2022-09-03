@@ -1,9 +1,9 @@
 import React, { FC, FormEvent, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { IoAdd, IoTrashOutline, IoSearchOutline, IoReturnUpBack } from 'react-icons/io5';
+import { IoAdd, IoSearchOutline } from 'react-icons/io5';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 import { MealDish } from '../mealDish/MealDish';
 import { MealCardProps } from './models';
-import s from './MealCard.module.css';
 import { useAppDispatch } from '../../../store/store';
 import { useAppSelector } from '../../../store/model';
 import { selectMeals } from '../../../store/selectors';
@@ -11,6 +11,7 @@ import { fetchMeals, resetMeals, setMealCardType } from '../../../store/slices/m
 import { deleteCard, editCardTitle, setMeals } from '../../../store/slices/profileSlice';
 import { dateToday } from '../../../helpers/transformDate';
 import Loader from '../../UI/loader/Loader';
+import s from './MealCard.module.css';
 
 const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
   const [dishName, setDishName] = useState<string>('');
@@ -71,72 +72,72 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
             />
           </form>
         ) : (
-          <div className={s.title} onDoubleClick={() => setEditMode(true)}>
-            <span>{title}</span>
-            <button type="button" className={s.btn_delete} onClick={handleDeleteCard}>
-              <IoTrashOutline className={s.delete_icon} />
-            </button>
+          <div className={s.header} onDoubleClick={() => setEditMode(true)}>
             <div className={s.info}>
               <div className={s.meals}>{meals.length} meals</div>
-              <div className={s.calories}>{totalCalories} calories</div>
+              <div className={s.calories}>{totalCalories} cal</div>
             </div>
-          </div>
-        )}
-      </div>
-      <div>
-        {title !== mealCardType ? (
-          <form onSubmit={handleSubmit} className={s.form_wrapper}>
-            <input
-              type="text"
-              className={s.dish}
-              placeholder="Dish: name"
-              value={dishName}
-              onChange={(e) => setDishName(e.target.value)}
-            />
-            <input
-              type="number"
-              min={0}
-              className={s.size}
-              placeholder="Size: g"
-              value={dishSize || ''}
-              onChange={(e) => setDishSize(Number(e.target.value))}
-            />
-            <button type="submit" className={s.button}>
-              <IoSearchOutline className={s.icon} />
+            <div className={s.title}>{title}</div>
+            <button type="button" className={s.remove} onClick={handleDeleteCard}>
+              Remove
             </button>
-          </form>
-        ) : (
-          <div>
-            {error && <h3>{error}</h3>}
-            {isLoading && (
-              <div className={s.center}>
-                <Loader size={15} />
-              </div>
-            )}
-            {isUploaded &&
-              (items.length ? (
-                <div className={s.form_wrapper}>
-                  <div className={s.preview}>
-                    {items[0].name} - {items[0].serving_size_g}g: {items[0].calories}cal
-                  </div>
-                  <button type="button" className={s.button} onClick={handleAddNewDish}>
-                    <IoAdd className={s.icon} />
-                  </button>
-                </div>
-              ) : (
-                <div className={s.form_wrapper}>
-                  <div className={s.preview}>Nothing was found. repeat the search</div>
-                  <button type="button" className={s.button} onClick={handleReturnToForm}>
-                    <IoReturnUpBack className={s.icon} />
-                  </button>
-                </div>
-              ))}
           </div>
         )}
       </div>
-      {meals.map((meal) => (
-        <MealDish props={meal} key={uuidv4()} title={title} />
-      ))}
+      {title !== mealCardType ? (
+        <form onSubmit={handleSubmit} className={s.form_wrapper}>
+          <input
+            type="text"
+            className={s.dish}
+            placeholder="Dish, name"
+            value={dishName}
+            onChange={(e) => setDishName(e.target.value)}
+          />
+          <input
+            type="number"
+            min={0}
+            className={s.size}
+            placeholder="Size, g"
+            value={dishSize || ''}
+            onChange={(e) => setDishSize(Number(e.target.value))}
+          />
+          <button type="submit" className={s.button}>
+            <IoSearchOutline className={s.icon} />
+          </button>
+        </form>
+      ) : (
+        <div>
+          {error && <h3>{error}</h3>}
+          {isLoading && (
+            <div className={s.center}>
+              <Loader size={10} />
+            </div>
+          )}
+          {isUploaded &&
+            (items.length ? (
+              <div className={s.form_wrapper}>
+                <div className={s.preview}>
+                  {items[0].name}: {items[0].serving_size_g} g, {items[0].calories} cal
+                </div>
+                <button type="button" className={s.button} onClick={handleAddNewDish}>
+                  <IoAdd className={s.icon} />
+                </button>
+              </div>
+            ) : (
+              <div className={s.form_wrapper}>
+                <div className={s.preview}>Nothing was found. Please, try again</div>
+                <button type="button" className={s.button} onClick={handleReturnToForm}>
+                  <RiArrowGoBackFill className={s.icon} />
+                </button>
+              </div>
+            ))}
+        </div>
+      )}
+      <div className={s.meals_wrapper}>
+        {meals.map((meal) => (
+          <MealDish props={meal} key={uuidv4()} title={title} />
+        ))}
+      </div>
     </div>
   );
 };

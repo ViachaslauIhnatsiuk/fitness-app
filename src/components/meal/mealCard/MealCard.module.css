@@ -1,12 +1,12 @@
 .wrapper {
+  max-width: 320px;
   display: flex;
   flex-direction: column;
-  width: 350px;
   padding: 10px;
-  border: 1px solid #7755ff;
   border-radius: 10px;
   row-gap: 10px;
   background-color: #1f222a;
+  box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.2);
 }
 
 .header {
@@ -21,34 +21,50 @@
 .form_edit {
   display: flex;
 }
+
 .input_edit {
   height: 24px;
   padding: 0 8px;
   background-color: #1f222a;
-  border: 1px solid #7755ff;
+  box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   font-size: 14px;
   color: #ffffff;
   transition: 0.5s;
 }
 
-.title {
+.input_edit:active,
+.input_edit:focus {
+  border-color: #7755ff;
+  box-shadow: 0 0 3px 2px rgb(119 85 255 / 50%);
+  background-color: #1e1d31;
+  outline: none;
+}
+
+.header {
   flex: 1 1 auto;
   font-size: 16px;
+  letter-spacing: 0.03em;
   font-weight: 600;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
+
+.title {
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: 300;
+}
+
 .btn_delete {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  opacity: 0;
-  transition: 0.2s;
-}
-.title:hover .btn_delete {
-  opacity: 1;
   transition: 0.2s;
 }
 
@@ -66,16 +82,36 @@
 }
 
 .info {
-  align-self: flex-end;
   display: flex;
   align-items: center;
   column-gap: 5px;
+  font-weight: 300;
 }
 
 .meals,
 .calories {
-  font-size: 13px;
+  font-size: 12px;
   color: #d6d1d2;
+}
+
+.remove {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+  background-color: rgba(198, 72, 73, 0.3);
+  border-radius: 5px;
+  font-size: 11px;
+  transition: 0.5s;
+  color: #eeeeee;
+  cursor: pointer;
+}
+
+.remove:hover {
+  background-color: rgba(198, 72, 73, 0.8);
+  box-shadow: 0px 0px 6px 2px rgba(198, 72, 73, 0.2);
+  transition: 0.5s;
 }
 
 .meals {
@@ -85,47 +121,48 @@
 
 .form_wrapper {
   width: 100%;
-  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   column-gap: 10px;
-  padding: 0 10px;
+  padding: 5px 0;
   transition: 0.4s;
   cursor: pointer;
 }
+
 .preview {
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
 }
 
 .dish,
 .size {
   height: 30px;
-  padding: 0 8px;
+  padding: 0 5px;
   background-color: #1f222a;
-  border: 1px solid #7755ff;
-  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
   font-size: 14px;
   color: #ffffff;
-  transition: 0.5s;
 }
 
 .dish {
-  width: 55%;
+  width: 58%;
 }
 
 .size {
-  width: 25%;
+  width: 22%;
 }
 
 .dish:active,
 .dish:focus,
 .size:active,
 .size:focus {
+  border-color: #7755ff;
+  box-shadow: 0 0 3px 2px rgb(119 85 255 / 50%);
   background-color: #1e1d31;
-  border-color: #6842ff;
   outline: none;
-  transition: 0.5s;
 }
 
 input::-webkit-inner-spin-button {
@@ -134,21 +171,25 @@ input::-webkit-inner-spin-button {
 }
 
 .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 30px;
-  width: 40px;
-  background-color: #7755ff;
-  border-radius: 10px;
+  padding: 0 10px;
+  background-color: rgba(119, 85, 255, 0.4);
+  border-radius: 5px;
   transition: 0.5s;
   cursor: pointer;
 }
 
 .button:hover {
-  transition: 0.5s;
   background-color: #6842ff;
+  box-shadow: 0px 0px 10px 3px rgba(119, 85, 255, 0.2);
+  transition: 0.5s;
 }
 
 .icon {
-  font-size: 20px;
+  font-size: 18px;
   color: #ffffff;
 }
 
@@ -157,4 +198,59 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: flex-start;
   height: 50px;
+}
+
+.meals_wrapper {
+  max-height: 180px;
+  row-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  padding-right: 10px;
+}
+
+.meals_wrapper::-webkit-scrollbar {
+  width: 3px;
+}
+
+.meals_wrapper::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #181a20;
+}
+
+.meals_wrapper::-webkit-scrollbar-track {
+  background-color: #35383f;
+  border-radius: 10px;
+}
+
+@media (max-width: 1120px) {
+  .wrapper {
+    max-width: 300px;
+  }
+
+  .title {
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    max-width: 320px;
+  }
+
+  .title {
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  .title {
+    font-size: 16px;
+  }
+
+  .meals,
+  .calories {
+    font-size: 11px;
+  }
 }

@@ -16,19 +16,33 @@ import {
 import { useTrainingStatistics } from '../../hooks/useTrainingStatistics';
 import { CircularProgressChart } from './circularProgressChart/CircularProgressChart';
 import s from './Charts.module.css';
+import { useAppSelector } from '../../store/model';
+import { selectStatistics, selectUserMeals } from '../../store/selectors';
+import { getConsumptionCaloriesByDate } from './helpers';
 
 const Charts: FC = () => {
   const [date, setDate] = useState<[Date, Date]>([INITIAL_START_DATE, INITIAL_END_DATE]);
   const [page, setPage] = useState<number>(0);
+  const { calorieExpenditure } = useAppSelector(selectStatistics);
+  const userMeals = useAppSelector(selectUserMeals);
   const [currentChartIndex, setCurrentChartIndex] = useState<number>(INITIAL_CHART_INDEX);
   const [dateStart, dateEnd] = date;
 
   const {
-    data: calorieData,
+    data: calorieExpenditureData,
     labels: calorieLabels,
     maxPages: maxCaloriePages,
     indicators: calorieIndicators
-  } = useCalorieStatistics(dateStart, dateEnd, page, 10);
+  } = useCalorieStatistics(dateStart, dateEnd, page, 10, calorieExpenditure);
+
+  const calorieСonsumption = getConsumptionCaloriesByDate(userMeals);
+  const { data: calorieСonsumptionData } = useCalorieStatistics(
+    dateStart,
+    dateEnd,
+    page,
+    10,
+    calorieСonsumption
+  );
 
   const {
     labels: trainingLabels,
@@ -40,7 +54,11 @@ const Charts: FC = () => {
   const indicatorsChart = [calorieIndicators, trainingIndicators];
   const maxPagesCharts = [maxCaloriePages, maxTrainingPages];
   const charts = [
-    <BarChart data={calorieData} labels={calorieLabels} title={BAR_CHART_TITLE} />,
+    <BarChart
+      data={[calorieExpenditureData, calorieСonsumptionData]}
+      labels={calorieLabels}
+      title={BAR_CHART_TITLE}
+    />,
     <AreaChart data={trainingData} labels={trainingLabels} title={AREA_CHART_TITLE} />
   ];
 

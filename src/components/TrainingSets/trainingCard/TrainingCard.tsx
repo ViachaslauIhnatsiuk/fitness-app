@@ -24,7 +24,7 @@ const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } })
   }, [getTrainingPreviewUrl, title]);
 
   useEffect(
-    function setFavoriteMark(): void {
+    function setFavoriteMark() {
       if (favorite) {
         const { trainings } = favorite;
         if (trainings && trainings.includes(id)) {

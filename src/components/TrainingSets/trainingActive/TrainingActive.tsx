@@ -41,8 +41,8 @@ const TrainingActive: FC = () => {
         if (!statistic.cal) {
           statistic.cal = cal;
           statistic.time = totalTime;
-          statistic.calPerExercise = Math.round(cal / exercises.length);
-          statistic.timePerExercise = Math.round(totalTime / exercises.length);
+          statistic.calPerExercise = Math.floor(cal / exercises.length - 1);
+          statistic.timePerExercise = Math.floor(totalTime / exercises.length - 1);
           setStatistic(statistic);
         }
       }
@@ -132,6 +132,10 @@ const TrainingActive: FC = () => {
     changeNumberOfExercise(true);
     setIsRestStart(true);
   };
+
+  useEffect(() => {
+    console.log(statistic);
+  }, [statistic]);
 
   return (
     <div className={s.wrapper}>

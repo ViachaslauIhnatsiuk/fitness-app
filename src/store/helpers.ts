@@ -32,4 +32,15 @@ const getValuesFromObjectByArrayOfId = (
   return resultedArray as ReturnArrayType;
 };
 
-export { convertDateToString, getValuesFromObjectByArrayOfId };
+const getValuesFromArrayByArrayOfId = (arrayOfId: number[], array: IWorkout[]): IWorkout[] => {
+  const resultedArray: IWorkout[] = [];
+
+  arrayOfId.forEach((id) => {
+    array.forEach((training) => {
+      if (training.id === id) resultedArray.push(training);
+    });
+  });
+
+  return resultedArray;
+};
+export { convertDateToString, getValuesFromObjectByArrayOfId, getValuesFromArrayByArrayOfId };

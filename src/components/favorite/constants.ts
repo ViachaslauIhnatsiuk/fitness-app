@@ -9,6 +9,11 @@ const favorites = [
     redirectPath: 'favorite/trainings',
     image: '/images/favoritePreview/workout.jpg'
   },
+  {
+    title: 'Custom Trainings',
+    redirectPath: 'favorite/custom-trainings',
+    image: '/images/custom.jpg'
+  },
   { title: 'Recipes', redirectPath: 'favorite/recipes', image: '/images/favoritePreview/meal.jpg' }
 ];
 

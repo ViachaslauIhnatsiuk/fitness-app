@@ -13,7 +13,7 @@ const ExerciseCard: FC<ExerciseProps> = ({ exercise: { time, title } }) => {
   return (
     <div className={s.wrapper}>
       <div className={s.image_wrapper}>
-        <img src={exerciseGifUrl} alt="exercise" className={s.image} />
+        {exerciseGifUrl && <img src={exerciseGifUrl} alt="exercise" className={s.image} />}
       </div>
       <div className={s.description}>
         <h2 className={s.title}>{title}</h2>

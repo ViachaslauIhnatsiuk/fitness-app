@@ -39,6 +39,16 @@
   font-size: 30px;
 }
 
+.delete {
+  position: absolute;
+  top: 0;
+  right: 4rem;
+  font-size: 34px;
+  transition: 0.5s;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .icon {
   font-size: 30px;
   transition: 0.5s;

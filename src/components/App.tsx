@@ -35,6 +35,8 @@ import { FavoriteVideos } from './favorite/favoriteVideos/FavoriteVideos';
 import { FavoriteTrainings } from './favorite/FavoriteTrainings/FavoriteTrainings';
 import { FavoriteRecipes } from './favorite/favoriteRecipes/FavoriteRecipes';
 import { RecipeWrapper } from './recipes/recipeWrapper/RecipeWrapper';
+import { TrainingCreate } from './TrainingSets/trainingCreate/TrainingCreate';
+import { CustomTrainings } from './favorite/customTrainings/CustomTrainings';
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -81,6 +83,7 @@ const App: FC = () => {
               <Route path="videos/:videoCategory" element={<Videos />} />
               <Route path="videos/:videoCategory/:videoId" element={<VideoPage />} />
               <Route path="trainings" element={<TrainingSets />} />
+              <Route path="trainings/create" element={<TrainingCreate />} />
               <Route path="trainings/:trainingId" element={<Exercises />} />
               <Route path="trainings/:trainingId/active" element={<TrainingActive />} />
             </Route>
@@ -89,6 +92,7 @@ const App: FC = () => {
             <Route path="profile/edit-personal-data" element={<EditPersonalData />} />
             <Route path="favorite/video-trainings" element={<FavoriteVideos />} />
             <Route path="favorite/trainings" element={<FavoriteTrainings />} />
+            <Route path="favorite/custom-trainings" element={<CustomTrainings />} />
             <Route path="favorite/recipes" element={<FavoriteRecipes />} />
             <Route path="favorite/recipes/:recipeId" element={<RecipeWrapper />} />
             <Route path="*" element={<NotFound />} />

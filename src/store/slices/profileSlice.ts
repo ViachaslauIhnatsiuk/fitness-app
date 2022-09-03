@@ -216,6 +216,12 @@ const profileSlice = createSlice({
       currentUser.userMeals = userMeals.filter((meal: IDailyMeals) => meal.id !== id);
 
       updateFirestoreState(currentUser);
+    },
+    deleteCustomTraining: ({ currentUser }, { payload: trainingId }: PayloadAction<number>) => {
+      currentUser.customTrainings = currentUser.customTrainings.filter(
+        ({ id }) => id !== trainingId
+      );
+      updateFirestoreState(currentUser);
     }
   }
 });
@@ -240,6 +246,7 @@ export const {
   setDailyTimeTrainings,
   addCustomTraining,
   setSoundOn,
-  setDarkTheme
+  setDarkTheme,
+  deleteCustomTraining
 } = profileSlice.actions;
 export { profileSlice };

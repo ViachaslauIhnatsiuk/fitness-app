@@ -7,6 +7,7 @@
 }
 
 .main {
+  position: relative;
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -29,6 +30,14 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
+}
+
+.create {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #ffffff;
+  font-size: 2rem;
 }
 
 .search {
@@ -67,7 +76,6 @@
   .wrapper {
     margin-top: 130px;
   }
-
 }
 
 @media (max-width: 450px) {

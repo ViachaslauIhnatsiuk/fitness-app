@@ -54,7 +54,6 @@ const Exercises: FC = () => {
         ) : (
           <BsBookmarkDash onClick={addToFavoriteHandler} className={s.bookmark} />
         )}
-        <BsBookmarkDash onClick={addToFavoriteHandler} className={s.bookmark} />
         {isLoading ? (
           <Loader />
         ) : (

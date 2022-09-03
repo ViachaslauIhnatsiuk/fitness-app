@@ -37,10 +37,10 @@ const TrainingCard: FC<TrainingCardProps> = ({ training: { id, level, title } })
 
   return (
     <Link className={s.wrapper} to={redirectPath}>
+      {isFavorite && <BsBookmarkDashFill className={s.favorite} />}
       <div className={s.info}>
         <h2 className={s.title}>{title}</h2>
         <p className={s.level}>{level}</p>
-        {isFavorite && <BsBookmarkDashFill className={s.favorite} />}
       </div>
       <div className={s.image}>
         <LoadableImage src={trainingImageUrl} alt="training" />

@@ -1,9 +1,8 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { createElement, FC, useEffect, useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
-import s from './DatePicker.module.css';
-import { Button } from '../button/Button';
 import { DatePickerProps } from './models';
+import s from './DatePicker.module.css';
 
 const DatePicker: FC<DatePickerProps> = ({ initialDates, getCurrentState }) => {
   const [dateRange, setDateRange] = useState<[Date | null, Date | null]>(initialDates);
@@ -40,7 +39,9 @@ const DatePicker: FC<DatePickerProps> = ({ initialDates, getCurrentState }) => {
         }}
         customInput={createElement(СustomInput)}
       />
-      <Button onClick={resetStateHandler} text="Reset" isStyled />
+      <button type="button" className={s.reset} onClick={resetStateHandler}>
+        Reset
+      </button>
     </div>
   );
 };

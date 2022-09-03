@@ -1,10 +1,52 @@
 .wrapper {
+  padding: 70px 100px 60px;
+  flex-grow: 1;
+}
+
+.main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 60px 100px;
-  flex-grow: 1;
-  font-size: 30px;
-  color: #fff;
+  row-gap: 40px;
+  animation: fade-in 1.5s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1600px) {
+  .wrapper {
+    padding: 70px 50px 60px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .wrapper {
+    padding: 70px 30px 60px;
+  }
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    padding: 70px 40px 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 70px 20px 120px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding: 70px 0 60px;
+  }
 }

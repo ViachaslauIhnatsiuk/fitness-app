@@ -13,7 +13,9 @@ const Header: FC = () => {
 
   return (
     <div className={s.wrapper}>
-      <Logo className={s.logo} />
+      <Link to="/" className={s.link}>
+        <Logo className={s.logo} />
+      </Link>
       {validPathes && (
         <div className={s.icons}>
           <Link to={getPath(path)} className={s.link}>

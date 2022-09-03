@@ -9,7 +9,6 @@ import {
   Legend
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import s from './BarChart.module.css';
 import { BarChartProps } from './models';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -35,7 +34,7 @@ const BarChart: FC<Partial<BarChartProps>> = ({
         position: positionLegend,
         labels: {
           font: {
-            size: 16
+            size: 14
           }
         }
       },
@@ -58,6 +57,7 @@ const BarChart: FC<Partial<BarChartProps>> = ({
   };
 
   const resultedData = {
+    responsive: true,
     labels: [],
     datasets: [
       {
@@ -65,14 +65,16 @@ const BarChart: FC<Partial<BarChartProps>> = ({
         data,
         backgroundColor: ['rgba(255, 99, 132, 0.5)'],
         borderColor: ['rgba(255, 99, 132, 1)'],
-        borderWidth: 2
+        borderWidth: 0,
+        barThickness: 10
       },
       {
         label: labels[1],
         data,
         backgroundColor: ['rgba(153, 102, 255, 0.5)'],
         borderColor: ['rgba(153, 102, 255, 1)'],
-        borderWidth: 2
+        borderWidth: 0,
+        barThickness: 10
       }
     ]
   };

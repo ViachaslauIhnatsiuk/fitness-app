@@ -1,20 +1,20 @@
 import React from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import s from './CircleChart.module.css';
 import { CircleTimerProps } from './models';
+import './CircleChart.css';
 
 const CircleChart = ({
   maxValue = 100,
   currentValue = 0,
-  fontSize = 40,
-  strokeWidth = 10,
-  text = 'Cal',
+  fontSize = 36,
+  strokeWidth = 5,
+  text = 'Calories',
   color = '#7755ff'
 }: Partial<CircleTimerProps>) => {
   return (
-    <div className={s.wrapper}>
-      <h4>{text}</h4>
+    <div className="wrapper">
+      <h4 className="text">{text}</h4>
       <CircularProgressbar
         strokeWidth={strokeWidth}
         minValue={0}
@@ -27,7 +27,7 @@ const CircleChart = ({
           pathTransitionDuration: 0.5,
           pathColor: color,
           textColor: '#ffff',
-          trailColor: '#d6d6d6',
+          trailColor: '#35383f',
           backgroundColor: '#3e98c7'
         })}
       />

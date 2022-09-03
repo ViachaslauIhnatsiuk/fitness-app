@@ -141,7 +141,7 @@ const VideoPage: FC = () => {
                         className={s.button}
                         style={
                           buttonSubmit
-                            ? { backgroundColor: '#35383f', boxShadow: 'none' }
+                            ? { backgroundColor: '#35383f', boxShadow: 'none', cursor: 'default' }
                             : { backgroundColor: '#7755ff' }
                         }
                       >

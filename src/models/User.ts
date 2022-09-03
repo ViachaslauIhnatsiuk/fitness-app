@@ -1,6 +1,7 @@
 import { IFavorite } from './Favorite';
 import { IDailyMeals } from '../store/slices/meals/model';
 import { IStatistics } from './Statistics';
+import { IWorkout } from './Workout';
 
 interface IUser {
   avatar: string;
@@ -9,6 +10,10 @@ interface IUser {
   password: string;
   id: string;
   token: string;
+  settings: {
+    isDarkTheme: boolean;
+    isSoundOn: boolean;
+  };
   userData: {
     gender: string;
     age: number;
@@ -19,6 +24,7 @@ interface IUser {
   };
   statistics: IStatistics;
   favorite: IFavorite;
+  customTrainings: IWorkout[];
   userMeals: IDailyMeals[];
 }
 

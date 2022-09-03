@@ -9,6 +9,7 @@ import { IRecipeInfoShort } from '../../models/modelRecipeById';
 import { toggleObjectInArray } from '../../helpers/toggleObjectInArray';
 import { IDailyMeals } from './meals/model';
 import { dateToday } from '../../helpers/transformDate';
+import { IWorkout } from '../../models/Workout';
 
 const initialState: ProfileState = {
   isAuth: false,
@@ -19,6 +20,10 @@ const initialState: ProfileState = {
     password: '',
     id: '',
     token: '',
+    settings: {
+      isDarkTheme: true,
+      isSoundOn: true
+    },
     userData: {
       gender: 'male',
       age: 30,
@@ -33,6 +38,7 @@ const initialState: ProfileState = {
       trainings: { dailyTimeTrainings: {}, totalTime: 0, totalTrainings: 0 }
     },
     favorite: { videoTrainings: [], trainings: [], recipes: [] },
+    customTrainings: [],
     userMeals: [
       { id: 0, title: 'breakfast', date: dateToday, meals: [] },
       { id: 1, title: 'lunch', date: dateToday, meals: [] },
@@ -53,18 +59,20 @@ const profileSlice = createSlice({
     },
     setUserState: (state, { payload: user }: PayloadAction<IUser>) => {
       const { currentUser } = state;
-      const { favorite, statistics, userMeals } = user;
-      currentUser.userData = user.userData;
+      const { favorite, statistics, userMeals, settings, userData, customTrainings } = user;
       currentUser.id = user.id;
       currentUser.email = user.email;
       currentUser.name = user.name;
-      currentUser.password = user.password;
+      if (user.password) currentUser.password = user.password;
       currentUser.token = user.token;
       currentUser.avatar = user.avatar;
-
+      if (userData) currentUser.userData = userData;
+      if (settings) currentUser.settings = settings;
       if (favorite) currentUser.favorite = favorite;
       if (statistics) currentUser.statistics = statistics;
       if (userMeals) currentUser.userMeals = userMeals;
+      if (customTrainings) currentUser.customTrainings = customTrainings;
+      updateFirestoreState(currentUser);
     },
     setNewUser: (state, { payload }: PayloadAction<IUserData>) => {
       state.currentUser.userData = payload;
@@ -125,6 +133,21 @@ const profileSlice = createSlice({
       } = currentUser;
       const date = convertDateToString(new Date());
       calorieСonsumption[date] = calorie;
+    },
+    setSoundOn: (state, { payload }: PayloadAction<boolean>) => {
+      const { settings } = state.currentUser;
+      settings.isSoundOn = payload;
+      updateFirestoreState(state.currentUser);
+    },
+    setDarkTheme: (state, { payload }: PayloadAction<boolean>) => {
+      const { settings } = state.currentUser;
+      settings.isDarkTheme = payload;
+      updateFirestoreState(state.currentUser);
+    },
+    addCustomTraining: (state, { payload: training }: PayloadAction<IWorkout>) => {
+      const { customTrainings } = state.currentUser;
+      customTrainings.push(training);
+      updateFirestoreState(state.currentUser);
     },
     setMeals: ({ currentUser }, { payload }) => {
       const { date, mealTitle, meal } = payload;
@@ -211,9 +234,12 @@ export const {
   removeMeals,
   addCardToUserMeals,
   editCardTitle,
-  deleteCard
+  deleteCard,
   setTotalTimeTrainings,
   setTotalTrainings,
-  setDailyTimeTrainings
+  setDailyTimeTrainings,
+  addCustomTraining,
+  setSoundOn,
+  setDarkTheme
 } = profileSlice.actions;
 export { profileSlice };

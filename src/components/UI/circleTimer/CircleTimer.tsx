@@ -3,6 +3,9 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { Button } from '../button/Button';
 import { CircleTimerProps } from './models';
 import s from './CircleTimer.module.css';
+import { useAppSelector } from '../../../store/model';
+import { selectSettings } from '../../../store/selectors';
+import { REST_TIME } from '../../TrainingSets/constants';
 
 const CircleTimer = ({
   duration = 0,
@@ -13,8 +16,10 @@ const CircleTimer = ({
   fontSize = 40,
   strokeWidth = 9,
   onUpdate,
-  isTimerCanPause = false
+  isTimerCanPause = false,
+  playSound
 }: Partial<CircleTimerProps>) => {
+  const { isSoundOn } = useAppSelector(selectSettings);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
   const onClickHandler = () => {
@@ -24,6 +29,8 @@ const CircleTimer = ({
 
   const onUpdateHandler = (remainingTime: number) => {
     if (onUpdate) onUpdate(remainingTime);
+    if (remainingTime === REST_TIME - 1 && playSound && isSoundOn) playSound(remainingTime);
+    if (remainingTime === 5 && playSound && isSoundOn) playSound(remainingTime);
   };
 
   return (

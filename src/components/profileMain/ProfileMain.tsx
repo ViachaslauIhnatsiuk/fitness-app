@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { AiOutlineSound, AiFillSound } from 'react-icons/ai';
-import { IoMdInformationCircleOutline } from 'react-icons/io';
+import { IoMdInformationCircleOutline, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import { useAppSelector } from '../../store/model';
@@ -55,30 +54,33 @@ const ProfileMain: FC = () => {
               type="button"
               className={s.theme}
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              style={
-                theme === 'dark' ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }
-              }
+              style={{
+                backgroundColor: theme === 'dark' ? '#7755ff' : '#35383f'
+              }}
             >
-              <div
-                className={s.slider}
-                style={theme === 'dark' ? { left: '30px' } : { left: '3px' }}
-              />
+              <div className={s.slider} style={{ left: theme === 'dark' ? '30px' : '3px' }} />
             </button>
           </div>
           <div className={s.setting}>
             {sound ? (
-              <AiOutlineSound className={s.icon} style={{ color: '#181a20' }} />
+              <IoMdVolumeHigh
+                className={s.icon}
+                style={{ color: theme === 'dark' ? '#fff' : '#181a20' }}
+              />
             ) : (
-              <AiFillSound className={s.icon} style={{ color: '#fff' }} />
+              <IoMdVolumeOff
+                className={s.icon}
+                style={{ color: theme === 'dark' ? '#fff' : '#181a20' }}
+              />
             )}
             <span className={s.sound_title}>Sound</span>
             <button
               type="button"
               className={s.sound}
               onClick={() => setSound(!sound)}
-              style={sound ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }}
+              style={{ backgroundColor: sound ? '#7755ff' : '#35383f' }}
             >
-              <div className={s.slider} style={sound ? { left: '30px' } : { left: '3px' }} />
+              <div className={s.slider} style={{ left: sound ? '30px' : '3px' }} />
             </button>
           </div>
           <div className={s.setting}>

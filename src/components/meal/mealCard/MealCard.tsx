@@ -7,7 +7,7 @@ import { MealCardProps } from './models';
 import { useAppDispatch } from '../../../store/store';
 import { useAppSelector } from '../../../store/model';
 import { selectMeals } from '../../../store/selectors';
-import { fetchMeals, resetMeals, setMealCardType } from '../../../store/slices/meals/mealsSlice';
+import { fetchMeals, resetMeals, setMealCardId } from '../../../store/slices/meals/mealsSlice';
 import { deleteCard, editCardTitle, setMeals } from '../../../store/slices/profileSlice';
 import { dateToday } from '../../../helpers/transformDate';
 import Loader from '../../UI/loader/Loader';
@@ -24,17 +24,16 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
   const {
     isLoading,
     error,
-    mealCardType,
+    mealCardId,
     currentMeals: { items },
     isUploaded
   } = useAppSelector(selectMeals);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    dispatch(setMealCardType(title));
-    dispatch(fetchMeals({ query: `${dishSize}g ${dishName}`, mealCardType: title })).catch(
-      (err: Error) => err
-    );
+    const query = `${dishSize}g ${dishName}`;
+    dispatch(setMealCardId(id));
+    dispatch(fetchMeals(query)).catch((err: Error) => err);
   };
 
   const handleSubmitEdit = (event: FormEvent) => {
@@ -87,7 +86,7 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
           </div>
         )}
       </div>
-      {title !== mealCardType ? (
+      {id !== mealCardId ? (
         <form onSubmit={handleSubmit} className={s.form_wrapper}>
           <input
             type="text"

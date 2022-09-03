@@ -1,1 +1,1 @@
-export const cardTitles = ['Calories', 'Proteins', 'Fats', 'Carbs'];
+export const cardTitles = ['calories', 'proteins', 'fats', 'carbs'];

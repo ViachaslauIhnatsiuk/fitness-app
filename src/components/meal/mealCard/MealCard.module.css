@@ -2,28 +2,71 @@
   display: flex;
   flex-direction: column;
   width: 350px;
-  height: 250px;
   padding: 10px;
   border: 1px solid #7755ff;
   border-radius: 10px;
-  row-gap: 20px;
+  row-gap: 10px;
   background-color: #1f222a;
 }
 
 .header {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   cursor: default;
+  gap: 10px;
+}
+
+.form_edit {
+  display: flex;
+}
+.input_edit {
+  height: 24px;
+  padding: 0 8px;
+  background-color: #1f222a;
+  border: 1px solid #7755ff;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #ffffff;
+  transition: 0.5s;
 }
 
 .title {
   flex: 1 1 auto;
   font-size: 16px;
   font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+.btn_delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  opacity: 0;
+  transition: 0.2s;
+}
+.title:hover .btn_delete {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+.delete_icon {
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.4s;
+  color: #ffffff;
+}
+
+.delete_icon:hover {
+  color: #7755ff;
+  transition: 0.4s;
+  scale: 1.2;
 }
 
 .info {
+  align-self: flex-end;
   display: flex;
   align-items: center;
   column-gap: 5px;
@@ -38,4 +81,80 @@
 .meals {
   border-right: 1px solid #d6d1d2;
   padding-right: 5px;
+}
+
+.form_wrapper {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  padding: 0 10px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.preview {
+  font-size: 14px;
+}
+
+.dish,
+.size {
+  height: 30px;
+  padding: 0 8px;
+  background-color: #1f222a;
+  border: 1px solid #7755ff;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #ffffff;
+  transition: 0.5s;
+}
+
+.dish {
+  width: 55%;
+}
+
+.size {
+  width: 25%;
+}
+
+.dish:active,
+.dish:focus,
+.size:active,
+.size:focus {
+  background-color: #1e1d31;
+  border-color: #6842ff;
+  outline: none;
+  transition: 0.5s;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.button {
+  height: 30px;
+  width: 40px;
+  background-color: #7755ff;
+  border-radius: 10px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.button:hover {
+  transition: 0.5s;
+  background-color: #6842ff;
+}
+
+.icon {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 50px;
 }

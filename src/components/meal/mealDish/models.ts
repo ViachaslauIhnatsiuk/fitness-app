@@ -1,7 +1,8 @@
 import { IMeal } from '../../../store/slices/meals/model';
 
-export interface MealCardProps {
-  id: number;
+interface MealDishProps {
+  props: IMeal;
   title: string;
-  meals: IMeal[];
 }
+
+export type { MealDishProps };

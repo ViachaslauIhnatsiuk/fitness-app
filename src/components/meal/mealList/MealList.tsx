@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   DragDropContext,
   Droppable,
@@ -6,13 +6,22 @@ import {
   DropResult,
   DraggableLocation
 } from 'react-beautiful-dnd';
+import { dateToday } from '../../../helpers/transformDate';
+import { useAppSelector } from '../../../store/model';
+import { selectUserMeals } from '../../../store/selectors';
+import { IDailyMeals } from '../../../store/slices/meals/model';
 import { MealCard } from '../mealCard/MealCard';
-import { NewMealCard } from '../newMealCard/NewMealCard';
-import { meals } from './constants';
+import { meals as defaultMeals } from './constants';
 import './MealList.css';
 
 const MealList: FC = () => {
-  const [cardsOrder, updateCardsOrder] = useState<{ id: number; title: string }[]>(meals);
+  const [cardsOrder, updateCardsOrder] = useState<IDailyMeals[]>(defaultMeals);
+  const userMeals = useAppSelector(selectUserMeals);
+
+  useEffect(() => {
+    const todayUserMeals = userMeals.filter((meal) => meal.date === dateToday);
+    updateCardsOrder(todayUserMeals);
+  }, [userMeals]);
 
   const handleOnDragEnd = (result: DropResult): void => {
     const cards = Array.from(cardsOrder);
@@ -26,23 +35,21 @@ const MealList: FC = () => {
       <Droppable droppableId="list_wrapper" direction="horizontal">
         {(provided) => (
           <div className="list_wrapper" {...provided.droppableProps} ref={provided.innerRef}>
-            {cardsOrder.map(({ title, id }, index) => {
+            {cardsOrder.map(({ id, title, meals }, index) => {
               return (
                 <Draggable key={id} draggableId={id.toString()} index={index}>
                   {(provider) => (
                     <div
-                      className="card_wrapper"
                       ref={provider.innerRef}
                       {...provider.draggableProps}
                       {...provider.dragHandleProps}
                     >
-                      <MealCard title={title} />
+                      <MealCard id={id} title={title} meals={meals} />
                     </div>
                   )}
                 </Draggable>
               );
             })}
-            <NewMealCard />
             {provided.placeholder}
           </div>
         )}

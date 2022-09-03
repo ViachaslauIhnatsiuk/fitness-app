@@ -1,48 +1,64 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { IMeal } from './model';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { API_KEY_MEAL, BASE_URL_MEAL } from '../../constants';
+import type { ConfigRequest, IResponse, MealsResponse, MealsState } from './model';
 
-const initialState = new Map<string, IMeal>([
-  [
-    '29.08.2022',
-    {
-      breakfast: [
-        {
-          name: '',
-          time: '',
-          calories: 0,
-          proteins: 0,
-          fats: 0,
-          carbs: 0
+const initialState: MealsState = {
+  currentMeals: {
+    items: []
+  },
+  isLoading: false,
+  isUploaded: false,
+  error: '',
+  mealCardType: ''
+};
+
+export const fetchMeals = createAsyncThunk(
+  'meals/fetchMeals',
+  async (config: ConfigRequest, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${BASE_URL_MEAL}${config.query}`, {
+        method: 'GET',
+        headers: {
+          'X-Api-Key': API_KEY_MEAL
         }
-      ],
-      lunch: [
-        {
-          name: '',
-          time: '',
-          calories: 0,
-          proteins: 0,
-          fats: 0,
-          carbs: 0
-        }
-      ],
-      dinner: [
-        {
-          name: '',
-          time: '',
-          calories: 0,
-          proteins: 0,
-          fats: 0,
-          carbs: 0
-        }
-      ]
+      }).catch((error: Error) => error);
+      const data = (await (response as Response).json()) as MealsResponse;
+      return { data, mealCardType: config.mealCardType };
+    } catch (error) {
+      return rejectWithValue('Error fetching recipes');
     }
-  ]
-]);
+  }
+);
 
 const mealsSlice = createSlice({
   name: 'meals',
   initialState,
-  reducers: {}
+  reducers: {
+    setMealCardType: (state, { payload }: PayloadAction<string>) => {
+      state.mealCardType = payload;
+    },
+    resetMeals: (state) => {
+      state.currentMeals.items = [];
+      state.mealCardType = '';
+    }
+  },
+  extraReducers(builder) {
+    builder.addCase(fetchMeals.pending, (state) => {
+      state.isLoading = true;
+      state.isUploaded = false;
+    });
+    builder.addCase(fetchMeals.fulfilled, (state, { payload }: PayloadAction<IResponse>) => {
+      state.currentMeals = payload.data;
+      state.isLoading = false;
+      state.isUploaded = true;
+      state.error = '';
+    });
+    builder.addCase(fetchMeals.rejected, (state, { payload }: PayloadAction<unknown | string>) => {
+      state.isLoading = false;
+      state.error = payload as string;
+    });
+  }
 });
 
+export const { setMealCardType, resetMeals } = mealsSlice.actions;
 export { mealsSlice };

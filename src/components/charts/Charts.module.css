@@ -26,38 +26,24 @@
   gap: 15px;
 }
 
-.change {
-  background-color: #7755ff;
-  padding: 5px 15px;
-  border: 1px solid #25282f;
-  border-radius: 5px;
-  color: #ffffff;
-  transition: 0.5s;
-  cursor: pointer;
-}
-
-.change:hover {
-  transition: 0.5s;
-  background-color: #6b5bab;
-  box-shadow: 0px 0px 10px 2px rgba(119, 85, 255, 0.2);
-}
-
+.change,
 .next,
 .previuos {
-  padding: 4px 20px;
-  border: 1px solid #25282f;
+  height: 25px;
+  padding: 0 20px;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #7755ff;
+  background-color: rgba(198, 72, 73, 0.2);
   transition: 0.5s;
   cursor: pointer;
 }
 
+.change:hover,
 .next:hover,
 .previuos:hover {
+  background-color: rgba(198, 72, 73, 0.8);
+  box-shadow: 0px 0px 6px 2px rgba(198, 72, 73, 0.2);
   transition: 0.5s;
-  background-color: #6b5bab;
-  box-shadow: 0px 0px 10px 2px rgba(119, 85, 255, 0.2);
 }
 
 .arrow {
@@ -81,7 +67,7 @@
 }
 
 .indicator {
-  border: 1px solid #7755ff;
+  border: 1px solid rgba(198, 72, 73, 0.2);
   border-radius: 3px;
   height: 8px;
   width: 50px;

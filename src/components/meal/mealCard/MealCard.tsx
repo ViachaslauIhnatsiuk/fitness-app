@@ -2,6 +2,7 @@ import React, { FC, FormEvent, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { IoAdd, IoSearchOutline } from 'react-icons/io5';
 import { RiArrowGoBackFill } from 'react-icons/ri';
+import { useForm } from 'react-hook-form';
 import { MealDish } from '../mealDish/MealDish';
 import { MealCardProps } from './models';
 import { useAppDispatch } from '../../../store/store';
@@ -13,9 +14,21 @@ import { dateToday } from '../../../helpers/transformDate';
 import Loader from '../../UI/loader/Loader';
 import s from './MealCard.module.css';
 
+type DishFormInputs = {
+  dishName: string;
+  dishSize: number;
+};
+
 const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
-  const [dishName, setDishName] = useState<string>('');
-  const [dishSize, setDishSize] = useState<number>(0);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors }
+  } = useForm<DishFormInputs>({
+    mode: 'onChange'
+  });
   const [newTitle, setNewTitle] = useState<string>(title);
   const [editMode, setEditMode] = useState<boolean>(false);
   const totalCalories = meals.reduce((acc, cur) => acc + cur.calories, 0).toFixed(1);
@@ -29,8 +42,9 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
     isUploaded
   } = useAppSelector(selectMeals);
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
+  const onSubmit = () => {
+    const dishName = getValues('dishName');
+    const dishSize = getValues('dishSize');
     const query = `${dishSize}g ${dishName}`;
     dispatch(setMealCardId(id));
     dispatch(fetchMeals(query)).catch((err: Error) => err);
@@ -44,14 +58,12 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
 
   const handleAddNewDish = () => {
     dispatch(setMeals({ date: dateToday, mealTitle: title, meal: items[0] }));
-    setDishName('');
-    setDishSize(0);
+    reset();
     dispatch(resetMeals());
   };
 
   const handleReturnToForm = () => {
-    setDishName('');
-    setDishSize(0);
+    reset();
     dispatch(resetMeals());
   };
 
@@ -87,21 +99,20 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
         )}
       </div>
       {id !== mealCardId ? (
-        <form onSubmit={handleSubmit} className={s.form_wrapper}>
+        <form onSubmit={handleSubmit(onSubmit)} className={s.form_wrapper}>
           <input
             type="text"
-            className={s.dish}
+            className={errors.dishName ? s.dish_invalid : s.dish}
             placeholder="Dish, name"
-            value={dishName}
-            onChange={(e) => setDishName(e.target.value)}
+            autoComplete="off"
+            {...register('dishName', { required: true, minLength: 3 })}
           />
           <input
             type="number"
-            min={0}
-            className={s.size}
+            className={errors.dishSize ? s.size_invalid : s.size}
             placeholder="Size, g"
-            value={dishSize || ''}
-            onChange={(e) => setDishSize(Number(e.target.value))}
+            autoComplete="off"
+            {...register('dishSize', { required: true, min: 10, max: 5000 })}
           />
           <button type="submit" className={s.button}>
             <IoSearchOutline className={s.icon} />

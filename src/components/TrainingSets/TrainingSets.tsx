@@ -1,5 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { useFilteredTrainings } from '../../hooks/useFilteredTrainings';
 import { WorkoutStatus } from '../../models/Workout';
 import { useAppSelector } from '../../store/model';
@@ -27,6 +29,9 @@ const TrainingSets: FC = () => {
       <div className={s.main}>
         <FilterByLevel />
         <FilterBySearch />
+        <Link to="create" className={s.create}>
+          <AiOutlinePlusCircle />
+        </Link>
         <div className={s.trainings}>
           {status === WorkoutStatus.loading && <Loader />}
           {status === WorkoutStatus.resolved &&

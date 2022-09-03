@@ -9,7 +9,8 @@ interface IFavorite {
 enum FavoritePath {
   videos = 'favorite/video-trainings',
   trainings = 'favorite/trainings',
-  recipes = 'favorite/recipes'
+  recipes = 'favorite/recipes',
+  customTrainings = 'favorite/custom-trainings'
 }
 
 export { FavoritePath };

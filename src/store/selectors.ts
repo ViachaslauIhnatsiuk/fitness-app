@@ -9,15 +9,17 @@ const selectRecipes = (state: RootState) => state.recipes;
 const selectMeals = (state: RootState) => state.meals;
 const selectTrainings = (state: RootState) => state.trainings;
 const selectVideos = (state: RootState) => state.videos;
+const selectSettings = (state: RootState) => state.profile.currentUser.settings;
 
 export {
   selectProfile,
   selectUserData,
   selectUserMeals,
-  selectFavorites,
   selectRecipes,
   selectMeals,
   selectTrainings,
   selectVideos,
-  selectStatistics
+  selectStatistics,
+  selectFavorites,
+  selectSettings
 };

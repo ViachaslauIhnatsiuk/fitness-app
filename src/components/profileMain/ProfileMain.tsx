@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineSound, AiFillSound } from 'react-icons/ai';
@@ -6,18 +6,25 @@ import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import { useAppSelector } from '../../store/model';
-import { selectProfile } from '../../store/selectors';
+import { selectProfile, selectSettings } from '../../store/selectors';
 import { useAuth } from '../../hooks/useAuth';
 import { Avatar } from '../UI/avatar/Avatar';
 import s from './ProfileMain.module.css';
+import { useAppDispatch } from '../../store/store';
+import { setSoundOn } from '../../store/slices/profileSlice';
 import { useTheme } from '../../hooks/useTheme';
 
 const ProfileMain: FC = () => {
+  const dispatch = useAppDispatch();
   const { theme, setTheme } = useTheme();
-  const [sound, setSound] = useState<boolean>(false);
+  const { isSoundOn } = useAppSelector(selectSettings);
+  const [sound, setSound] = useState<boolean>(isSoundOn);
   const { currentUser } = useAppSelector(selectProfile);
   const { handleLogout } = useAuth();
 
+  useEffect(() => {
+    dispatch(setSoundOn(sound));
+  }, [dispatch, sound]);
   return (
     <div className={s.wrapper}>
       <div className={s.main}>

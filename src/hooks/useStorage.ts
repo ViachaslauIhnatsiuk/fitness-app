@@ -22,11 +22,16 @@ const useStorage = () => {
 
   const getTrainingPreviewUrl = useCallback(async (name: string): Promise<void> => {
     const convertedName = convertNameToFirebaseStyle(name);
+    const customTrainingPreview = '/images/custom.jpg';
+    const url = await getDownloadURL(ref(storage, `exercises_preview/${convertedName}.jpg`)).catch(
+      () => {
+        setTrainingImageUrl(customTrainingPreview);
+      }
+    );
 
-    const url = await getDownloadURL(
-      ref(storage, `exercises_preview/${convertedName}.jpg`)
-    ).catch();
-    setTrainingImageUrl(url);
+    if (url) {
+      setTrainingImageUrl(url);
+    }
   }, []);
 
   const getExerciseGifUrl = useCallback(async (name: string): Promise<void> => {

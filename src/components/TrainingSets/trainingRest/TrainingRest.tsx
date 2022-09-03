@@ -1,6 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
+import { Audio } from '../../../models/audio';
+import { useAppSelector } from '../../../store/model';
+import { selectSettings } from '../../../store/selectors';
 import { Button } from '../../UI/button/Button';
 import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
+import { CustomAudio } from '../../UI/customAudio/CustomAudio';
 import Loader from '../../UI/loader/Loader';
 import { REST_TIME } from '../constants';
 import { TrainingRestProps } from './models';
@@ -12,6 +16,21 @@ const TrainingRest: FC<TrainingRestProps> = ({
   nextExercise: { title },
   onUpdate
 }) => {
+  const { isSoundOn } = useAppSelector(selectSettings);
+  const auidoTimer = useRef<HTMLAudioElement>(null);
+  const auidoRest = useRef<HTMLAudioElement>(null);
+
+  const playSound = (remainingTime: number) => {
+    if (remainingTime === 5 && auidoTimer.current && isSoundOn) {
+      auidoTimer.current.volume = 0.4;
+      auidoTimer.current.play().catch(() => {});
+    }
+    if (remainingTime === REST_TIME - 1 && auidoRest.current && isSoundOn) {
+      auidoRest.current.volume = 0.4;
+      auidoRest.current.play().catch(() => {});
+    }
+  };
+
   return (
     <div className={s.rest}>
       <div className={s.timer}>
@@ -23,6 +42,7 @@ const TrainingRest: FC<TrainingRestProps> = ({
           strokeWidth={4}
           fontSize={28}
           onUpdate={onUpdate}
+          playSound={playSound}
         />
       </div>
       <div className={s.info}>
@@ -30,12 +50,16 @@ const TrainingRest: FC<TrainingRestProps> = ({
           Next exercise: <i>{title}</i>
         </h2>
         {!exerciseGifUrl ? (
-          <Loader />
+          <div className={s.loader}>
+            <Loader />
+          </div>
         ) : (
           <img className={s.image} src={exerciseGifUrl} alt="exercise" />
         )}
       </div>
       <Button text="Skip Rest" onClick={onSkipHandler} isStyled customStyles={s.button} />
+      <CustomAudio ref={auidoTimer} path={Audio.timer} />
+      <CustomAudio ref={auidoRest} path={Audio.rest} />
     </div>
   );
 };

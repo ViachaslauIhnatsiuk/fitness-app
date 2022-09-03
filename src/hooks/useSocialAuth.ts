@@ -20,6 +20,7 @@ const useSocialAuth = () => {
       email: user.email,
       name: user.email?.split('@')[0],
       id: user.uid,
+      avatar: '',
       token: await user.getIdToken(true)
     }).catch((error: Error) => error);
     navigate('/');

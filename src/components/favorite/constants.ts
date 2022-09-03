@@ -13,6 +13,11 @@ const favorites = [
     title: 'Favorite Recipes',
     redirectPath: 'favorite/recipes',
     image: '/images/favoritePreview/meal.jpg'
+  },
+  {
+    title: 'Custom Trainings',
+    redirectPath: 'favorite/custom-trainings',
+    image: '/images/custom.jpg'
   }
 ];
 

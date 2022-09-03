@@ -1,9 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useRef, useEffect } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { Button } from '../../UI/button/Button';
 import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { ExerciseActiveProps } from './models';
 import s from './ExerciseActive.module.css';
+import { useAppSelector } from '../../../store/model';
+import { selectSettings } from '../../../store/selectors';
+import { CustomAudio } from '../../UI/customAudio/CustomAudio';
+import { Audio } from '../../../models/audio';
 
 const ExerciseActive: FC<ExerciseActiveProps> = ({
   exercise: { time, title },
@@ -13,6 +17,16 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
   onUpdate,
   currentPosition
 }) => {
+  const { isSoundOn } = useAppSelector(selectSettings);
+  const auidoRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (auidoRef.current && isSoundOn) {
+      auidoRef.current.volume = 0.4;
+      auidoRef.current.play().catch(() => {});
+    }
+  }, [isSoundOn]);
+
   return (
     <div className={s.wrapper}>
       <h1>{title}</h1>
@@ -45,6 +59,7 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
           customStyles={s.button}
         />
       </div>
+      <CustomAudio ref={auidoRef} path={Audio.bell} />
     </div>
   );
 };

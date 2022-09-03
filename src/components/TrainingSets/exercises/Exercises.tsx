@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { BsArrowLeft, BsBookmarkDash, BsBookmarkDashFill } from 'react-icons/bs';
+import { RiDeleteBin5Line } from 'react-icons/ri';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { Button } from '../../UI/button/Button';
 import { ExerciseCard } from '../exerciseCard/ExerciseCard';
@@ -8,7 +9,7 @@ import { WorkoutPath } from '../../../models/Workout';
 import { useTraining } from '../../../hooks/useTraining';
 import Loader from '../../UI/loader/Loader';
 import { useAppDispatch } from '../../../store/store';
-import { setTrainingToFavorites } from '../../../store/slices/profileSlice';
+import { deleteCustomTraining, setTrainingToFavorites } from '../../../store/slices/profileSlice';
 import { useAppSelector } from '../../../store/model';
 import { selectProfile } from '../../../store/selectors';
 import s from './Exercises.module.css';
@@ -43,6 +44,15 @@ const Exercises: FC = () => {
     [trainingId, trainings]
   );
 
+  const deleteCustomTrainingHandler = () => {
+    if (trainingId) {
+      if (trainings.includes(Number(trainingId))) {
+        dispatch(setTrainingToFavorites(Number(trainingId)));
+      }
+      dispatch(deleteCustomTraining(Number(trainingId)));
+    }
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.main}>
@@ -54,6 +64,9 @@ const Exercises: FC = () => {
         ) : (
           <BsBookmarkDash onClick={addToFavoriteHandler} className={s.bookmark} />
         )}
+        <Link to={WorkoutPath.trainings}>
+          <RiDeleteBin5Line className={s.delete} onClick={deleteCustomTrainingHandler} />
+        </Link>
         {isLoading ? (
           <Loader />
         ) : (

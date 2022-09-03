@@ -1,0 +1,8 @@
+.card {
+  width: 280px;
+}
+
+.active {
+  border: 1px solid #7755ff;
+  border-radius: 10px;
+}

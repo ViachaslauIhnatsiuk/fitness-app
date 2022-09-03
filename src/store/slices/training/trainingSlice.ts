@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../../firebase/firebase';
+import { auth, db } from '../../../firebase/firebase';
+import { IUser } from '../../../models/User';
 import {
   FirestoreCollection,
   FirestoreDocument,
@@ -9,7 +10,7 @@ import {
   WorkoutFilterByLevel,
   WorkoutStatus
 } from '../../../models/Workout';
-import { getValuesFromObjectByArrayOfId } from '../../helpers';
+import { getValuesFromArrayByArrayOfId, getValuesFromObjectByArrayOfId } from '../../helpers';
 import { TrainingState } from './models';
 
 const initialState: TrainingState = {
@@ -28,11 +29,27 @@ const fetchTrainings = createAsyncThunk(
       const docRef = doc(db, FirestoreCollection.trainings, FirestoreDocument.trainings);
       const docSnap = await getDoc(docRef);
 
+      const docRefUser = doc(db, 'users', auth.currentUser?.uid as string);
+      const docSnapUser = await getDoc(docRefUser);
+
       if (!docSnap.exists()) {
         throw new Error('Trainings dont exists!');
       }
+
+      if (!docSnapUser.exists()) {
+        throw new Error('Trainings dont exists!');
+      }
+
       const trainings = docSnap.data() as IWorkouts;
-      return Object.values(trainings);
+      const { customTrainings } = docSnapUser.data() as IUser;
+
+      const arrayOfTrainings = Object.values(trainings);
+
+      if (customTrainings.length) {
+        arrayOfTrainings.push(...customTrainings);
+      }
+
+      return arrayOfTrainings;
     } catch (error) {
       return rejectWithValue('Error fetching trainings');
     }
@@ -46,17 +63,45 @@ const fetchFavoriteTrainings = createAsyncThunk(
       const docRef = doc(db, FirestoreCollection.trainings, FirestoreDocument.trainings);
       const docSnap = await getDoc(docRef);
 
+      const docRefUser = doc(db, 'users', auth.currentUser?.uid as string);
+      const docSnapUser = await getDoc(docRefUser);
+
+      if (!docSnapUser.exists()) {
+        throw new Error('Trainings dont exists!');
+      }
       if (!docSnap.exists()) {
         throw new Error('Trainings dont exists!');
       }
+
       const trainings = docSnap.data() as IWorkouts;
+      const { customTrainings } = docSnapUser.data() as IUser;
 
       const favoriteTrainings = getValuesFromObjectByArrayOfId(
         trainingIds,
         trainings
       ) as IWorkout[];
+      const favoriteCustomTrainings = getValuesFromArrayByArrayOfId(trainingIds, customTrainings);
 
-      return favoriteTrainings;
+      return [...favoriteTrainings, ...favoriteCustomTrainings];
+    } catch (error) {
+      return rejectWithValue('Error fetching trainings');
+    }
+  }
+);
+
+const fetchCustomTrainings = createAsyncThunk(
+  'workout/fetchCustomTrainings',
+  async (_, { rejectWithValue }) => {
+    try {
+      const docRefUser = doc(db, 'users', auth.currentUser?.uid as string);
+      const docSnapUser = await getDoc(docRefUser);
+
+      if (!docSnapUser.exists()) {
+        throw new Error('Trainings dont exists!');
+      }
+
+      const { customTrainings } = docSnapUser.data() as IUser;
+      return customTrainings;
     } catch (error) {
       return rejectWithValue('Error fetching trainings');
     }
@@ -111,8 +156,26 @@ const trainingSlice = createSlice({
         state.error = payload as string;
       }
     );
+    builder.addCase(fetchCustomTrainings.pending, (state) => {
+      state.status = WorkoutStatus.loading;
+      state.error = '';
+    });
+    builder.addCase(
+      fetchCustomTrainings.fulfilled,
+      (state, { payload }: PayloadAction<IWorkout[]>) => {
+        state.status = WorkoutStatus.resolved;
+        state.favorite = payload;
+      }
+    );
+    builder.addCase(
+      fetchCustomTrainings.rejected,
+      (state, { payload }: PayloadAction<unknown | string>) => {
+        state.status = WorkoutStatus.rejected;
+        state.error = payload as string;
+      }
+    );
   }
 });
 
 export const { setTrainings, setFilterByLevel, setFilterBySearch } = trainingSlice.actions;
-export { trainingSlice, fetchTrainings, fetchFavoriteTrainings };
+export { trainingSlice, fetchTrainings, fetchFavoriteTrainings, fetchCustomTrainings };

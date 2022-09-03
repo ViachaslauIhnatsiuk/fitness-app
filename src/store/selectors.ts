@@ -19,6 +19,5 @@ export {
   selectMeals,
   selectTrainings,
   selectVideos,
-  selectStatistics,
-  selectFavorites
+  selectStatistics
 };

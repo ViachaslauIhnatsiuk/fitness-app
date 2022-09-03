@@ -27,7 +27,7 @@ const FavoriteVideos: FC = () => {
       {status === WorkoutStatus.loading && <Loader />}
       {status === WorkoutStatus.resolved && (
         <div className={s.videos}>
-          {favoriteVideos.length === 0 && <h1>Empty</h1>}
+          {favoriteVideos.length === 0 && <h4>There is nothing here yet</h4>}
           {favoriteVideos.map(({ title, id, category }) => {
             return <VideoCard key={uuidv4()} title={title} id={id} videoCategory={category} />;
           })}

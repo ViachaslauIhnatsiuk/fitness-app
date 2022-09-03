@@ -32,7 +32,10 @@ const MealList: FC = () => {
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId="list_wrapper" direction="horizontal">
+      <Droppable
+        droppableId="list_wrapper"
+        direction={window.innerWidth > 870 ? 'horizontal' : 'vertical'}
+      >
         {(provided) => (
           <div className="list_wrapper" {...provided.droppableProps} ref={provided.innerRef}>
             {cardsOrder.map(({ id, title, meals }, index) => {

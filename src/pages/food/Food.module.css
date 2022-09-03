@@ -8,6 +8,7 @@
 
 .main {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,6 +81,12 @@
   .link,
   .link_active {
     width: 200px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .wrapper {
+    padding: 60px 30px;
   }
 }
 

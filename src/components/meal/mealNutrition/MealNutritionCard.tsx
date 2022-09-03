@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { NutritionCardProps } from './models';
-import s from './MealNutritionCard.module.css';
 import { IConsumption } from '../../../models/Consumption';
 import { setTitleCase } from '../../../helpers/setTitleCase';
+import s from './MealNutritionCard.module.css';
 
-const MealNutritionCard: FC<NutritionCardProps> = ({ title, curScore, maxScore }) => {
+const MealNutritionCard: FC<NutritionCardProps> = ({ title, curScore, maxScore, color }) => {
   const currentValue = curScore[title as keyof IConsumption];
   const maxValue = maxScore[title as keyof IConsumption];
   const percentCompleted = Math.round((currentValue / maxValue) * 100);
@@ -21,11 +21,15 @@ const MealNutritionCard: FC<NutritionCardProps> = ({ title, curScore, maxScore }
       <div className={s.progress}>
         <ProgressBar
           completed={percentCompleted}
-          bgColor="#7755ff"
+          bgColor={color}
           height="8px"
+          labelColor="#d6d1d2"
+          labelSize="12px"
+          labelAlignment="outside"
           width="100%"
           borderRadius="10px"
           baseBgColor="#e5e5e5"
+          animateOnRender
         />
       </div>
     </div>

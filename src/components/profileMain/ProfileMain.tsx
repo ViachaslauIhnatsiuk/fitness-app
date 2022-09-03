@@ -10,9 +10,10 @@ import { selectProfile } from '../../store/selectors';
 import { useAuth } from '../../hooks/useAuth';
 import { Avatar } from '../UI/avatar/Avatar';
 import s from './ProfileMain.module.css';
+import { useTheme } from '../../hooks/useTheme';
 
 const ProfileMain: FC = () => {
-  const [theme, setTheme] = useState<boolean>(false);
+  const { theme, setTheme } = useTheme();
   const [sound, setSound] = useState<boolean>(false);
   const { currentUser } = useAppSelector(selectProfile);
   const { handleLogout } = useAuth();
@@ -37,19 +38,24 @@ const ProfileMain: FC = () => {
             </Link>
           </div>
           <div className={s.setting}>
-            {theme ? (
-              <MdOutlineLightMode className={s.icon} style={{ color: '#181a20' }} />
-            ) : (
+            {theme === 'dark' ? (
               <MdOutlineDarkMode className={s.icon} style={{ color: '#fff' }} />
+            ) : (
+              <MdOutlineLightMode className={s.icon} style={{ color: '#181a20' }} />
             )}
             <span className={s.theme_title}>Theme</span>
             <button
               type="button"
               className={s.theme}
-              onClick={() => setTheme(!theme)}
-              style={theme ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }}
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              style={
+                theme === 'dark' ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }
+              }
             >
-              <div className={s.slider} style={theme ? { left: '30px' } : { left: '3px' }} />
+              <div
+                className={s.slider}
+                style={theme === 'dark' ? { left: '30px' } : { left: '3px' }}
+              />
             </button>
           </div>
           <div className={s.setting}>

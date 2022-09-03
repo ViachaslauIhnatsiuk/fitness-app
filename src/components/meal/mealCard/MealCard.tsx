@@ -70,6 +70,9 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
             />
+            <button type="submit" className={s.remove}>
+              Update
+            </button>
           </form>
         ) : (
           <div className={s.header} onDoubleClick={() => setEditMode(true)}>

@@ -20,6 +20,9 @@
 
 .form_edit {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .input_edit {

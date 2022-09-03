@@ -19,7 +19,6 @@ const TrainingCreate = () => {
   } = useAppSelector(selectProfile);
   const [level, setLevel] = useState<WorkoutFilterByLevel>(WorkoutFilterByLevel.beginner);
   const [title, setTitle] = useState<string>('');
-  const [error, setError] = useState<boolean>(false);
   const [selectedExercises, setSelectedExercises] = useState<IExercise[]>([]);
 
   const addExerciseToCollection = (exercise: IExercise) => {
@@ -39,23 +38,18 @@ const TrainingCreate = () => {
   };
 
   const createCustomTrainingHandler = () => {
-    if (selectedExercises.length < 5) {
-      setError(true);
-    } else {
-      const trainingId = customTrainings.length + trainings.length + 1;
-      const customTraining: IWorkout = {
-        cal: selectedExercises.length * 9,
-        id: trainingId,
-        level,
-        title,
-        exercises: selectedExercises
-      };
-      dispatch(addCustomTraining(customTraining));
-      setError(false);
-      setTitle('');
-      setSelectedExercises([]);
-      setLevel(WorkoutFilterByLevel.beginner);
-    }
+    const trainingId = customTrainings.length + trainings.length + 1;
+    const customTraining: IWorkout = {
+      cal: selectedExercises.length * 9,
+      id: trainingId,
+      level,
+      title,
+      exercises: selectedExercises
+    };
+    dispatch(addCustomTraining(customTraining));
+    setTitle('');
+    setSelectedExercises([]);
+    setLevel(WorkoutFilterByLevel.beginner);
   };
 
   return (
@@ -63,7 +57,8 @@ const TrainingCreate = () => {
       <Link className={s.return} to={WorkoutPath.trainings}>
         <BsArrowLeft className={s.icon} />
       </Link>
-      <h1 className={s.title}>Create custom traning</h1>
+      <h1 className={s.title}>Create custom training</h1>
+      <h4 className={s.subtitle}>Choose at least 5 exercises to create new training</h4>
       <div className={s.form}>
         <div className={s.input_wrapper}>
           <input
@@ -74,30 +69,34 @@ const TrainingCreate = () => {
             onChange={changeTitleHandler}
           />
         </div>
-        <select
-          className={s.select}
-          onChange={selectLevelHandler}
-          name="level"
-          defaultValue={WorkoutFilterByLevel.beginner}
-        >
-          {options.map(({ label, value }) => {
-            return (
-              <option key={uuidv4()} className={s.option} value={value}>
-                {label}
-              </option>
-            );
-          })}
-        </select>
-        <button
-          className={s.button}
-          type="button"
-          disabled={!title}
-          onClick={createCustomTrainingHandler}
-        >
-          create
-        </button>
+        <div className={s.buttons}>
+          <select
+            className={s.select}
+            onChange={selectLevelHandler}
+            name="level"
+            defaultValue={WorkoutFilterByLevel.beginner}
+          >
+            {options.map(({ label, value }) => {
+              return (
+                <option key={uuidv4()} className={s.option} value={value}>
+                  {label}
+                </option>
+              );
+            })}
+          </select>
+          <button
+            style={{
+              backgroundColor: selectedExercises.length < 5 || !title ? '#35383f' : '#7755ff'
+            }}
+            className={s.button}
+            type="button"
+            disabled={selectedExercises.length < 5 || !!title}
+            onClick={createCustomTrainingHandler}
+          >
+            Create
+          </button>
+        </div>
       </div>
-      {error && <h4 className={s.error}>To create a workout, you need at least 5 exercises</h4>}
       <Exercises selectedExercises={selectedExercises} onClickHandler={addExerciseToCollection} />
     </div>
   );

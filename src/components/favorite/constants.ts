@@ -17,7 +17,7 @@ const favorites = [
   {
     title: 'Custom Trainings',
     redirectPath: 'favorite/custom-trainings',
-    image: '/images/custom.jpg'
+    image: '/images/favoritePreview/custom.jpg'
   }
 ];
 

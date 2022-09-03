@@ -1,10 +1,9 @@
 .wrapper {
   width: 100%;
-  height: 50px;
   display: flex;
   align-items: center;
   column-gap: 8px;
-  padding-right: 10px;
+  letter-spacing: 0.02em;
 }
 
 .image {
@@ -19,24 +18,25 @@
   row-gap: 3px;
 }
 
-.title,
-.calories,
-.time {
-  font-size: 13px;
+.title {
+  font-size: 15px;
 }
 
-.title {
-  font-weight: 600;
+.calories,
+.time {
+  font-size: 12px;
+  font-weight: 300;
+  color: #d6d1d2;
 }
 
 .remove {
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
-  transition: 0.4s;
+  transition: 0.5s;
+  color: rgba(198, 72, 73, 0.3);
 }
 
 .remove:hover {
-  color: #7755ff;
-  transition: 0.4s;
-  scale: 1.2;
+  color: rgba(198, 72, 73, 1);
+  transition: 0.5s;
 }

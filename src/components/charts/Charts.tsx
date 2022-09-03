@@ -96,7 +96,9 @@ const Charts: FC = () => {
                 <div
                   key={uuidv4()}
                   className={s.indicator}
-                  style={{ backgroundColor: page === element ? '#7755ff' : 'transparent' }}
+                  style={{
+                    backgroundColor: page === element ? 'rgba(198, 72, 73, 0.4)' : 'transparent'
+                  }}
                 />
               );
             })}

@@ -19,7 +19,7 @@ const TrainingCreate = () => {
   const [error, setError] = useState<boolean>(false);
   const [selectedExercises, setSelectedExercises] = useState<IExercise[]>([]);
 
-  const addToCustomTrainingHandler = (exercise: IExercise) => {
+  const addExerciseToCollection = (exercise: IExercise) => {
     if (selectedExercises.includes(exercise)) {
       setSelectedExercises(selectedExercises.filter((item) => item !== exercise));
     } else {
@@ -94,10 +94,7 @@ const TrainingCreate = () => {
         </button>
       </div>
       {error && <h4 className={s.error}>To create a workout, you need at least 5 exercises</h4>}
-      <Exercises
-        selectedExercises={selectedExercises}
-        onClickHandler={addToCustomTrainingHandler}
-      />
+      <Exercises selectedExercises={selectedExercises} onClickHandler={addExerciseToCollection} />
     </div>
   );
 };

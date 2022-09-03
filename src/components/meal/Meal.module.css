@@ -1,7 +1,25 @@
 .wrapper {
   width: 100%;
-  min-height: calc(100vh - 304px);
   display: flex;
   flex-direction: column;
-  padding: 40px 60px;
+  gap: 30px;
+  min-height: calc(100% - 100px);
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    padding: 70px 0 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 70px 0 250px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding: 40px 0 250px;
+  }
 }

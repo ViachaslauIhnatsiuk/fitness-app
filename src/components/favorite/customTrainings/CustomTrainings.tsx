@@ -26,7 +26,7 @@ const CustomTrainings: FC = () => {
       {status === WorkoutStatus.loading && <Loader />}
       {status === WorkoutStatus.resolved && (
         <div className={s.trainings}>
-          {customTrainings.length === 0 && <h1>Empty</h1>}
+          {customTrainings.length === 0 && <h4>There is nothing here yet</h4>}
           {customTrainings.map((training) => {
             return <TrainingCard key={uuidv4()} training={training} />;
           })}

@@ -4,4 +4,5 @@ export interface NutritionCardProps {
   title: string;
   curScore: IConsumption;
   maxScore: IConsumption;
+  color: string;
 }

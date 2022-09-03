@@ -23,7 +23,8 @@ const MealNutritionsList: FC = () => {
     <div className={s.wrapper}>
       {cardTitles.map((cardTitle) => (
         <MealNutritionCard
-          title={cardTitle}
+          title={cardTitle.title}
+          color={cardTitle.color}
           curScore={curScore}
           maxScore={maxScore}
           key={uuidv4()}

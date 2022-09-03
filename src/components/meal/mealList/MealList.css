@@ -1,9 +1,13 @@
 .list_wrapper {
-  flex: 1 1 auto;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   gap: 30px;
-  margin-bottom: 30px;
+}
+
+@media (max-width: 870px) {
+  .list_wrapper {
+    justify-content: center;
+  }
+
 }

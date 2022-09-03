@@ -11,12 +11,13 @@ import { useAuth } from '../../hooks/useAuth';
 import { Avatar } from '../UI/avatar/Avatar';
 import s from './ProfileMain.module.css';
 import { useAppDispatch } from '../../store/store';
-import { setDarkTheme, setSoundOn } from '../../store/slices/profileSlice';
+import { setSoundOn } from '../../store/slices/profileSlice';
+import { useTheme } from '../../hooks/useTheme';
 
 const ProfileMain: FC = () => {
   const dispatch = useAppDispatch();
-  const { isDarkTheme, isSoundOn } = useAppSelector(selectSettings);
-  const [theme, setTheme] = useState<boolean>(isDarkTheme);
+  const { theme, setTheme } = useTheme();
+  const { isSoundOn } = useAppSelector(selectSettings);
   const [sound, setSound] = useState<boolean>(isSoundOn);
   const { currentUser } = useAppSelector(selectProfile);
   const { handleLogout } = useAuth();
@@ -24,11 +25,6 @@ const ProfileMain: FC = () => {
   useEffect(() => {
     dispatch(setSoundOn(sound));
   }, [dispatch, sound]);
-
-  useEffect(() => {
-    dispatch(setDarkTheme(theme));
-  }, [dispatch, theme]);
-
   return (
     <div className={s.wrapper}>
       <div className={s.main}>
@@ -49,19 +45,24 @@ const ProfileMain: FC = () => {
             </Link>
           </div>
           <div className={s.setting}>
-            {theme ? (
-              <MdOutlineLightMode className={s.icon} style={{ color: '#181a20' }} />
-            ) : (
+            {theme === 'dark' ? (
               <MdOutlineDarkMode className={s.icon} style={{ color: '#fff' }} />
+            ) : (
+              <MdOutlineLightMode className={s.icon} style={{ color: '#181a20' }} />
             )}
             <span className={s.theme_title}>Theme</span>
             <button
               type="button"
               className={s.theme}
-              onClick={() => setTheme(!theme)}
-              style={theme ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }}
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              style={
+                theme === 'dark' ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }
+              }
             >
-              <div className={s.slider} style={theme ? { left: '30px' } : { left: '3px' }} />
+              <div
+                className={s.slider}
+                style={theme === 'dark' ? { left: '30px' } : { left: '3px' }}
+              />
             </button>
           </div>
           <div className={s.setting}>

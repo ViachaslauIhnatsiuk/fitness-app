@@ -1,13 +1,15 @@
 .wrapper {
-  font-size: 30px;
-  color: #ffffff;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   width: 100%;
-  padding: 10px;
 }
 
 .title {
-  text-align: center;
+  margin: 50px 0 30px;
+  font-size: 40px;
 }
 
 .content {

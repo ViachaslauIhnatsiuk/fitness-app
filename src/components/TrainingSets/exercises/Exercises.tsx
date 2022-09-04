@@ -27,7 +27,7 @@ const Exercises: FC = () => {
     }
   } = useAppSelector(selectProfile);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const isVisible = isCustomTraining(customTrainings, trainingId as string);
+  const isDeletableTraining = isCustomTraining(customTrainings, trainingId as string);
   const redirectPath = `${pathname}active`;
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Exercises: FC = () => {
         ) : (
           <BsBookmarkDash onClick={addToFavoriteHandler} className={s.bookmark} />
         )}
-        {isVisible && (
+        {isDeletableTraining && (
           <Link to={WorkoutPath.trainings}>
             <RiDeleteBin5Line className={s.delete} onClick={deleteCustomTrainingHandler} />
           </Link>

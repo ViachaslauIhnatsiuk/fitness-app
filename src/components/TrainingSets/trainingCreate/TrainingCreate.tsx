@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { BsArrowLeft } from 'react-icons/bs';
 import Select, { SingleValue } from 'react-select';
 import { IExercise, IWorkout, WorkoutPath } from '../../../models/Workout';
-import { useAppSelector } from '../../../store/model';
-import { selectProfile, selectTrainings } from '../../../store/selectors';
 import { addCustomTraining } from '../../../store/slices/profileSlice';
 import { useAppDispatch } from '../../../store/store';
 import { Exercises } from './exercises/Exercises';
@@ -14,10 +12,6 @@ import './TrainingCreate.css';
 
 const TrainingCreate = () => {
   const dispatch = useAppDispatch();
-  const { trainings } = useAppSelector(selectTrainings);
-  const {
-    currentUser: { customTrainings }
-  } = useAppSelector(selectProfile);
   const [level, setLevel] = useState<string>('beginner');
   const [title, setTitle] = useState<string>('');
   const [selectedExercises, setSelectedExercises] = useState<IExercise[]>([]);
@@ -35,10 +29,9 @@ const TrainingCreate = () => {
   };
 
   const createCustomTrainingHandler = () => {
-    const trainingId = customTrainings.length + trainings.length + 1;
     const customTraining: IWorkout = {
       cal: selectedExercises.length * 9,
-      id: trainingId,
+      id: Date.now(),
       level,
       title,
       exercises: selectedExercises

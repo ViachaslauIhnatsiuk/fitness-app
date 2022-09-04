@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { IoMdInformationCircleOutline, IoMdVolumeHigh, IoMdVolumeOff } from 'react-icons/io';
@@ -21,9 +21,11 @@ const ProfileMain: FC = () => {
   const { currentUser } = useAppSelector(selectProfile);
   const { handleLogout } = useAuth();
 
-  useEffect(() => {
-    dispatch(setSoundOn(sound));
-  }, [dispatch, sound]);
+  const toggleSoundHandler = () => {
+    setSound(!sound);
+    dispatch(setSoundOn(!sound));
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.main}>
@@ -77,8 +79,8 @@ const ProfileMain: FC = () => {
             <button
               type="button"
               className={s.sound}
-              onClick={() => setSound(!sound)}
-              style={{ backgroundColor: sound ? '#7755ff' : '#35383f' }}
+              onClick={toggleSoundHandler}
+              style={sound ? { backgroundColor: '#7755ff' } : { backgroundColor: '#35383f' }}
             >
               <div className={s.slider} style={{ left: sound ? '30px' : '3px' }} />
             </button>

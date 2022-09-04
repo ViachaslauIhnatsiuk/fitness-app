@@ -26,11 +26,13 @@ const TrainingSets: FC = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.main}>
-        <FilterByLevel />
-        <FilterBySearch />
-        <Link to="create" className={s.button}>
-          Create new
-        </Link>
+        <div className={s.navigation}>
+          <FilterByLevel />
+          <FilterBySearch />
+          <Link to="create" className={s.button}>
+            Create new
+          </Link>
+        </div>
         <div className={s.trainings}>
           {status === WorkoutStatus.loading && <Loader />}
           {status === WorkoutStatus.resolved &&

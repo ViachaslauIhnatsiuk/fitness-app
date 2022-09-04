@@ -8,4 +8,12 @@ const getConsumptionStatistic = (dailyMeals: IDailyMeals[]): IConsumption => {
   return statistic;
 };
 
-export { getConsumptionStatistic };
+const convertMinutesToHours = (minutes: number): number => {
+  return Math.ceil(minutes / 3600);
+};
+
+const convertToThousands = (calories: number): number => {
+  return Math.ceil(calories / 1000);
+};
+
+export { getConsumptionStatistic, convertMinutesToHours, convertToThousands };

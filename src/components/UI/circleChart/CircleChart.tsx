@@ -10,7 +10,8 @@ const CircleChart = ({
   fontSize = 32,
   strokeWidth = 5,
   text = 'Calories',
-  color = '#7755ff'
+  color = '#7755ff',
+  isThousands = false
 }: Partial<CircleTimerProps>) => {
   return (
     <div className="circle-wrapper">
@@ -20,7 +21,7 @@ const CircleChart = ({
         minValue={0}
         maxValue={maxValue}
         value={currentValue}
-        text={`${currentValue}`}
+        text={isThousands ? `${currentValue}k` : `${currentValue}`}
         styles={buildStyles({
           strokeLinecap: 'round',
           textSize: `${fontSize}px`,

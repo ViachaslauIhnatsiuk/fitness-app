@@ -49,7 +49,12 @@ const CircleTimer = ({
         {({ remainingTime }) => <p style={{ fontSize }}>{remainingTime}</p>}
       </CountdownCircleTimer>
       {isTimerCanPause && (
-        <Button text={btnTitle} onClick={onClickHandler} isStyled customStyles={s.button} />
+        <Button
+          text={isPlaying ? btnTitle : 'PLAY'}
+          onClick={onClickHandler}
+          isStyled
+          customStyles={s.button}
+        />
       )}
     </div>
   );

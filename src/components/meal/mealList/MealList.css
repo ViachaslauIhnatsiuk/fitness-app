@@ -1,12 +1,11 @@
 .list_wrapper {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   gap: 30px;
 }
 
-@media (max-width: 870px) {
+@media (max-width: 600px) {
   .list_wrapper {
     justify-content: center;
   }

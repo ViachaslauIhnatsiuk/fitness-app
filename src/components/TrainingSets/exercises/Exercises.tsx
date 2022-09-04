@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { BsArrowLeft, BsBookmarkDash, BsBookmarkDashFill } from 'react-icons/bs';
-import { RiDeleteBin5Line } from 'react-icons/ri';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { Button } from '../../UI/button/Button';
 import { ExerciseCard } from '../exerciseCard/ExerciseCard';
@@ -68,7 +68,7 @@ const Exercises: FC = () => {
         )}
         {isDeletableTraining && (
           <Link to={WorkoutPath.trainings}>
-            <RiDeleteBin5Line className={s.delete} onClick={deleteCustomTrainingHandler} />
+            <AiOutlineDelete className={s.delete} onClick={deleteCustomTrainingHandler} />
           </Link>
         )}
         {isLoading ? (

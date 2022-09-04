@@ -53,6 +53,12 @@
   color: #f7f7f7;
 }
 
+@media (max-width: 1120px) {
+  .input_wrapper {
+    margin: 0;
+  }
+}
+
 @media (max-width: 450px) {
   .input_wrapper {
     width: 100%;

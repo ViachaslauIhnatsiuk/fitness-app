@@ -4,7 +4,7 @@ import { IoAdd, IoSearchOutline } from 'react-icons/io5';
 import { RiArrowGoBackFill } from 'react-icons/ri';
 import { useForm } from 'react-hook-form';
 import { MealDish } from '../mealDish/MealDish';
-import { MealCardProps } from './models';
+import { DishFormInputs, MealCardProps } from './models';
 import { useAppDispatch } from '../../../store/store';
 import { useAppSelector } from '../../../store/model';
 import { selectMeals } from '../../../store/selectors';
@@ -13,11 +13,6 @@ import { deleteCard, editCardTitle, setMeals } from '../../../store/slices/profi
 import { dateToday } from '../../../helpers/transformDate';
 import Loader from '../../UI/loader/Loader';
 import s from './MealCard.module.css';
-
-type DishFormInputs = {
-  dishName: string;
-  dishSize: number;
-};
 
 const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
   const {
@@ -45,7 +40,7 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
   const onSubmit = () => {
     const dishName = getValues('dishName');
     const dishSize = getValues('dishSize');
-    const query = `${dishSize}g ${dishName}`;
+    const query = `${String(dishSize)}g ${String(dishName)}`;
     dispatch(setMealCardId(id));
     dispatch(fetchMeals(query)).catch((err: Error) => err);
   };

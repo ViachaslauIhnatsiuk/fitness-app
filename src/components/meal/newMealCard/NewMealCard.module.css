@@ -8,7 +8,8 @@
   gap: 10px;
 }
 
-.input {
+.input,
+.input_invalid {
   width: 250px;
   height: 30px;
   padding: 0 8px;
@@ -24,6 +25,16 @@
   border-color: #7755ff;
   box-shadow: 0 0 3px 2px rgb(119 85 255 / 50%);
   background-color: #1e1d31;
+  outline: none;
+}
+
+.input_invalid {
+  box-shadow: 0 0 3px 2px #512d3350;
+}
+
+.input_invalid:active,
+.input_invalid:focus {
+  box-shadow: 0 0 3px 2px #512d33d8;
   outline: none;
 }
 

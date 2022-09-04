@@ -29,7 +29,6 @@ const MealNutritionCard: FC<NutritionCardProps> = ({ title, curScore, maxScore, 
           width="100%"
           borderRadius="10px"
           baseBgColor="#e5e5e5"
-          animateOnRender
         />
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import s from './Exercises.module.css';
 import { Exercise } from '../exercise/Exercise';
 import { ExercisesProps } from './models';
 import { useFilteredTrainings } from '../../../../hooks/useFilteredTrainings';
@@ -8,6 +7,7 @@ import { getExercisesFromTrainings } from '../helpers';
 import { useAppDispatch } from '../../../../store/store';
 import { fetchTrainings } from '../../../../store/slices/training/trainingSlice';
 import { IExercise } from '../../../../models/Workout';
+import s from './Exercises.module.css';
 
 const Exercises: FC<ExercisesProps> = ({ selectedExercises, onClickHandler }) => {
   const dispatch = useAppDispatch();

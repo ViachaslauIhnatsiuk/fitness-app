@@ -1,5 +1,5 @@
 .wrapper {
-  max-width: 320px;
+  width: 320px;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -246,7 +246,7 @@ input::-webkit-inner-spin-button {
 
 @media (max-width: 1120px) {
   .wrapper {
-    max-width: 300px;
+    width: 300px;
   }
 
   .title {
@@ -256,7 +256,7 @@ input::-webkit-inner-spin-button {
 
 @media (max-width: 870px) {
   .wrapper {
-    max-width: 320px;
+    width: 280px;
   }
 
   .title {

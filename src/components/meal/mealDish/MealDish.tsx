@@ -6,10 +6,13 @@ import { useAppDispatch } from '../../../store/store';
 import { MealDishProps } from './models';
 import s from './MealDish.module.css';
 
-const MealDish: FC<MealDishProps> = ({ props: { name, serving_size_g, calories }, title }) => {
+const MealDish: FC<MealDishProps> = ({
+  mealCardId,
+  mealDishId,
+  props: { name, serving_size_g, calories }
+}) => {
   const dispatch = useAppDispatch();
-  const handleRemoveDish = () =>
-    dispatch(removeMeals({ mealTitle: title, dishNameForRemoval: name }));
+  const handleRemoveDish = () => dispatch(removeMeals({ mealCardId, mealDishId }));
 
   return (
     <div className={s.wrapper}>

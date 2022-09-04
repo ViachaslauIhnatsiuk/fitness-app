@@ -14,11 +14,11 @@
 
 .exercises::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #35383f;
+  background-color: var(--main-inActive-bg);
 }
 
 .exercises::-webkit-scrollbar-track {
-  background-color: #181a20;
+  background-color: var(--input-bg);
   border-radius: 10px;
 }
 

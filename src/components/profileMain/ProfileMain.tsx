@@ -8,10 +8,10 @@ import { useAppSelector } from '../../store/model';
 import { selectProfile, selectSettings } from '../../store/selectors';
 import { useAuth } from '../../hooks/useAuth';
 import { Avatar } from '../UI/avatar/Avatar';
-import s from './ProfileMain.module.css';
 import { useAppDispatch } from '../../store/store';
-import { setSoundOn } from '../../store/slices/profileSlice';
+import { setSoundOn, toggleTheme } from '../../store/slices/profileSlice';
 import { useTheme } from '../../hooks/useTheme';
+import s from './ProfileMain.module.css';
 
 const ProfileMain: FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +24,16 @@ const ProfileMain: FC = () => {
   const toggleSoundHandler = () => {
     setSound(!sound);
     dispatch(setSoundOn(!sound));
+  };
+
+  const toggleThemeHandler = () => {
+    if (theme === 'dark') {
+      setTheme('light');
+      dispatch(toggleTheme('light'));
+    } else {
+      setTheme('dark');
+      dispatch(toggleTheme('dark'));
+    }
   };
 
   return (
@@ -55,7 +65,7 @@ const ProfileMain: FC = () => {
             <button
               type="button"
               className={s.theme}
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              onClick={toggleThemeHandler}
               style={{
                 backgroundColor: theme === 'dark' ? '#7755ff' : '#35383f'
               }}

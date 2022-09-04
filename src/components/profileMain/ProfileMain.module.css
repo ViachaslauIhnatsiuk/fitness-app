@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: default;
+  color: var(--main-font);
 }
 
 .main {
@@ -52,7 +54,7 @@
 .title {
   flex: 1 1 auto;
   text-decoration: none;
-  color: #fff;
+  color: var(--main-font);
   transition: 0.5s;
   cursor: pointer;
 }
@@ -66,7 +68,7 @@
 .sound_title {
   flex: 1 1 auto;
   text-decoration: none;
-  color: #fff;
+  color: var(--main-font);
   cursor: default;
 }
 

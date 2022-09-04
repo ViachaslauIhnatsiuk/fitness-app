@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  color: #ffffff;
+  color: var(--main-font);
 }
 
 .main {
@@ -31,13 +31,13 @@
 }
 
 .return {
+  color: var(--icon);
   margin-left: -475px;
 }
 
 .icon {
   font-size: 30px;
   transition: 0.5s;
-  color: #ffffff;
 }
 
 .icon:hover {
@@ -72,9 +72,10 @@
 }
 
 .select__control {
-  background-color: #1f222a !important;
+  background-color: var(--main-bg) !important;
   border: 2px solid #7755ff !important;
   border-radius: 10px !important;
+  color: var(--main-font) !important;
 }
 
 .select__control--is-focused {
@@ -91,6 +92,7 @@
 .select__single-value {
   color: #c0c1c3 !important;
   font-size: 18px !important;
+  color: var(--main-font) !important;
 }
 
 .select__input-container {
@@ -102,12 +104,12 @@
 .select__option {
   padding: 7px 10px !important;
   font-size: 18px !important;
-  color: #c0c1c3 !important;
+  color: var(--main-font) !important;
   cursor: pointer !important;
 }
 
 .select__menu-list {
-  background-color: #1f222a !important;
+  background-color: var(--main-bg) !important;
 }
 
 .select__menu-list::-webkit-scrollbar {
@@ -134,7 +136,7 @@
   align-items: center;
   padding: 10px 0;
   border-radius: 20px;
-  background-color: #35383f;
+  background-color: var(--main-inActive-bg);
   font-size: 15px;
   transition: 0.4s;
   color: #c0c1c3;

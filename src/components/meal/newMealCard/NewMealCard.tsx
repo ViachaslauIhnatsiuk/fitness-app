@@ -30,6 +30,7 @@ const NewMealCard: FC = () => {
           className={errors.newTitle ? s.input_invalid : s.input}
           placeholder="Enter new card title"
           {...register('newTitle', { required: true })}
+          autoComplete="off"
         />
         <button type="submit" className={s.button}>
           Add card

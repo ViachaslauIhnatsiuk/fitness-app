@@ -26,8 +26,8 @@ const UpdateProfileSubmitButton: FC<UpdateProfileSubmitButtonProps> = ({
       <input
         className={s.button}
         style={{
-          backgroundColor: !isValid ? '#1f222a' : '#7755ff',
-          color: !isValid ? '#7e7f81' : '#ffffff'
+          backgroundColor: !isValid ? 'var(--main-inActive-bg)' : '#7755ff',
+          color: !isValid ? 'var(--main-font)' : '#ffffff'
         }}
         disabled={!isValid}
         type="submit"

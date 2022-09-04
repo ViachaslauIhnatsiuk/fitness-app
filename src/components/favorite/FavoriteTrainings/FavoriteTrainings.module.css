@@ -7,6 +7,7 @@
   height: 100%;
   padding: 0 80px;
   cursor: default;
+  color: var(--main-font);
 }
 
 .title {
@@ -32,7 +33,7 @@
   top: 80px;
   left: 50px;
   font-size: 30px;
-  color: #ffffff;
+  color: var(--icon);
 }
 
 @media (max-width: 1600px) {

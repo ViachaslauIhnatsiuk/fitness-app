@@ -12,7 +12,7 @@ const FavoriteRecipes = () => {
     <div className={s.wrapper}>
       <h2 className={s.title}>Favorite Recipes</h2>
       {favorites.recipes.length === 0 && <h4>There is nothing here yet</h4>}
-      <div className={s.content}>
+      <div className={favorites.recipes.length ? s.content : s.flex_content}>
         {favorites.recipes.map((recipe) => {
           return <RecipeCard key={uuidv4()} data={recipe} />;
         })}

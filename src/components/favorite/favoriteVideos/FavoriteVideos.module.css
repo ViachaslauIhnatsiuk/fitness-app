@@ -12,6 +12,11 @@
   font-size: 40px;
 }
 
+.flex_videos {
+  display: flex;
+  justify-content: center;
+}
+
 .videos {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

@@ -26,7 +26,7 @@ const FavoriteTrainings: FC = () => {
       <h2 className={s.title}>Favorite Trainings</h2>
       {status === WorkoutStatus.loading && <Loader />}
       {status === WorkoutStatus.resolved && (
-        <div className={s.trainings}>
+        <div className={favoriteTrainings.length ? s.trainings : s.flex_trainings}>
           {favoriteTrainings.length === 0 && <h4>There is nothing here yet</h4>}
           {favoriteTrainings.map((training) => {
             return <TrainingCard key={uuidv4()} training={training} />;

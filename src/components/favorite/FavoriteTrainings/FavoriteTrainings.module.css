@@ -12,6 +12,11 @@
   font-size: 40px;
 }
 
+.flex_trainings {
+  display: flex;
+  justify-content: center;
+}
+
 .trainings {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

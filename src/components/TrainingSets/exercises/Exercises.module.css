@@ -41,9 +41,9 @@
 
 .delete {
   position: absolute;
-  top: 0;
-  right: 4rem;
-  font-size: 34px;
+  top: -4px;
+  right: 3rem;
+  font-size: 38px;
   transition: 0.5s;
   color: #ffffff;
   cursor: pointer;

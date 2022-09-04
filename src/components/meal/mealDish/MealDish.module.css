@@ -40,3 +40,9 @@
   color: rgba(198, 72, 73, 1);
   transition: 0.5s;
 }
+
+.icon {
+  font-size: 34px;
+  margin-right: 5px;
+  color: #d6d1d240;
+}

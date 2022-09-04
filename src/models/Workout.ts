@@ -3,7 +3,7 @@ type IWorkouts = { [key: number]: IWorkout };
 interface IWorkout {
   id: number;
   title: string;
-  level: WorkoutFilterByLevel;
+  level: string;
   cal: number;
   exercises: IExercise[];
 }

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
+import { GiHotMeal } from 'react-icons/gi';
 import { removeMeals } from '../../../store/slices/profileSlice';
 import { useAppDispatch } from '../../../store/store';
 import { MealDishProps } from './models';
@@ -12,6 +13,7 @@ const MealDish: FC<MealDishProps> = ({ props: { name, serving_size_g, calories }
 
   return (
     <div className={s.wrapper}>
+      <GiHotMeal className={s.icon} />
       <div className={s.info}>
         <div className={s.title}>Meal: {name}</div>
         <div className={s.calories}>Size: {serving_size_g} g</div>

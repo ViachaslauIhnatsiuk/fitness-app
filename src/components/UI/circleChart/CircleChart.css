@@ -1,4 +1,4 @@
-.wrapper {
+.circle-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
 }
 
 @media (max-width: 1300px) {
-  .wrapper {
+  .circle-wrapper {
     max-width: 100px;
   }
 

@@ -7,13 +7,13 @@ import './CircleChart.css';
 const CircleChart = ({
   maxValue = 100,
   currentValue = 0,
-  fontSize = 36,
+  fontSize = 32,
   strokeWidth = 5,
   text = 'Calories',
   color = '#7755ff'
 }: Partial<CircleTimerProps>) => {
   return (
-    <div className="wrapper">
+    <div className="circle-wrapper">
       <h4 className="text">{text}</h4>
       <CircularProgressbar
         strokeWidth={strokeWidth}

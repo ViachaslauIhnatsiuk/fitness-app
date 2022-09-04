@@ -27,18 +27,18 @@ const CircularProgressChart: FC = () => {
         color="#ff6267"
         text="Minutes"
       />
-      <CircleChart maxValue={INITIAL_VALUE_CHART} currentValue={calories} color="#2f72fd" />
+      <CircleChart maxValue={INITIAL_VALUE_CHART} currentValue={calories} color="#3778fd" />
       <CircleChart
         maxValue={INITIAL_VALUE_CHART}
         currentValue={proteins}
-        color="#2f72fd"
+        color="#21c064"
         text="Proteins"
       />
-      <CircleChart maxValue={INITIAL_VALUE_CHART} currentValue={fats} color="#2f72fd" text="Fats" />
+      <CircleChart maxValue={INITIAL_VALUE_CHART} currentValue={fats} color="#fbd024" text="Fats" />
       <CircleChart
         maxValue={INITIAL_VALUE_CHART}
         currentValue={carbs}
-        color="#2f72fd"
+        color="#fe6469"
         text="Carbs"
       />
     </div>

@@ -133,10 +133,6 @@ const TrainingActive: FC = () => {
     setIsRestStart(true);
   };
 
-  useEffect(() => {
-    console.log(statistic);
-  }, [statistic]);
-
   return (
     <div className={s.wrapper}>
       <Link className={s.return} to={redirectPath}>

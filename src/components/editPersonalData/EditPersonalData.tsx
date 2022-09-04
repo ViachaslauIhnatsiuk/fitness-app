@@ -30,7 +30,7 @@ const EditPersonalData: FC = () => {
   };
 
   return (
-    <div className="wrapper">
+    <div className="personal-wrapper">
       <div className="main">
         <Link className="return" to="/profile">
           <BsArrowLeft className="icon" />

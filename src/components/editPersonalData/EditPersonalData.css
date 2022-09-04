@@ -1,10 +1,10 @@
-.wrapper {
+.personal-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  color: #fff;
+  color: #ffffff;
 }
 
 .main {
@@ -148,9 +148,14 @@
 }
 
 @media (max-width: 870px) {
+  .personal-wrapper {
+    margin-top: 80px;
+    margin-bottom: 120px;
+  }
+
   .title {
     font-size: 42px;
-    margin-bottom: 30px !important;
+    margin-bottom: 20px !important;
   }
 
   .return {
@@ -160,6 +165,7 @@
   .selects_wrapper {
     width: 400px;
     margin-bottom: 30px;
+    row-gap: 10px;
   }
 
   .update {

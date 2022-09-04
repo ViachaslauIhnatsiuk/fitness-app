@@ -1,9 +1,16 @@
-import { WorkoutFilterByLevel } from '../../../models/Workout';
-
 const options = [
-  { value: WorkoutFilterByLevel.beginner, label: 'beginner' },
-  { value: WorkoutFilterByLevel.intermediate, label: 'intermediate' },
-  { value: WorkoutFilterByLevel.advanced, label: 'advanced' }
+  {
+    value: 'beginner',
+    label: 'beginner'
+  },
+  {
+    value: 'intermediate',
+    label: 'intermediate'
+  },
+  {
+    value: 'advanced',
+    label: 'advanced'
+  }
 ];
 
 export { options };

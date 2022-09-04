@@ -13,7 +13,7 @@ const CircleChart = ({
   color = '#7755ff'
 }: Partial<CircleTimerProps>) => {
   return (
-    <div className="wrapper">
+    <div className="circle-wrapper">
       <h4 className="text">{text}</h4>
       <CircularProgressbar
         strokeWidth={strokeWidth}

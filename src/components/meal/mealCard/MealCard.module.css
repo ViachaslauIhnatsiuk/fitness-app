@@ -216,8 +216,8 @@ input::-webkit-inner-spin-button {
 .center {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  height: 50px;
+  height: 40px;
+  padding-top: 15px;
 }
 
 .meals_wrapper {

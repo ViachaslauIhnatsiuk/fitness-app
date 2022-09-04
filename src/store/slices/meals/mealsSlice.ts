@@ -16,7 +16,7 @@ export const fetchMeals = createAsyncThunk(
   'meals/fetchMeals',
   async (query: string, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${BASE_URL_MEAL}${query}`, {
+      const response = await fetch(`${BASE_URL_MEAL}${String(query)}`, {
         method: 'GET',
         headers: {
           'X-Api-Key': API_KEY_MEAL

@@ -52,7 +52,7 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
   };
 
   const handleAddNewDish = () => {
-    dispatch(setMeals({ date: dateToday, mealTitle: title, meal: items[0] }));
+    dispatch(setMeals({ date: dateToday, mealCardId: id, meal: items[0] }));
     reset();
     dispatch(resetMeals());
   };
@@ -142,8 +142,8 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
         </div>
       )}
       <div className={s.meals_wrapper}>
-        {meals.map((meal) => (
-          <MealDish props={meal} key={uuidv4()} title={title} />
+        {meals.map((meal, ind) => (
+          <MealDish props={meal} mealCardId={id} mealDishId={ind} key={uuidv4()} />
         ))}
       </div>
     </div>

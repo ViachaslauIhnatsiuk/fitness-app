@@ -20,6 +20,9 @@
 
 .form_edit {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .input_edit {
@@ -137,7 +140,9 @@
 }
 
 .dish,
-.size {
+.size,
+.dish_invalid,
+.size_invalid {
   height: 30px;
   padding: 0 5px;
   background-color: #1f222a;
@@ -147,11 +152,26 @@
   color: #ffffff;
 }
 
-.dish {
+.dish_invalid,
+.size_invalid {
+  box-shadow: 0 0 3px 2px #512d3350;
+}
+
+.dish_invalid:active,
+.dish_invalid:focus,
+.size_invalid:active,
+.size_invalid:focus {
+  box-shadow: 0 0 3px 2px #512d33d8;
+  outline: none;
+}
+
+.dish,
+.dish_invalid {
   width: 58%;
 }
 
-.size {
+.size,
+.size_invalid {
   width: 22%;
 }
 
@@ -196,8 +216,8 @@ input::-webkit-inner-spin-button {
 .center {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  height: 50px;
+  height: 40px;
+  padding-top: 15px;
 }
 
 .meals_wrapper {

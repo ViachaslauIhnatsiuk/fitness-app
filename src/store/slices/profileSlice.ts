@@ -150,10 +150,10 @@ const profileSlice = createSlice({
       updateFirestoreState(state.currentUser);
     },
     setMeals: ({ currentUser }, { payload }) => {
-      const { date, mealTitle, meal } = payload;
+      const { date, mealCardId, meal } = payload;
 
       const foundedMealInd = currentUser.userMeals.findIndex(
-        (item) => item.date === date && item.title === mealTitle
+        (item) => item.date === date && item.id === mealCardId
       );
 
       if (foundedMealInd !== -1) {
@@ -166,15 +166,12 @@ const profileSlice = createSlice({
       updateFirestoreState(currentUser);
     },
     removeMeals: ({ currentUser }, { payload }) => {
-      const { mealTitle, dishNameForRemoval } = payload;
-      const foundedMealInd = currentUser.userMeals.findIndex((item) => item.title === mealTitle);
+      const { mealCardId, mealDishId } = payload;
 
-      if (foundedMealInd !== -1) {
-        const newMeals = currentUser.userMeals[foundedMealInd].meals.filter(
-          (meal) => meal.name !== dishNameForRemoval
-        );
-        currentUser.userMeals[foundedMealInd].meals = newMeals;
-      }
+      const newMeals = currentUser.userMeals[mealCardId].meals.filter(
+        (_, mealId) => mealId !== mealDishId
+      );
+      currentUser.userMeals[mealCardId].meals = newMeals;
 
       updateFirestoreState(currentUser);
     },

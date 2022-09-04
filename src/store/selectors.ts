@@ -10,6 +10,7 @@ const selectMeals = (state: RootState) => state.meals;
 const selectTrainings = (state: RootState) => state.trainings;
 const selectVideos = (state: RootState) => state.videos;
 const selectSettings = (state: RootState) => state.profile.currentUser.settings;
+const selectCustomTraining = (state: RootState) => state.customTraining;
 
 export {
   selectProfile,
@@ -21,5 +22,6 @@ export {
   selectVideos,
   selectStatistics,
   selectFavorites,
-  selectSettings
+  selectSettings,
+  selectCustomTraining
 };

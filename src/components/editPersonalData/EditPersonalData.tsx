@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Select, { SingleValue } from 'react-select';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,10 +14,19 @@ import { handleValue } from '../../helpers/select';
 import { Notification } from '../UI/notification/Notification';
 import { NotificationMessage } from '../../models/notifications';
 import './EditPersonalData.css';
+import { useAppSelector } from '../../store/model';
+import { selectProfile } from '../../store/selectors';
 
 const EditPersonalData: FC = () => {
-  const [userData, setUserData] = useState<IUserData>(initialUserData);
   const { success, setSuccess, updateUserData } = useProfileUpdate();
+  const {
+    currentUser: { userData: userDataFromStore }
+  } = useAppSelector(selectProfile);
+  const [userData, setUserData] = useState<IUserData>(initialUserData);
+
+  useEffect(() => {
+    setUserData(userDataFromStore);
+  }, [userDataFromStore]);
 
   const handleChange = (selectedOption: SingleValue<string | IOption>) => {
     const { type, value } = selectedOption as IOption;
@@ -26,7 +35,6 @@ const EditPersonalData: FC = () => {
 
   const handleDataUpdate = async () => {
     await updateUserData(userData).catch();
-    setUserData(initialUserData);
   };
 
   return (

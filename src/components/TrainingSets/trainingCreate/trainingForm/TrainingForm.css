@@ -12,13 +12,6 @@
   margin-bottom: 5px;
 }
 
-.create_content {
-  display: flex;
-  flex-direction: row;
-  column-gap: 2rem;
-  justify-content: space-around;
-}
-
 .create_subtitle {
   margin-bottom: 15px;
   font-weight: 300;

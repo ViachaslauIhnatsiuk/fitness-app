@@ -1,18 +1,20 @@
 import React, { FC, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Exercise } from '../exercise/Exercise';
-import { ExercisesProps } from './models';
 import { useFilteredTrainings } from '../../../../hooks/useFilteredTrainings';
 import { getExercisesFromTrainings } from '../helpers';
 import { useAppDispatch } from '../../../../store/store';
 import { fetchTrainings } from '../../../../store/slices/training/trainingSlice';
 import { IExercise } from '../../../../models/Workout';
 import s from './Exercises.module.css';
+import { addExercise } from '../../../../store/slices/customTrainingSlice';
+import { ExerciseCard } from '../../exerciseCard/ExerciseCard';
 
-const Exercises: FC<ExercisesProps> = ({ selectedExercises, onClickHandler }) => {
+const Exercises: FC = () => {
   const dispatch = useAppDispatch();
   const filteredTrainings = useFilteredTrainings();
   const generalExercises: IExercise[] = getExercisesFromTrainings(filteredTrainings);
+
+  const addExerciseToCollection = (exercise: IExercise) => dispatch(addExercise(exercise));
 
   useEffect(() => {
     dispatch(fetchTrainings()).catch((err: Error) => err);
@@ -25,11 +27,11 @@ const Exercises: FC<ExercisesProps> = ({ selectedExercises, onClickHandler }) =>
           <div
             key={uuidv4()}
             tabIndex={0}
-            onClick={() => onClickHandler(exercise)}
-            onKeyPress={() => onClickHandler(exercise)}
+            onClick={() => addExerciseToCollection(exercise)}
+            onKeyPress={() => addExerciseToCollection(exercise)}
             role="button"
           >
-            <Exercise exercise={exercise} selectedExercises={selectedExercises} />
+            <ExerciseCard exercise={exercise} />
           </div>
         );
       })}

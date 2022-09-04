@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import { storage, ref, getDownloadURL } from '../firebase/firebase';
-import { convertNameToFirebaseStyle } from '../helpers/convertNameToFirebaseStyle';
 
 const useStorage = () => {
   const [videoUrl, setVideoUrl] = useState<string>('');
@@ -21,13 +20,10 @@ const useStorage = () => {
   }, []);
 
   const getTrainingPreviewUrl = useCallback(async (name: string): Promise<void> => {
-    const convertedName = convertNameToFirebaseStyle(name);
     const customTrainingPreview = '/images/custom.jpg';
-    const url = await getDownloadURL(ref(storage, `exercises_preview/${convertedName}.jpg`)).catch(
-      () => {
-        setTrainingImageUrl(customTrainingPreview);
-      }
-    );
+    const url = await getDownloadURL(ref(storage, `exercises_preview/${name}.jpg`)).catch(() => {
+      setTrainingImageUrl(customTrainingPreview);
+    });
 
     if (url) {
       setTrainingImageUrl(url);

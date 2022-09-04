@@ -30,6 +30,15 @@
   transition: 0.5s;
 }
 
+.favorite {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 1.5rem;
+  z-index: 1;
+  color: #ffffff;
+}
+
 .overlay {
   padding: 5px;
   width: 90%;
@@ -48,4 +57,10 @@
   font-size: 13px;
   font-weight: 300;
   letter-spacing: 0.05em;
+}
+
+@media (max-width: 870px) {
+  .favorite {
+    font-size: 1.2rem;
+  }
 }

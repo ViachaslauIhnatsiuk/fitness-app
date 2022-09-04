@@ -14,7 +14,7 @@
 
 .create_content {
   display: flex;
-  flex-direction: row;
+  width: 100%;
   column-gap: 2rem;
   justify-content: space-around;
 }
@@ -163,6 +163,14 @@
     padding-top: 120px;
   }
 
+  .create_content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 25px;
+    justify-content: space-around;
+  }
+
   .create_return {
     top: 95px;
   }
@@ -199,5 +207,6 @@
 
   .create_subtitle {
     font-size: 13px;
+    text-align: center;
   }
 }

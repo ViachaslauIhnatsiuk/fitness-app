@@ -1,15 +1,22 @@
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
   padding: 0 80px;
+  cursor: default;
 }
 
 .title {
   margin: 50px 0 30px;
   font-size: 40px;
+}
+
+.flex_trainings {
+  display: flex;
+  justify-content: center;
 }
 
 .trainings {
@@ -18,6 +25,14 @@
   width: 100%;
   height: 100%;
   gap: 20px;
+}
+
+.return {
+  position: absolute;
+  top: 80px;
+  left: 50px;
+  font-size: 30px;
+  color: #ffffff;
 }
 
 @media (max-width: 1600px) {
@@ -48,12 +63,20 @@
   .trainings {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .return {
+    top: -665px;
+    left: 40px;
+  }
 }
 
 
 @media (max-width: 600px) {
   .title {
-    margin-top: 70px;
+    margin-bottom: 40px;
+  }
+
+  .title {
     font-size: 34px;
   }
 
@@ -61,10 +84,18 @@
     grid-template-columns: repeat(1, 1fr);
     padding-bottom: 25%;
   }
+
+  .return {
+    top: -655px;
+  }
 }
 
 @media (max-width: 450px) {
   .wrapper {
     padding: 0;
+  }
+
+  .return {
+    left: 0;
   }
 }

@@ -1,3 +1,27 @@
 .wrapper {
-  padding: 30px;
+  padding: 100px 80px;
+}
+
+@media (max-width: 1200px) {
+  .wrapper {
+    padding: 100px 40px;
+  }
+}
+
+@media (max-width: 870px) {
+  .wrapper {
+    padding: 20px 40px 25%;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 20px 20px 25%;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    padding: 20px 0 25%;
+  }
 }

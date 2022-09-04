@@ -1,4 +1,6 @@
 import React, { FC, useEffect } from 'react';
+import { BsArrowLeft } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { WorkoutStatus } from '../../../models/Workout';
 import { useAppSelector } from '../../../store/model';
@@ -22,10 +24,13 @@ const CustomTrainings: FC = () => {
 
   return (
     <div className={s.wrapper}>
+      <Link className={s.return} to="/">
+        <BsArrowLeft className={s.icon} />
+      </Link>
       <h2 className={s.title}>Custom Trainings</h2>
       {status === WorkoutStatus.loading && <Loader />}
       {status === WorkoutStatus.resolved && (
-        <div className={s.trainings}>
+        <div className={customTrainings.length ? s.trainings : s.flex_trainings}>
           {customTrainings.length === 0 && <h4>There is nothing here yet</h4>}
           {customTrainings.map((training) => {
             return <TrainingCard key={uuidv4()} training={training} />;

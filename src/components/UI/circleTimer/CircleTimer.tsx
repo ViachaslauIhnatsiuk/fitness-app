@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { Button } from '../button/Button';
 import { CircleTimerProps } from './models';
@@ -23,16 +23,31 @@ const CircleTimer = ({
   const { isSoundOn } = useAppSelector(selectSettings);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
-  const onClickHandler = () => {
+  const onClickHandler = useCallback(() => {
     if (onClick) onClick();
     setIsPlaying(!isPlaying);
-  };
+  }, [isPlaying, onClick]);
 
   const onUpdateHandler = (remainingTime: number) => {
     if (onUpdate) onUpdate(remainingTime);
     if (remainingTime === REST_TIME - 1 && playSound && isSoundOn) playSound(remainingTime);
     if (remainingTime === 5 && playSound && isSoundOn) playSound(remainingTime);
   };
+
+  const onKeyDown = useCallback(
+    ({ key }: KeyboardEvent) => {
+      if (key === ' ') onClickHandler();
+    },
+    [onClickHandler]
+  );
+
+  useEffect(() => {
+    document.body.addEventListener('keydown', onKeyDown);
+
+    return (): void => {
+      document.body.removeEventListener('keydown', onKeyDown);
+    };
+  }, [onKeyDown]);
 
   return (
     <div className={s.timer}>

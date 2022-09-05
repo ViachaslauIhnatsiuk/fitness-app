@@ -14,6 +14,7 @@ const TrainingPreparation: FC<TrainingPreparationProps> = ({ onSkipHandler, onUp
     <div className={s.preparation}>
       <div className={s.preparation__timer}>
         <h1 className={s.title}>Get Ready!</h1>
+        <h4>Use arrows and space bar to control your workout</h4>
         <CircleTimer
           duration={PREPARATION_TIME}
           colors={['#7755ff', '#7755ff']}

@@ -20,7 +20,8 @@ const MealList: FC = () => {
   const userMeals = useMeals();
 
   useEffect(() => {
-    updateCardsOrder(userMeals);
+    const data = userMeals.length ? userMeals : defaultMeals;
+    updateCardsOrder(data);
   }, [userMeals]);
 
   const handleOnDragEnd = (result: DropResult): void => {

@@ -1,6 +1,5 @@
 import React, { FC, useRef, useEffect } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-import { Button } from '../../UI/button/Button';
 import { CircleTimer } from '../../UI/circleTimer/CircleTimer';
 import { ExerciseActiveProps } from './models';
 import s from './ExerciseActive.module.css';
@@ -42,22 +41,19 @@ const ExerciseActive: FC<ExerciseActiveProps> = ({
         isTimerCanPause
       />
       <div className={s.buttons}>
-        <Button
-          text="Previous"
+        <button
+          type="button"
           onClick={onPrevHandler}
-          isStyled
-          icon={<AiOutlineLeft />}
-          customStyles={s.button}
-          isDisabled={currentPosition === 0}
-        />
-        <Button
-          text="Skip"
-          onClick={onNextHandler}
-          isStyled
-          icon={<AiOutlineRight />}
-          iconPosition="right"
-          customStyles={s.button}
-        />
+          className={s.button}
+          disabled={currentPosition === 0}
+        >
+          <AiOutlineLeft />
+          Previous
+        </button>
+        <button type="button" onClick={onNextHandler} className={s.button}>
+          Skip
+          <AiOutlineRight />
+        </button>
       </div>
       <CustomAudio ref={auidoRef} path={Audio.bell} />
     </div>

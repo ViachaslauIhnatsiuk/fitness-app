@@ -9,11 +9,18 @@ const getConsumptionStatistic = (dailyMeals: IDailyMeals[]): IConsumption => {
 };
 
 const convertMinutesToHours = (minutes: number): number => {
-  return Math.ceil(minutes / 3600);
+  const hours = Number((minutes / 3600).toFixed(2));
+
+  if (!hours) {
+    return minutes;
+  }
+  return hours;
 };
 
 const convertToThousands = (calories: number): number => {
-  return Math.ceil(calories / 1000);
+  const thousands = Number((calories / 1000).toFixed(2));
+  if (!thousands) return calories;
+  return thousands;
 };
 
 export { getConsumptionStatistic, convertMinutesToHours, convertToThousands };

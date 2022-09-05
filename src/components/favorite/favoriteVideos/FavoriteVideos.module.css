@@ -57,20 +57,14 @@
 }
 
 @media (max-width: 870px) {
-  .title {
-    margin-top: -700px;
-  }
-
   .videos {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .return {
-    top: -665px;
     left: 40px;
   }
 }
-
 
 @media (max-width: 600px) {
   .title {

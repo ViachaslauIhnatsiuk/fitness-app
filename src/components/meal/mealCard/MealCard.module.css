@@ -60,7 +60,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
 }
 
@@ -128,7 +128,7 @@
 
 .meals,
 .calories {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--font-pale);
 }
 
@@ -296,16 +296,5 @@ input::-webkit-inner-spin-button {
 
   .title {
     max-width: 100px;
-  }
-}
-
-@media (max-width: 450px) {
-  .title {
-    font-size: 16px;
-  }
-
-  .meals,
-  .calories {
-    font-size: 11px;
   }
 }

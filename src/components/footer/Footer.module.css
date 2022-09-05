@@ -20,7 +20,7 @@
   column-gap: 10px;
   transition: 0.4s;
   cursor: pointer;
-  color: #fff;
+  color: var(--footer);
   font-size: 20px;
 }
 
@@ -31,7 +31,7 @@
 
 .ref {
   font-size: 14px;
-  color: #fff;
+  color: var(--footer);
   text-decoration: none;
   transition: 0.4s;
 }
@@ -43,12 +43,15 @@
 
 .year {
   font-size: 14px;
-  color: #fff;
+  color: var(--footer);
   cursor: default;
 }
 
 .logo {
   width: 60px;
+  height: 20px;
+  fill: var(--footer);
+  stroke: var(--footer);
 }
 
 @media (max-width: 870px) {

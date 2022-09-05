@@ -182,9 +182,9 @@
 }
 
 @media (max-width: 600px) {
-
   .main {
     width: 370px;
+    padding-top: 70px;
   }
 
   .name {

@@ -77,6 +77,10 @@ const profileSlice = createSlice({
     setNewUser: (state, { payload }: PayloadAction<IUserData>) => {
       state.currentUser.userData = payload;
     },
+    setNewPassword: (state, { payload }: PayloadAction<string>) => {
+      state.currentUser.password = payload;
+    },
+
     setUpdatedUserData: (state, { payload: updatedUserData }: PayloadAction<IUserData>) => {
       state.currentUser.userData = updatedUserData;
     },
@@ -236,6 +240,7 @@ export const {
   setLogIn,
   setLogOut,
   setNewUser,
+  setNewPassword,
   setUserState,
   setVideoTrainingToFavorites,
   setTrainingToFavorites,

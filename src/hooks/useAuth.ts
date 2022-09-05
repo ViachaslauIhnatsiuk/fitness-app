@@ -18,6 +18,7 @@ const useAuth = () => {
   const handleLogout = async (): Promise<void> => {
     await signOut(auth);
     navigate('/');
+    window.location.reload();
   };
 
   return {

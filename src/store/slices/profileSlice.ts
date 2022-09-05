@@ -115,10 +115,12 @@ const profileSlice = createSlice({
     setTotalTimeTrainings: (state, { payload: time }: PayloadAction<number>) => {
       const { trainings } = state.currentUser.statistics;
       trainings.totalTime += time;
+      updateFirestoreState(state.currentUser);
     },
     setTotalTrainings: (state, { payload: count }: PayloadAction<number>) => {
       const { trainings } = state.currentUser.statistics;
       trainings.totalTrainings += count;
+      updateFirestoreState(state.currentUser);
     },
     setDailyTimeTrainings: (state, { payload: time }: PayloadAction<number>) => {
       const { dailyTimeTrainings } = state.currentUser.statistics.trainings;
@@ -134,12 +136,13 @@ const profileSlice = createSlice({
 
       updateFirestoreState(state.currentUser);
     },
-    setCalorieСonsumption: ({ currentUser }, { payload: calorie }: PayloadAction<number>) => {
+    setCalorieСonsumption: (state, { payload: calorie }: PayloadAction<number>) => {
       const {
         statistics: { calorieСonsumption }
-      } = currentUser;
+      } = state.currentUser;
       const date = convertDateToString(new Date());
       calorieСonsumption[date] = calorie;
+      updateFirestoreState(state.currentUser);
     },
     setSoundOn: (state, { payload }: PayloadAction<boolean>) => {
       const { settings } = state.currentUser;

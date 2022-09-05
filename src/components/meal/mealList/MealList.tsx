@@ -16,8 +16,8 @@ import { useMeals } from './useMeals';
 
 const MealList: FC = () => {
   const dispatch = useAppDispatch();
-  const [cardsOrder, updateCardsOrder] = useState<IDailyMeals[]>(defaultMeals);
-  const userMeals = useMeals();
+  const [cardsOrder, updateCardsOrder] = useState<IDailyMeals[]>([]);
+  const { filtered: userMeals } = useMeals();
 
   useEffect(() => {
     const data = userMeals.length ? userMeals : defaultMeals;

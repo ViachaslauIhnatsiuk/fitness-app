@@ -30,9 +30,9 @@
   top: 0;
   left: 0;
   font-size: 34px;
-  color: #ffffff;
   transition: 0.5s;
   cursor: pointer;
+  color: var(--icon);
 }
 
 .create_return:hover {

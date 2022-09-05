@@ -41,6 +41,7 @@ html[data-theme='dark'] {
   --input-color: #ffffff;
   --meal-card-bg: #1f222a;
   --exercises-box-shadow: 0px 0px 7px 3px #ffffff33;
+  --trail: #35383f;
 }
 
 html[data-theme='light'] {
@@ -58,4 +59,5 @@ html[data-theme='light'] {
   --input-color: #212121;
   --meal-card-bg: #e0e0e0;
   --exercises-box-shadow: 0px 0px 8px 4px rgba(24, 26, 32, 0.2);
+  --trail: #eeeeee;
 }

@@ -33,8 +33,8 @@ const TrainingSets: FC = () => {
             Create new
           </Link>
         </div>
+        {status === WorkoutStatus.loading && <Loader />}
         <div className={s.trainings}>
-          {status === WorkoutStatus.loading && <Loader />}
           {status === WorkoutStatus.resolved &&
             filteredTrainings.map((training) => {
               return <TrainingCard key={uuidv4()} training={training} />;

@@ -8,6 +8,7 @@ type CircleTimerProps = {
   strokeWidth: number;
   text: string;
   isThousands: boolean;
+  isTime: boolean;
 };
 
 export type { CircleTimerProps };

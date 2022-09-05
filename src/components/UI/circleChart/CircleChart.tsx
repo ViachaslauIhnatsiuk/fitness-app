@@ -11,11 +11,25 @@ const CircleChart = ({
   strokeWidth = 5,
   text = 'Calories',
   color = '#7755ff',
-  isThousands = false
+  isThousands = false,
+  isTime = false
 }: Partial<CircleTimerProps>) => {
+  let isMinutes = false;
+  if (isTime) {
+    if (currentValue < 3600) {
+      currentValue = Math.floor(currentValue / 60);
+      isMinutes = true;
+    } else {
+      currentValue = Number((currentValue / 3600).toFixed(1));
+    }
+  } else if (String(currentValue).split('').length >= 4) {
+    currentValue = Number((currentValue / 1000).toFixed(1));
+    isThousands = true;
+  }
+
   return (
     <div className="circle-wrapper">
-      <h4 className="text">{text}</h4>
+      <h4 className="text">{isMinutes ? 'Minutes' : text}</h4>
       <CircularProgressbar
         strokeWidth={strokeWidth}
         minValue={0}

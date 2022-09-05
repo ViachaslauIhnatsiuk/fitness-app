@@ -20,6 +20,8 @@ const TrainingResult: FC<TrainingResultProps> = ({ statisticsOfTraining: { cal, 
   const { isSoundOn } = useAppSelector(selectSettings);
   const auidoRef = useRef<HTMLAudioElement>(null);
   const dispatch = useAppDispatch();
+  cal = cal < 0 ? 0 : cal;
+  time = time < 0 ? 0 : time;
 
   useEffect(() => {
     dispatch(setCalorieExpenditure(cal));

@@ -127,11 +127,39 @@ const TrainingActive: FC = () => {
     [changeNumberOfExercise, setExerciseGifUrl, statistic, trainingById]
   );
 
-  const onPrevHandler = () => {
+  const onPrevHandler = useCallback(() => {
     setExerciseGifUrl('');
     changeNumberOfExercise(true);
     setIsRestStart(true);
-  };
+  }, [changeNumberOfExercise, setExerciseGifUrl]);
+
+  const onKeyDown = useCallback(
+    ({ key }: KeyboardEvent) => {
+      switch (key) {
+        case 'ArrowRight':
+          onNextHandler();
+          break;
+        case 'ArrowLeft':
+          if (currentPosition !== 0) onPrevHandler();
+          break;
+        case ' ':
+          onSkipPreparationHandler();
+          onSkipRestHandler();
+          break;
+        default:
+          break;
+      }
+    },
+    [currentPosition, onNextHandler, onPrevHandler]
+  );
+
+  useEffect(() => {
+    document.body.addEventListener('keydown', onKeyDown);
+
+    return (): void => {
+      document.body.removeEventListener('keydown', onKeyDown);
+    };
+  }, [onKeyDown]);
 
   return (
     <div className={s.wrapper}>

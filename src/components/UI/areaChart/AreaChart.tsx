@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { AreaChartProps } from './models';
+import s from './AreaChart.module.css';
 
 ChartJS.register(
   CategoryScale,
@@ -44,6 +45,7 @@ const AreaChart: FC<Partial<AreaChartProps>> = ({ data, labels = [], title = 'De
         }
       }
     },
+    maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -67,7 +69,12 @@ const AreaChart: FC<Partial<AreaChartProps>> = ({ data, labels = [], title = 'De
       }
     ]
   };
-  return <Line options={options} data={resultedData} />;
+
+  return (
+    <div className={s.wrapper}>
+      <Line options={options} data={resultedData} />
+    </div>
+  );
 };
 
 export { AreaChart };

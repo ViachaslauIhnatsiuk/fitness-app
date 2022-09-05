@@ -77,6 +77,9 @@ const profileSlice = createSlice({
     setNewUser: (state, { payload }: PayloadAction<IUserData>) => {
       state.currentUser.userData = payload;
     },
+    setUpdatedUserData: (state, { payload: updatedUserData }: PayloadAction<IUserData>) => {
+      state.currentUser.userData = updatedUserData;
+    },
     setVideoTrainingToFavorites: (state, { payload: videoId }: PayloadAction<number>) => {
       const { favorite } = state.currentUser;
       favorite.videoTrainings = toggleValueInArray(favorite.videoTrainings, videoId);
@@ -168,21 +171,17 @@ const profileSlice = createSlice({
     removeMeals: ({ currentUser }, { payload }) => {
       const { mealCardId, mealDishId } = payload;
 
-      const foundedMealCardInd = currentUser.userMeals.findIndex((meal) => meal.id === mealCardId);
-      const newMeals = currentUser.userMeals[foundedMealCardInd].meals.filter(
-        (_, mealId) => mealId !== mealDishId
-      );
-
-      currentUser.userMeals[foundedMealCardInd].meals = newMeals;
+      currentUser.userMeals = currentUser.userMeals.map((dailyMeal) => {
+        if (dailyMeal.id === mealCardId) {
+          dailyMeal.meals = dailyMeal.meals.filter((_, index) => index !== mealDishId);
+        }
+        return dailyMeal;
+      });
 
       updateFirestoreState(currentUser);
     },
     addCardToUserMeals: ({ currentUser }, { payload }: PayloadAction<string>) => {
-      const { userMeals } = currentUser;
-
-      const maxIds = Math.max(...userMeals.map((meal: IDailyMeals): number => meal.id));
-      const newId = maxIds + 1 || 0;
-
+      const newId = Date.now();
       const newCard = {
         id: newId,
         title: payload,
@@ -221,6 +220,11 @@ const profileSlice = createSlice({
         ({ id }) => id !== trainingId
       );
       updateFirestoreState(currentUser);
+    },
+    updateMealCards: ({ currentUser }, { payload }: PayloadAction<IDailyMeals[]>) => {
+      currentUser.userMeals = currentUser.userMeals.filter(({ date }) => date !== payload[0].date);
+      currentUser.userMeals = [...currentUser.userMeals, ...payload];
+      updateFirestoreState(currentUser);
     }
   }
 });
@@ -246,6 +250,8 @@ export const {
   addCustomTraining,
   setSoundOn,
   toggleTheme,
-  deleteCustomTraining
+  deleteCustomTraining,
+  setUpdatedUserData,
+  updateMealCards
 } = profileSlice.actions;
 export { profileSlice };

@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { BarChartProps } from './models';
+import s from './BarChart.module.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -46,6 +47,7 @@ const BarChart: FC<Partial<BarChartProps>> = ({
         }
       }
     },
+    maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -79,7 +81,11 @@ const BarChart: FC<Partial<BarChartProps>> = ({
     ]
   };
 
-  return <Bar options={options} data={resultedData} />;
+  return (
+    <div className={s.wrapper}>
+      <Bar options={options} data={resultedData} />
+    </div>
+  );
 };
 
 export { BarChart };

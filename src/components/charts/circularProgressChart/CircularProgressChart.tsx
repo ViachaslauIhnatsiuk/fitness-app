@@ -3,9 +3,8 @@ import s from './CircularProgressChart.module.css';
 import { CircleChart } from '../../UI/circleChart/CircleChart';
 import { useAppSelector } from '../../../store/model';
 import { selectProfile, selectUserMeals } from '../../../store/selectors';
-import { covertToMinutesNumber } from '../../../helpers/covertSecondsToMinutes';
-import { getConsumptionStatistic } from './helpers';
-import { INITIAL_VALUE_CHART } from './constants';
+import { convertToThousands, convertMinutesToHours, getConsumptionStatistic } from './helpers';
+import { INITIAL_VALUE_CHART, MAX_CALORIES, MAX_HOURS } from './constants';
 
 const CircularProgressChart: FC = () => {
   const { currentUser } = useAppSelector(selectProfile);
@@ -22,22 +21,35 @@ const CircularProgressChart: FC = () => {
         text="Workouts"
       />
       <CircleChart
-        maxValue={INITIAL_VALUE_CHART}
-        currentValue={covertToMinutesNumber(totalTime)}
+        maxValue={MAX_HOURS}
+        currentValue={convertMinutesToHours(totalTime)}
         color="#ff6267"
-        text="Minutes"
+        text="Hours"
       />
-      <CircleChart maxValue={INITIAL_VALUE_CHART} currentValue={calories} color="#3778fd" />
       <CircleChart
-        maxValue={INITIAL_VALUE_CHART}
-        currentValue={proteins}
+        maxValue={MAX_CALORIES}
+        currentValue={convertToThousands(calories)}
+        isThousands
+        color="#3778fd"
+      />
+      <CircleChart
+        maxValue={MAX_CALORIES}
+        currentValue={convertToThousands(proteins)}
+        isThousands
         color="#21c064"
         text="Proteins"
       />
-      <CircleChart maxValue={INITIAL_VALUE_CHART} currentValue={fats} color="#fbd024" text="Fats" />
       <CircleChart
-        maxValue={INITIAL_VALUE_CHART}
-        currentValue={carbs}
+        maxValue={MAX_CALORIES}
+        currentValue={convertToThousands(fats)}
+        isThousands
+        color="#fbd024"
+        text="Fats"
+      />
+      <CircleChart
+        maxValue={MAX_CALORIES}
+        currentValue={convertToThousands(carbs)}
+        isThousands
         color="#fe6469"
         text="Carbs"
       />

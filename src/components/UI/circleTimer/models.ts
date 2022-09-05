@@ -10,6 +10,7 @@ type CircleTimerProps = {
   onUpdate: (remainigTime: number) => void;
   isTimerCanPause: boolean;
   playSound: (remainingTime: number) => void;
+  trailColor: `#${string}`;
 };
 
 export type { CircleTimerProps };

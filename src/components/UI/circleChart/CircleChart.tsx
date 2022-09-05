@@ -27,8 +27,8 @@ const CircleChart = ({
           textSize: `${fontSize}px`,
           pathTransitionDuration: 0.5,
           pathColor: color,
-          textColor: '#ffff',
-          trailColor: '#35383f',
+          textColor: 'var(--main-font)',
+          trailColor: 'var(--trail)',
           backgroundColor: '#3e98c7'
         })}
       />

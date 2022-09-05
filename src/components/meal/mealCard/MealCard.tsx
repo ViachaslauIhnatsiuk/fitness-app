@@ -2,6 +2,7 @@ import React, { FC, FormEvent, memo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { IoAdd, IoSearchOutline } from 'react-icons/io5';
 import { RiArrowGoBackFill } from 'react-icons/ri';
+import { MdModeEditOutline } from 'react-icons/md';
 import { useForm } from 'react-hook-form';
 import { MealDish } from '../mealDish/MealDish';
 import { DishFormInputs, MealCardProps } from './models';
@@ -81,15 +82,20 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
             </button>
           </form>
         ) : (
-          <div className={s.header} onDoubleClick={() => setEditMode(true)}>
+          <div className={s.header}>
             <div className={s.info}>
               <div className={s.meals}>{meals.length} meals</div>
               <div className={s.calories}>{totalCalories} cal</div>
             </div>
             <div className={s.title}>{title}</div>
-            <button type="button" className={s.remove} onClick={handleDeleteCard}>
-              Remove
-            </button>
+            <div className={s.header_btns}>
+              <button type="button" className={s.btn_edit} onClick={() => setEditMode(true)}>
+                <MdModeEditOutline className={s.edit_icon} />
+              </button>
+              <button type="button" className={s.remove} onClick={handleDeleteCard}>
+                Remove
+              </button>
+            </div>
           </div>
         )}
       </div>

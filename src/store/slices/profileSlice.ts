@@ -21,7 +21,7 @@ const initialState: ProfileState = {
     id: '',
     token: '',
     settings: {
-      isDarkTheme: true,
+      theme: 'dark',
       isSoundOn: true
     },
     userData: {
@@ -142,9 +142,9 @@ const profileSlice = createSlice({
       settings.isSoundOn = payload;
       updateFirestoreState(state.currentUser);
     },
-    setDarkTheme: (state, { payload }: PayloadAction<boolean>) => {
+    toggleTheme: (state, { payload }: PayloadAction<string>) => {
       const { settings } = state.currentUser;
-      settings.isDarkTheme = payload;
+      settings.theme = payload;
       updateFirestoreState(state.currentUser);
     },
     addCustomTraining: (state, { payload: training }: PayloadAction<IWorkout>) => {
@@ -249,7 +249,7 @@ export const {
   setDailyTimeTrainings,
   addCustomTraining,
   setSoundOn,
-  setDarkTheme,
+  toggleTheme,
   deleteCustomTraining,
   setUpdatedUserData,
   updateMealCards

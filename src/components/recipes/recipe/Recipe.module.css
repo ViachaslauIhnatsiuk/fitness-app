@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   animation: fade-in 1.5s forwards;
+  color: var(--main-font);
 }
 
 @keyframes fade-in {
@@ -34,6 +35,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  color: var(--icon);
 }
 
 .bookmark {
@@ -46,7 +48,6 @@
 .icon {
   font-size: 30px;
   transition: 0.5s;
-  color: #ffffff;
 }
 
 .icon:hover {

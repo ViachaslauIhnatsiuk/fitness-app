@@ -29,6 +29,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  color: var(--icon);
 }
 
 .bookmark {
@@ -37,12 +38,12 @@
   right: 0;
   cursor: pointer;
   font-size: 30px;
+  color: var(--icon);
 }
 
 .icon {
   font-size: 30px;
   transition: 0.5s;
-  color: #ffffff;
 }
 
 .icon:hover {
@@ -69,6 +70,7 @@
   width: 100%;
   row-gap: 1.5rem;
   font-size: 1.6rem;
+  color: var(--main-font);
 }
 
 .subtitle {

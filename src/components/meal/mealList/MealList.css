@@ -5,9 +5,8 @@
   gap: 30px;
 }
 
-@media (max-width: 870px) {
+@media (max-width: 600px) {
   .list_wrapper {
     justify-content: center;
   }
-
 }

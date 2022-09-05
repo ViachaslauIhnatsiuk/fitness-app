@@ -63,7 +63,7 @@ const TrainingForm: FC = () => {
         />
         <button
           style={{
-            backgroundColor: exercises.length < 5 || !title ? '#35383f' : '#7755ff'
+            backgroundColor: exercises.length < 5 || !title ? 'var(--meal-card-bg)' : '#7755ff'
           }}
           className="create_button"
           type="button"

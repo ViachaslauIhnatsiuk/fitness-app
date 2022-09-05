@@ -20,6 +20,10 @@
   font-size: 20px;
 }
 
+.table tr>td:first-child {
+  color: #ffffff;
+}
+
 @media (max-width: 1600px) {
   .table {
     width: 800px;

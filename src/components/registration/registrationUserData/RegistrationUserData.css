@@ -64,59 +64,59 @@
   width: 100% !important;
 }
 
-.select__control {
+.selector__control {
   background-color: #1f222a !important;
   border: 2px solid #7755ff !important;
   border-radius: 10px !important;
 }
 
-.select__control--is-focused {
+.selector__control--is-focused {
   border: 2px solid #7755ff !important;
   box-shadow: none !important;
 }
 
-.select__value-container {
+.selector__value-container {
   padding: 0 8px !important;
   margin: 0 !important;
   cursor: pointer !important;
 }
 
-.select__single-value {
+.selector__single-value {
   color: #c0c1c3 !important;
   font-size: 18px !important;
 }
 
-.select__input-container {
+.selector__input-container {
   margin: 0 !important;
   color: #c0c1c3 !important;
   font-size: 18px !important;
 }
 
-.select__option {
+.selector__option {
   padding: 7px 10px !important;
   font-size: 18px !important;
   color: #c0c1c3 !important;
   cursor: pointer !important;
 }
 
-.select__menu-list {
+.selector__menu-list {
   background-color: #1f222a !important;
 }
 
-.select__menu-list::-webkit-scrollbar {
+.selector__menu-list::-webkit-scrollbar {
   width: 0;
 }
 
-.select__option--is-focused,
-.select__option--is-selected {
+.selector__option--is-focused,
+.selector__option--is-selected {
   background-color: #7755ff !important;
 }
 
-.select__indicator {
+.selector__indicator {
   cursor: pointer !important;
 }
 
-.select__indicator-separator {
+.selector__indicator-separator {
   display: none !important;
 }
 

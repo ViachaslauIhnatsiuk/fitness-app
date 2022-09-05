@@ -28,8 +28,9 @@
   user-select: none;
   border: 1px solid #25282f;
   border-radius: 5px;
-  background-color: #1f222a;
+  background-color: var(--input-bg);
   transition: 0.5s;
+  color: var(--main-font);
 }
 
 @media (max-width: 1600px) {

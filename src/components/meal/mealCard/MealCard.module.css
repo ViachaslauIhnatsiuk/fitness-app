@@ -5,8 +5,9 @@
   padding: 10px;
   border-radius: 10px;
   row-gap: 10px;
-  background-color: #1f222a;
+  background-color: var(--meal-card-bg);
   box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.2);
+  color: var(--main-font);
 }
 
 .header {
@@ -26,13 +27,13 @@
 }
 
 .input_edit {
-  height: 24px;
+  height: 22px;
   padding: 0 8px;
-  background-color: #1f222a;
+  background-color: var(--input-bg);
   box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   font-size: 14px;
-  color: #ffffff;
+  color: var(--input-color);
   transition: 0.5s;
 }
 
@@ -40,7 +41,7 @@
 .input_edit:focus {
   border-color: #7755ff;
   box-shadow: 0 0 3px 2px rgb(119 85 255 / 50%);
-  background-color: #1e1d31;
+  background-color: var(--input-active-bg);
   outline: none;
 }
 
@@ -61,6 +62,40 @@
   text-overflow: ellipsis;
   font-size: 18px;
   font-weight: 300;
+}
+
+.header_btns {
+  display: flex;
+  gap: 5px;
+}
+
+.btn_edit {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 11px;
+  transition: 0.5s;
+  color: #eeeeee;
+  cursor: pointer;
+}
+
+.edit_icon {
+  font-size: 18px;
+  padding: 2px;
+  background-color: #c648494d;
+  color: #1f222a;
+  border-radius: 4px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.edit_icon:hover {
+  background-color: #c64849cc;
+  box-shadow: 0px 0px 6px 2px #c6484933;
+  transition: 0.4s;
 }
 
 .btn_delete {
@@ -94,7 +129,7 @@
 .meals,
 .calories {
   font-size: 12px;
-  color: #d6d1d2;
+  color: var(--font-pale);
 }
 
 .remove {
@@ -118,7 +153,7 @@
 }
 
 .meals {
-  border-right: 1px solid #d6d1d2;
+  border-right: 1px solid var(--font-pale);
   padding-right: 5px;
 }
 
@@ -145,11 +180,11 @@
 .size_invalid {
   height: 30px;
   padding: 0 5px;
-  background-color: #1f222a;
+  background-color: var(--input-bg);
   box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.2);
   border-radius: 5px;
   font-size: 14px;
-  color: #ffffff;
+  color: var(--input-color);
 }
 
 .dish_invalid,
@@ -181,7 +216,7 @@
 .size:focus {
   border-color: #7755ff;
   box-shadow: 0 0 3px 2px rgb(119 85 255 / 50%);
-  background-color: #1e1d31;
+  background-color: var(--input-active-bg);
   outline: none;
 }
 
@@ -236,11 +271,11 @@ input::-webkit-inner-spin-button {
 
 .meals_wrapper::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #181a20;
+  background-color: var(--main-inActive-bg);
 }
 
 .meals_wrapper::-webkit-scrollbar-track {
-  background-color: #35383f;
+  background-color: var(--input-bg);
   border-radius: 10px;
 }
 

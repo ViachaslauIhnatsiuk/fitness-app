@@ -15,6 +15,7 @@
   font-weight: 300;
   letter-spacing: 0.05em;
   font-size: 17px;
+  color: var(--main-font);
 }
 
 .CircularProgressbar-text {

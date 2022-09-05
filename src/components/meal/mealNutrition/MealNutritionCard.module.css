@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 10px;
   border-radius: 10px;
-  background-color: #1f222a;
+  background-color: var(--meal-card-bg);
   cursor: default;
   box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.2);
 }
@@ -22,11 +22,12 @@
 .title {
   font-size: 14px;
   font-weight: 600;
+  color: var(--main-font);
 }
 
 .amount {
   font-size: 13px;
-  color: #d6d1d2;
+  color: var(--font-pale);
 }
 
 .progress {

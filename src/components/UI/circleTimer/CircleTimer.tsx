@@ -18,7 +18,7 @@ const CircleTimer = ({
   onUpdate,
   isTimerCanPause = false,
   playSound,
-  trailColor = '#ffffff'
+  trailColor = '#eeeeee'
 }: Partial<CircleTimerProps>) => {
   const { isSoundOn } = useAppSelector(selectSettings);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);

@@ -10,11 +10,18 @@
 
 .main {
   display: flex;
+  min-height: 100%;
   flex-grow: 1;
 }
 
 @media (max-width: 870px) {
   .main {
     flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    flex-grow: 0;
   }
 }

@@ -57,27 +57,18 @@
 }
 
 @media (max-width: 870px) {
-  .title {
-    margin-top: -700px;
-  }
-
   .trainings {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .return {
-    top: -665px;
     left: 40px;
   }
 }
 
-
 @media (max-width: 600px) {
   .title {
-    margin-bottom: 40px;
-  }
-
-  .title {
+    margin: 70px 0 50px;
     font-size: 34px;
   }
 
@@ -87,7 +78,7 @@
   }
 
   .return {
-    top: -655px;
+    top: 115px;
   }
 }
 

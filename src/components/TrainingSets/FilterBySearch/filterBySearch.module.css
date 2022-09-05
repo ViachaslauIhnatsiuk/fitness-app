@@ -1,7 +1,7 @@
 .input_wrapper {
   display: flex;
   justify-content: center;
-  width: 400px;
+  width: 380px;
   margin-bottom: 20px;
   position: relative;
 }
@@ -33,8 +33,8 @@
   left: 13px;
 }
 
-.input:active~.icon_search,
-.input:focus~.icon_search {
+.input:active ~ .icon_search,
+.input:focus ~ .icon_search {
   color: #6842ff;
 }
 
@@ -66,5 +66,4 @@
   .input {
     width: 100%;
   }
-
 }

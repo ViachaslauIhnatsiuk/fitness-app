@@ -168,18 +168,20 @@ const profileSlice = createSlice({
     removeMeals: ({ currentUser }, { payload }) => {
       const { mealCardId, mealDishId } = payload;
 
-      const newMeals = currentUser.userMeals[mealCardId].meals.filter(
+      const foundedMealCardInd = currentUser.userMeals.findIndex((meal) => meal.id === mealCardId);
+      const newMeals = currentUser.userMeals[foundedMealCardInd].meals.filter(
         (_, mealId) => mealId !== mealDishId
       );
-      currentUser.userMeals[mealCardId].meals = newMeals;
+
+      currentUser.userMeals[foundedMealCardInd].meals = newMeals;
 
       updateFirestoreState(currentUser);
     },
     addCardToUserMeals: ({ currentUser }, { payload }: PayloadAction<string>) => {
       const { userMeals } = currentUser;
 
-      const arrIds = userMeals.map((meal: IDailyMeals): number => meal.id);
-      const newId = arrIds[userMeals.length - 1] + 1 || 0;
+      const maxIds = Math.max(...userMeals.map((meal: IDailyMeals): number => meal.id));
+      const newId = maxIds + 1 || 0;
 
       const newCard = {
         id: newId,

@@ -29,6 +29,7 @@ const NewMealCard: FC = () => {
           type="text"
           className={errors.newTitle ? s.input_invalid : s.input}
           placeholder="Enter new card title"
+          autoComplete="off"
           {...register('newTitle', { required: true })}
           autoComplete="off"
         />

@@ -33,7 +33,7 @@ const RecipesCategory = () => {
 
   useEffect(() => {
     dispatch(fetchRecipes(queryParams)).catch((err: Error) => err);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={s.main}>

@@ -17,7 +17,8 @@ import {
   setPersistence,
   onAuthStateChanged,
   reauthenticateWithCredential,
-  EmailAuthProvider
+  EmailAuthProvider,
+  reauthenticateWithPopup
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -61,7 +62,10 @@ export {
   setPersistence,
   onAuthStateChanged,
   reauthenticateWithCredential,
-  EmailAuthProvider
+  EmailAuthProvider,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  reauthenticateWithPopup
 };
 
 export type { User };

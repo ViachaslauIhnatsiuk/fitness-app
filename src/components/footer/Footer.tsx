@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { BsGithub } from 'react-icons/bs';
-import logo from '../../assets/rs-logo.svg';
+import { ReactComponent as Logo } from '../../assets/rs-logo.svg';
 import s from './Footer.module.css';
 
 const Footer: FC = () => {
@@ -43,7 +43,7 @@ const Footer: FC = () => {
         </div>
       </div>
       <a href="https://rs.school/js/" target="_blank" rel="noreferrer">
-        <img className={s.logo} src={logo} alt="rolling-scopes-school logo" />
+        <Logo className={s.logo} />
       </a>
     </div>
   );

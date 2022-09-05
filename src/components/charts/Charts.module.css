@@ -33,7 +33,7 @@
   padding: 0 20px;
   border-radius: 5px;
   color: #ffffff;
-  background-color: rgba(198, 72, 73, 0.2);
+  background-color: var(--chart-nav-bg);
   transition: 0.5s;
   cursor: pointer;
 }

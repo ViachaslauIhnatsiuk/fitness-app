@@ -79,6 +79,12 @@
   }
 }
 
+@media (max-width: 600px) {
+  .main {
+    padding-top: 70px;
+  }
+}
+
 @media (max-width: 450px) {
   .title {
     font-size: 36px;

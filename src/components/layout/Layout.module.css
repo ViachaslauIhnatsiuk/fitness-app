@@ -1,7 +1,7 @@
 .layout {
   display: flex;
   flex-direction: column;
-  background-color: #181a20;
+  background-color: var(--main-bg);
   min-height: 100vh;
   height: 100%;
   padding: 20px;

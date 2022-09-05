@@ -29,7 +29,6 @@ import { RegistrationUserData } from './registration/registrationUserData/Regist
 import { RegistrationUserProfile } from './registration/registrationUserProfile/RegistrationUserProfile';
 import { Videos } from './TrainingVideos/videos/Videos';
 import { VideoPage } from './TrainingVideos/videoPage/VideoPage';
-import s from './App.module.css';
 import { IUser } from '../models/User';
 import { FavoriteVideos } from './favorite/favoriteVideos/FavoriteVideos';
 import { FavoriteTrainings } from './favorite/FavoriteTrainings/FavoriteTrainings';
@@ -37,8 +36,11 @@ import { FavoriteRecipes } from './favorite/favoriteRecipes/FavoriteRecipes';
 import { RecipeWrapper } from './recipes/recipeWrapper/RecipeWrapper';
 import { TrainingCreate } from './TrainingSets/trainingCreate/TrainingCreate';
 import { CustomTrainings } from './favorite/customTrainings/CustomTrainings';
+import { useTheme } from '../hooks/useTheme';
+import s from './App.module.css';
 
 const App: FC = () => {
+  const { theme } = useTheme();
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector(selectProfile);
 

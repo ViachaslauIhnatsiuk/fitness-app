@@ -15,7 +15,9 @@ import {
   browserSessionPersistence,
   browserLocalPersistence,
   setPersistence,
-  onAuthStateChanged
+  onAuthStateChanged,
+  reauthenticateWithCredential,
+  EmailAuthProvider
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -57,7 +59,9 @@ export {
   signOut,
   updatePassword,
   setPersistence,
-  onAuthStateChanged
+  onAuthStateChanged,
+  reauthenticateWithCredential,
+  EmailAuthProvider
 };
 
 export type { User };

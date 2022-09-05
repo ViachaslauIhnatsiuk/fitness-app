@@ -30,12 +30,12 @@
   position: absolute;
   top: 0;
   left: 0;
+  color: var(--icon);
 }
 
 .icon {
   font-size: 30px;
   transition: 0.5s;
-  color: #ffffff;
 }
 
 .icon:hover {
@@ -48,6 +48,7 @@
   font-size: 34px;
   letter-spacing: 0.05em;
   text-transform: capitalize;
+  color: var(--main-font);
   cursor: default;
 }
 

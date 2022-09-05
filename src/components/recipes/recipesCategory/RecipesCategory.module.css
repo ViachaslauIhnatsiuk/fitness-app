@@ -21,12 +21,12 @@
   position: absolute;
   top: 0;
   left: 0;
+  color: var(--icon);
 }
 
 .icon {
   font-size: 30px;
   transition: 0.5s;
-  color: #ffffff;
 }
 
 .icon:hover {
@@ -49,11 +49,10 @@
 .input {
   width: 100%;
   padding: 8px 20px 8px 40px;
-  background-color: #1f222a;
-  border: 1px solid #1f222a;
+  background-color: var(--input-bg);
   border-radius: 10px;
   font-size: 16px;
-  color: #ffffff;
+  color: var(--input-color);
   transition: 0.3s;
 }
 
@@ -61,7 +60,7 @@
 .input:focus {
   border-color: #7755ff;
   box-shadow: 0 0 3px 2px rgb(119 85 255 / 50%);
-  background-color: #1e1d31;
+  background-color: var(--input-active-bg);
   outline: none;
 }
 
@@ -98,6 +97,7 @@
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.05em;
+  color: var(--main-font);
   cursor: default;
 }
 

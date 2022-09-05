@@ -35,7 +35,7 @@ const RegistrationUserData: FC = () => {
               <div className="select" key={uuidv4()}>
                 <div className="select-label">{select[0].toUpperCase() + select.slice(1)}</div>
                 <Select
-                  classNamePrefix="select"
+                  classNamePrefix="selector"
                   onChange={handleChange}
                   value={handleValue(newUserData, select, selectOptions[select])}
                   options={selectOptions[select]}

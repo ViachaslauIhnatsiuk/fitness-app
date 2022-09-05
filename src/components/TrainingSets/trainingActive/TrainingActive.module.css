@@ -6,18 +6,19 @@
   flex-grow: 1;
   width: 100%;
   padding-top: 20px;
+  color: var(--main-font);
 }
 
 .return {
   position: absolute;
   top: 0;
   left: 0;
+  color: var(--icon);
 }
 
 .icon {
   font-size: 30px;
   transition: 0.5s;
-  color: #ffffff;
 }
 
 .icon:hover {

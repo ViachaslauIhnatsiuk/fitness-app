@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 2rem;
+  gap: 15px;
   cursor: default;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .image {
-  width: 80%;
+  max-height: 250px;
   border-radius: 10px;
 }
 
@@ -68,7 +68,7 @@
   }
 
   .button {
-    width: 130px;
+    width: 120px;
     height: 35px;
   }
 }

@@ -11,7 +11,7 @@ interface IUser {
   id: string;
   token: string;
   settings: {
-    isDarkTheme: boolean;
+    theme: string;
     isSoundOn: boolean;
   };
   userData: {

@@ -16,8 +16,11 @@ import { NotificationMessage } from '../../models/notifications';
 import './EditPersonalData.css';
 import { useAppSelector } from '../../store/model';
 import { selectProfile } from '../../store/selectors';
+import { useAppDispatch } from '../../store/store';
+import { setUpdatedUserData } from '../../store/slices/profileSlice';
 
 const EditPersonalData: FC = () => {
+  const dispatch = useAppDispatch();
   const { success, setSuccess, updateUserData } = useProfileUpdate();
   const {
     currentUser: { userData: userDataFromStore }
@@ -35,6 +38,7 @@ const EditPersonalData: FC = () => {
 
   const handleDataUpdate = async () => {
     await updateUserData(userData).catch();
+    dispatch(setUpdatedUserData(userData));
   };
 
   return (

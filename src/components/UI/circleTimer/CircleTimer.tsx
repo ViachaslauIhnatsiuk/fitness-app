@@ -17,7 +17,8 @@ const CircleTimer = ({
   strokeWidth = 9,
   onUpdate,
   isTimerCanPause = false,
-  playSound
+  playSound,
+  trailColor = '#ffffff'
 }: Partial<CircleTimerProps>) => {
   const { isSoundOn } = useAppSelector(selectSettings);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -37,7 +38,7 @@ const CircleTimer = ({
     <div className={s.timer}>
       <CountdownCircleTimer
         isPlaying={isPlaying}
-        trailColor="#35383f"
+        trailColor={trailColor}
         duration={duration}
         colors={colors || ['#7C00FF', '#7C00FF']}
         colorsTime={[0, 0]}

@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState } from 'react';
+import React, { FC, FormEvent, memo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { IoAdd, IoSearchOutline } from 'react-icons/io5';
 import { RiArrowGoBackFill } from 'react-icons/ri';
@@ -150,4 +150,5 @@ const MealCard: FC<MealCardProps> = ({ id, title, meals }) => {
   );
 };
 
-export { MealCard };
+const MemoMealCard = memo(MealCard);
+export { MemoMealCard };

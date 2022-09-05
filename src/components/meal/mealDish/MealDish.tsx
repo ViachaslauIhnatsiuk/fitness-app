@@ -12,7 +12,9 @@ const MealDish: FC<MealDishProps> = ({
   props: { name, serving_size_g, calories }
 }) => {
   const dispatch = useAppDispatch();
-  const handleRemoveDish = () => dispatch(removeMeals({ mealCardId, mealDishId }));
+  const handleRemoveDish = () => {
+    dispatch(removeMeals({ mealCardId, mealDishId }));
+  };
 
   return (
     <div className={s.wrapper}>

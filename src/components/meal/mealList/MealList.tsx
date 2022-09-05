@@ -6,21 +6,21 @@ import {
   DropResult,
   DraggableLocation
 } from 'react-beautiful-dnd';
-import { dateToday } from '../../../helpers/transformDate';
-import { useAppSelector } from '../../../store/model';
-import { selectUserMeals } from '../../../store/selectors';
 import { IDailyMeals } from '../../../store/slices/meals/model';
-import { MealCard } from '../mealCard/MealCard';
+import { updateMealCards } from '../../../store/slices/profileSlice';
+import { useAppDispatch } from '../../../store/store';
+import { MemoMealCard as MealCard } from '../mealCard/MealCard';
 import { meals as defaultMeals } from './constants';
 import './MealList.css';
+import { useMeals } from './useMeals';
 
 const MealList: FC = () => {
+  const dispatch = useAppDispatch();
   const [cardsOrder, updateCardsOrder] = useState<IDailyMeals[]>(defaultMeals);
-  const userMeals = useAppSelector(selectUserMeals);
+  const userMeals = useMeals();
 
   useEffect(() => {
-    const todayUserMeals = userMeals.filter((meal) => meal.date === dateToday);
-    updateCardsOrder(todayUserMeals);
+    updateCardsOrder(userMeals);
   }, [userMeals]);
 
   const handleOnDragEnd = (result: DropResult): void => {
@@ -28,6 +28,7 @@ const MealList: FC = () => {
     const [reorderedCards] = cards.splice(result.source.index, 1);
     cards.splice((result.destination as DraggableLocation).index, 0, reorderedCards);
     updateCardsOrder(cards);
+    dispatch(updateMealCards(cards));
   };
 
   return (

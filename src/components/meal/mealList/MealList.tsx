@@ -10,9 +10,8 @@ import { IDailyMeals } from '../../../store/slices/meals/model';
 import { updateMealCards } from '../../../store/slices/profileSlice';
 import { useAppDispatch } from '../../../store/store';
 import { MemoMealCard as MealCard } from '../mealCard/MealCard';
-import { meals as defaultMeals } from './constants';
 import './MealList.css';
-import { useMeals } from './useMeals';
+import { useMeals } from '../../../hooks/useMeals';
 
 const MealList: FC = () => {
   const dispatch = useAppDispatch();
@@ -20,8 +19,7 @@ const MealList: FC = () => {
   const { filtered: userMeals } = useMeals();
 
   useEffect(() => {
-    const data = userMeals.length ? userMeals : defaultMeals;
-    updateCardsOrder(data);
+    updateCardsOrder(userMeals);
   }, [userMeals]);
 
   const handleOnDragEnd = (result: DropResult): void => {

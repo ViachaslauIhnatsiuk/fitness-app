@@ -39,11 +39,7 @@ const initialState: ProfileState = {
     },
     favorite: { videoTrainings: [], trainings: [], recipes: [] },
     customTrainings: [],
-    userMeals: [
-      { id: 0, title: 'breakfast', date: dateToday, meals: [] },
-      { id: 1, title: 'lunch', date: dateToday, meals: [] },
-      { id: 2, title: 'dinner', date: dateToday, meals: [] }
-    ]
+    userMeals: []
   }
 };
 
